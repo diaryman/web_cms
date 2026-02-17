@@ -1,4 +1,4 @@
-export default ({ env }) => ({ // trigger reload
+export default ({ env }) => ({ // trigger reload for contacts
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
   app: {

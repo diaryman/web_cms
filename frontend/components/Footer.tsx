@@ -35,9 +35,8 @@ export default async function Footer({ domain = "localhost:3000" }: { domain?: s
                                 <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest leading-none">Admin Court Thailand</p>
                             </div>
                         </Link>
-                        <p className="leading-relaxed text-sm max-w-xs opacity-60">
-                            มุ่งมั่นสู่การเป็นศูนย์กลางข้อมูลธรรมาภิบาลที่มีมาตรฐาน
-                            โปร่งใส และปลอดภัยสูงสุด เพื่อสร้างความเชื่อมั่นในยุคดิจิทัล
+                        <p className="leading-relaxed text-sm max-w-xs opacity-60 whitespace-pre-line">
+                            {config?.heroSubheadline || "มุ่งมั่นสู่การเป็นศูนย์กลางข้อมูลธรรมาภิบาลที่มีมาตรฐาน โปร่งใส และปลอดภัยสูงสุด เพื่อสร้างความเชื่อมั่นในยุคดิจิทัล"}
                         </p>
                         <div className="flex items-center gap-4">
                             {[Facebook, Youtube].map((Icon, idx) => (
@@ -77,22 +76,21 @@ export default async function Footer({ domain = "localhost:3000" }: { domain?: s
                                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/10 transition-colors">
                                     <MapPin size={20} className="text-accent" />
                                 </div>
-                                <p className="text-sm opacity-60 leading-relaxed">
-                                    120 หมู่ที่ 3 ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง <br />
-                                    เขตหลักสี่ กรุงเทพมหานคร 10210
+                                <p className="text-sm opacity-60 leading-relaxed whitespace-pre-line">
+                                    {config?.address || "120 หมู่ที่ 3 ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง \nเขตหลักสี่ กรุงเทพมหานคร 10210"}
                                 </p>
                             </li>
                             <li className="flex items-center gap-4 group">
                                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/10 transition-colors">
                                     <Phone size={18} className="text-accent" />
                                 </div>
-                                <p className="text-sm opacity-60">0 2141 1111</p>
+                                <p className="text-sm opacity-60">{config?.phone || "0 2141 1111"}</p>
                             </li>
                             <li className="flex items-center gap-4 group">
                                 <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/10 transition-colors">
                                     <Mail size={18} className="text-accent" />
                                 </div>
-                                <p className="text-sm opacity-60">admin@admincourt.go.th</p>
+                                <p className="text-sm opacity-60">{config?.email || "admin@admincourt.go.th"}</p>
                             </li>
                         </ul>
                     </div>

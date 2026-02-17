@@ -10,9 +10,11 @@ import { fetchAPI, getStrapiMedia } from "@/lib/api";
 interface PDPAPageClientProps {
     navbar: React.ReactNode;
     footer: React.ReactNode;
+    siteConfig?: any;
+    features?: any[];
 }
 
-export default function PDPAPageClient({ navbar, footer }: PDPAPageClientProps) {
+export default function PDPAPageClient({ navbar, footer, siteConfig, features = [] }: PDPAPageClientProps) {
     const [articles, setArticles] = useState<any[]>([]);
     const [documents, setDocuments] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -45,7 +47,20 @@ export default function PDPAPageClient({ navbar, footer }: PDPAPageClientProps) 
         loadData();
     }, []);
 
-    const principles = [
+    const iconMap: any = {
+        Lock: <Lock className="text-emerald-500" />,
+        Users: <Users className="text-emerald-500" />,
+        Database: <Database className="text-emerald-500" />,
+        Shield: <Shield className="text-emerald-500" />,
+        FileText: <FileText className="text-emerald-500" />,
+        CheckCircle: <CheckCircle2 className="text-emerald-500" />
+    };
+
+    const principles = features.length > 0 ? features.map(f => ({
+        icon: iconMap[f.icon] || <Shield className="text-emerald-500" />,
+        title: f.title,
+        text: f.description
+    })) : [
         {
             icon: <Lock className="text-emerald-500" />,
             title: "Data Security",
@@ -99,15 +114,11 @@ export default function PDPAPageClient({ navbar, footer }: PDPAPageClientProps) 
                             <span className="px-4 py-1 bg-emerald-100 text-emerald-700 rounded-full text-[10px] font-black tracking-widest uppercase mb-6 inline-block">
                                 Administrative Court Privacy Center
                             </span>
-                            <h1 className="text-5xl md:text-7xl font-black font-heading text-slate-900 leading-tight mb-8 tracking-tighter">
-                                การคุ้มครอง <br />
-                                <span className="text-emerald-600">ข้อมูลส่วนบุคคล</span> <br />
-                                เป็นหน้าที่ของเรา
+                            <h1 className="text-5xl md:text-7xl font-black font-heading text-slate-900 leading-tight mb-8 tracking-tighter whitespace-pre-line">
+                                {siteConfig?.heroHeadline || <>การคุ้มครอง <br /><span className="text-emerald-600">ข้อมูลส่วนบุคคล</span> <br />เป็นหน้าที่ของเรา</>}
                             </h1>
-                            <p className="text-xl text-slate-500 mb-10 leading-relaxed font-medium">
-                                สำนักงานศาลปกครองมุ่งมั่นรักษาความปลอดภัยของข้อมูลเจ้าหน้าที่และประชาชน
-                                ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA)
-                                เพื่อสร้างความเชื่อมั่นในการใช้บริการยุติธรรมทางปกครอง
+                            <p className="text-xl text-slate-500 mb-10 leading-relaxed font-medium whitespace-pre-line">
+                                {siteConfig?.heroSubheadline || "สำนักงานศาลปกครองมุ่งมั่นรักษาความปลอดภัยของข้อมูลเจ้าหน้าที่และประชาชน ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 เพื่อสร้างความเชื่อมั่นในการใช้บริการยุติธรรมทางปกครอง"}
                             </p>
                             <div className="flex flex-wrap gap-4">
                                 <Link href="#documents" className="px-8 py-4 bg-emerald-600 text-white font-bold rounded-2xl shadow-xl shadow-emerald-600/20 hover:bg-emerald-700 transition-all active:scale-95 flex items-center gap-2">

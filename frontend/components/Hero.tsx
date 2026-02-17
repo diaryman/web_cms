@@ -4,7 +4,12 @@ import Link from "next/link";
 import { ArrowRight, Shield, Globe, Database, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 
-export default function Hero() {
+interface HeroProps {
+    headline?: string;
+    subHeadline?: string;
+}
+
+export default function Hero({ headline, subHeadline }: HeroProps) {
     return (
         <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden">
             {/* dynamic background with floating blobs */}
@@ -55,22 +60,20 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
-                        className="text-5xl md:text-7xl font-extrabold font-heading tracking-tight mb-8"
+                        className="text-5xl md:text-7xl font-extrabold font-heading tracking-tight mb-8 whitespace-pre-line"
                         style={{ color: 'var(--foreground)' }}
                     >
-                        ยกระดับ <span className="text-gradient">ธรรมาภิบาลข้อมูล</span> <br />
-                        สู่มาตรฐานสากล
+                        {headline || <>ยกระดับ <span className="text-gradient">ธรรมาภิบาลข้อมูล</span> <br />สู่มาตรฐานสากล</>}
                     </motion.h1>
 
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="text-xl font-medium mb-10 leading-relaxed max-w-2xl mx-auto"
+                        className="text-xl font-medium mb-10 leading-relaxed max-w-2xl mx-auto whitespace-pre-line"
                         style={{ color: 'var(--text-muted)' }}
                     >
-                        ขับเคลื่อนองค์กรด้วยข้อมูลที่มีคุณภาพ โปร่งใส และปลอดภัย
-                        เพื่อการตัดสินใจที่แม่นยำและการบริการประชาชนที่มีประสิทธิภาพสูงสุด
+                        {subHeadline || "ขับเคลื่อนองค์กรด้วยข้อมูลที่มีคุณภาพ โปร่งใส และปลอดภัย เพื่อการตัดสินใจที่แม่นยำและการบริการประชาชนที่มีประสิทธิภาพสูงสุด"}
                     </motion.p>
 
                     <motion.div

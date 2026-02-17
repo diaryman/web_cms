@@ -33,7 +33,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
         { name: "นโยบาย/มาตรฐาน", href: "/#policy" },
         { name: "เอกสารเผยแพร่", href: "/documents" },
         { name: "ดาวน์โหลด", href: "/#downloads" },
-        { name: "ติดต่อเรา", href: "/#contact" },
+        { name: "ติดต่อเรา", href: "/contact" },
     ];
 
     const navItems = customNavItems || defaultNavItems;
@@ -105,7 +105,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
 
                                 <Link
                                     href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`}
-                                    className="px-6 py-3 bg-primary text-sm font-bold rounded-2xl shadow-premium hover:bg-accent transition-all active:scale-95 ml-2"
+                                    className="px-6 py-3 bg-primary text-sm font-bold rounded-2xl shadow-premium hover:bg-accent transition-all active:scale-95 ml-2 whitespace-nowrap"
                                     style={{ color: 'var(--primary-foreground)' }}
                                 >
                                     เข้าสู่ระบบ

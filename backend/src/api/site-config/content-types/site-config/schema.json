@@ -25,6 +25,25 @@
         },
         "footerText": {
             "type": "text"
+        },
+        "address": {
+            "type": "text"
+        },
+        "phone": {
+            "type": "string"
+        },
+        "email": {
+            "type": "email"
+        },
+        "officeHours": {
+            "type": "string",
+            "default": "วันจันทร์ - วันศุกร์ เวลา 08.30 - 16.30 น. (ยกเว้นวันหยุดราชการ)"
+        },
+        "heroHeadline": {
+            "type": "text"
+        },
+        "heroSubheadline": {
+            "type": "text"
         }
     }
 }

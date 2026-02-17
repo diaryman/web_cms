@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutDashboard, FileText, Settings, Shield, Bell, LogOut, User, BarChart3, HelpCircle } from "lucide-react";
+import { LayoutDashboard, FileText, Settings, Shield, Bell, LogOut, User, BarChart3, HelpCircle, Package, FileCheck } from "lucide-react";
 import Link from "next/link";
 import React, { Suspense } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
@@ -43,10 +43,14 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
 
     const menuItems = [
         { icon: <LayoutDashboard size={20} />, label: "แดชบอร์ด", href: `/admin`, path: `/admin` },
+        { icon: <Settings size={20} />, label: "ตั้งค่าเว็บไซต์", href: `/admin/site-config`, path: `/admin/site-config` },
+        { icon: <Shield size={20} />, label: "จุดเด่น/หลักการ", href: `/admin/features`, path: `/admin/features` },
+        { icon: <FileCheck size={20} />, label: "นโยบายและมาตรฐาน", href: `/admin/policies`, path: `/admin/policies` },
+        { icon: <Package size={20} />, label: "บริการและดาวน์โหลด", href: `/admin/services`, path: `/admin/services` },
         { icon: <FileText size={20} />, label: "ข่าวสาร/กิจกรรม", href: `/admin/news`, path: `/admin/news` },
-        { icon: <Shield size={20} />, label: "นโยบาย/เอกสาร", href: `/admin/documents`, path: `/admin/documents` },
+        { icon: <FileText size={20} />, label: "นโยบาย/เอกสาร", href: `/admin/documents`, path: `/admin/documents` },
+        { icon: <Bell size={20} />, label: "ข้อความติดต่อ", href: `/admin/contacts`, path: `/admin/contacts` },
         { icon: <BarChart3 size={20} />, label: "สถิติและการใช้งาน", href: `/admin/stats`, path: `/admin/stats` },
-        { icon: <Bell size={20} />, label: "การแจ้งเตือน", href: `/admin/notifications`, path: `/admin/notifications` },
     ];
 
     if (!isAuthorized) {

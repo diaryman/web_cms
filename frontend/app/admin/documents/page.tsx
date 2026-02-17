@@ -73,6 +73,17 @@ function DocumentsContent() {
         return matchesSearch && matchesSite;
     });
 
+    const handleDelete = async (documentId: string) => {
+        if (!confirm("คุณต้องการลบเอกสารนี้ใช่หรือไม่?")) return;
+        try {
+            await fetchAPI(`/policy-documents/${documentId}`, {}, { method: "DELETE" });
+            setDocuments(documents.filter(d => d.documentId !== documentId));
+        } catch (error) {
+            console.error("Error deleting document", error);
+            alert("ลบเอกสารไม่สำเร็จ");
+        }
+    };
+
     return (
         <div className="space-y-8">
             {/* Header */}
@@ -138,8 +149,19 @@ function DocumentsContent() {
                                     <button className="p-2 text-primary bg-primary/5 hover:bg-primary hover:text-white rounded-xl transition-all" title="ดาวน์โหลด">
                                         <Download size={16} />
                                     </button>
-                                    <button className="p-2 text-gray-400 bg-gray-50 hover:bg-amber-500 hover:text-white rounded-xl transition-all" title="แก้ไข">
+                                    <Link
+                                        href={`/admin/documents/edit/${doc.documentId}?site=${siteParam}`}
+                                        className="p-2 text-gray-400 bg-gray-50 hover:bg-amber-500 hover:text-white rounded-xl transition-all"
+                                        title="แก้ไข"
+                                    >
                                         <Edit size={16} />
+                                    </Link>
+                                    <button
+                                        onClick={() => handleDelete(doc.documentId)}
+                                        className="p-2 text-gray-400 bg-gray-50 hover:bg-red-500 hover:text-white rounded-xl transition-all"
+                                        title="ลบ"
+                                    >
+                                        <Trash2 size={16} />
                                     </button>
                                 </div>
                             </div>

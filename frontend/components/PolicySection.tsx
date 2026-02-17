@@ -1,9 +1,61 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ShieldCheck, Lock, CheckCircle, FileCheck } from "lucide-react";
+import { ShieldCheck, Lock, CheckCircle, FileCheck, Award, Shield } from "lucide-react";
+import { useEffect, useState } from "react";
+import { fetchAPI } from "@/lib/api";
 
-export default function PolicySection() {
+interface Policy {
+    id: number;
+    title: string;
+    description: string;
+    icon: string;
+    highlightValue?: string;
+}
+
+export default function PolicySection({ domain = "localhost:3000" }: { domain?: string }) {
+    const [policies, setPolicies] = useState<Policy[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        loadPolicies();
+    }, [domain]);
+
+    const loadPolicies = async () => {
+        try {
+            const res = await fetchAPI("/policies", {
+                filters: { domain, isActive: true },
+                sort: ["order:asc"],
+                pagination: { pageSize: 4 }
+            });
+            setPolicies(res.data || []);
+        } catch (error) {
+            console.error("Error loading policies", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getIcon = (iconName: string) => {
+        const icons: any = {
+            ShieldCheck,
+            Lock,
+            CheckCircle,
+            FileCheck,
+            Award,
+            Shield
+        };
+        return icons[iconName] || ShieldCheck;
+    };
+
+    // Fallback to default data if no policies
+    const displayPolicies = policies.length > 0 ? policies : [
+        { id: 1, title: "Data Privacy First", icon: "Lock", description: "" },
+        { id: 2, title: "ISO/IEC 27001", icon: "CheckCircle", description: "" },
+        { id: 3, title: "DGA Standards", icon: "FileCheck", description: "" },
+        { id: 4, title: "Cyber Security Act", icon: "ShieldCheck", description: "" }
+    ];
+
     return (
         <section id="policy" className="py-32 section-mixed relative overflow-hidden border-y border-gray-100 dark:border-white/5 scroll-mt-32">
             {/* Abstract background shapes */}
@@ -28,26 +80,25 @@ export default function PolicySection() {
                         </p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            {[
-                                { icon: <Lock size={20} />, text: "Data Privacy First" },
-                                { icon: <CheckCircle size={20} />, text: "ISO/IEC 27001" },
-                                { icon: <FileCheck size={20} />, text: "DGA Standards" },
-                                { icon: <ShieldCheck size={20} />, text: "Cyber Security Act" }
-                            ].map((item, idx) => (
-                                <motion.div
-                                    key={idx}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.2 + (idx * 0.1) }}
-                                    className="flex items-center gap-3 font-bold group" style={{ color: 'var(--foreground)' }}
-                                >
-                                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                                        {item.icon}
-                                    </div>
-                                    <span className="text-sm">{item.text}</span>
-                                </motion.div>
-                            ))}
+                            {displayPolicies.map((policy, idx) => {
+                                const IconComponent = getIcon(policy.icon);
+                                return (
+                                    <motion.div
+                                        key={policy.id}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.2 + (idx * 0.1) }}
+                                        className="flex items-center gap-3 font-bold group"
+                                        style={{ color: 'var(--foreground)' }}
+                                    >
+                                        <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                            <IconComponent size={20} />
+                                        </div>
+                                        <span className="text-sm">{policy.title}</span>
+                                    </motion.div>
+                                );
+                            })}
                         </div>
                     </motion.div>
 
@@ -62,7 +113,9 @@ export default function PolicySection() {
                                 <div className="flex justify-between items-center bg-white/5 p-6 rounded-2xl border border-white/5">
                                     <div>
                                         <p className="text-xs text-blue-300 font-bold uppercase tracking-widest mb-1">Security Score</p>
-                                        <p className="text-3xl font-black text-white">99.9%</p>
+                                        <p className="text-3xl font-black text-white">
+                                            {policies.find(p => p.highlightValue)?.highlightValue || "99.9%"}
+                                        </p>
                                     </div>
                                     <div className="w-12 h-12 rounded-full border-4 border-blue-500/30 border-t-blue-500 animate-spin-slow"></div>
                                 </div>

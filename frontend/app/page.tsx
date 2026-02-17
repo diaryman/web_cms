@@ -19,12 +19,14 @@ import { fetchAPI } from "@/lib/api";
 export default async function Home() {
   const domain = "localhost:3000";
   let announcement = undefined;
+  let siteConfig = undefined;
 
   try {
     const config = await fetchAPI("/site-configs", {
       filters: { domain }
     });
-    announcement = config.data?.[0]?.announcement;
+    siteConfig = config.data?.[0];
+    announcement = siteConfig?.announcement;
   } catch (e) {
     console.error("Error fetching home config", e);
   }
@@ -35,11 +37,14 @@ export default async function Home() {
       <ScrollProgress />
       <BackToTop />
       <NewsTicker domain={domain} announcement={announcement} />
-      <Navbar />
-      <Hero />
-      <PolicySection />
+      <Navbar domain={domain} />
+      <Hero
+        headline={siteConfig?.heroHeadline}
+        subHeadline={siteConfig?.heroSubheadline}
+      />
+      <PolicySection domain={domain} />
       <ActivitiesSection />
-      <DownloadsSection />
+      <DownloadsSection domain={domain} />
       <Footer />
     </main>
   );

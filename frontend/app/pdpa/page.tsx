@@ -13,13 +13,23 @@ export default async function PDPAPage() {
     const domain = "pdpa.localhost";
     let announcement = undefined;
 
+    let siteConfig = undefined;
+    let features = [];
+
     try {
-        const config = await fetchAPI("/site-configs", {
+        const configRes = await fetchAPI("/site-configs", {
             filters: { domain }
         });
-        announcement = config.data?.[0]?.announcement;
+        siteConfig = configRes.data?.[0];
+        announcement = siteConfig?.announcement;
+
+        const featuresRes = await fetchAPI("/features", {
+            filters: { domain, section: "PDPA Principles" },
+            sort: ["order:asc"]
+        });
+        features = featuresRes.data || [];
     } catch (e) {
-        console.error("Error fetching PDPA config", e);
+        console.error("Error fetching PDPA data", e);
     }
 
     return (
@@ -28,6 +38,8 @@ export default async function PDPAPage() {
             <PDPAPageClient
                 navbar={<Navbar domain={domain} />}
                 footer={<Footer domain={domain} />}
+                siteConfig={siteConfig}
+                features={features}
             />
         </>
     );

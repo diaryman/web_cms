@@ -137,7 +137,7 @@ export default function NewsPageClient({
                             const coverImageUrl = item.coverImage?.url ? getStrapiMedia(item.coverImage.url) : null;
 
                             return (
-                                <Link href={`/news/${item.slug}`} key={item.id} className="block">
+                                <Link href={`/news/${item.slug}?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`} key={item.id} className="block">
                                     <motion.div
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}

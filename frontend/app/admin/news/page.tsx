@@ -77,6 +77,17 @@ function NewsContent() {
         return matchesSearch && matchesCategory && matchesSite;
     });
 
+    const handleDelete = async (id: string) => {
+        if (!confirm("คุณต้องการลบข่าวนี้ใช่หรือไม่? การกระทำนี้ไม่สามารถย้อนกลับได้")) return;
+        try {
+            await fetchAPI(`/articles/${id}`, {}, { method: "DELETE" });
+            setArticles(articles.filter((a) => a.documentId !== id));
+        } catch (error) {
+            console.error("Failed to delete article", error);
+            alert("ลบข่าวไม่สำเร็จ");
+        }
+    };
+
     return (
         <div className="space-y-8">
             {/* Header */}
@@ -201,7 +212,11 @@ function NewsContent() {
                                                 >
                                                     <Edit size={18} />
                                                 </Link>
-                                                <button className="p-2 text-gray-400 hover:text-red-500 hover:bg-white hover:shadow-sm rounded-xl transition-all" title="ลบ">
+                                                <button
+                                                    onClick={() => handleDelete(article.documentId)}
+                                                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-white hover:shadow-sm rounded-xl transition-all"
+                                                    title="ลบ"
+                                                >
                                                     <Trash2 size={18} />
                                                 </button>
                                             </div>
