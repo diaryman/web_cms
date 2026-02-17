@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Sarabun', var(--font-sarabun), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Prompt', var(--font-prompt), ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: var(--primary-color);
+  --color-accent: #3b82f6;
+  --color-accent-dark: #2563eb;
+  --color-gold: #b45309;
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  --shadow-premium: var(--premium-shadow);
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  --shadow-inner-soft: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #020617;
+  --primary-color: #0c1222;
+  --primary-foreground: #ffffff;
+  --accent-color: #3b82f6;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --text-muted: #475569;
+  --premium-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+}
+
+.dark,
+[class~="dark"] {
+  --background: #020617;
+  --foreground: #ffffff;
+  --primary-color: #f8fafc;
+  --primary-foreground: #020617;
+  --accent-color: #60a5fa;
+  --glass-bg: rgba(15, 23, 24, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-muted: #cbd5e1;
+  /* Brighter for dark mode */
+  --premium-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+@layer base {
+
+  html,
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.025em;
+    font-weight: 800;
+    color: var(--foreground);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+  }
+
+  .glass-dark {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+  }
+
+  .text-gradient {
+    background-image: linear-gradient(to right, #1d4ed8, #4338ca);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .dark .text-gradient {
+    background-image: linear-gradient(to right, #60a5fa, #818cf8);
+  }
+
+  .section-white {
+    background-color: var(--background);
+    background-image: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.03) 0, transparent 50%),
+      radial-gradient(at 50% 0%, rgba(99, 102, 241, 0.03) 0, transparent 50%);
+  }
+
+  .section-mixed {
+    background-color: var(--background);
+    position: relative;
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    opacity: 0.03;
+    z-index: 9999;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Custom Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 10px;
+  border: 3px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* Scroll Progress Bar at the top of the page */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--accent-color), #818cf8);
+  transform-origin: 0%;
+  z-index: 100;
+}

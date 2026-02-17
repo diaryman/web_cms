@@ -1,0 +1,30 @@
+{
+    "kind": "collectionType",
+    "collectionName": "site_configs",
+    "info": {
+        "singularName": "site-config",
+        "pluralName": "site-configs",
+        "displayName": "Site Config",
+        "description": "Configuration for multiple sites"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "attributes": {
+        "siteName": {
+            "type": "string",
+            "required": true
+        },
+        "domain": {
+            "type": "string",
+            "required": true,
+            "unique": true
+        },
+        "announcement": {
+            "type": "string"
+        },
+        "footerText": {
+            "type": "text"
+        }
+    }
+}
