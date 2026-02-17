@@ -31,6 +31,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
         { name: "ข่าวกิจกรรม", href: "/news?site=main" },
         { name: "PDPA", href: "/pdpa" },
         { name: "นโยบาย/มาตรฐาน", href: "/#policy" },
+        { name: "เอกสารเผยแพร่", href: "/documents" },
         { name: "ดาวน์โหลด", href: "/#downloads" },
         { name: "ติดต่อเรา", href: "/#contact" },
     ];

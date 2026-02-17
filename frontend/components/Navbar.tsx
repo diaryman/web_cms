@@ -9,10 +9,12 @@ export default async function Navbar({ domain = "localhost:3000" }: { domain?: s
     if (domain === "pdpa.localhost") {
         navItems = [
             { name: "หน้าแรก", href: "/pdpa" },
-            { name: "มาตรการ", href: "/pdpa#principles" },
-            { name: "กิจกรรม", href: "/pdpa#news" },
+            { name: "ข่าวกิจกรรม", href: "/news?site=pdpa" },
+            { name: "DataGOV", href: "/" },
+            { name: "นโยบาย/มาตรฐาน", href: "/pdpa#principles" },
+            { name: "เอกสารเผยแพร่", href: "/pdpa/documents" },
             { name: "ดาวน์โหลด", href: "/pdpa#documents" },
-            { name: "กลับสู่หน้าหลัก", href: "/" },
+            { name: "ติดต่อเรา", href: "/pdpa#contact" },
         ];
     }
 

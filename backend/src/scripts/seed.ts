@@ -70,9 +70,12 @@ const mockData: any = {
     ],
     policyDocuments: [
         // DataGOV Docs
-        { title: "นโยบายธรรมาภิบาลข้อมูล (ฉบับปี 2569)", category: "Policy", year: 2026, domain: "localhost:3000" },
-        { title: "คู่มือการจัดทำบัญชีข้อมูล (Data Catalog)", category: "Manual", year: 2026, domain: "localhost:3000" },
-        { title: "แบบฟอร์มขอใช้ข้อมูล (Data Request Form)", category: "Form", year: 2026, domain: "localhost:3000" },
+        { title: "นโยบายธรรมาภิบาลข้อมูล (ฉบับปี 2569)", category: "Policy", year: 2026, domain: "localhost:3000", description: "นโยบายหลักในการบริหารจัดการข้อมูลของหน่วยงานเพื่อให้เกิดความโปร่งใสและตรวจสอบได้" },
+        { title: "คู่มือการจัดทำบัญชีข้อมูล (Data Catalog)", category: "Manual", year: 2026, domain: "localhost:3000", description: "คู่มือแนะนำขั้นตอนการจัดทำและลงทะเบียนชุดข้อมูลในระบบ Data Catalog" },
+        { title: "แบบฟอร์มขอใช้ข้อมูล (Data Request Form)", category: "Form", year: 2026, domain: "localhost:3000", description: "แบบฟอร์มมาตรฐานสำหรับการขอเข้าถึงข้อมูลเปิดภาครัฐ" },
+        { title: "แนวทางการเปิดเผยข้อมูลเปิดภาครัฐ (Open Data Guideline)", category: "Guideline", year: 2025, domain: "localhost:3000", description: "แนวทางปฏิบัติสำหรับการคัดเลือกและเผยแพร่ชุดข้อมูลเปิด" },
+        { title: "รายงานผลการดำเนินงานด้านข้อมูลประจำปี 2568", category: "Report", year: 2025, domain: "localhost:3000", description: "รายงานสรุปผลสัมฤทธิ์และปัญหาอุปสรรคในการดำเนินงานด้านข้อมูล" },
+        { title: "มาตรฐานเมทาดาตาสำหรับภาครัฐ (Government Metadata Standard)", category: "Standard", year: 2024, domain: "localhost:3000", description: "ข้อกำหนดมาตรฐานในการอธิบายข้อมูลเพื่อให้สามารถแลกเปลี่ยนและใช้งานร่วมกันได้" },
         // PDPA Docs
         { title: "นโยบายคุ้มครองข้อมูลส่วนบุคคล (Privacy Policy)", category: "PDPA Policy", year: 2026, domain: "pdpa.localhost" },
         { title: "ประกาศการคุ้มครองข้อมูลส่วนบุคคล (Privacy Notice)", category: "PDPA Notice", year: 2026, domain: "pdpa.localhost" },
