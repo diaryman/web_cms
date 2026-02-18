@@ -37,40 +37,48 @@ function DocumentsContent() {
     const targetDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
 
     const [documents, setDocuments] = useState<Document[]>([]);
+    const [categories, setCategories] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState("all");
 
     // Fetch data
     useEffect(() => {
-        const loadDocuments = async () => {
+        const loadData = async () => {
             setLoading(true);
             try {
                 // Fetch Policy Documents
-                const data = await fetchAPI("/policy-documents", {
+                const docsRes = await fetchAPI("/policy-documents", {
                     fields: ["title", "publishedAt", "domain", "category"],
                     populate: ["file"],
                     sort: ["publishedAt:desc"],
                 });
+                setDocuments(docsRes.data || []);
 
-                setDocuments(data.data || []);
+                // Fetch categories
+                const catsRes = await fetchAPI("/categories", {
+                    filters: { domain: targetDomain, type: "document" }
+                });
+                setCategories(catsRes.data || []);
             } catch (error) {
-                console.error("Failed to load documents", error);
+                console.error("Failed to load documents data", error);
             } finally {
                 setLoading(false);
             }
         };
 
-        loadDocuments();
-    }, [siteParam]);
+        loadData();
+    }, [targetDomain]);
 
     const filteredDocuments = documents.filter(doc => {
         const matchesSearch = doc.title.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesCategory = selectedCategory === "all" || doc.category === selectedCategory;
 
         // Site filter
         const docDomain = doc.domain || "localhost:3000";
         const matchesSite = docDomain === targetDomain;
 
-        return matchesSearch && matchesSite;
+        return matchesSearch && matchesSite && matchesCategory;
     });
 
     const handleDelete = async (documentId: string) => {
@@ -101,7 +109,7 @@ function DocumentsContent() {
             </div>
 
             {/* Toolbar */}
-            <div className="bg-white p-4 rounded-[2rem] border border-gray-100 shadow-sm flex items-center gap-4">
+            <div className="bg-white p-4 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col md:flex-row gap-4 items-center justify-between">
                 <div className="relative flex-1 w-full md:max-w-md">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={20} />
                     <input
@@ -111,6 +119,24 @@ function DocumentsContent() {
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-medium placeholder:text-gray-300 transition-all"
                     />
+                </div>
+
+                <div className="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                    <button
+                        onClick={() => setSelectedCategory("all")}
+                        className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === "all" ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-gray-50 text-gray-500 hover:bg-gray-100"}`}
+                    >
+                        ทั้งหมด
+                    </button>
+                    {categories.map((cat) => (
+                        <button
+                            key={cat.id}
+                            onClick={() => setSelectedCategory(cat.name)}
+                            className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === cat.name ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-gray-50 text-gray-500 hover:bg-gray-100"}`}
+                        >
+                            {cat.name}
+                        </button>
+                    ))}
                 </div>
             </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
 import { Save, Loader2, ArrowLeft } from "lucide-react";
@@ -19,15 +19,33 @@ export default function CreateNewsPage() {
     const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
 
     const [loading, setLoading] = useState(false);
+    const [categories, setCategories] = useState<any[]>([]);
     const [formData, setFormData] = useState({
         title: "",
         slug: "",
         description: "",
-        content: "", // Simple textarea for now
-        publishedAt: new Date().toISOString().slice(0, 16), // YYYY-MM-DDTHH:mm
+        content: "",
+        publishedAt: new Date().toISOString().slice(0, 16),
         domain: domain,
-        category: 1 // Default category ID, assuming 1 exists or user selects
+        category: ""
     });
+
+    useEffect(() => {
+        const loadCategories = async () => {
+            try {
+                const res = await fetchAPI("/categories", {
+                    filters: { domain, type: "news" }
+                });
+                setCategories(res.data || []);
+                if (res.data && res.data.length > 0) {
+                    setFormData(prev => ({ ...prev, category: res.data[0].id }));
+                }
+            } catch (error) {
+                console.error("Error loading categories", error);
+            }
+        };
+        loadCategories();
+    }, [domain]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -98,8 +116,10 @@ export default function CreateNewsPage() {
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                             >
-                                <option value="1">ข่าวประชาสัมพันธ์ (General)</option>
-                                <option value="2">กิจกรรม (Activities)</option>
+                                {categories.length === 0 && <option value="">ไม่ได้เลือกหมวดหมู่</option>}
+                                {categories.map(cat => (
+                                    <option key={cat.id} value={cat.id}>{cat.name}</option>
+                                ))}
                             </select>
                         </div>
                         <div>

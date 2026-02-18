@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
-import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate } from "lucide-react";
+import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate, Search, Trash2 } from "lucide-react";
 
 export default function AdminSiteConfigPage() {
     const searchParams = useSearchParams();
@@ -22,7 +22,21 @@ export default function AdminSiteConfigPage() {
         phone: "",
         email: "",
         officeHours: "",
-        footerText: ""
+        footerText: "",
+        themeColors: {
+            primary: "#0c1222",
+            accent: "#2563eb"
+        },
+        navbarMenu: [] as any[],
+        footerMenu: [] as any[],
+        sectionToggles: {
+            hero: true,
+            policies: true,
+            activities: true,
+            downloads: true,
+            news: true,
+            documents: true
+        }
     });
 
     useEffect(() => {
@@ -33,7 +47,7 @@ export default function AdminSiteConfigPage() {
                 });
                 if (res.data && res.data.length > 0) {
                     const config = res.data[0];
-                    setConfigId(config.documentId); // Use documentId for v5
+                    setConfigId(config.documentId);
                     setFormData({
                         siteName: config.siteName || "",
                         announcement: config.announcement || "",
@@ -43,7 +57,18 @@ export default function AdminSiteConfigPage() {
                         phone: config.phone || "",
                         email: config.email || "",
                         officeHours: config.officeHours || "",
-                        footerText: config.footerText || ""
+                        footerText: config.footerText || "",
+                        themeColors: config.themeColors || { primary: "#0c1222", accent: "#2563eb" },
+                        navbarMenu: config.navbarMenu || [],
+                        footerMenu: config.footerMenu || [],
+                        sectionToggles: config.sectionToggles || {
+                            hero: true,
+                            policies: true,
+                            activities: true,
+                            downloads: true,
+                            news: true,
+                            documents: true
+                        }
                     });
                 }
             } catch (error) {
@@ -57,6 +82,34 @@ export default function AdminSiteConfigPage() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleColorChange = (name: string, value: string) => {
+        setFormData({
+            ...formData,
+            themeColors: { ...formData.themeColors, [name]: value }
+        });
+    };
+
+    const handleAddMenuItem = (type: 'navbarMenu' | 'footerMenu') => {
+        const newItem = { label: "เมนูใหม่", href: "/" };
+        setFormData({
+            ...formData,
+            [type]: [...formData[type], newItem]
+        });
+    };
+
+    const handleUpdateMenuItem = (type: 'navbarMenu' | 'footerMenu', index: number, field: string, value: string) => {
+        const updatedMenu = [...formData[type]];
+        updatedMenu[index] = { ...updatedMenu[index], [field]: value };
+        setFormData({ ...formData, [type]: updatedMenu });
+    };
+
+    const handleRemoveMenuItem = (type: 'navbarMenu' | 'footerMenu', index: number) => {
+        setFormData({
+            ...formData,
+            [type]: formData[type].filter((_, i) => i !== index)
+        });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -83,13 +136,182 @@ export default function AdminSiteConfigPage() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto pb-20">
-            <div className="mb-8">
+        <div className="max-w-4xl mx-auto pb-40">
+            <div className="mb-8 font-sans">
                 <h1 className="text-3xl font-black font-heading text-primary mb-2">ตั้งค่าเว็บไซต์</h1>
-                <p className="text-gray-500">จัดการข้อมูลพื้นฐานของเว็บไซต์ {siteParam === "pdpa" ? "PDPA Center" : "DataGOV"}</p>
+                <p className="text-gray-500">จัดการข้อมูลพื้นฐานและภาพลักษณ์ของเว็บไซต์ {siteParam === "pdpa" ? "PDPA Center" : "DataGOV"}</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Section Toggles */}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
+                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                            <LayoutTemplate size={20} />
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-800">การแสดงผลวิดเจ็ต (Section Toggles)</h3>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                        {Object.entries(formData.sectionToggles).map(([key, value]) => (
+                            <div key={key} className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100">
+                                <span className="text-sm font-bold text-gray-700 capitalize">{key}</span>
+                                <button
+                                    type="button"
+                                    onClick={() => setFormData({
+                                        ...formData,
+                                        sectionToggles: { ...formData.sectionToggles, [key]: !value }
+                                    })}
+                                    className={`w-10 h-5 rounded-full transition-all relative ${value ? 'bg-primary' : 'bg-gray-200'}`}
+                                >
+                                    <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full transition-all ${value ? 'right-0.5' : 'left-0.5'}`}></div>
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                {/* Branding & Theme */}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
+                        <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center">
+                            <LayoutTemplate size={20} />
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-800">Branding & AI Theme</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="space-y-4">
+                            <label className="text-sm font-bold text-gray-700 block">โทนสีหลัก (Primary Context)</label>
+                            <div className="flex items-center gap-4">
+                                <input
+                                    type="color"
+                                    value={formData.themeColors.primary}
+                                    onChange={(e) => handleColorChange('primary', e.target.value)}
+                                    className="w-12 h-12 rounded-lg cursor-pointer border-none"
+                                />
+                                <input
+                                    type="text"
+                                    value={formData.themeColors.primary}
+                                    onChange={(e) => handleColorChange('primary', e.target.value)}
+                                    className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-mono text-sm"
+                                />
+                            </div>
+                        </div>
+                        <div className="space-y-4">
+                            <label className="text-sm font-bold text-gray-700 block">สีเน้น (Accent Color)</label>
+                            <div className="flex items-center gap-4">
+                                <input
+                                    type="color"
+                                    value={formData.themeColors.accent}
+                                    onChange={(e) => handleColorChange('accent', e.target.value)}
+                                    className="w-12 h-12 rounded-lg cursor-pointer border-none"
+                                />
+                                <input
+                                    type="text"
+                                    value={formData.themeColors.accent}
+                                    onChange={(e) => handleColorChange('accent', e.target.value)}
+                                    className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-mono text-sm"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Navbar Menu Management */}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-50">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                                <Search size={20} />
+                            </div>
+                            <h3 className="text-lg font-bold text-gray-800">จัดการเมนูนำทาง (Navbar)</h3>
+                        </div>
+                        <button
+                            type="button"
+                            onClick={() => handleAddMenuItem('navbarMenu')}
+                            className="text-xs font-bold text-primary px-4 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                        >
+                            + เพิ่มเมนู
+                        </button>
+                    </div>
+
+                    <div className="space-y-3">
+                        {formData.navbarMenu.length === 0 && <p className="text-center py-8 text-gray-400 italic text-sm">ยังไม่มีเมนู (จะใช้ค่าเริ่มต้นจากระบบ)</p>}
+                        {formData.navbarMenu.map((item, index) => (
+                            <div key={index} className="flex gap-4 items-center bg-gray-50/50 p-4 rounded-2xl border border-gray-50 group">
+                                <div className="flex-1 grid grid-cols-2 gap-4">
+                                    <input
+                                        placeholder="ชื่อเมนู"
+                                        value={item.label}
+                                        onChange={(e) => handleUpdateMenuItem('navbarMenu', index, 'label', e.target.value)}
+                                        className="px-4 py-2 bg-white border border-gray-100 rounded-xl text-sm font-bold"
+                                    />
+                                    <input
+                                        placeholder="ลิงก์ (e.g. /news)"
+                                        value={item.href}
+                                        onChange={(e) => handleUpdateMenuItem('navbarMenu', index, 'href', e.target.value)}
+                                        className="px-4 py-2 bg-white border border-gray-100 rounded-xl text-sm"
+                                    />
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => handleRemoveMenuItem('navbarMenu', index)}
+                                    className="p-2 text-rose-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                                >
+                                    <Trash2 size={18} />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Footer Menu Management */}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-50">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center">
+                                <LayoutTemplate size={20} />
+                            </div>
+                            <h3 className="text-lg font-bold text-gray-800">จัดการเมนูท้ายเว็บ (Footer)</h3>
+                        </div>
+                        <button
+                            type="button"
+                            onClick={() => handleAddMenuItem('footerMenu')}
+                            className="text-xs font-bold text-primary px-4 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                        >
+                            + เพิ่มเมนู
+                        </button>
+                    </div>
+
+                    <div className="space-y-3">
+                        {formData.footerMenu.length === 0 && <p className="text-center py-8 text-gray-400 italic text-sm">ยังไม่มีเมนู (จะใช้ค่าเริ่มต้นจากระบบ)</p>}
+                        {formData.footerMenu.map((item, index) => (
+                            <div key={index} className="flex gap-4 items-center bg-gray-50/50 p-4 rounded-2xl border border-gray-50 group">
+                                <div className="flex-1 grid grid-cols-2 gap-4">
+                                    <input
+                                        placeholder="ชื่อเมนู"
+                                        value={item.label}
+                                        onChange={(e) => handleUpdateMenuItem('footerMenu', index, 'label', e.target.value)}
+                                        className="px-4 py-2 bg-white border border-gray-100 rounded-xl text-sm font-bold"
+                                    />
+                                    <input
+                                        placeholder="ลิงก์ (e.g. /pdpa)"
+                                        value={item.href}
+                                        onChange={(e) => handleUpdateMenuItem('footerMenu', index, 'href', e.target.value)}
+                                        className="px-4 py-2 bg-white border border-gray-100 rounded-xl text-sm"
+                                    />
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => handleRemoveMenuItem('footerMenu', index)}
+                                    className="p-2 text-rose-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                                >
+                                    <Trash2 size={18} />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
                 {/* General Info */}
                 <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">

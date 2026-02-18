@@ -214,7 +214,11 @@ export default async function seed() {
                 'api::feature': ['find', 'findOne', 'create', 'update', 'delete'],
                 'api::service': ['find', 'findOne', 'create', 'update', 'delete'],
                 'api::policy': ['find', 'findOne', 'create', 'update', 'delete'],
+                'api::audit-log': ['find', 'findOne'],
+                'api::chatbot-config': ['find', 'findOne', 'create', 'update'],
+                'api::hero-slide': ['find', 'findOne', 'create', 'update'],
                 'api::timeline': ['find', 'findOne', 'create', 'update', 'delete'],
+                'plugin::users-permissions.user': ['find', 'findOne', 'create', 'update', 'delete'],
             };
 
             for (const [api, actions] of Object.entries(permissionsToEnable)) {

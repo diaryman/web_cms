@@ -18,9 +18,11 @@ export default function NewsPageClient({
     domain?: string;
 }) {
     const [articles, setArticles] = useState<any[]>([]);
+    const [categories, setCategories] = useState<any[]>([]);
     const [meta, setMeta] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [params, setParams] = useState<{ page: number; q: string }>({ page: 1, q: "" });
+    const [selectedCategory, setSelectedCategory] = useState("ทั้งหมด");
 
     useEffect(() => {
         const load = async () => {
@@ -31,11 +33,17 @@ export default function NewsPageClient({
 
             setLoading(true);
             try {
-                const filters: any = {
-                    domain: domain
-                };
-                if (q) {
-                    filters.title = { $containsi: q };
+                // Fetch Categories
+                const catsRes = await fetchAPI("/categories", {
+                    filters: { domain, type: "news" }
+                });
+                setCategories(catsRes.data || []);
+
+                // Fetch Articles
+                const filters: any = { domain };
+                if (q) filters.title = { $containsi: q };
+                if (selectedCategory !== "ทั้งหมด") {
+                    filters.category = { name: selectedCategory };
                 }
 
                 const { data, meta } = await fetchAPI("/articles", {
@@ -53,7 +61,7 @@ export default function NewsPageClient({
             }
         };
         load();
-    }, [searchParamsPromise]);
+    }, [searchParamsPromise, selectedCategory, domain]);
 
     const placeholders = ["from-blue-100 to-indigo-100", "from-indigo-100 to-purple-100", "from-cyan-100 to-blue-100"];
 
@@ -109,10 +117,20 @@ export default function NewsPageClient({
             {/* Filters / Labels */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
                 <div className="flex flex-wrap items-center justify-between gap-4 border-b border-gray-100 pb-8">
-                    <div className="flex items-center gap-6">
-                        {["ทั้งหมด", "กิจกรรม", "ประกาศ", "นโยบาย"].map((cat, idx) => (
-                            <button key={idx} className={`text-sm font-bold uppercase tracking-widest ${idx === 0 ? 'text-accent border-b-2 border-accent pb-2' : 'text-gray-400 hover:text-primary transition-colors'}`}>
-                                {cat}
+                    <div className="flex flex-wrap items-center gap-6">
+                        <button
+                            onClick={() => setSelectedCategory("ทั้งหมด")}
+                            className={`text-sm font-bold uppercase tracking-widest transition-all ${selectedCategory === "ทั้งหมด" ? 'text-accent border-b-2 border-accent pb-2' : 'text-gray-400 hover:text-primary'}`}
+                        >
+                            ทั้งหมด
+                        </button>
+                        {categories.map((cat) => (
+                            <button
+                                key={cat.id}
+                                onClick={() => setSelectedCategory(cat.name)}
+                                className={`text-sm font-bold uppercase tracking-widest transition-all ${selectedCategory === cat.name ? 'text-accent border-b-2 border-accent pb-2' : 'text-gray-400 hover:text-primary'}`}
+                            >
+                                {cat.name}
                             </button>
                         ))}
                     </div>

@@ -37,32 +37,38 @@ function NewsContent() {
 
     // State
     const [articles, setArticles] = useState<Article[]>([]);
+    const [categories, setCategories] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("all");
 
     // Fetch data
     useEffect(() => {
-        const loadArticles = async () => {
+        const loadData = async () => {
             setLoading(true);
             try {
                 // Fetch articles
-                const data = await fetchAPI("/articles", {
+                const articlesRes = await fetchAPI("/articles", {
                     fields: ["title", "slug", "publishedAt", "domain"],
                     populate: ["category"],
                     sort: ["publishedAt:desc"],
                 });
+                setArticles(articlesRes.data || []);
 
-                setArticles(data.data || []);
+                // Fetch categories
+                const catsRes = await fetchAPI("/categories", {
+                    filters: { domain: targetDomain, type: "news" }
+                });
+                setCategories(catsRes.data || []);
             } catch (error) {
-                console.error("Failed to load articles", error);
+                console.error("Failed to load news data", error);
             } finally {
                 setLoading(false);
             }
         };
 
-        loadArticles();
-    }, [siteParam]);
+        loadData();
+    }, [targetDomain]);
 
     // Filter logic
     const filteredArticles = articles.filter(article => {
@@ -120,25 +126,19 @@ function NewsContent() {
                 <div className="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
                     <button
                         onClick={() => setSelectedCategory("all")}
-                        className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === "all" ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-gray-50 text-gray-500 hover:bg-gray-100"
-                            }`}
+                        className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === "all" ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-gray-50 text-gray-500 hover:bg-gray-100"}`}
                     >
                         ทั้งหมด
                     </button>
-                    <button
-                        onClick={() => setSelectedCategory("news")}
-                        className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === "news" ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-gray-50 text-gray-500 hover:bg-gray-100"
-                            }`}
-                    >
-                        ข่าวประชาสัมพันธ์
-                    </button>
-                    <button
-                        onClick={() => setSelectedCategory("activity")}
-                        className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === "activity" ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-gray-50 text-gray-500 hover:bg-gray-100"
-                            }`}
-                    >
-                        กิจกรรม
-                    </button>
+                    {categories.map((cat) => (
+                        <button
+                            key={cat.id}
+                            onClick={() => setSelectedCategory(cat.name)}
+                            className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === cat.name ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-gray-50 text-gray-500 hover:bg-gray-100"}`}
+                        >
+                            {cat.name}
+                        </button>
+                    ))}
                 </div>
             </div>
 

@@ -503,6 +503,42 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAuditLogAuditLog extends Struct.CollectionTypeSchema {
+  collectionName: 'audit_logs';
+  info: {
+    description: 'Logs for tracking administrative actions';
+    displayName: 'Audit Log';
+    pluralName: 'audit-logs';
+    singularName: 'audit-log';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    action: Schema.Attribute.Enumeration<['CREATE', 'UPDATE', 'DELETE']> &
+      Schema.Attribute.Required;
+    contentType: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    details: Schema.Attribute.JSON;
+    domain: Schema.Attribute.String;
+    entityId: Schema.Attribute.String;
+    entityTitle: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::audit-log.audit-log'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    userEmail: Schema.Attribute.String;
+  };
+}
+
 export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -518,6 +554,7 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    domain: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -527,9 +564,54 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'name'>;
+    type: Schema.Attribute.Enumeration<['news', 'document']> &
+      Schema.Attribute.DefaultTo<'news'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiChatbotConfigChatbotConfig
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'chatbot_configs';
+  info: {
+    description: 'Configuration for AI Chatbot';
+    displayName: 'Chatbot Config';
+    pluralName: 'chatbot-configs';
+    singularName: 'chatbot-config';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    apiKey: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    domain: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    isEnabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::chatbot-config.chatbot-config'
+    > &
+      Schema.Attribute.Private;
+    modelName: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'gemini-1.5-flash'>;
+    provider: Schema.Attribute.Enumeration<['gemini', 'openai', 'ollama']> &
+      Schema.Attribute.DefaultTo<'gemini'>;
+    publishedAt: Schema.Attribute.DateTime;
+    systemPrompt: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'\u0E04\u0E38\u0E13\u0E04\u0E37\u0E2D\u0E1C\u0E39\u0E49\u0E0A\u0E48\u0E27\u0E22\u0E2D\u0E31\u0E08\u0E09\u0E23\u0E34\u0E22\u0E30\u0E02\u0E2D\u0E07\u0E2B\u0E19\u0E48\u0E27\u0E22\u0E07\u0E32\u0E19 \u0E04\u0E38\u0E13\u0E21\u0E35\u0E2B\u0E19\u0E49\u0E32\u0E17\u0E35\u0E48\u0E15\u0E2D\u0E1A\u0E04\u0E33\u0E16\u0E32\u0E21\u0E42\u0E14\u0E22\u0E43\u0E0A\u0E49\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E08\u0E32\u0E01\u0E40\u0E2D\u0E01\u0E2A\u0E32\u0E23\u0E19\u0E42\u0E22\u0E1A\u0E32\u0E22\u0E41\u0E25\u0E30\u0E02\u0E48\u0E32\u0E27\u0E2A\u0E32\u0E23\u0E02\u0E2D\u0E07\u0E2B\u0E19\u0E48\u0E27\u0E22\u0E07\u0E32\u0E19'>;
+    temperature: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0.7>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    welcomeMessage: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u0E2A\u0E27\u0E31\u0E2A\u0E14\u0E35\u0E04\u0E23\u0E31\u0E1A \u0E21\u0E35\u0E2D\u0E30\u0E44\u0E23\u0E43\u0E2B\u0E49\u0E1C\u0E21\u0E0A\u0E48\u0E27\u0E22\u0E44\u0E2B\u0E21\u0E04\u0E23\u0E31\u0E1A?'>;
   };
 }
 
@@ -608,6 +690,43 @@ export interface ApiFeatureFeature extends Struct.CollectionTypeSchema {
       ['Main Highlights', 'PDPA Principles', 'PDPA Stats']
     > &
       Schema.Attribute.DefaultTo<'Main Highlights'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHeroSlideHeroSlide extends Struct.CollectionTypeSchema {
+  collectionName: 'hero_slides';
+  info: {
+    description: 'Dynamic slides for the home page hero section';
+    displayName: 'Hero Slide';
+    pluralName: 'hero-slides';
+    singularName: 'hero-slide';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    buttonLink: Schema.Attribute.String & Schema.Attribute.DefaultTo<'/'>;
+    buttonText: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u0E2D\u0E48\u0E32\u0E19\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    displayOrder: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    domain: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::hero-slide.hero-slide'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitle: Schema.Attribute.Text;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -780,6 +899,7 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     email: Schema.Attribute.Email;
+    footerMenu: Schema.Attribute.JSON;
     footerText: Schema.Attribute.Text;
     heroHeadline: Schema.Attribute.Text;
     heroStats: Schema.Attribute.JSON;
@@ -790,12 +910,16 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
       'api::site-config.site-config'
     > &
       Schema.Attribute.Private;
+    logoImage: Schema.Attribute.Media<'images'>;
+    navbarMenu: Schema.Attribute.JSON;
     notifications: Schema.Attribute.JSON;
     officeHours: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u0E27\u0E31\u0E19\u0E08\u0E31\u0E19\u0E17\u0E23\u0E4C - \u0E27\u0E31\u0E19\u0E28\u0E38\u0E01\u0E23\u0E4C \u0E40\u0E27\u0E25\u0E32 08.30 - 16.30 \u0E19. (\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E27\u0E31\u0E19\u0E2B\u0E22\u0E38\u0E14\u0E23\u0E32\u0E0A\u0E01\u0E32\u0E23)'>;
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    sectionToggles: Schema.Attribute.JSON;
     siteName: Schema.Attribute.String & Schema.Attribute.Required;
+    themeColors: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1349,9 +1473,12 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::article.article': ApiArticleArticle;
+      'api::audit-log.audit-log': ApiAuditLogAuditLog;
       'api::category.category': ApiCategoryCategory;
+      'api::chatbot-config.chatbot-config': ApiChatbotConfigChatbotConfig;
       'api::contact-submission.contact-submission': ApiContactSubmissionContactSubmission;
       'api::feature.feature': ApiFeatureFeature;
+      'api::hero-slide.hero-slide': ApiHeroSlideHeroSlide;
       'api::page.page': ApiPagePage;
       'api::policy-document.policy-document': ApiPolicyDocumentPolicyDocument;
       'api::policy.policy': ApiPolicyPolicy;

@@ -57,6 +57,8 @@ function DashboardContent() {
     const [stats, setStats] = useState<DashboardStats | null>(null);
     const [recentItems, setRecentItems] = useState<RecentItem[]>([]);
     const [loadingStats, setLoadingStats] = useState(true);
+    const [dateRange, setDateRange] = useState("all"); // 'all', 'today', '7days', '30days'
+    const [categoryStats, setCategoryStats] = useState<any[]>([]);
 
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
     const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
@@ -92,21 +94,38 @@ function DashboardContent() {
     useEffect(() => {
         if (!isAuthorized) return;
         fetchDashboardData();
-    }, [isAuthorized, domain]);
+    }, [isAuthorized, domain, dateRange]);
 
     const fetchDashboardData = async () => {
         setLoadingStats(true);
         try {
-            const headers: Record<string, string> = { "Content-Type": "application/json" };
+            const getRangeFilter = () => {
+                const now = new Date();
+                if (dateRange === "today") {
+                    const today = new Date(now.setHours(0, 0, 0, 0)).toISOString();
+                    return `&filters[createdAt][$gte]=${today}`;
+                }
+                if (dateRange === "7days") {
+                    const sevenDaysAgo = new Date(now.setDate(now.getDate() - 7)).toISOString();
+                    return `&filters[createdAt][$gte]=${sevenDaysAgo}`;
+                }
+                if (dateRange === "30days") {
+                    const thirtyDaysAgo = new Date(now.setDate(now.getDate() - 30)).toISOString();
+                    return `&filters[createdAt][$gte]=${thirtyDaysAgo}`;
+                }
+                return "";
+            };
+
+            const rangeFilter = getRangeFilter();
 
             // Fetch all counts in parallel
             const [articlesRes, docsRes, policiesRes, servicesRes, featuresRes, contactsRes] = await Promise.all([
-                fetch(`${STRAPI_URL}/api/articles?filters[domain][$eq]=${domain}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()).catch(() => ({ meta: { pagination: { total: 0 } } })),
-                fetch(`${STRAPI_URL}/api/policy-documents?filters[domain][$eq]=${domain}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()).catch(() => ({ meta: { pagination: { total: 0 } } })),
-                fetch(`${STRAPI_URL}/api/policies?filters[domain][$eq]=${domain}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()).catch(() => ({ meta: { pagination: { total: 0 } } })),
-                fetch(`${STRAPI_URL}/api/services?filters[domain][$eq]=${domain}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()).catch(() => ({ meta: { pagination: { total: 0 } } })),
-                fetch(`${STRAPI_URL}/api/features?filters[domain][$eq]=${domain}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()).catch(() => ({ meta: { pagination: { total: 0 } } })),
-                fetch(`${STRAPI_URL}/api/contact-submissions?filters[domain][$eq]=${domain}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()).catch(() => ({ meta: { pagination: { total: 0 } } })),
+                fetch(`${STRAPI_URL}/api/articles?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
+                fetch(`${STRAPI_URL}/api/policy-documents?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
+                fetch(`${STRAPI_URL}/api/policies?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
+                fetch(`${STRAPI_URL}/api/services?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
+                fetch(`${STRAPI_URL}/api/features?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
+                fetch(`${STRAPI_URL}/api/contact-submissions?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
             ]);
 
             setStats({
@@ -119,10 +138,20 @@ function DashboardContent() {
             });
 
             // Fetch recent articles and documents for the activity table
-            const [recentArticles, recentDocs] = await Promise.all([
-                fetch(`${STRAPI_URL}/api/articles?filters[domain][$eq]=${domain}&sort=publishedAt:desc&pagination[pageSize]=3&populate=category`).then(r => r.json()).catch(() => ({ data: [] })),
-                fetch(`${STRAPI_URL}/api/policy-documents?filters[domain][$eq]=${domain}&sort=createdAt:desc&pagination[pageSize]=3`).then(r => r.json()).catch(() => ({ data: [] })),
+            const [recentArticles, recentDocs, categoriesRes] = await Promise.all([
+                fetch(`${STRAPI_URL}/api/articles?filters[domain][$eq]=${domain}&sort=publishedAt:desc&pagination[pageSize]=5&populate=category`).then(r => r.json()),
+                fetch(`${STRAPI_URL}/api/policy-documents?filters[domain][$eq]=${domain}&sort=createdAt:desc&pagination[pageSize]=5`).then(r => r.json()),
+                fetch(`${STRAPI_URL}/api/categories?filters[domain][$eq]=${domain}&populate[articles][count]=true`).then(r => r.json()),
             ]);
+
+            // Set Category Stats
+            const catStats = (categoriesRes?.data || []).map((cat: any) => ({
+                id: cat.id,
+                name: cat.name,
+                count: cat.articles?.count || 0,
+                type: cat.type
+            })).sort((a: any, b: any) => b.count - a.count).slice(0, 5);
+            setCategoryStats(catStats);
 
             const items: RecentItem[] = [];
 
@@ -252,12 +281,28 @@ function DashboardContent() {
                     <p className="text-gray-400 font-medium">นี่คือภาพรวมของระบบและกิจกรรมล่าสุดของ {siteName} ในวันนี้</p>
                 </div>
                 <div className="flex items-center gap-3">
+                    <div className="flex bg-white border border-gray-200 rounded-2xl p-1 mr-2 shadow-sm">
+                        {[
+                            { id: "all", label: "ทั้งหมด" },
+                            { id: "today", label: "วันนี้" },
+                            { id: "7days", label: "7 วัน" },
+                            { id: "30days", label: "30 วัน" },
+                        ].map((range) => (
+                            <button
+                                key={range.id}
+                                onClick={() => setDateRange(range.id)}
+                                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${dateRange === range.id ? 'bg-primary text-white' : 'text-gray-400 hover:text-primary hover:bg-gray-50'}`}
+                            >
+                                {range.label}
+                            </button>
+                        ))}
+                    </div>
                     <button
                         onClick={fetchDashboardData}
-                        className="px-4 py-3 bg-white border border-gray-200 rounded-2xl font-bold text-sm text-primary hover:bg-gray-50 transition-all shadow-sm flex items-center gap-2"
+                        className="p-3 bg-white border border-gray-200 rounded-2xl font-bold text-sm text-primary hover:bg-gray-50 transition-all shadow-sm flex items-center justify-center"
                         title="รีเฟรชข้อมูล"
                     >
-                        <RefreshCw size={16} className={loadingStats ? "animate-spin" : ""} /> รีเฟรช
+                        <RefreshCw size={18} className={loadingStats ? "animate-spin" : ""} />
                     </button>
                     <Link href={`/admin/news/new?site=${siteParam}`} className="px-6 py-3 bg-primary text-white rounded-2xl font-bold text-sm flex items-center gap-2 shadow-premium hover:bg-accent transition-all active:scale-95">
                         <Plus size={18} /> สร้างเนื้อหาใหม่
@@ -444,27 +489,28 @@ function DashboardContent() {
                         </div>
                     </div>
 
-                    {/* Content Summary */}
-                    {stats && !loadingStats && (
+                    {/* Content Summary by Category */}
+                    {categoryStats.length > 0 && !loadingStats && (
                         <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm flex flex-col">
                             <h3 className="text-lg font-bold font-heading text-primary mb-6 flex items-center justify-between">
-                                สรุปเนื้อหา <Clock size={16} className="text-gray-300" />
+                                หมวดหมู่ยอดนิยม <Zap size={16} className="text-amber-500" />
                             </h3>
                             <div className="space-y-4">
-                                {[
-                                    { label: "ข่าวสาร/กิจกรรม", count: stats.newsCount, color: "bg-blue-500", href: `/admin/news?site=${siteParam}` },
-                                    { label: "เอกสารนโยบาย", count: stats.documentsCount, color: "bg-indigo-500", href: `/admin/documents?site=${siteParam}` },
-                                    { label: "นโยบาย/มาตรฐาน", count: stats.policiesCount, color: "bg-cyan-500", href: `/admin/policies?site=${siteParam}` },
-                                    { label: "บริการ/ดาวน์โหลด", count: stats.servicesCount, color: "bg-amber-500", href: `/admin/services?site=${siteParam}` },
-                                    { label: "จุดเด่น/หลักการ", count: stats.featuresCount, color: "bg-emerald-500", href: `/admin/features?site=${siteParam}` },
-                                ].map((item, i) => (
-                                    <Link key={i} href={item.href} className="flex items-center gap-4 group cursor-pointer hover:bg-gray-50 p-2 rounded-xl transition-colors -mx-2">
-                                        <div className={`w-2 h-8 rounded-full ${item.color}`}></div>
-                                        <div className="flex-1">
-                                            <p className="text-sm font-bold text-primary group-hover:text-accent transition-colors">{item.label}</p>
+                                {categoryStats.map((item, i) => (
+                                    <div key={i} className="space-y-2">
+                                        <div className="flex items-center justify-between">
+                                            <p className="text-xs font-bold text-primary">{item.name}</p>
+                                            <span className="text-xs font-black text-gray-400">{item.count}</span>
                                         </div>
-                                        <span className="text-lg font-black text-primary">{item.count}</span>
-                                    </Link>
+                                        <div className="w-full h-1.5 bg-gray-50 rounded-full overflow-hidden">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                animate={{ width: `${Math.min((item.count / 10) * 100, 100)}%` }}
+                                                transition={{ duration: 1, delay: i * 0.1 }}
+                                                className={`h-full ${item.type === 'news' ? 'bg-blue-500' : 'bg-emerald-500'}`}
+                                            ></motion.div>
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                         </div>

@@ -25,7 +25,14 @@ export default async function Navbar({ domain = "localhost:3000" }: { domain?: s
             }
         });
         if (data.data?.length > 0) {
-            siteName = data.data[0].siteName;
+            const config = data.data[0];
+            siteName = config.siteName;
+            if (config.navbarMenu && config.navbarMenu.length > 0) {
+                navItems = config.navbarMenu.map((item: any) => ({
+                    name: item.label,
+                    href: item.href
+                }));
+            }
         }
     } catch (e) {
         console.error("Error fetching navbar config", e);

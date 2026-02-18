@@ -23,6 +23,7 @@ export const metadata: Metadata = {
 
 import CustomCursor from "@/components/CustomCursor";
 import BackToTop from "@/components/BackToTop";
+import ChatWidget from "@/components/ChatWidget";
 import SiteThemeProvider from "@/components/SiteThemeProvider";
 
 export default function RootLayout({
@@ -39,6 +40,7 @@ export default function RootLayout({
           <CustomCursor />
           {children}
           <BackToTop />
+          <ChatWidget />
         </SiteThemeProvider>
       </body>
     </html>

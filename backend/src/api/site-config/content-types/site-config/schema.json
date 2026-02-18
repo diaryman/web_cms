@@ -50,6 +50,25 @@
         },
         "notifications": {
             "type": "json"
+        },
+        "themeColors": {
+            "type": "json"
+        },
+        "navbarMenu": {
+            "type": "json"
+        },
+        "footerMenu": {
+            "type": "json"
+        },
+        "logoImage": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "sectionToggles": {
+            "type": "json"
         }
     }
 }

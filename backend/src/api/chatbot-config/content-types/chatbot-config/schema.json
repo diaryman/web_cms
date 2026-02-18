@@ -1,0 +1,52 @@
+{
+    "kind": "collectionType",
+    "collectionName": "chatbot_configs",
+    "info": {
+        "singularName": "chatbot-config",
+        "pluralName": "chatbot-configs",
+        "displayName": "Chatbot Config",
+        "description": "Configuration for AI Chatbot"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "attributes": {
+        "domain": {
+            "type": "string",
+            "required": true,
+            "unique": true
+        },
+        "isEnabled": {
+            "type": "boolean",
+            "default": true
+        },
+        "provider": {
+            "type": "enumeration",
+            "enum": [
+                "gemini",
+                "openai",
+                "ollama"
+            ],
+            "default": "gemini"
+        },
+        "apiKey": {
+            "type": "string"
+        },
+        "modelName": {
+            "type": "string",
+            "default": "gemini-1.5-flash"
+        },
+        "systemPrompt": {
+            "type": "text",
+            "default": "คุณคือผู้ช่วยอัจฉริยะของหน่วยงาน คุณมีหน้าที่ตอบคำถามโดยใช้ข้อมูลจากเอกสารนโยบายและข่าวสารของหน่วยงาน"
+        },
+        "welcomeMessage": {
+            "type": "string",
+            "default": "สวัสดีครับ มีอะไรให้ผมช่วยไหมครับ?"
+        },
+        "temperature": {
+            "type": "decimal",
+            "default": 0.7
+        }
+    }
+}

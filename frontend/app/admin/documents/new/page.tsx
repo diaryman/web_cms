@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
 import { Save, Loader2, ArrowLeft } from "lucide-react";
@@ -19,17 +19,31 @@ export default function CreateDocumentPage() {
     const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
 
     const [loading, setLoading] = useState(false);
+    const [dynamicCategories, setDynamicCategories] = useState<any[]>([]);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
         publishedAt: new Date().toISOString().slice(0, 16),
         domain: domain,
-        category: "นโยบายและมาตรฐาน", // Default category
+        category: "",
     });
 
-    const categories = siteParam === "pdpa"
-        ? ["นโยบายการคุ้มครองข้อมูล", "เอกสารเผยแพร่", "แบบฟอร์มคำร้อง", "คู่มือการปฏิบัติงาน"]
-        : ["นโยบายและมาตรฐาน", "เอกสารเผยแพร่", "รายงานประจำปี", "คู่มือประชาชน"];
+    useEffect(() => {
+        const loadCategories = async () => {
+            try {
+                const res = await fetchAPI("/categories", {
+                    filters: { domain, type: "document" }
+                });
+                setDynamicCategories(res.data || []);
+                if (res.data && res.data.length > 0) {
+                    setFormData(prev => ({ ...prev, category: res.data[0].name }));
+                }
+            } catch (error) {
+                console.error("Error loading categories", error);
+            }
+        };
+        loadCategories();
+    }, [domain]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -88,8 +102,9 @@ export default function CreateDocumentPage() {
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all"
                             >
-                                {categories.map(cat => (
-                                    <option key={cat} value={cat}>{cat}</option>
+                                {dynamicCategories.length === 0 && <option value="">ไม่ได้เลือกหมวดหมู่</option>}
+                                {dynamicCategories.map(cat => (
+                                    <option key={cat.id} value={cat.name}>{cat.name}</option>
                                 ))}
                             </select>
                         </div>

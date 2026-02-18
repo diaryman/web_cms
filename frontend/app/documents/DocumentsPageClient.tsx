@@ -14,14 +14,23 @@ interface DocumentsPageClientProps {
 
 export default function DocumentsPageClient({ navbar, footer, domain = "localhost:3000" }: DocumentsPageClientProps) {
     const [docs, setDocs] = useState<any[]>([]);
+    const [categories, setCategories] = useState<any[]>([]);
     const [filteredDocs, setFilteredDocs] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("all");
 
     useEffect(() => {
-        const loadDocs = async () => {
+        const loadData = async () => {
+            setLoading(true);
             try {
+                // Fetch Categories
+                const catsRes = await fetchAPI("/categories", {
+                    filters: { domain, type: "document" }
+                });
+                setCategories(catsRes.data || []);
+
+                // Fetch Documents
                 const { data } = await fetchAPI("/policy-documents", {
                     filters: { domain: domain },
                     sort: ["createdAt:desc"],
@@ -35,8 +44,8 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
                 setLoading(false);
             }
         };
-        loadDocs();
-    }, []);
+        loadData();
+    }, [domain]);
 
     useEffect(() => {
         let result = docs;
@@ -54,16 +63,6 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
 
         setFilteredDocs(result);
     }, [searchQuery, selectedCategory, docs]);
-
-    const categories = [
-        { id: "all", label: "ทั้งหมด" },
-        { id: "Policy", label: "นโยบาย" },
-        { id: "Manual", label: "คู่มือปฏิบัติงาน" },
-        { id: "Guideline", label: "แนวทางปฏิบัติ" },
-        { id: "Standard", label: "มาตรฐาน" },
-        { id: "Form", label: "แบบฟอร์ม" },
-        { id: "Report", label: "รายงานผล" },
-    ];
 
     const getColor = (cat: string) => {
         switch (cat) {
@@ -136,16 +135,25 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
                     </div>
 
                     <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar">
+                        <button
+                            onClick={() => setSelectedCategory("all")}
+                            className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === "all"
+                                ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
+                                : "bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-blue-600"
+                                }`}
+                        >
+                            ทั้งหมด
+                        </button>
                         {categories.map((cat) => (
                             <button
                                 key={cat.id}
-                                onClick={() => setSelectedCategory(cat.id)}
-                                className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === cat.id
+                                onClick={() => setSelectedCategory(cat.name)}
+                                className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === cat.name
                                     ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
                                     : "bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-blue-600"
                                     }`}
                             >
-                                {cat.label}
+                                {cat.name}
                             </button>
                         ))}
                     </div>

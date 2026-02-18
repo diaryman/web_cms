@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutDashboard, FileText, Settings, Shield, Bell, LogOut, User, BarChart3, HelpCircle, Package, FileCheck } from "lucide-react";
+import { LayoutDashboard, FileText, ShieldCheck, Settings, Bell, BarChart3, MessageSquare, History, User, LogOut, Search, ChevronRight, Menu, X, LayoutTemplate, Plus, HelpCircle, FolderTree } from "lucide-react";
 import Link from "next/link";
 import React, { Suspense } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
@@ -44,13 +44,17 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
     const menuItems = [
         { icon: <LayoutDashboard size={20} />, label: "แดชบอร์ด", href: `/admin`, path: `/admin` },
         { icon: <Settings size={20} />, label: "ตั้งค่าเว็บไซต์", href: `/admin/site-config`, path: `/admin/site-config` },
-        { icon: <Shield size={20} />, label: "จุดเด่น/หลักการ", href: `/admin/features`, path: `/admin/features` },
-        { icon: <FileCheck size={20} />, label: "นโยบายและมาตรฐาน", href: `/admin/policies`, path: `/admin/policies` },
-        { icon: <Package size={20} />, label: "บริการและดาวน์โหลด", href: `/admin/services`, path: `/admin/services` },
+        { icon: <FolderTree size={20} />, label: "จัดการหมวดหมู่", href: `/admin/categories`, path: `/admin/categories` },
+        { icon: <ShieldCheck size={20} />, label: "จุดเด่น/หลักการ", href: `/admin/features`, path: `/admin/features` },
+        { icon: <FileText size={20} />, label: "นโยบายและมาตรฐาน", href: `/admin/policies`, path: `/admin/policies` },
+        { icon: <FileText size={20} />, label: "บริการและดาวน์โหลด", href: `/admin/services`, path: `/admin/services` },
         { icon: <FileText size={20} />, label: "ข่าวสาร/กิจกรรม", href: `/admin/news`, path: `/admin/news` },
         { icon: <FileText size={20} />, label: "นโยบาย/เอกสาร", href: `/admin/documents`, path: `/admin/documents` },
         { icon: <Bell size={20} />, label: "ข้อความติดต่อ", href: `/admin/contacts`, path: `/admin/contacts` },
         { icon: <BarChart3 size={20} />, label: "สถิติและการใช้งาน", href: `/admin/stats`, path: `/admin/stats` },
+        { icon: <MessageSquare size={20} />, label: "ตั้งค่าแชทบอท", href: `/admin/chatbot`, path: `/admin/chatbot` },
+        { icon: <LayoutTemplate size={20} />, label: "จัดการสไลด์หน้าแรก", href: `/admin/hero-slides`, path: `/admin/hero-slides` },
+        { icon: <History size={20} />, label: "ประวัติการใช้งาน", href: `/admin/logs`, path: `/admin/logs` },
     ];
 
     if (!isAuthorized) {
@@ -64,7 +68,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                 <div className="p-8">
                     <Link href={homeLink} className="flex items-center gap-3 group">
                         <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
-                            <Shield size={24} />
+                            <ShieldCheck size={24} />
                         </div>
                         <div className="flex flex-col">
                             <span className="font-heading font-black text-xl tracking-tighter leading-none text-primary">{siteName}</span>
@@ -73,7 +77,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                     </Link>
                 </div>
 
-                <nav className="flex-1 px-4 space-y-1">
+                <nav className="flex-1 px-4 space-y-1 overflow-y-auto py-4 custom-scrollbar">
                     <div className="mb-4 px-4">
                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Main Menu</p>
                     </div>

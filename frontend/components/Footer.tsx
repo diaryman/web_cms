@@ -51,20 +51,31 @@ export default async function Footer({ domain = "localhost:3000" }: { domain?: s
                     <div>
                         <h4 className="text-sm font-bold uppercase tracking-widest text-accent mb-8">เมนูลัด</h4>
                         <ul className="space-y-4">
-                            {[
-                                { name: "หน้าแรก", href: domain === "pdpa.localhost" ? "/pdpa" : "/" },
-                                { name: "ข่าวกิจกรรม", href: domain === "pdpa.localhost" ? "/news?site=pdpa" : "/news?site=main" },
-                                { name: "PDPA/คุ้มครองข้อมูล", href: "/pdpa" },
-                                { name: "นโยบายความเป็นส่วนตัว", href: "/pdpa#principles" },
-                                { name: "ติดต่อเจ้าหน้าที่ DPO", href: "/pdpa#contact" }
-                            ].map((item, idx) => (
-                                <li key={idx}>
-                                    <Link href={item.href} className="hover:text-white flex items-center gap-2 transition-all duration-300 text-sm group opacity-60 hover:opacity-100">
-                                        <ChevronRight size={14} className="text-accent/40 group-hover:text-accent transition-colors" />
-                                        {item.name}
-                                    </Link>
-                                </li>
-                            ))}
+                            {config?.footerMenu && config.footerMenu.length > 0 ? (
+                                config.footerMenu.map((item: any, idx: number) => (
+                                    <li key={idx}>
+                                        <Link href={item.href} className="hover:text-white flex items-center gap-2 transition-all duration-300 text-sm group opacity-60 hover:opacity-100">
+                                            <ChevronRight size={14} className="text-accent/40 group-hover:text-accent transition-colors" />
+                                            {item.label}
+                                        </Link>
+                                    </li>
+                                ))
+                            ) : (
+                                [
+                                    { name: "หน้าแรก", href: domain === "pdpa.localhost" ? "/pdpa" : "/" },
+                                    { name: "ข่าวกิจกรรม", href: domain === "pdpa.localhost" ? "/news?site=pdpa" : "/news?site=main" },
+                                    { name: "PDPA/คุ้มครองข้อมูล", href: "/pdpa" },
+                                    { name: "นโยบายความเป็นส่วนตัว", href: "/pdpa#principles" },
+                                    { name: "ติดต่อเจ้าหน้าที่ DPO", href: "/pdpa#contact" }
+                                ].map((item, idx) => (
+                                    <li key={idx}>
+                                        <Link href={item.href} className="hover:text-white flex items-center gap-2 transition-all duration-300 text-sm group opacity-60 hover:opacity-100">
+                                            <ChevronRight size={14} className="text-accent/40 group-hover:text-accent transition-colors" />
+                                            {item.name}
+                                        </Link>
+                                    </li>
+                                ))
+                            )}
                         </ul>
                     </div>
 

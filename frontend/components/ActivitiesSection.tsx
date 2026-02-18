@@ -7,17 +7,17 @@ import { motion } from "motion/react";
 import React, { useState, useEffect } from "react";
 import SpotlightCard from "./SpotlightCard";
 
-export default function ActivitiesSection() {
+export default function ActivitiesSection({ domain = "localhost:3000" }: { domain?: string }) {
     const [activities, setActivities] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const load = async () => {
             try {
-                // Fetch articles specifically for main site
+                // Fetch articles specifically for target domain
                 const { data } = await fetchAPI("/articles", {
                     filters: {
-                        domain: "localhost:3000"
+                        domain: domain
                     },
                     sort: ["publishedAt:desc"],
                     pagination: { limit: 3 },
@@ -31,7 +31,7 @@ export default function ActivitiesSection() {
             }
         };
         load();
-    }, []);
+    }, [domain]);
 
     const placeholders = ["from-blue-600 to-indigo-600", "from-indigo-600 to-purple-600", "from-cyan-600 to-blue-600"];
 

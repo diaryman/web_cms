@@ -23,6 +23,17 @@
       "relation": "oneToMany",
       "target": "api::article.article",
       "mappedBy": "category"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "news",
+        "document"
+      ],
+      "default": "news"
     }
   }
 }
