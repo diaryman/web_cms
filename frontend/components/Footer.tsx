@@ -19,7 +19,7 @@ export default async function Footer({ domain = "localhost:3000" }: { domain?: s
     return (
         <footer id="contact" className="relative pt-24 pb-12 overflow-hidden scroll-mt-32" style={{ backgroundColor: 'var(--primary-color)', color: 'var(--primary-foreground)' }}>
             {/* Background Decor */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent via-indigo-500 to-accent"></div>
+            <div className="absolute top-0 left-0 w-full h-1" style={{ background: `linear-gradient(to right, var(--accent-color), var(--accent-dark), var(--accent-color))` }}></div>
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -27,12 +27,12 @@ export default async function Footer({ domain = "localhost:3000" }: { domain?: s
                     {/* Brand Section */}
                     <div className="space-y-6">
                         <Link href="/" className="flex items-center gap-3 group">
-                            <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center shadow-lg shadow-accent/20">
+                            <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg" style={{ backgroundColor: 'var(--accent-color)' }}>
                                 <ShieldCheck size={28} style={{ color: 'var(--primary-foreground)' }} />
                             </div>
                             <div>
                                 <h3 className="text-2xl font-black font-heading tracking-tighter" style={{ color: 'var(--primary-foreground)' }}>{siteName}</h3>
-                                <p className="text-[10px] text-blue-400 font-bold uppercase tracking-widest leading-none">Admin Court Thailand</p>
+                                <p className="text-[10px] font-bold uppercase tracking-widest leading-none" style={{ color: 'var(--accent-light)' }}>Admin Court Thailand</p>
                             </div>
                         </Link>
                         <p className="leading-relaxed text-sm max-w-xs opacity-60 whitespace-pre-line">

@@ -25,18 +25,21 @@ export default async function NewsPage(props: { searchParams: Promise<{ page?: s
     }
 
     let announcement = undefined;
+    let notifications = undefined;
     try {
         const config = await fetchAPI("/site-configs", {
             filters: { domain }
         });
-        announcement = config.data?.[0]?.announcement;
+        const siteConfig = config.data?.[0];
+        announcement = siteConfig?.announcement;
+        notifications = siteConfig?.notifications;
     } catch (e) {
         console.error("Error fetching announcement", e);
     }
 
     return (
         <>
-            <NewsTicker domain={domain} announcement={announcement} />
+            <NewsTicker domain={domain} announcement={announcement} notifications={notifications} />
             <NewsPageClient
                 header={<Navbar domain={domain} />}
                 footer={<Footer domain={domain} />}

@@ -13,19 +13,22 @@ export const metadata: Metadata = {
 export default async function PDPADocumentsPage() {
     const domain = "pdpa.localhost";
     let announcement = undefined;
+    let notifications = undefined;
 
     try {
         const config = await fetchAPI("/site-configs", {
             filters: { domain }
         });
-        announcement = config.data?.[0]?.announcement;
+        const siteConfig = config.data?.[0];
+        announcement = siteConfig?.announcement;
+        notifications = siteConfig?.notifications;
     } catch (e) {
         console.error("Error fetching announcement", e);
     }
 
     return (
         <>
-            <NewsTicker domain={domain} announcement={announcement} />
+            <NewsTicker domain={domain} announcement={announcement} notifications={notifications} />
             <DocumentsPageClient
                 navbar={<Navbar domain={domain} />}
                 footer={<Footer domain={domain} />}

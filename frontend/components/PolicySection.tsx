@@ -59,8 +59,8 @@ export default function PolicySection({ domain = "localhost:3000" }: { domain?: 
     return (
         <section id="policy" className="py-32 section-mixed relative overflow-hidden border-y border-gray-100 dark:border-white/5 scroll-mt-32">
             {/* Abstract background shapes */}
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-500/5 -skew-x-12 transform translate-x-1/4"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/5 rounded-full blur-[120px]"></div>
+            <div className="absolute top-0 right-0 w-1/2 h-full -skew-x-12 transform translate-x-1/4" style={{ backgroundColor: 'var(--accent-subtle)' }}></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-[120px]" style={{ backgroundColor: 'var(--accent-glow)' }}></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="lg:grid lg:grid-cols-2 gap-16 items-center">
@@ -69,10 +69,10 @@ export default function PolicySection({ domain = "localhost:3000" }: { domain?: 
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <span className="text-blue-500 font-black tracking-[0.3em] uppercase text-xs mb-4 block">Compliance</span>
+                        <span className="font-black tracking-[0.3em] uppercase text-xs mb-4 block" style={{ color: 'var(--accent-color)' }}>Compliance</span>
                         <h2 className="text-4xl md:text-5xl font-extrabold font-heading mb-8 leading-tight" style={{ color: 'var(--foreground)' }}>
                             มาตรฐานการจัดการข้อมูล <br />
-                            <span className="text-blue-600">ระดับสถาบัน</span>
+                            <span style={{ color: 'var(--accent-color)' }}>ระดับสถาบัน</span>
                         </h2>
                         <p className="text-xl mb-10 leading-relaxed font-light" style={{ color: 'var(--text-muted)' }}>
                             เราใช้แนวทางปฏิบัติที่ดีที่สุด (Best Practices) และมาตรฐานสากลในการกำกับดูแลข้อมูล
@@ -92,7 +92,7 @@ export default function PolicySection({ domain = "localhost:3000" }: { domain?: 
                                         className="flex items-center gap-3 font-bold group"
                                         style={{ color: 'var(--foreground)' }}
                                     >
-                                        <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                                        <div className="w-8 h-8 rounded-lg flex items-center justify-center group-hover:text-white transition-all" style={{ backgroundColor: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
                                             <IconComponent size={20} />
                                         </div>
                                         <span className="text-sm">{policy.title}</span>
@@ -112,12 +112,12 @@ export default function PolicySection({ domain = "localhost:3000" }: { domain?: 
                             <div className="space-y-6">
                                 <div className="flex justify-between items-center bg-white/5 p-6 rounded-2xl border border-white/5">
                                     <div>
-                                        <p className="text-xs text-blue-300 font-bold uppercase tracking-widest mb-1">Security Score</p>
+                                        <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: 'var(--accent-light)' }}>Security Score</p>
                                         <p className="text-3xl font-black text-white">
                                             {policies.find(p => p.highlightValue)?.highlightValue || "99.9%"}
                                         </p>
                                     </div>
-                                    <div className="w-12 h-12 rounded-full border-4 border-blue-500/30 border-t-blue-500 animate-spin-slow"></div>
+                                    <div className="w-12 h-12 rounded-full border-4" style={{ borderColor: 'var(--accent-subtle)', borderTopColor: 'var(--accent-color)', animation: 'spin 3s linear infinite' }}></div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="bg-white/5 p-5 rounded-2xl border border-white/5">
@@ -139,8 +139,8 @@ export default function PolicySection({ domain = "localhost:3000" }: { domain?: 
                         </div>
 
                         {/* Decorative blobs */}
-                        <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-[60px]"></div>
-                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-[60px]"></div>
+                        <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-[60px]" style={{ backgroundColor: 'var(--accent-glow)' }}></div>
+                        <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full blur-[60px]" style={{ backgroundColor: 'var(--accent-glow)' }}></div>
                     </motion.div>
                 </div>
             </div>

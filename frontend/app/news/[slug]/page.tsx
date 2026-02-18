@@ -43,18 +43,21 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
     const coverImageUrl = article.coverImage?.url ? getStrapiMedia(article.coverImage.url) : null;
 
     let announcement = undefined;
+    let notifications = undefined;
     try {
         const config = await fetchAPI("/site-configs", {
             filters: { domain }
         });
-        announcement = config.data?.[0]?.announcement;
+        const siteConfig = config.data?.[0];
+        announcement = siteConfig?.announcement;
+        notifications = siteConfig?.notifications;
     } catch (e) {
         console.error("Error fetching announcement", e);
     }
 
     return (
         <main className="min-h-screen bg-[#fcfdfe]">
-            <NewsTicker domain={domain} announcement={announcement} />
+            <NewsTicker domain={domain} announcement={announcement} notifications={notifications} />
             <Navbar domain={domain} />
 
             {/* Reading Context Header */}

@@ -44,6 +44,12 @@
         },
         "heroSubheadline": {
             "type": "text"
+        },
+        "heroStats": {
+            "type": "json"
+        },
+        "notifications": {
+            "type": "json"
         }
     }
 }

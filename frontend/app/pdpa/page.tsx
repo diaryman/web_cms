@@ -34,7 +34,7 @@ export default async function PDPAPage() {
 
     return (
         <>
-            <NewsTicker domain={domain} announcement={announcement} />
+            <NewsTicker domain={domain} announcement={announcement} notifications={siteConfig?.notifications} />
             <PDPAPageClient
                 navbar={<Navbar domain={domain} />}
                 footer={<Footer domain={domain} />}

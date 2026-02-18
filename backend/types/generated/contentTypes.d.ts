@@ -782,6 +782,7 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
     email: Schema.Attribute.Email;
     footerText: Schema.Attribute.Text;
     heroHeadline: Schema.Attribute.Text;
+    heroStats: Schema.Attribute.JSON;
     heroSubheadline: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -789,6 +790,7 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
       'api::site-config.site-config'
     > &
       Schema.Attribute.Private;
+    notifications: Schema.Attribute.JSON;
     officeHours: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u0E27\u0E31\u0E19\u0E08\u0E31\u0E19\u0E17\u0E23\u0E4C - \u0E27\u0E31\u0E19\u0E28\u0E38\u0E01\u0E23\u0E4C \u0E40\u0E27\u0E25\u0E32 08.30 - 16.30 \u0E19. (\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E27\u0E31\u0E19\u0E2B\u0E22\u0E38\u0E14\u0E23\u0E32\u0E0A\u0E01\u0E32\u0E23)'>;
     phone: Schema.Attribute.String;
@@ -797,6 +799,41 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTimelineTimeline extends Struct.CollectionTypeSchema {
+  collectionName: 'timelines';
+  info: {
+    description: 'Roadmap timeline items for PDPA or DataGOV';
+    displayName: 'Timeline';
+    pluralName: 'timelines';
+    singularName: 'timeline';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    domain: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'pdpa.localhost'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::timeline.timeline'
+    > &
+      Schema.Attribute.Private;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    year: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -1320,6 +1357,7 @@ declare module '@strapi/strapi' {
       'api::policy.policy': ApiPolicyPolicy;
       'api::service.service': ApiServiceService;
       'api::site-config.site-config': ApiSiteConfigSiteConfig;
+      'api::timeline.timeline': ApiTimelineTimeline;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { Zap, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
-export default function NewsTicker({ domain = "localhost:3000", announcement }: { domain?: string; announcement?: string }) {
+export default function NewsTicker({ domain = "localhost:3000", announcement, notifications }: { domain?: string; announcement?: string; notifications?: string[] }) {
     const siteParam = domain === "pdpa.localhost" ? "pdpa" : "main";
     const defaultUpdates = [
         "ประกาศ: มาตรฐานการจัดการข้อมูลภาครัฐฉบับใหม่ ปี 2569 เริ่มประกาศใช้แล้ววันนี้",
@@ -12,7 +12,8 @@ export default function NewsTicker({ domain = "localhost:3000", announcement }: 
         "แจ้งเตือน: ปรับปรุงระบบ Data Catalog ในช่วงเวลา 22:00 - 02:00 น. ของวันเสาร์ที่ 15 กุมภาพันธ์",
     ];
 
-    const updates = announcement ? [announcement, ...defaultUpdates] : defaultUpdates;
+    // Use notifications from admin if available, otherwise fall back to defaults
+    const updates = (notifications && notifications.length > 0) ? notifications : (announcement ? [announcement, ...defaultUpdates] : defaultUpdates);
 
     return (
         <div className="fixed top-0 w-full z-[100] bg-primary h-11 flex items-center border-b border-white/10 overflow-hidden">

@@ -55,14 +55,14 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                     <div className="flex justify-between items-center h-16">
                         {/* Logo Section */}
                         <Link href={domain === "pdpa.localhost" ? "/pdpa" : "/"} className="flex-shrink-0 flex items-center gap-3 group">
-                            <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform duration-300">
+                            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform duration-300" style={{ backgroundColor: 'var(--accent-color)' }}>
                                 <ShieldCheck size={28} />
                             </div>
                             <div className="flex flex-col">
                                 <span className={`font-heading font-black text-2xl tracking-tighter leading-none text-primary`}>
                                     {siteName}
                                 </span>
-                                <span className="text-[10px] uppercase font-bold tracking-widest text-accent">Admin Court TH</span>
+                                <span className="text-[10px] uppercase font-bold tracking-widest" style={{ color: 'var(--accent-color)' }}>Admin Court TH</span>
                             </div>
                         </Link>
 

@@ -28,7 +28,7 @@ export default async function PDPAContactPage() {
 
     return (
         <>
-            <NewsTicker domain={domain} announcement={announcement} />
+            <NewsTicker domain={domain} announcement={announcement} notifications={siteConfig?.notifications} />
             <ContactPageClient
                 domain={domain}
                 navbar={<Navbar domain={domain} />}

@@ -23,6 +23,7 @@ export const metadata: Metadata = {
 
 import CustomCursor from "@/components/CustomCursor";
 import BackToTop from "@/components/BackToTop";
+import SiteThemeProvider from "@/components/SiteThemeProvider";
 
 export default function RootLayout({
   children,
@@ -30,13 +31,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="th">
+    <html lang="th" data-theme="datagov">
       <body
         className={`${sarabun.variable} ${prompt.variable} antialiased font-sans`}
       >
-        <CustomCursor />
-        {children}
-        <BackToTop />
+        <SiteThemeProvider>
+          <CustomCursor />
+          {children}
+          <BackToTop />
+        </SiteThemeProvider>
       </body>
     </html>
   );

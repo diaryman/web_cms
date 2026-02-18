@@ -36,11 +36,12 @@ export default async function Home() {
       <div className="noise-overlay" />
       <ScrollProgress />
       <BackToTop />
-      <NewsTicker domain={domain} announcement={announcement} />
+      <NewsTicker domain={domain} announcement={announcement} notifications={siteConfig?.notifications} />
       <Navbar domain={domain} />
       <Hero
         headline={siteConfig?.heroHeadline}
         subHeadline={siteConfig?.heroSubheadline}
+        heroStats={siteConfig?.heroStats}
       />
       <PolicySection domain={domain} />
       <ActivitiesSection />

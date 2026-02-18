@@ -7,9 +7,10 @@ import { motion } from "motion/react";
 interface HeroProps {
     headline?: string;
     subHeadline?: string;
+    heroStats?: { value: string; label: string; sublabel: string }[];
 }
 
-export default function Hero({ headline, subHeadline }: HeroProps) {
+export default function Hero({ headline, subHeadline, heroStats }: HeroProps) {
     return (
         <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden">
             {/* dynamic background with floating blobs */}
@@ -21,7 +22,7 @@ export default function Hero({ headline, subHeadline }: HeroProps) {
                         scale: [1, 1.1, 1]
                     }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-400/10 rounded-full blur-[120px]"
+                    className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full blur-[120px]" style={{ backgroundColor: 'var(--accent-glow)' }}
                 />
                 <motion.div
                     animate={{
@@ -30,7 +31,7 @@ export default function Hero({ headline, subHeadline }: HeroProps) {
                         scale: [1, 1.2, 1]
                     }}
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-[20%] -right-[5%] w-[35%] h-[35%] bg-indigo-400/10 rounded-full blur-[100px]"
+                    className="absolute top-[20%] -right-[5%] w-[35%] h-[35%] rounded-full blur-[100px]" style={{ backgroundColor: 'var(--accent-subtle)' }}
                 />
                 <motion.div
                     animate={{
@@ -38,7 +39,7 @@ export default function Hero({ headline, subHeadline }: HeroProps) {
                         y: [0, -50, 0],
                     }}
                     transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-                    className="absolute -bottom-[10%] left-[20%] w-[30%] h-[30%] bg-cyan-400/10 rounded-full blur-[80px]"
+                    className="absolute -bottom-[10%] left-[20%] w-[30%] h-[30%] rounded-full blur-[80px]" style={{ backgroundColor: 'var(--accent-glow)' }}
                 />
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
             </div>
@@ -49,8 +50,8 @@ export default function Hero({ headline, subHeadline }: HeroProps) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-blue-200/50 text-sm font-semibold mb-8 shadow-sm"
-                        style={{ color: 'var(--accent-color)' }}
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border text-sm font-semibold mb-8 shadow-sm"
+                        style={{ color: 'var(--accent-color)', borderColor: 'var(--accent-subtle)' }}
                     >
                         <Sparkles size={16} className="text-accent" />
                         <span>Data Governance Framework 2.0</span>
@@ -102,12 +103,12 @@ export default function Hero({ headline, subHeadline }: HeroProps) {
 
                     {/* Stats/Features Layout */}
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        {[
-                            { label: "Data Assets", value: "1,200+", desc: "รายการในบัญชีข้อมูล" },
-                            { label: "Compliance", value: "100%", desc: "ตามมาตรฐานภาครัฐ" },
-                            { label: "Data Accuracy", value: "99.9%", desc: "ความถูกต้องของข้อมูล" },
-                            { label: "Security", value: "Level 4", desc: "ความปลอดภัยระดับสูงสุด" }
-                        ].map((item, idx) => (
+                        {(heroStats || [
+                            { value: "1,200+", label: "DATA ASSETS", sublabel: "ชุดข้อมูลในระบบ" },
+                            { value: "100%", label: "COMPLIANCE", sublabel: "ผ่านมาตรฐาน" },
+                            { value: "99.9%", label: "DATA ACCURACY", sublabel: "ความแม่นยำข้อมูล" },
+                            { value: "Level 4", label: "SECURITY", sublabel: "ISO 27001 Certified" }
+                        ]).map((item, idx) => (
                             <motion.div
                                 key={idx}
                                 initial={{ opacity: 0, y: 20 }}
@@ -120,7 +121,7 @@ export default function Hero({ headline, subHeadline }: HeroProps) {
                                     {item.value}
                                 </div>
                                 <h3 className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: 'var(--foreground)' }}>{item.label}</h3>
-                                <p className="text-[10px] font-bold opacity-60 uppercase tracking-tight" style={{ color: 'var(--text-muted)' }}>{item.desc}</p>
+                                <p className="text-[10px] font-bold opacity-60 uppercase tracking-tight" style={{ color: 'var(--text-muted)' }}>{item.sublabel}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -128,8 +129,8 @@ export default function Hero({ headline, subHeadline }: HeroProps) {
             </div>
 
             {/* Decorative elements */}
-            <div className="absolute -left-20 top-1/4 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute -right-20 bottom-1/4 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div className="absolute -left-20 top-1/4 w-64 h-64 rounded-full blur-3xl animate-pulse" style={{ backgroundColor: 'var(--accent-glow)' }}></div>
+            <div className="absolute -right-20 bottom-1/4 w-96 h-96 rounded-full blur-3xl animate-pulse delay-1000" style={{ backgroundColor: 'var(--accent-subtle)' }}></div>
         </section>
     );
 }

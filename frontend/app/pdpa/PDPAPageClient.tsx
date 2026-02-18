@@ -17,6 +17,7 @@ interface PDPAPageClientProps {
 export default function PDPAPageClient({ navbar, footer, siteConfig, features = [] }: PDPAPageClientProps) {
     const [articles, setArticles] = useState<any[]>([]);
     const [documents, setDocuments] = useState<any[]>([]);
+    const [timelineItems, setTimelineItems] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -36,8 +37,15 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
                     populate: "*"
                 });
 
+                // Fetch timeline items
+                const timelineRes = await fetchAPI("/timelines", {
+                    filters: { domain: "pdpa.localhost" },
+                    sort: ["order:asc"]
+                });
+
                 setArticles(articlesRes.data);
                 setDocuments(docsRes.data);
+                setTimelineItems(timelineRes.data || []);
             } catch (error) {
                 console.error("Failed to fetch PDPA data:", error);
             } finally {
@@ -78,7 +86,11 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
         },
     ];
 
-    const timeline = [
+    const timeline = timelineItems.length > 0 ? timelineItems.map(t => ({
+        year: t.year,
+        title: t.title,
+        desc: t.description
+    })) : [
         { year: "2565", title: "เริ่มประกาศใช้นโยบาย", desc: "จัดทำร่างนโยบายคุ้มครองข้อมูลส่วนบุคคลฉบับแรก" },
         { year: "2566", title: "แต่งตั้งเจ้าหน้าที่ DPO", desc: "จัดตั้งทีมงานเฉพาะกิจเพื่อดูแลด้านความเป็นส่วนตัว" },
         { year: "2567", title: "ระบบ ROPA สมบูรณ์", desc: "บันทึกกิจกรรมการประมวลผลข้อมูลครบทุกส่วนงาน" },
