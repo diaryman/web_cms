@@ -4,7 +4,7 @@ const mockData: any = {
     siteConfigs: [
         {
             siteName: "DataGOV Administrative Court",
-            domain: "localhost:3000",
+            domain: "localhost",
             announcement: "ยินดีต้อนรับสู่ศูนย์กลางข้อมูลธรรมาภิบาล สำนักงานศาลปกครอง",
             footerText: "© 2026 สำนักงานศาลปกครอง. สงวนลิขสิทธิ์.",
             address: "120 หมู่ที่ 3 ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง เขตหลักสี่ กรุงเทพมหานคร 10210",
@@ -55,13 +55,13 @@ const mockData: any = {
         { title: "Data Subject Rights", description: "รับรองและคุ้มครองสิทธิของเจ้าของข้อมูลส่วนบุคคลอย่างเคร่งครัดทั้ง 8 ประการ", icon: "Users", domain: "pdpa.localhost", section: "PDPA Principles", order: 2 },
         { title: "Purpose Limitation", description: "เก็บรวบรวมและใช้ข้อมูลเฉพาะตามวัตถุประสงค์ที่แจ้งไว้และจำเป็นต่อการปฏิบัติหน้าที่", icon: "Database", domain: "pdpa.localhost", section: "PDPA Principles", order: 3 },
         // Main Highlights
-        { title: "นโยบายธรรมาภิบาล", description: "กำหนดทิศทางและกลยุทธ์การบริหารจัดการข้อมูลอย่างมีประสิทธิภาพ", icon: "FileText", domain: "localhost:3000", section: "Main Highlights", order: 1 },
-        { title: "มาตรฐานข้อมูล", description: "ยกระดับคุณภาพข้อมูลให้มีความถูกต้อง ครบถ้วน และเป็นปัจจุบัน", icon: "CheckCircle", domain: "localhost:3000", section: "Main Highlights", order: 2 },
-        { title: "ความโปร่งใส", description: "ส่งเสริมการเปิดเผยข้อมูลสาธารณะเพื่อการตรวจสอบและมีส่วนร่วม", icon: "Eye", domain: "localhost:3000", section: "Main Highlights", order: 3 }
+        { title: "นโยบายธรรมาภิบาล", description: "กำหนดทิศทางและกลยุทธ์การบริหารจัดการข้อมูลอย่างมีประสิทธิภาพ", icon: "FileText", domain: "localhost", section: "Main Highlights", order: 1 },
+        { title: "มาตรฐานข้อมูล", description: "ยกระดับคุณภาพข้อมูลให้มีความถูกต้อง ครบถ้วน และเป็นปัจจุบัน", icon: "CheckCircle", domain: "localhost", section: "Main Highlights", order: 2 },
+        { title: "ความโปร่งใส", description: "ส่งเสริมการเปิดเผยข้อมูลสาธารณะเพื่อการตรวจสอบและมีส่วนร่วม", icon: "Eye", domain: "localhost", section: "Main Highlights", order: 3 }
     ],
     chatbotConfigs: [
         {
-            domain: "localhost:3000",
+            domain: "localhost",
             isEnabled: true,
             provider: "openthaigpt",
             apiKey: "AoSCekXCiQUuFbseHpYm3ApvOOON5Bep",
@@ -98,21 +98,21 @@ const mockData: any = {
             title: "การประชุมขับเคลื่อนธรรมาภิบาลข้อมูลภาครัฐสู่การปฏิบัติที่ยั่งยืนประจำปี 2569",
             slug: "meeting-dg-2569",
             publishedAt: "2026-02-15T09:00:00.000Z",
-            domain: "localhost:3000",
+            domain: "localhost",
             content: [{ __component: 'shared.rich-text', content: [{ type: 'paragraph', children: [{ type: 'text', text: 'เนื้อหาจำลองข่าวการประชุม...' }] }] }],
         },
         {
             title: "สำนักงานศาลปกครองรับรางวัลองค์กรดีเด่นด้านการจัดการข้อมูลขนาดใหญ่ (Big Data)",
             slug: "award-big-data",
             publishedAt: "2026-02-10T10:30:00.000Z",
-            domain: "localhost:3000",
+            domain: "localhost",
             content: [{ __component: 'shared.rich-text', content: [{ type: 'paragraph', children: [{ type: 'text', text: 'สำนักงานศาลปกครองมีความภาคภูมิใจที่ได้รับรางวัล...' }] }] }],
         },
         {
             title: "เปิดตัวระบบ Data Catalog อย่างเป็นทางการ เพื่อความโปร่งใสของข้อมูลศาล",
             slug: "launch-data-catalog",
             publishedAt: "2026-02-05T14:45:00.000Z",
-            domain: "localhost:3000",
+            domain: "localhost",
             content: [{ __component: 'shared.rich-text', content: [{ type: 'paragraph', children: [{ type: 'text', text: 'เชิญชวนประชาชนเข้าใช้งานระบบบัญชีข้อมูล...' }] }] }],
         },
         // PDPA Articles
@@ -140,12 +140,12 @@ const mockData: any = {
     ],
     policyDocuments: [
         // DataGOV Docs
-        { title: "นโยบายธรรมาภิบาลข้อมูล (ฉบับปี 2569)", category: "Policy", year: 2026, domain: "localhost:3000", description: "นโยบายหลักในการบริหารจัดการข้อมูลของหน่วยงานเพื่อให้เกิดความโปร่งใสและตรวจสอบได้" },
-        { title: "คู่มือการจัดทำบัญชีข้อมูล (Data Catalog)", category: "Manual", year: 2026, domain: "localhost:3000", description: "คู่มือแนะนำขั้นตอนการจัดทำและลงทะเบียนชุดข้อมูลในระบบ Data Catalog" },
-        { title: "แบบฟอร์มขอใช้ข้อมูล (Data Request Form)", category: "Form", year: 2026, domain: "localhost:3000", description: "แบบฟอร์มมาตรฐานสำหรับการขอเข้าถึงข้อมูลเปิดภาครัฐ" },
-        { title: "แนวทางการเปิดเผยข้อมูลเปิดภาครัฐ (Open Data Guideline)", category: "Guideline", year: 2025, domain: "localhost:3000", description: "แนวทางปฏิบัติสำหรับการคัดเลือกและเผยแพร่ชุดข้อมูลเปิด" },
-        { title: "รายงานผลการดำเนินงานด้านข้อมูลประจำปี 2568", category: "Report", year: 2025, domain: "localhost:3000", description: "รายงานสรุปผลสัมฤทธิ์และปัญหาอุปสรรคในการดำเนินงานด้านข้อมูล" },
-        { title: "มาตรฐานเมทาดาตาสำหรับภาครัฐ (Government Metadata Standard)", category: "Standard", year: 2024, domain: "localhost:3000", description: "ข้อกำหนดมาตรฐานในการอธิบายข้อมูลเพื่อให้สามารถแลกเปลี่ยนและใช้งานร่วมกันได้" },
+        { title: "นโยบายธรรมาภิบาลข้อมูล (ฉบับปี 2569)", category: "Policy", year: 2026, domain: "localhost", description: "นโยบายหลักในการบริหารจัดการข้อมูลของหน่วยงานเพื่อให้เกิดความโปร่งใสและตรวจสอบได้" },
+        { title: "คู่มือการจัดทำบัญชีข้อมูล (Data Catalog)", category: "Manual", year: 2026, domain: "localhost", description: "คู่มือแนะนำขั้นตอนการจัดทำและลงทะเบียนชุดข้อมูลในระบบ Data Catalog" },
+        { title: "แบบฟอร์มขอใช้ข้อมูล (Data Request Form)", category: "Form", year: 2026, domain: "localhost", description: "แบบฟอร์มมาตรฐานสำหรับการขอเข้าถึงข้อมูลเปิดภาครัฐ" },
+        { title: "แนวทางการเปิดเผยข้อมูลเปิดภาครัฐ (Open Data Guideline)", category: "Guideline", year: 2025, domain: "localhost", description: "แนวทางปฏิบัติสำหรับการคัดเลือกและเผยแพร่ชุดข้อมูลเปิด" },
+        { title: "รายงานผลการดำเนินงานด้านข้อมูลประจำปี 2568", category: "Report", year: 2025, domain: "localhost", description: "รายงานสรุปผลสัมฤทธิ์และปัญหาอุปสรรคในการดำเนินงานด้านข้อมูล" },
+        { title: "มาตรฐานเมทาดาตาสำหรับภาครัฐ (Government Metadata Standard)", category: "Standard", year: 2024, domain: "localhost", description: "ข้อกำหนดมาตรฐานในการอธิบายข้อมูลเพื่อให้สามารถแลกเปลี่ยนและใช้งานร่วมกันได้" },
         // PDPA Docs
         { title: "นโยบายคุ้มครองข้อมูลส่วนบุคคล (Privacy Policy)", category: "PDPA Policy", year: 2026, domain: "pdpa.localhost" },
         { title: "ประกาศการคุ้มครองข้อมูลส่วนบุคคล (Privacy Notice)", category: "PDPA Notice", year: 2026, domain: "pdpa.localhost" },

@@ -91,7 +91,9 @@ export default function ChatWidget() {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const domain = typeof window !== "undefined" ? window.location.host : "localhost:3000";
+    const domain = typeof window !== "undefined"
+        ? window.location.hostname // ใช้ hostname แทน host เพื่อตัด port (เช่น localhost:3002 -> localhost)
+        : "localhost";
 
     // Fetch config
     useEffect(() => {
