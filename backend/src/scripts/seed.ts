@@ -59,6 +59,32 @@ const mockData: any = {
         { title: "มาตรฐานข้อมูล", description: "ยกระดับคุณภาพข้อมูลให้มีความถูกต้อง ครบถ้วน และเป็นปัจจุบัน", icon: "CheckCircle", domain: "localhost:3000", section: "Main Highlights", order: 2 },
         { title: "ความโปร่งใส", description: "ส่งเสริมการเปิดเผยข้อมูลสาธารณะเพื่อการตรวจสอบและมีส่วนร่วม", icon: "Eye", domain: "localhost:3000", section: "Main Highlights", order: 3 }
     ],
+    chatbotConfigs: [
+        {
+            domain: "localhost:3000",
+            isEnabled: true,
+            provider: "openthaigpt",
+            apiKey: "AoSCekXCiQUuFbseHpYm3ApvOOON5Bep",
+            modelName: "/model",
+            botName: "DataGOV Assistant",
+            welcomeMessage: "สวัสดีครับ ผมคือผู้ช่วยอัจฉริยะจาก DataGOV ยินดีให้บริการครับ 👋",
+            systemPrompt: "คุณคือผู้ช่วยอัจฉริยะของศูนย์ธรรมาภิบาลข้อมูล สำนักงานศาลปกครอง ตอบคำถามสุภาพ เป็นกันเอง และใช้ข้อมูลจากระเบียบข้อบังคับที่กำหนดให้มากที่สุด",
+            temperature: 0.3,
+            suggestedQuestions: ["ธรรมาภิบาลข้อมูลคืออะไร", "ติดต่อเจ้าหน้าที่ได้อย่างไร", "แนวปฏิบัติการจัดการข้อมูล"]
+        },
+        {
+            domain: "pdpa.localhost",
+            isEnabled: true,
+            provider: "openthaigpt",
+            apiKey: "AoSCekXCiQUuFbseHpYm3ApvOOON5Bep",
+            modelName: "/model",
+            botName: "PDPA Guard",
+            welcomeMessage: "ยินดีต้อนรับสู่ศูนย์คุ้มครองข้อมูลส่วนบุคคล (PDPA Center) มีคำถามเรื่องการรักษาความปลอดภัยข้อมูลสอบถามได้เลยครับ 🛡️",
+            systemPrompt: "คุณคือผู้เชี่ยวชาญด้านกฎหมาย PDPA ของสำนักงานศาลปกครอง ตอบคำถามมีความน่าเชื่อถือ อ้างอิงมาตราที่ศาลกำหนด และให้คำแนะนำเบื้องต้นในการรักษาสิทธิของเจ้าของข้อมูล",
+            temperature: 0.2,
+            suggestedQuestions: ["สิทธิเจ้าของข้อมูลมีอะไรบ้าง", "การแจ้งเหตุละเมิดข้อมูล", "บุคคลภายนอกขอใช้ข้อมูลได้อย่างไร"]
+        }
+    ],
     categories: [
         { name: "ข่าวประชาสัมพันธ์", slug: "news" },
         { name: "กิจกรรม", slug: "activities" },
@@ -148,6 +174,17 @@ export default async function seed() {
             }
         }
 
+        // 1.1 Chatbot Configs
+        console.log('🤖 Seeding Chatbot Configs...');
+        for (const chatCfg of mockData.chatbotConfigs) {
+            const exist = await strapi.db.query('api::chatbot-config.chatbot-config').findOne({ where: { domain: chatCfg.domain } });
+            if (!exist) {
+                await strapi.documents('api::chatbot-config.chatbot-config').create({ data: chatCfg, status: 'published' });
+            } else {
+                await strapi.db.query('api::chatbot-config.chatbot-config').update({ where: { id: exist.id }, data: chatCfg });
+            }
+        }
+
         // 2. Categories
         for (const cat of mockData.categories) {
             const exist = await strapi.db.query('api::category.category').findOne({ where: { slug: cat.slug } });
@@ -218,6 +255,7 @@ export default async function seed() {
                 'api::chatbot-config': ['find', 'findOne', 'create', 'update'],
                 'api::hero-slide': ['find', 'findOne', 'create', 'update'],
                 'api::timeline': ['find', 'findOne', 'create', 'update', 'delete'],
+                'api::newsletter-subscriber': ['find', 'findOne', 'create', 'update', 'delete'],
                 'plugin::users-permissions.user': ['find', 'findOne', 'create', 'update', 'delete'],
             };
 

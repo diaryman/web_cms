@@ -227,7 +227,9 @@ export default function ChatWidget() {
         }]);
     };
 
-    if (!config || !config.isEnabled) return null;
+    // If no config yet or disabled, don't show anything
+    if (config && !config.isEnabled) return null;
+    if (!config) return null; // Wait for initial fetch to prevent flicker
 
     const chatWidth = isExpanded ? "w-[480px]" : "w-[380px]";
     const chatHeight = isExpanded ? "h-[680px]" : "h-[550px]";
