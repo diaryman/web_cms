@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { MessageCircle, X, Send, Bot, User, Copy, Check, ThumbsUp, ThumbsDown, RotateCcw, Maximize2, Minimize2, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { fetchAPI } from "@/lib/api";
 
 interface Message {
     id: string;
@@ -103,9 +104,11 @@ export default function ChatWidget({ domainOverride }: Props) {
     useEffect(() => {
         const fetchConfig = async () => {
             try {
-                const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-                const res = await fetch(`${strapiUrl}/api/chatbot-configs?filters[domain][$eq]=${domain}`);
-                const data = await res.json();
+                // ใช้ fetchAPI เพื่อให้ใช้ STRAPI_URL และ Headers ที่ถูกต้องเสมอ
+                const data = await fetchAPI(`/chatbot-configs`, {
+                    filters: { domain: { $eq: domain } }
+                });
+
                 if (data.data && data.data.length > 0) {
                     const cfg: ChatConfig = data.data[0];
                     setConfig(cfg);
@@ -115,6 +118,17 @@ export default function ChatWidget({ domainOverride }: Props) {
                             role: "assistant",
                             content: cfg.welcomeMessage || "สวัสดีครับ 👋 มีอะไรให้ผมช่วยไหมครับ?"
                         }]);
+                    }
+                } else {
+                    console.warn(`No chatbot config found for domain: ${domain}`);
+                    // ถ้าหาไม่เจอ ให้ลองหาแบบ default 'localhost'
+                    if (domain !== "localhost") {
+                        const fallback = await fetchAPI(`/chatbot-configs`, {
+                            filters: { domain: { $eq: "localhost" } }
+                        });
+                        if (fallback.data && fallback.data.length > 0) {
+                            setConfig(fallback.data[0]);
+                        }
                     }
                 }
             } catch (err) {

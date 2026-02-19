@@ -33,7 +33,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const headersList = await headers();
-  const domain = headersList.get("host") || "localhost";
+  const host = headersList.get("host") || "localhost";
+
+  // Normalize domain for config fetching
+  let domain = host;
+  if (host.includes(":3002")) domain = "pdpa.localhost";
+  else if (host.includes(":3000")) domain = "localhost";
+  else domain = host.split(":")[0]; // Fallback for other ports/domains
+
   const theme = domain.includes("pdpa") ? "pdpa" : "datagov";
 
   return (

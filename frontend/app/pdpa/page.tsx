@@ -14,9 +14,12 @@ import { headers } from "next/headers";
 export default async function PDPAPage() {
     const headersList = await headers();
     const host = headersList.get("host") || "localhost";
-    const domain = host.split(":")[0] === "localhost" && host.includes(":3002")
-        ? "pdpa.localhost"
-        : (host.split(":")[0]);
+
+    // Normalize domain for config matching
+    let domain = host;
+    if (host.includes(":3002")) domain = "pdpa.localhost";
+    else if (host.includes(":3000")) domain = "localhost";
+    else domain = host.split(":")[0];
 
     let announcement = undefined;
 
