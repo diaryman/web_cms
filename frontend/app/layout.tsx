@@ -35,9 +35,10 @@ export default async function RootLayout({
   const headersList = await headers();
   const host = headersList.get("host") || "localhost";
   const domain = host.split(":")[0]; // ตัด port ออก
+  const theme = domain.includes("pdpa") ? "pdpa" : "datagov";
 
   return (
-    <html lang="th" data-theme="datagov">
+    <html lang="th" data-theme={theme}>
       <body
         className={`${sarabun.variable} ${prompt.variable} antialiased font-sans`}
       >

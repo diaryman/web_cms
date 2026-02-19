@@ -16,9 +16,16 @@ export const metadata: Metadata = {
 import ScrollProgress from "@/components/ScrollProgress";
 import BackToTop from "@/components/BackToTop";
 import { fetchAPI } from "@/lib/api";
+import { headers } from "next/headers";
 
 export default async function Home() {
-  const domain = "localhost:3000";
+  const headersList = await headers();
+  const host = headersList.get("host") || "localhost";
+  const domain = host.split(":")[0]; // ตัด port ออกเพื่อให้ตรงกับ DB
+
+  // กำหนด Theme ตาม Domain (ใช้สำหรับ Layout Wrapper หรือผ่าน Context)
+  const theme = domain.includes("pdpa") ? "pdpa" : "datagov";
+
   let announcement = undefined;
   let siteConfig = undefined;
   let slides = [];
