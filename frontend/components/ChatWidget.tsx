@@ -87,7 +87,13 @@ interface Props {
 export default function ChatWidget({ domainOverride }: Props) {
     const [isOpen, setIsOpen] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
-    const [config, setConfig] = useState<ChatConfig | null>(null);
+    // Initialize with defaults to prevent widget from disappearing while loading
+    const [config, setConfig] = useState<ChatConfig | null>({
+        isEnabled: true,
+        botName: "AI Assistant",
+        welcomeMessage: "สวัสดีครับ 👋 มีอะไรให้ผมช่วยไหมครับ?",
+        suggestedQuestions: []
+    });
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputValue, setInputValue] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -103,11 +109,14 @@ export default function ChatWidget({ domainOverride }: Props) {
     // Fetch config
     useEffect(() => {
         const fetchConfig = async () => {
+            console.log("🤖 ChatBot fetching config for domain:", domain);
             try {
                 // ใช้ fetchAPI เพื่อให้ใช้ STRAPI_URL และ Headers ที่ถูกต้องเสมอ
                 const data = await fetchAPI(`/chatbot-configs`, {
                     filters: { domain: { $eq: domain } }
                 });
+
+                console.log(`🤖 ChatBot config received for ${domain}:`, data.data?.length ? "Found" : "Not Found");
 
                 if (data.data && data.data.length > 0) {
                     const cfg: ChatConfig = data.data[0];
@@ -127,6 +136,7 @@ export default function ChatWidget({ domainOverride }: Props) {
                             filters: { domain: { $eq: "localhost" } }
                         });
                         if (fallback.data && fallback.data.length > 0) {
+                            console.log("🤖 ChatBot fallback to 'localhost' succeeded");
                             setConfig(fallback.data[0]);
                         }
                     }
