@@ -169,7 +169,14 @@ export default async function seed() {
     try {
         console.log('🌱 Starting comprehensive seeding...');
 
-        // 1. Site Configs
+        // 1. Site Configs - Cleanup redundant domains and seed
+        const existingSites = await strapi.documents('api::site-config.site-config').findMany();
+        for (const s of existingSites) {
+            if (s.domain !== 'localhost' && s.domain !== 'pdpa.localhost') {
+                console.log(`🗑 Deleting redundant site-config: ${s.domain}`);
+                await strapi.documents('api::site-config.site-config').delete({ documentId: s.documentId });
+            }
+        }
         for (const config of mockData.siteConfigs) {
             const exist = await strapi.db.query('api::site-config.site-config').findOne({ where: { domain: config.domain } });
             if (!exist) {
@@ -179,8 +186,15 @@ export default async function seed() {
             }
         }
 
-        // 1.1 Chatbot Configs
+        // 1.1 Chatbot Configs - Cleanup redundant domains and seed
         console.log('🤖 Seeding Chatbot Configs...');
+        const existingChats = await strapi.documents('api::chatbot-config.chatbot-config').findMany();
+        for (const c of existingChats) {
+            if (c.domain !== 'localhost' && c.domain !== 'pdpa.localhost') {
+                console.log(`🗑 Deleting redundant chatbot-config: ${c.domain}`);
+                await strapi.documents('api::chatbot-config.chatbot-config').delete({ documentId: c.documentId });
+            }
+        }
         for (const chatCfg of mockData.chatbotConfigs) {
             const exist = await strapi.db.query('api::chatbot-config.chatbot-config').findOne({ where: { domain: chatCfg.domain } });
             if (!exist) {
