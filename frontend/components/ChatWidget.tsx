@@ -96,7 +96,7 @@ export default function ChatWidget({ domainOverride }: Props) {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const domain = domainOverride || (typeof window !== "undefined"
-        ? window.location.hostname
+        ? (window.location.port === "3002" ? "pdpa.localhost" : window.location.hostname)
         : "localhost");
 
     // Fetch config

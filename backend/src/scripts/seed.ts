@@ -152,13 +152,18 @@ const mockData: any = {
         { title: "แบบคำร้องขอใช้สิทธิของเจ้าของข้อมูล (SAR)", category: "PDPA Form", year: 2026, domain: "pdpa.localhost" }
     ],
     timelines: [
+        // DataGOV Timeline
+        { year: "2566", title: "ก่อตั้งศูนย์บัญชาการข้อมูล", description: "เริ่มติดตั้งโครงสร้างพื้นฐานด้านข้อมูลขนาดใหญ่", domain: "localhost", order: 1 },
+        { year: "2567", title: "ประกาศใช้นโยบายธรรมาภิบาล", description: "วางระเบียบแนวทางปฏิบัติการจัดการข้อมูลทุกแผนก", domain: "localhost", order: 2 },
+        { year: "2568", title: "เชื่อมโยงข้อมูลระหว่างศาล", description: "สร้างระบบแลกเปลี่ยนข้อมูลอัตโนมัติแบบ Real-time", domain: "localhost", order: 3 },
+        { year: "2569", title: "มุ่งสู่ศาลอัจฉริยะ (Smart Court)", description: "นำ AI มาช่วยในการวิเคราะห์และจัดหมวดหมู่ข้อมูลคดี", domain: "localhost", order: 4 },
+        // PDPA Timeline
         { year: "2565", title: "เริ่มประกาศใช้นโยบาย", description: "จัดทำร่างนโยบายคุ้มครองข้อมูลส่วนบุคคลฉบับแรก", domain: "pdpa.localhost", order: 1 },
         { year: "2566", title: "แต่งตั้งเจ้าหน้าที่ DPO", description: "จัดตั้งทีมงานเฉพาะกิจเพื่อดูแลด้านความเป็นส่วนตัว", domain: "pdpa.localhost", order: 2 },
         { year: "2567", title: "ระบบ ROPA สมบูรณ์", description: "บันทึกกิจกรรมการประมวลผลข้อมูลครบทุกส่วนงาน", domain: "pdpa.localhost", order: 3 },
         { year: "2568", title: "ยกระดับสู่มาตรฐานสากล", description: "ผ่านการประเมินความมั่นคงปลอดภัยไซเบอร์ระดับดีเยี่ยม", domain: "pdpa.localhost", order: 4 }
     ]
 };
-
 // Strapi script to seed data
 export default async function seed() {
     try {

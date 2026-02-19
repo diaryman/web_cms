@@ -20,8 +20,7 @@ import { headers } from "next/headers";
 
 export default async function Home() {
   const headersList = await headers();
-  const host = headersList.get("host") || "localhost";
-  const domain = host.split(":")[0]; // ตัด port ออกเพื่อให้ตรงกับ DB
+  const domain = headersList.get("host") || "localhost";
 
   // กำหนด Theme ตาม Domain (ใช้สำหรับ Layout Wrapper หรือผ่าน Context)
   const theme = domain.includes("pdpa") ? "pdpa" : "datagov";
