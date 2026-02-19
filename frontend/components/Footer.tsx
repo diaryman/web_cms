@@ -17,10 +17,10 @@ export default async function Footer({ domain = "localhost:3000" }: { domain?: s
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer id="contact" className="relative pt-24 pb-12 overflow-hidden scroll-mt-32" style={{ backgroundColor: 'var(--primary-color)', color: 'var(--primary-foreground)' }}>
+        <footer id="contact" className="relative pt-24 pb-12 overflow-hidden scroll-mt-premium" style={{ backgroundColor: 'var(--primary-color)', color: 'var(--primary-foreground)' }}>
             {/* Background Decor */}
             <div className="absolute top-0 left-0 w-full h-1" style={{ background: `linear-gradient(to right, var(--accent-color), var(--accent-dark), var(--accent-color))` }}></div>
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-cubes"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
@@ -64,9 +64,9 @@ export default async function Footer({ domain = "localhost:3000" }: { domain?: s
                                 [
                                     { name: "หน้าแรก", href: domain === "pdpa.localhost" ? "/pdpa" : "/" },
                                     { name: "ข่าวกิจกรรม", href: domain === "pdpa.localhost" ? "/news?site=pdpa" : "/news?site=main" },
-                                    { name: "PDPA/คุ้มครองข้อมูล", href: "/pdpa" },
-                                    { name: "นโยบายความเป็นส่วนตัว", href: "/pdpa#principles" },
-                                    { name: "ติดต่อเจ้าหน้าที่ DPO", href: "/pdpa#contact" }
+                                    { name: "PDPA/คุ้มครองข้อมูล", href: "http://localhost:3004" },
+                                    { name: "นโยบายความเป็นส่วนตัว", href: domain === "pdpa.localhost" ? "/pdpa#principles" : "http://localhost:3004#principles" },
+                                    { name: "ติดต่อเจ้าหน้าที่ DPO", href: domain === "pdpa.localhost" ? "/pdpa#contact" : "http://localhost:3004#contact" }
                                 ].map((item, idx) => (
                                     <li key={idx}>
                                         <Link href={item.href} className="hover:text-white flex items-center gap-2 transition-all duration-300 text-sm group opacity-60 hover:opacity-100">
@@ -125,8 +125,8 @@ export default async function Footer({ domain = "localhost:3000" }: { domain?: s
                         © {currentYear} OFFICE OF THE ADMINISTRATIVE COURTS
                     </p>
                     <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest opacity-40">
-                        <Link href="#" className="hover:text-accent transition-colors">Accessibility</Link>
-                        <Link href="#" className="hover:text-accent transition-colors">Security Standards</Link>
+                        <Link href="#" className="hover:text-accent transition-colors">การเข้าถึงเว็บไซต์</Link>
+                        <Link href="#" className="hover:text-accent transition-colors">มาตรฐานความปลอดภัย</Link>
                     </div>
                 </div>
             </div>

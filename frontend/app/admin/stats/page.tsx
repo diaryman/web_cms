@@ -17,7 +17,7 @@ function StatsContent() {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
-    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     const [stats, setStats] = useState({
         articles: 0,

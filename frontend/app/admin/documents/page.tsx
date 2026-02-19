@@ -34,7 +34,7 @@ function DocumentsContent() {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
-    const targetDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const targetDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     const [documents, setDocuments] = useState<Document[]>([]);
     const [categories, setCategories] = useState<any[]>([]);
@@ -75,7 +75,7 @@ function DocumentsContent() {
         const matchesCategory = selectedCategory === "all" || doc.category === selectedCategory;
 
         // Site filter
-        const docDomain = doc.domain || "localhost:3000";
+        const docDomain = doc.domain || "localhost";
         const matchesSite = docDomain === targetDomain;
 
         return matchesSearch && matchesSite && matchesCategory;

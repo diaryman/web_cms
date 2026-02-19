@@ -28,7 +28,7 @@ function CategoriesContent() {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
-    const targetDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const targetDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);

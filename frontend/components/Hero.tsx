@@ -42,7 +42,7 @@ export default function Hero({ headline, subHeadline, heroStats, slides = [] }: 
 
     if (hasSlides) {
         return (
-            <section className="relative h-[85vh] min-h-[600px] w-full overflow-hidden bg-slate-900">
+            <section className="relative h-[85vh] min-h-[600px] w-full overflow-hidden bg-primary">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentSlide}
@@ -61,8 +61,8 @@ export default function Hero({ headline, subHeadline, heroStats, slides = [] }: 
                                     className="w-full h-full object-cover"
                                 />
                             )}
-                            <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/60 to-transparent z-10" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/60 to-transparent z-10" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent z-10" />
                         </div>
 
                         {/* Content */}
@@ -104,7 +104,7 @@ export default function Hero({ headline, subHeadline, heroStats, slides = [] }: 
                                 >
                                     <Link
                                         href={slides[currentSlide].buttonLink}
-                                        className="group px-8 py-4 bg-primary text-white font-bold rounded-2xl shadow-xl shadow-primary/25 hover:bg-accent transition-all active:scale-95 flex items-center gap-2"
+                                        className="group px-8 py-4 bg-primary text-white font-bold rounded-2xl shadow-xl shadow-primary/25 hover:bg-accent transition-all active:scale-95 flex items-center gap-2 premium-gradient"
                                     >
                                         {slides[currentSlide].buttonText} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                                     </Link>
@@ -208,7 +208,7 @@ export default function Hero({ headline, subHeadline, heroStats, slides = [] }: 
                 >
                     <Link
                         href="/news?site=main"
-                        className="group relative px-8 py-4 bg-primary text-white font-bold rounded-2xl shadow-premium hover:bg-accent transition-all duration-300 active:scale-95 flex items-center gap-2"
+                        className="group relative px-8 py-4 bg-primary text-white font-bold rounded-2xl shadow-premium hover:bg-accent transition-all duration-300 active:scale-95 flex items-center gap-2 premium-gradient"
                     >
                         เริ่มต้นใช้งาน <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                     </Link>

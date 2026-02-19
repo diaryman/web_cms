@@ -35,7 +35,7 @@ export default function NewsletterPage() {
 function NewsletterContent() {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
-    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
 
     const [subscribers, setSubscribers] = useState<Subscriber[]>([]);

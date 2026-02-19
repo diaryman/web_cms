@@ -16,7 +16,7 @@ export default function CreateNewsPage() {
     const searchParams = useSearchParams();
     const router = useRouter(); // Use useRouter for navigation
     const siteParam = searchParams.get("site") || "main";
-    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState<any[]>([]);

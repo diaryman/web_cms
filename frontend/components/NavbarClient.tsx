@@ -45,7 +45,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
     const defaultNavItems = [
         { name: "หน้าแรก", href: "/" },
         { name: "ข่าวกิจกรรม", href: "/news?site=main" },
-        { name: "PDPA", href: "/pdpa" },
+        { name: "PDPA", href: "http://localhost:3004" },
         { name: "นโยบาย/มาตรฐาน", href: "/#policy" },
         { name: "เอกสารเผยแพร่", href: "/documents" },
         { name: "ดาวน์โหลด", href: "/#downloads" },
@@ -57,7 +57,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
     return (
         <>
             <nav
-                className={`fixed w-full z-[80] transition-all duration-500 top-[44px] ${scrolled
+                className={`fixed w-full z-[140] transition-all duration-500 top-[44px] ${scrolled
                     ? "py-3 shadow-premium border-b"
                     : "py-6 bg-transparent"
                     }`}
@@ -125,7 +125,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
 
                                 <Link
                                     href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`}
-                                    className="px-6 py-3 bg-primary text-sm font-bold rounded-2xl shadow-premium hover:bg-accent transition-all active:scale-95 ml-2 whitespace-nowrap"
+                                    className="px-6 py-3 bg-primary text-sm font-bold rounded-2xl shadow-premium hover:bg-accent transition-all active:scale-95 ml-2 whitespace-nowrap premium-gradient"
                                     style={{ color: 'var(--primary-foreground)' }}
                                 >
                                     เข้าสู่ระบบ

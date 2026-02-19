@@ -103,7 +103,7 @@ export default function ChatWidget({ domainOverride }: Props) {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const domain = domainOverride || (typeof window !== "undefined"
-        ? (window.location.port === "3002" ? "pdpa.localhost" : window.location.hostname)
+        ? (window.location.port === "3004" ? "pdpa.localhost" : (window.location.port === "3002" ? "localhost" : window.location.hostname))
         : "localhost");
 
     // Fetch config
@@ -415,8 +415,11 @@ export default function ChatWidget({ domainOverride }: Props) {
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.94 }}
-                className={`w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-colors relative ${isOpen ? "bg-white text-primary border-2 border-gray-100" : "bg-primary text-white"
-                    }`}
+                className={`w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-colors relative ${isOpen ? "border-2 border-gray-100" : ""}`}
+                style={{
+                    backgroundColor: isOpen ? '#ffffff' : 'var(--primary-color)',
+                    color: isOpen ? 'var(--primary-color)' : 'var(--primary-foreground)'
+                }}
             >
                 <AnimatePresence mode="wait">
                     {isOpen ? (
@@ -433,8 +436,8 @@ export default function ChatWidget({ domainOverride }: Props) {
                 {/* Ping indicator */}
                 {!isOpen && (
                     <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
-                        <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-accent" />
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ backgroundColor: 'var(--accent-color)' }} />
+                        <span className="relative inline-flex rounded-full h-3.5 w-3.5" style={{ backgroundColor: 'var(--accent-color)' }} />
                     </span>
                 )}
             </motion.button>

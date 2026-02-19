@@ -17,7 +17,7 @@ export default function EditNewsPage({ params }: { params: Promise<{ id: string 
     const searchParams = useSearchParams();
     const router = useRouter();
     const siteParam = searchParams.get("site") || "main";
-    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);

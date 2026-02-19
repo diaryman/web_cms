@@ -16,15 +16,15 @@ export default function NewsTicker({ domain = "localhost:3000", announcement, no
     const updates = (notifications && notifications.length > 0) ? notifications : (announcement ? [announcement, ...defaultUpdates] : defaultUpdates);
 
     return (
-        <div className="fixed top-0 w-full z-[100] bg-primary h-11 flex items-center border-b border-white/10 overflow-hidden">
-            <div className="flex-shrink-0 bg-accent px-4 h-full flex items-center gap-2 z-10 shadow-xl relative">
+        <div className="fixed top-0 w-full z-[150] h-11 flex items-center border-b border-white/10 overflow-hidden" style={{ backgroundColor: 'var(--primary-color)' }}>
+            <div className="flex-shrink-0 px-4 h-full flex items-center gap-2 z-10 shadow-xl relative" style={{ backgroundColor: 'var(--accent-color)' }}>
                 <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                 </span>
                 <span className="text-[10px] font-black font-heading uppercase tracking-widest" style={{ color: 'var(--primary-foreground)' }}>Live Updates</span>
                 {/* Slant effect */}
-                <div className="absolute top-0 -right-4 h-full w-8 bg-accent skew-x-[20deg] z-[-1]"></div>
+                <div className="absolute top-0 -right-4 h-full w-8 skew-x-[20deg] z-[-1]" style={{ backgroundColor: 'var(--accent-color)' }}></div>
             </div>
 
             <div className="flex-1 overflow-hidden h-full flex items-center">
@@ -50,7 +50,7 @@ export default function NewsTicker({ domain = "localhost:3000", announcement, no
                 </motion.div>
             </div>
 
-            <div className="flex-shrink-0 px-6 z-10 hidden lg:block h-full flex items-center bg-gradient-to-l from-primary via-primary to-transparent">
+            <div className="flex-shrink-0 px-6 z-10 hidden lg:block h-full flex items-center" style={{ background: 'linear-gradient(to left, var(--primary-color), var(--primary-color), transparent)' }}>
                 <Link href={`/news?site=${siteParam}`} className="text-[10px] font-bold uppercase tracking-widest hover:text-accent transition-all flex items-center gap-1.5" style={{ color: 'var(--primary-foreground)' }}>
                     ดูข่าวทั้งหมด <ChevronRight size={12} />
                 </Link>

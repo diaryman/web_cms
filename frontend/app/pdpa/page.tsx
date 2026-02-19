@@ -17,7 +17,8 @@ export default async function PDPAPage() {
 
     // Normalize domain for config matching
     let domain = host;
-    if (host.includes(":3002")) domain = "pdpa.localhost";
+    if (host.includes(":3004")) domain = "pdpa.localhost";
+    else if (host.includes(":3002")) domain = "localhost";
     else if (host.includes(":3000")) domain = "localhost";
     else domain = host.split(":")[0];
 

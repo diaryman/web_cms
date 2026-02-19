@@ -33,7 +33,7 @@ function NewsContent() {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
-    const targetDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const targetDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     // State
     const [articles, setArticles] = useState<Article[]>([]);
@@ -76,8 +76,8 @@ function NewsContent() {
         const matchesCategory = selectedCategory === "all" || article.category?.name === selectedCategory;
 
         // Site filter
-        const articleDomain = article.domain || "localhost:3000";
-        // PDPA site shows PDPA domain articles. Main site shows localhost:3000 (DataGOV) articles.
+        const articleDomain = article.domain || "localhost";
+        // PDPA site shows PDPA domain articles. Main site shows localhost (DataGOV) articles.
         const matchesSite = articleDomain === targetDomain;
 
         return matchesSearch && matchesCategory && matchesSite;
@@ -183,7 +183,7 @@ function NewsContent() {
                                         </td>
                                         <td className="px-6 py-5 hidden md:table-cell">
                                             <span className="px-3 py-1 bg-gray-100 text-gray-600 rounded-lg text-[10px] font-bold group-hover:bg-white group-hover:shadow-sm transition-all whitespace-nowrap">
-                                                {article.category?.name || "Uncategorized"}
+                                                {article.category?.name || "ไม่ระบุหมวดหมู่"}
                                             </span>
                                         </td>
                                         <td className="px-6 py-5 hidden md:table-cell">

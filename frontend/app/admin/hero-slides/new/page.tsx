@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, Suspense } from "react";
+import { uploadFile } from "@/app/actions/upload";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
 import { Save, Loader2, ArrowLeft, Image as ImageIcon, Link as LinkIcon, Type, AlignLeft, Plus } from "lucide-react";
@@ -18,7 +19,7 @@ function NewHeroSlideForm() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
-    const targetDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const targetDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     const [saving, setSaving] = useState(false);
     const [imageFile, setImageFile] = useState<File | null>(null);
@@ -49,16 +50,18 @@ function NewHeroSlideForm() {
 
         setSaving(true);
         try {
-            // 1. Upload image
+            // 1. Upload image using Server Action
             const imageFormData = new FormData();
             imageFormData.append("files", imageFile);
 
-            const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-            const uploadRes = await fetch(`${strapiUrl}/api/upload`, {
-                method: "POST",
-                body: imageFormData,
-            });
-            const uploadedFiles = await uploadRes.json();
+            console.log("Starting upload...");
+            const uploadedFiles = await uploadFile(imageFormData);
+
+            if (!Array.isArray(uploadedFiles) || uploadedFiles.length === 0) {
+                console.error("Upload response invalid:", uploadedFiles);
+                throw new Error("No file returned from upload");
+            }
+
             const imageId = uploadedFiles[0].id;
 
             // 2. Create Hero Slide
@@ -74,9 +77,9 @@ function NewHeroSlideForm() {
             });
 
             router.push(`/admin/hero-slides?site=${siteParam}`);
-        } catch (error) {
+        } catch (error: any) {
             console.error("Save failed", error);
-            alert("เกิดข้อผิดพลาดในการบันทึก");
+            alert(error.message || "เกิดข้อผิดพลาดในการบันทึก");
         } finally {
             setSaving(false);
         }

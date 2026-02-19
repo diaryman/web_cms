@@ -32,7 +32,7 @@ function HeroSlidesContent() {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
-    const targetDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const targetDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     const [slides, setSlides] = useState<HeroSlide[]>([]);
     const [loading, setLoading] = useState(true);

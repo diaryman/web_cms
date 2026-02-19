@@ -53,19 +53,15 @@ export default function DownloadsSection({ domain = "localhost:3000" }: { domain
     ];
 
     return (
-        <section id="downloads" className="py-24 section-white border-t border-gray-100 scroll-mt-32">
+        <section id="downloads" className="py-24 section-white border-t border-gray-100 scroll-mt-premium">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <motion.h2
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
                         className="text-4xl md:text-5xl font-black font-heading text-slate-900 dark:text-white mb-6 tracking-tight"
                     >
                         บริการและเอกสารดาวน์โหลด
                     </motion.h2>
                     <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
                         className="text-xl font-light"
                         style={{ color: 'var(--text-muted)' }}
                     >
@@ -80,10 +76,6 @@ export default function DownloadsSection({ domain = "localhost:3000" }: { domain
                         return (
                             <motion.div
                                 key={service.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                viewport={{ once: true }}
                             >
                                 <SpotlightCard>
                                     <div className="p-6">
@@ -116,8 +108,6 @@ export default function DownloadsSection({ domain = "localhost:3000" }: { domain
 
                 {/* View All Link */}
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
                     className="text-center"
                 >
                     <Link

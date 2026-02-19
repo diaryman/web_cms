@@ -21,7 +21,7 @@ export default function ContactPageClient({ navbar, footer, contactForm, siteCon
             {navbar}
 
             <div className="pt-[calc(6rem+44px)] pb-20 relative overflow-hidden text-center bg-white border-b border-gray-100">
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
+                <div className="absolute inset-0 bg-cubes opacity-[0.03]"></div>
                 <div className="max-w-4xl mx-auto px-4 relative z-10">
                     <span className={`px-4 py-1.5 ${bgAccent} ${accentColor} rounded-full text-[10px] font-black uppercase tracking-widest mb-6 inline-block`}>
                         Contact Us

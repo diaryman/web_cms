@@ -73,14 +73,14 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                         </div>
                         <div className="flex flex-col">
                             <span className="font-heading font-black text-xl tracking-tighter leading-none text-primary">{siteName}</span>
-                            <span className="text-[8px] uppercase font-bold tracking-[0.2em] text-accent">Control Panel</span>
+                            <span className="text-[8px] uppercase font-bold tracking-[0.2em] text-accent">ระบบจัดการเนื้อหา</span>
                         </div>
                     </Link>
                 </div>
 
                 <nav className="flex-1 px-4 space-y-1 overflow-y-auto py-4 custom-scrollbar">
                     <div className="mb-4 px-4">
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Main Menu</p>
+                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">เมนูหลัก</p>
                     </div>
                     {menuItems.map((item) => {
                         const isActive = item.path === '/admin'
@@ -109,11 +109,11 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                     <div className="bg-blue-50/50 p-4 rounded-2xl border border-blue-100">
                         <div className="flex items-center gap-2 mb-2">
                             <HelpCircle size={16} className="text-accent" />
-                            <p className="text-xs font-bold text-primary">ต้องการความช่วยเหลือ?</p>
+                            <p className="text-xs font-bold text-primary">ศูนย์ช่วยเหลือและคู่มือ</p>
                         </div>
                         <p className="text-[10px] text-gray-500 leading-relaxed mb-3">ตรวจสอบคู่มือการใช้งานระบบจัดการข้อมูลธรรมาภิบาล</p>
                         <button className="w-full py-2 bg-white text-[10px] font-bold text-primary rounded-xl border border-blue-100 hover:bg-blue-50 transition-colors">
-                            อ่านคู่มือ
+                            ดูคู่มือการใช้งาน
                         </button>
                     </div>
 
@@ -136,7 +136,38 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                 {/* Top Header */}
                 <header className="h-20 bg-white/80 backdrop-blur-md border-b border-gray-100 flex items-center justify-between px-10 sticky top-0 z-40">
                     <div className="flex items-center gap-4">
-                        <h2 className="text-lg font-bold text-primary font-heading">แผงควบคุม {siteName}</h2>
+                        <div className="flex items-center gap-1 bg-gray-50 p-1 rounded-xl border border-gray-100">
+                            <button
+                                onClick={() => {
+                                    const params = new URLSearchParams(searchParams.toString());
+                                    params.set("site", "main");
+                                    window.location.href = `${pathname}?${params.toString()}`;
+                                }}
+                                className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${siteParam === "main"
+                                    ? "bg-white text-primary shadow-sm border border-gray-100"
+                                    : "text-gray-400 hover:text-primary"
+                                    }`}
+                            >
+                                DataGOV
+                            </button>
+                            <button
+                                onClick={() => {
+                                    const params = new URLSearchParams(searchParams.toString());
+                                    params.set("site", "pdpa");
+                                    window.location.href = `${pathname}?${params.toString()}`;
+                                }}
+                                className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${siteParam === "pdpa"
+                                    ? "bg-white text-primary shadow-sm border border-gray-100"
+                                    : "text-gray-400 hover:text-primary"
+                                    }`}
+                            >
+                                PDPA
+                            </button>
+                        </div>
+                        <div className="h-4 w-px bg-gray-200 mx-2"></div>
+                        <h2 className="text-sm font-bold text-primary font-heading uppercase tracking-widest">
+                            {siteName} แดชบอร์ด
+                        </h2>
                     </div>
 
                     <div className="flex items-center gap-6">
@@ -149,8 +180,8 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
 
                         <div className="flex items-center gap-3 cursor-pointer group">
                             <div className="text-right flex flex-col">
-                                <span className="text-sm font-bold text-primary group-hover:text-accent transition-colors leading-none">Admin Court</span>
-                                <span className="text-[10px] text-gray-400 font-medium">Administrator</span>
+                                <span className="text-sm font-bold text-primary group-hover:text-accent transition-colors leading-none">ผู้ดูแลระบบ</span>
+                                <span className="text-[10px] text-gray-400 font-medium uppercase tracking-widest">System Admin</span>
                             </div>
                             <div className="w-10 h-10 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-primary group-hover:border-accent transition-all overflow-hidden">
                                 <User size={20} />

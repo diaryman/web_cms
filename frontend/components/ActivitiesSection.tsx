@@ -36,32 +36,22 @@ export default function ActivitiesSection({ domain = "localhost:3000" }: { domai
     const placeholders = ["from-blue-600 to-indigo-600", "from-indigo-600 to-purple-600", "from-cyan-600 to-blue-600"];
 
     return (
-        <section id="news" className="py-24 section-mixed overflow-hidden scroll-mt-32">
+        <section id="news" className="py-24 section-mixed overflow-hidden scroll-mt-premium">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
                     <div>
                         <motion.span
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
                             className="text-blue-600 font-black tracking-[0.25em] uppercase text-xs mb-3 block"
                         >
                             Updates & News
                         </motion.span>
                         <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
                             className="text-4xl md:text-5xl font-black font-heading text-slate-900 dark:text-white tracking-tight"
                         >
                             ข่าวกิจกรรมและประกาศล่าสุด
                         </motion.h2>
                     </div>
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                    >
+                    <motion.div>
                         <Link href="/news?site=main" className="flex items-center gap-2 px-6 py-3 glass border border-gray-200 rounded-2xl text-primary font-bold hover:bg-white transition-all">
                             ดูบทความทั้งหมด <ChevronRight size={18} />
                         </Link>
@@ -86,10 +76,6 @@ export default function ActivitiesSection({ domain = "localhost:3000" }: { domai
                             return (
                                 <Link href={`/news/${item.slug}`} key={item.id} className="block">
                                     <SpotlightCard
-                                        initial={{ opacity: 0, y: 30 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: index * 0.1 }}
                                         className="group flex flex-col glass rounded-[2.5rem] border border-white p-4 shadow-premium hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2 h-full"
                                     >
                                         <div className="relative aspect-[16/10] rounded-[2rem] overflow-hidden mb-6">

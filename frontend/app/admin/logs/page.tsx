@@ -17,7 +17,7 @@ function LogsContent() {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
-    const currentDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const currentDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     const [logs, setLogs] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);

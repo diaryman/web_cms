@@ -61,7 +61,7 @@ function DashboardContent() {
     const [categoryStats, setCategoryStats] = useState<any[]>([]);
 
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
-    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     // Dynamic greeting based on time
     const greeting = useMemo(() => {
@@ -277,7 +277,7 @@ function DashboardContent() {
             {/* Welcome Section */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-black text-primary font-heading tracking-tight">{greeting}, แอดมิน {siteName} 👋</h1>
+                    <h1 className="text-3xl font-black text-primary font-heading tracking-tight">{greeting}, ผู้ดูแลระบบ {siteName} 👋</h1>
                     <p className="text-gray-400 font-medium">นี่คือภาพรวมของระบบและกิจกรรมล่าสุดของ {siteName} ในวันนี้</p>
                 </div>
                 <div className="flex items-center gap-3">

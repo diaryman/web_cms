@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function ServicesPage() {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
-    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     const [services, setServices] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);

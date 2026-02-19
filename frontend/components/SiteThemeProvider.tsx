@@ -38,7 +38,9 @@ export default function SiteThemeProvider({ children }: { children: React.ReactN
             }
         };
 
-        const isPDPA = pathname.startsWith("/pdpa");
+        const host = window.location.host;
+        const port = window.location.port;
+        const isPDPA = pathname.startsWith("/pdpa") || port === "3004";
         document.documentElement.setAttribute("data-theme", isPDPA ? "pdpa" : "datagov");
 
         fetchTheme();

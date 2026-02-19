@@ -8,7 +8,7 @@ import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemp
 export default function AdminSiteConfigPage() {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
-    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost:3000";
+    const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);

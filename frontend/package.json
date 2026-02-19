@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3002",
+    "dev:datagov": "next dev -p 3002",
+    "dev:pdpa": "NEXT_DIST_DIR=.next_pdpa next dev -p 3004",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
