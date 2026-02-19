@@ -68,10 +68,67 @@ export async function POST(req: NextRequest) {
 
         const stream = new ReadableStream({
             async start(controller) {
-                const send = (text: string) => {
-                    controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text })}\n\n`));
+                // --- Think Block Filter ---
+                // Strips <think>...</think> content from streamed output (used by reasoning models)
+                let thinkBuffer = "";
+                let inThink = false;
+
+                const send = (rawChunk: string) => {
+                    // Append to buffer for tag detection
+                    thinkBuffer += rawChunk;
+
+                    let output = "";
+
+                    while (thinkBuffer.length > 0) {
+                        if (inThink) {
+                            // Looking for closing </think>
+                            const closeIdx = thinkBuffer.indexOf("</think>");
+                            if (closeIdx !== -1) {
+                                // Found closing tag — discard everything up to and including it
+                                thinkBuffer = thinkBuffer.slice(closeIdx + "</think>".length);
+                                inThink = false;
+                                // Strip leading newline after </think> if present
+                                if (thinkBuffer.startsWith("\n")) thinkBuffer = thinkBuffer.slice(1);
+                            } else {
+                                // Still inside think block, wait for more chunks
+                                break;
+                            }
+                        } else {
+                            // Looking for opening <think>
+                            const openIdx = thinkBuffer.indexOf("<think>");
+                            if (openIdx !== -1) {
+                                // Output everything before the tag
+                                output += thinkBuffer.slice(0, openIdx);
+                                thinkBuffer = thinkBuffer.slice(openIdx + "<think>".length);
+                                inThink = true;
+                            } else {
+                                // No think tag — but guard against partial tag at end of buffer
+                                // e.g. buffer ends with "<thi" — keep last 8 chars buffered
+                                const guardLen = 8; // length of "<think>" - 1
+                                if (thinkBuffer.length > guardLen) {
+                                    output += thinkBuffer.slice(0, -guardLen);
+                                    thinkBuffer = thinkBuffer.slice(-guardLen);
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    if (output) {
+                        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text: output })}\n\n`));
+                    }
                 };
+
+                // Flush remaining buffer when stream ends
+                const flush = () => {
+                    if (!inThink && thinkBuffer) {
+                        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ text: thinkBuffer })}\n\n`));
+                        thinkBuffer = "";
+                    }
+                };
+
                 const done = () => {
+                    flush();
                     controller.enqueue(encoder.encode("data: [DONE]\n\n"));
                     controller.close();
                 };

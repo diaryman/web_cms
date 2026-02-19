@@ -56,6 +56,15 @@ function formatInline(text: string): React.ReactNode {
     });
 }
 
+// ตัด <think>...</think> block ที่โมเดล reasoning ใช้คิดก่อนตอบ
+function stripThinkBlocks(text: string): string {
+    // ตัด block ที่ปิดสมบูรณ์
+    let result = text.replace(/<think>[\s\S]*?<\/think>\n?/g, "");
+    // ตัด block ที่ยังไม่ปิด (กำลัง streaming อยู่)
+    result = result.replace(/<think>[\s\S]*/g, "");
+    return result.trimStart();
+}
+
 function CopyButton({ text }: { text: string }) {
     const [copied, setCopied] = useState(false);
     const handleCopy = async () => {
@@ -280,11 +289,11 @@ export default function ChatWidget() {
                                     )}
                                     <div className={`group max-w-[82%] ${msg.role === "user" ? "items-end" : "items-start"} flex flex-col gap-1`}>
                                         <div className={`p-3.5 rounded-2xl shadow-sm relative ${msg.role === "user"
-                                                ? "bg-primary text-white rounded-tr-sm"
-                                                : "bg-white text-primary border border-gray-50 rounded-tl-sm"
+                                            ? "bg-primary text-white rounded-tr-sm"
+                                            : "bg-white text-primary border border-gray-50 rounded-tl-sm"
                                             }`}>
                                             {msg.role === "assistant" ? (
-                                                <RenderMarkdown text={msg.content || (msg.isStreaming ? "..." : "")} />
+                                                <RenderMarkdown text={stripThinkBlocks(msg.content) || (msg.isStreaming ? "..." : "")} />
                                             ) : (
                                                 <p className="text-sm leading-relaxed">{msg.content}</p>
                                             )}
@@ -297,7 +306,7 @@ export default function ChatWidget() {
                                             )}
                                             {msg.role === "assistant" && !msg.isStreaming && msg.content && (
                                                 <div className="absolute -bottom-6 right-0 flex gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    <CopyButton text={msg.content} />
+                                                    <CopyButton text={stripThinkBlocks(msg.content)} />
                                                 </div>
                                             )}
                                         </div>
