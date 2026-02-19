@@ -9,8 +9,15 @@ export const metadata = {
     description: "การดำเนินงานด้านการคุ้มครองข้อมูลส่วนบุคคล สำนักงานศาลปกครอง",
 };
 
+import { headers } from "next/headers";
+
 export default async function PDPAPage() {
-    const domain = "pdpa.localhost";
+    const headersList = await headers();
+    const host = headersList.get("host") || "localhost";
+    const domain = host.split(":")[0] === "localhost" && host.includes(":3002")
+        ? "pdpa.localhost"
+        : (host.split(":")[0]);
+
     let announcement = undefined;
 
     let siteConfig = undefined;

@@ -41,13 +41,23 @@ export async function fetchAPI(
     )}`;
 
     // Trigger API call
-    const response = await fetch(requestUrl, mergedOptions);
+    try {
+        const response = await fetch(requestUrl, mergedOptions);
 
-    // Handle response
-    if (!response.ok) {
-        console.error(response.statusText);
-        throw new Error(`An error occured please try again`);
+        // Handle response
+        if (!response.ok) {
+            console.error(`API Error (${response.status}): ${response.statusText} at ${requestUrl}`);
+            const errorText = await response.text();
+            console.error(`Error details: ${errorText}`);
+            throw new Error(`API returned ${response.status}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error: any) {
+        console.error(`Fetch failed for URL: ${requestUrl}`);
+        console.error(`Error name: ${error.name}, Message: ${error.message}`);
+        // Re-throw with more context
+        throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running?`);
     }
-    const data = await response.json();
-    return data;
 }
