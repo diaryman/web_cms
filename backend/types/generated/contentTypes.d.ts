@@ -603,7 +603,9 @@ export interface ApiChatbotConfigChatbotConfig
       Schema.Attribute.Private;
     modelName: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'gemini-1.5-flash'>;
-    provider: Schema.Attribute.Enumeration<['gemini', 'openai', 'ollama']> &
+    provider: Schema.Attribute.Enumeration<
+      ['gemini', 'openai', 'ollama', 'openthaigpt']
+    > &
       Schema.Attribute.DefaultTo<'gemini'>;
     publishedAt: Schema.Attribute.DateTime;
     suggestedQuestions: Schema.Attribute.JSON;

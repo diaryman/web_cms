@@ -204,18 +204,23 @@ function ChatbotSettingsContent() {
                         {/* Provider */}
                         <div>
                             <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">AI Provider</label>
-                            <div className="grid grid-cols-3 gap-3">
+                            <div className="grid grid-cols-2 gap-3">
                                 {[
-                                    { id: "gemini", label: "Google Gemini", icon: <Sparkles size={16} />, model: "gemini-1.5-flash" },
-                                    { id: "openai", label: "OpenAI / ChatGPT", icon: <Cpu size={16} />, model: "gpt-4o-mini" },
-                                    { id: "ollama", label: "Local (Ollama)", icon: <Terminal size={16} />, model: "llama3" },
+                                    { id: "openthaigpt", label: "OpenThaiGPT 🇹🇭", icon: <Sparkles size={16} />, model: "/model", hint: "โมเดลภาษาไทย (แนะนำ)" },
+                                    { id: "gemini", label: "Google Gemini", icon: <Sparkles size={16} />, model: "gemini-1.5-flash", hint: "ฟรี / มี quota" },
+                                    { id: "openai", label: "OpenAI / ChatGPT", icon: <Cpu size={16} />, model: "gpt-4o-mini", hint: "ต้องใช้บัตรเครดิต" },
+                                    { id: "ollama", label: "Local (Ollama)", icon: <Terminal size={16} />, model: "llama3", hint: "ใช้บน Server ตัวเอง" },
                                 ].map(item => (
                                     <button
                                         key={item.id}
                                         onClick={() => setConfig({ ...config, provider: item.id, modelName: item.model })}
-                                        className={`flex items-center justify-center gap-2 p-4 rounded-2xl border-2 font-bold text-sm transition-all ${config.provider === item.id ? "border-primary bg-primary/5 text-primary shadow-md shadow-primary/10" : "border-gray-100 text-gray-400 hover:border-gray-200"}`}
+                                        className={`flex items-start gap-3 p-4 rounded-2xl border-2 font-bold text-sm transition-all text-left ${config.provider === item.id ? "border-primary bg-primary/5 text-primary shadow-md shadow-primary/10" : "border-gray-100 text-gray-400 hover:border-gray-200"}`}
                                     >
-                                        {item.icon} {item.label}
+                                        <span className="mt-0.5 flex-shrink-0">{item.icon}</span>
+                                        <div>
+                                            <div>{item.label}</div>
+                                            <div className={`text-[10px] font-medium mt-0.5 ${config.provider === item.id ? "text-primary/60" : "text-gray-300"}`}>{item.hint}</div>
+                                        </div>
                                     </button>
                                 ))}
                             </div>

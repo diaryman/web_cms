@@ -147,6 +147,53 @@ export async function POST(req: NextRequest) {
                                 }
                             }
                         }
+                    } else if (provider === "openthaigpt") {
+                        // OpenThaiGPT API — OpenAI-compatible format but uses "apikey" header
+                        const baseUrl = "http://thaillm.or.th/api/openthaigpt/v1";
+                        const otgRes = await fetch(`${baseUrl}/chat/completions`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "apikey": apiKey,
+                            },
+                            body: JSON.stringify({
+                                model: modelName || "/model",
+                                stream: true,
+                                messages: [
+                                    { role: "system", content: finalSystemPrompt },
+                                    ...(history || []).map((h: any) => ({ role: h.role, content: h.content })),
+                                    { role: "user", content: message },
+                                ],
+                                max_tokens: 2048,
+                                temperature: temperature ?? 0.3,
+                            }),
+                        });
+
+                        if (!otgRes.ok) {
+                            const errText = await otgRes.text().catch(() => "Unknown error");
+                            throw new Error(`OpenThaiGPT API error ${otgRes.status}: ${errText}`);
+                        }
+
+                        const otgReader = otgRes.body?.getReader();
+                        const otgDecoder = new TextDecoder();
+                        if (otgReader) {
+                            while (true) {
+                                const { done: doneReading, value } = await otgReader.read();
+                                if (doneReading) break;
+                                const lines = otgDecoder.decode(value, { stream: true }).split("\n");
+                                for (const line of lines) {
+                                    const trimmed = line.trim();
+                                    if (!trimmed || trimmed === "data: [DONE]") continue;
+                                    if (trimmed.startsWith("data: ")) {
+                                        try {
+                                            const parsed = JSON.parse(trimmed.slice(6));
+                                            const delta = parsed.choices?.[0]?.delta?.content || "";
+                                            if (delta) send(delta);
+                                        } catch { }
+                                    }
+                                }
+                            }
+                        }
                     } else {
                         send("ไม่รองรับ AI Provider นี้ครับ กรุณาตั้งค่าใหม่");
                     }

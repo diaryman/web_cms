@@ -25,7 +25,8 @@
             "enum": [
                 "gemini",
                 "openai",
-                "ollama"
+                "ollama",
+                "openthaigpt"
             ],
             "default": "gemini"
         },
