@@ -257,17 +257,16 @@ export default function ChatWidget({ domainOverride }: Props) {
         }]);
     };
 
-    // If no config yet or disabled, don't show anything
-    if (config && !config.isEnabled) return null;
-    if (!config) return null; // Wait for initial fetch to prevent flicker
-
     const chatWidth = isExpanded ? "w-[480px]" : "w-[380px]";
     const chatHeight = isExpanded ? "h-[680px]" : "h-[550px]";
-    const suggestedQs = config.suggestedQuestions || [];
+    const suggestedQs = config?.suggestedQuestions || [];
     const showSuggestions = messages.length <= 1 && suggestedQs.length > 0;
 
+    // Only hide if explicitly disabled by config
+    if (config?.isEnabled === false) return null;
+
     return (
-        <div className="fixed bottom-6 right-6 z-[9999] font-sans">
+        <div className="fixed bottom-6 right-6 z-[10001] font-sans">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -286,7 +285,7 @@ export default function ChatWidget({ domainOverride }: Props) {
                                     <Bot size={20} className="text-accent" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-sm tracking-tight">{config.botName || "AI Assistant"}</h3>
+                                    <h3 className="font-bold text-sm tracking-tight">{config?.botName || "AI Assistant"}</h3>
                                     <div className="flex items-center gap-1.5 mt-0.5">
                                         <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
                                         <span className="text-[10px] text-white/60 font-medium uppercase tracking-widest">Online</span>
