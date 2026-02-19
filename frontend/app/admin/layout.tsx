@@ -1,6 +1,6 @@
 "use client";
 
-import { LayoutDashboard, FileText, ShieldCheck, Settings, Bell, BarChart3, MessageSquare, History, User, LogOut, Search, ChevronRight, Menu, X, LayoutTemplate, Plus, HelpCircle, FolderTree } from "lucide-react";
+import { LayoutDashboard, FileText, ShieldCheck, Settings, Bell, BarChart3, MessageSquare, History, User, LogOut, Search, ChevronRight, Menu, X, LayoutTemplate, Plus, HelpCircle, FolderTree, Mail } from "lucide-react";
 import Link from "next/link";
 import React, { Suspense } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
@@ -53,6 +53,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
         { icon: <Bell size={20} />, label: "ข้อความติดต่อ", href: `/admin/contacts`, path: `/admin/contacts` },
         { icon: <BarChart3 size={20} />, label: "สถิติและการใช้งาน", href: `/admin/stats`, path: `/admin/stats` },
         { icon: <MessageSquare size={20} />, label: "ตั้งค่าแชทบอท", href: `/admin/chatbot`, path: `/admin/chatbot` },
+        { icon: <Mail size={20} />, label: "จัดการ Newsletter", href: `/admin/newsletter`, path: `/admin/newsletter` },
         { icon: <LayoutTemplate size={20} />, label: "จัดการสไลด์หน้าแรก", href: `/admin/hero-slides`, path: `/admin/hero-slides` },
         { icon: <History size={20} />, label: "ประวัติการใช้งาน", href: `/admin/logs`, path: `/admin/logs` },
     ];

@@ -4,6 +4,7 @@ import NewsTicker from "@/components/NewsTicker";
 import PolicySection from "@/components/PolicySection";
 import ActivitiesSection from "@/components/ActivitiesSection";
 import DownloadsSection from "@/components/DownloadsSection";
+import NewsletterSection from "@/components/NewsletterSection";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
 
@@ -63,6 +64,7 @@ export default async function Home() {
       {showPolicies && <PolicySection domain={domain} />}
       {showActivities && <ActivitiesSection domain={domain} />}
       {showDownloads && <DownloadsSection domain={domain} />}
+      <NewsletterSection domain={domain} />
       <Footer />
     </main>
   );
