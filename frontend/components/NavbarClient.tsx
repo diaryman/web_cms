@@ -26,6 +26,22 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // Keyboard shortcuts: Ctrl+K / Cmd+K to open search, ESC to close
+    useEffect(() => {
+        const handleKey = (e: KeyboardEvent) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+                e.preventDefault();
+                setIsSearchOpen((prev) => !prev);
+            }
+            if (e.key === "Escape") {
+                setIsSearchOpen(false);
+                setIsOpen(false);
+            }
+        };
+        window.addEventListener("keydown", handleKey);
+        return () => window.removeEventListener("keydown", handleKey);
+    }, []);
+
     const defaultNavItems = [
         { name: "หน้าแรก", href: "/" },
         { name: "ข่าวกิจกรรม", href: "/news?site=main" },
@@ -85,10 +101,14 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                                 {/* Search Toggle */}
                                 <button
                                     onClick={() => setIsSearchOpen(true)}
-                                    className="p-3 transition-colors glass rounded-2xl border border-gray-100 dark:border-white/10 hover:bg-white group"
-                                    style={{ color: 'var(--foreground)' }}
+                                    className="flex items-center gap-3 px-4 py-2.5 transition-colors glass rounded-2xl border border-gray-100 dark:border-white/10 hover:bg-white group"
+                                    style={{ color: 'var(--text-muted)' }}
                                 >
-                                    <Search size={20} className="group-hover:scale-110 transition-transform" />
+                                    <Search size={18} className="group-hover:text-accent transition-colors flex-shrink-0" />
+                                    <span className="text-sm font-medium hidden lg:block">ค้นหา...</span>
+                                    <kbd className="hidden lg:flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] font-bold rounded border bg-white/50 border-gray-200 text-gray-400 ml-1">
+                                        ⌘K
+                                    </kbd>
                                 </button>
 
                                 {/* Theme Toggle */}
