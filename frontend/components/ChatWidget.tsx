@@ -79,7 +79,11 @@ function CopyButton({ text }: { text: string }) {
     );
 }
 
-export default function ChatWidget() {
+interface Props {
+    domainOverride?: string;
+}
+
+export default function ChatWidget({ domainOverride }: Props) {
     const [isOpen, setIsOpen] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
     const [config, setConfig] = useState<ChatConfig | null>(null);
@@ -91,9 +95,9 @@ export default function ChatWidget() {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const domain = typeof window !== "undefined"
-        ? window.location.hostname // ใช้ hostname แทน host เพื่อตัด port (เช่น localhost:3002 -> localhost)
-        : "localhost";
+    const domain = domainOverride || (typeof window !== "undefined"
+        ? window.location.hostname
+        : "localhost");
 
     // Fetch config
     useEffect(() => {
