@@ -47,6 +47,13 @@
         "temperature": {
             "type": "decimal",
             "default": 0.7
+        },
+        "botName": {
+            "type": "string",
+            "default": "AI Assistant"
+        },
+        "suggestedQuestions": {
+            "type": "json"
         }
     }
 }
