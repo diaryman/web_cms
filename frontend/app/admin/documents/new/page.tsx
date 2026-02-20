@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
-import { Save, Loader2, ArrowLeft } from "lucide-react";
+import { Save, Loader2, ArrowLeft, FileText, Upload, X, FileUp } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { uploadFile } from "@/app/actions/upload";
 
 const RichTextEditor = dynamic(() => import("@/components/RichTextEditor"), {
     ssr: false,
@@ -13,6 +14,14 @@ const RichTextEditor = dynamic(() => import("@/components/RichTextEditor"), {
 });
 
 export default function CreateDocumentPage() {
+    return (
+        <Suspense fallback={<div>กำลังโหลด...</div>}>
+            <CreateDocumentForm />
+        </Suspense>
+    );
+}
+
+function CreateDocumentForm() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const siteParam = searchParams.get("site") || "main";
@@ -20,6 +29,7 @@ export default function CreateDocumentPage() {
 
     const [loading, setLoading] = useState(false);
     const [dynamicCategories, setDynamicCategories] = useState<any[]>([]);
+    const [docFile, setDocFile] = useState<File | null>(null);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -45,106 +55,171 @@ export default function CreateDocumentPage() {
         loadCategories();
     }, [domain]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setDocFile(e.target.files[0]);
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!docFile) {
+            alert("กรุณาเลือกไฟล์เอกสารก่อนบันทึก");
+            return;
+        }
+
         setLoading(true);
         try {
+            let uploadedFileId = null;
+
+            // 1. Upload File
+            const fileFormData = new FormData();
+            fileFormData.append("files", docFile);
+            const uploadedFiles = await uploadFile(fileFormData);
+            if (uploadedFiles && uploadedFiles.length > 0) {
+                uploadedFileId = uploadedFiles[0].id;
+            }
+
+            // 2. Create Document
             await fetchAPI("/policy-documents", {}, {
                 method: "POST",
-                body: JSON.stringify({ data: formData })
+                body: JSON.stringify({
+                    data: {
+                        ...formData,
+                        file: uploadedFileId
+                    }
+                })
             });
-            alert("สร้างเอกสารสำเร็จ (อย่าลืมอัปโหลดไฟล์ในภายหลัง)");
+            alert("สร้างเอกสารและอัปโหลดไฟล์สำเร็จ");
             router.push(`/admin/documents?site=${siteParam}`);
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error creating document", error);
-            alert("สร้างเอกสารไม่สำเร็จ");
+            alert(error.message || "สร้างเอกสารไม่สำเร็จ");
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div className="max-w-4xl mx-auto pb-20">
+        <div className="max-w-4xl mx-auto pb-32">
             <div className="flex items-center gap-4 mb-8">
-                <Link href={`/admin/documents?site=${siteParam}`} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                    <ArrowLeft size={24} className="text-gray-500" />
+                <Link href={`/admin/documents?site=${siteParam}`} className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:text-primary transition-colors shadow-sm">
+                    <ArrowLeft size={20} />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-black font-heading text-primary leading-tight">เพิ่มเอกสารใหม่</h1>
-                    <p className="text-gray-400 font-medium">เพิ่มเอกสารเผยแพร่สำหรับ {siteParam === "pdpa" ? "PDPA Center" : "DataGOV"}</p>
+                    <h1 className="text-3xl font-black text-primary font-heading">เพิ่มเอกสารใหม่</h1>
+                    <p className="text-gray-500 font-medium">เพิ่มเอกสารเผยแพร่สำหรับ {siteParam === "pdpa" ? "PDPA Center" : "DataGOV"}</p>
                 </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8 bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
-                <div className="space-y-4">
-                    <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">ชื่อเอกสาร (Title)</label>
-                        <input
-                            required
-                            name="title"
-                            value={formData.title}
-                            onChange={handleChange}
-                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all font-bold text-lg"
-                            placeholder="ชื่อเอกสาร..."
-                        />
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label className="block text-sm font-bold text-gray-700 mb-2">หมวดหมู่</label>
-                            <select
-                                name="category"
-                                value={formData.category}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                            >
-                                {dynamicCategories.length === 0 && <option value="">ไม่ได้เลือกหมวดหมู่</option>}
-                                {dynamicCategories.map(cat => (
-                                    <option key={cat.id} value={cat.name}>{cat.name}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div>
-                            <label className="block text-sm font-bold text-gray-700 mb-2">วันที่เผยแพร่</label>
+            <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm space-y-8">
+                    {/* File Upload Area */}
+                    <div className="space-y-4">
+                        <label className="text-sm font-bold text-gray-700 flex items-center gap-2">
+                            <FileUp size={16} className="text-primary" /> เลือกไฟล์เอกสาร (PDF, Word, etc.)
+                        </label>
+                        <div
+                            className={`relative border-2 border-dashed rounded-2xl p-8 transition-all flex flex-col items-center justify-center ${docFile ? 'border-emerald-200 bg-emerald-50/30' : 'border-gray-200 hover:border-primary/40 bg-gray-50'}`}
+                        >
+                            {docFile ? (
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center text-white">
+                                        <FileText size={24} />
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="font-bold text-emerald-900 truncate max-w-xs">{docFile.name}</p>
+                                        <p className="text-xs text-emerald-600">{(docFile.size / 1024 / 1024).toFixed(2)} MB</p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => setDocFile(null)}
+                                        className="p-2 hover:bg-emerald-100 rounded-full text-emerald-600 transition-colors"
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mb-3">
+                                        <Upload size={24} />
+                                    </div>
+                                    <p className="text-sm font-bold text-gray-500">คลิกหรือลากไฟล์มาวางเพื่ออัปโหลด</p>
+                                    <p className="text-xs text-gray-400 mt-1">รองรับ PDF, DOCX, XLSX ขนาดไม่เกิน 10MB</p>
+                                </>
+                            )}
                             <input
-                                type="datetime-local"
-                                name="publishedAt"
-                                value={formData.publishedAt}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                type="file"
+                                required
+                                onChange={handleFileChange}
+                                className="absolute inset-0 opacity-0 cursor-pointer"
                             />
                         </div>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">รายละเอียด (Description)</label>
-                        <RichTextEditor
-                            value={formData.description}
-                            onChange={(value) => setFormData({ ...formData, description: value })}
-                            placeholder="รายละเอียดเกี่ยวกับเอกสาร..."
-                        />
+                    <div className="space-y-6">
+                        <div>
+                            <label className="block text-sm font-bold text-gray-700 mb-2">ชื่อเอกสาร (Title)</label>
+                            <input
+                                required
+                                name="title"
+                                value={formData.title}
+                                onChange={e => setFormData({ ...formData, title: e.target.value })}
+                                className="w-full px-6 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-primary/20 outline-none transition-all font-bold text-lg"
+                                placeholder="ชื่อเอกสาร..."
+                            />
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label className="block text-sm font-bold text-gray-700 mb-2">หมวดหมู่</label>
+                                <select
+                                    name="category"
+                                    value={formData.category}
+                                    onChange={e => setFormData({ ...formData, category: e.target.value })}
+                                    className="w-full px-4 py-3 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                >
+                                    {dynamicCategories.length === 0 && <option value="">ไม่ได้เลือกหมวดหมู่</option>}
+                                    {dynamicCategories.map(cat => (
+                                        <option key={cat.id} value={cat.name}>{cat.name}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block text-sm font-bold text-gray-700 mb-2">วันที่เผยแพร่</label>
+                                <input
+                                    type="datetime-local"
+                                    name="publishedAt"
+                                    value={formData.publishedAt}
+                                    onChange={e => setFormData({ ...formData, publishedAt: e.target.value })}
+                                    className="w-full px-4 py-3 bg-gray-50 border-none rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-bold text-gray-700 mb-2">รายละเอียด (Description)</label>
+                            <RichTextEditor
+                                value={formData.description}
+                                onChange={(value) => setFormData({ ...formData, description: value })}
+                                placeholder="รายละเอียดเกี่ยวกับเอกสาร..."
+                            />
+                        </div>
                     </div>
                 </div>
-                <div className="mt-4 p-4 bg-blue-50 text-blue-800 rounded-xl text-sm font-medium border border-blue-100 flex items-start gap-2">
-                    <div className="mt-0.5">ℹ️</div>
-                    <p>ระบบอัปโหลดไฟล์ยังอยู่ในระหว่างการพัฒนา ในเวอร์ชันนี้กรุณาสร้างรายการเอกสารก่อน แล้วอัปโหลดไฟล์ผ่าน Strapi Backend หากจำเป็น</p>
-                </div>
 
-                <div className="flex justify-end gap-3 mt-8 pt-6 border-t border-gray-50">
+                {/* Footer Action Bar */}
+                <div className="fixed bottom-0 left-0 md:left-72 right-0 p-6 bg-white/80 backdrop-blur-md border-t border-gray-200 flex justify-end gap-4 z-40">
                     <Link href={`/admin/documents?site=${siteParam}`} className="px-6 py-3 bg-gray-100 text-gray-600 font-bold rounded-xl hover:bg-gray-200 transition-colors">
                         ยกเลิก
                     </Link>
                     <button
                         type="submit"
                         disabled={loading}
-                        className="px-8 py-3 bg-primary text-white font-bold rounded-xl shadow-premium hover:bg-accent transition-all active:scale-95 flex items-center gap-2 disabled:opacity-50"
+                        className="px-10 py-3 bg-primary text-white font-bold rounded-xl shadow-premium hover:bg-accent transition-all active:scale-95 flex items-center gap-2 disabled:opacity-50"
                     >
                         {loading ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
-                        สร้างเอกสาร
+                        สร้างและอัปโหลดเอกสาร
                     </button>
                 </div>
             </form>

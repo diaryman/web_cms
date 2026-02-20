@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
-import { Save, Loader2, ArrowLeft } from "lucide-react";
+import { Save, Loader2, ArrowLeft, Image as ImageIcon, Plus, Type, AlignLeft } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { uploadFile } from "@/app/actions/upload";
 
 const RichTextEditor = dynamic(() => import("@/components/RichTextEditor"), {
     ssr: false,
@@ -13,13 +14,23 @@ const RichTextEditor = dynamic(() => import("@/components/RichTextEditor"), {
 });
 
 export default function CreateNewsPage() {
+    return (
+        <Suspense fallback={<div>กำลังโหลด...</div>}>
+            <CreateNewsForm />
+        </Suspense>
+    );
+}
+
+function CreateNewsForm() {
     const searchParams = useSearchParams();
-    const router = useRouter(); // Use useRouter for navigation
+    const router = useRouter();
     const siteParam = searchParams.get("site") || "main";
     const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState<any[]>([]);
+    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [formData, setFormData] = useState({
         title: "",
         slug: "",
@@ -47,123 +58,183 @@ export default function CreateNewsPage() {
         loadCategories();
     }, [domain]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            setImageFile(file);
+            setPreviewUrl(URL.createObjectURL(file));
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         try {
+            let coverImageId = null;
+
+            // 1. Upload cover image if exists
+            if (imageFile) {
+                const imageFormData = new FormData();
+                imageFormData.append("files", imageFile);
+                const uploadedFiles = await uploadFile(imageFormData);
+                if (uploadedFiles && uploadedFiles.length > 0) {
+                    coverImageId = uploadedFiles[0].id;
+                }
+            }
+
+            // 2. Create Article
             await fetchAPI("/articles", {}, {
                 method: "POST",
-                body: JSON.stringify({ data: formData })
+                body: JSON.stringify({
+                    data: {
+                        ...formData,
+                        coverImage: coverImageId
+                    }
+                })
             });
             alert("สร้างข่าวสำเร็จ");
             router.push(`/admin/news?site=${siteParam}`);
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error creating news", error);
-            alert("สร้างข่าวไม่สำเร็จ");
+            alert(error.message || "สร้างข่าวไม่สำเร็จ");
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div className="max-w-4xl mx-auto pb-20">
+        <div className="max-w-5xl mx-auto pb-32">
             <div className="flex items-center gap-4 mb-8">
-                <Link href={`/admin/news?site=${siteParam}`} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                    <ArrowLeft size={24} className="text-gray-500" />
+                <Link href={`/admin/news?site=${siteParam}`} className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-gray-500 hover:text-primary transition-colors shadow-sm">
+                    <ArrowLeft size={20} />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-black font-heading text-primary leading-tight">สร้างข่าวใหม่</h1>
-                    <p className="text-gray-400 font-medium">เพิ่มข่าวสารหรือกิจกรรมสำหรับ {siteParam === "pdpa" ? "PDPA Center" : "DataGOV"}</p>
+                    <h1 className="text-3xl font-black text-primary font-heading">สร้างข่าวใหม่</h1>
+                    <p className="text-gray-500 font-medium">เพิ่มข่าวสารหรือกิจกรรมสำหรับ {siteParam === "pdpa" ? "PDPA Center" : "DataGOV"}</p>
                 </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8 bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
-                <div className="space-y-4">
-                    <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">หัวข้อข่าว (Title)</label>
-                        <input
-                            required
-                            name="title"
-                            value={formData.title}
-                            onChange={handleChange}
-                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all font-bold text-lg"
-                            placeholder="ใส่หัวข้อข่าวที่นี่..."
-                        />
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Left: Content Area */}
+                <div className="lg:col-span-2 space-y-6">
+                    <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm space-y-6">
+                        <div className="space-y-4">
+                            <label className="text-sm font-bold text-gray-700 flex items-center gap-2">
+                                <Type size={16} className="text-gray-400" /> หัวข้อข่าว (Title)
+                            </label>
+                            <input
+                                required
+                                value={formData.title}
+                                onChange={e => setFormData({ ...formData, title: e.target.value })}
+                                className="w-full px-6 py-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none font-bold text-lg"
+                                placeholder="ใส่หัวข้อข่าวที่นี่..."
+                            />
+                        </div>
+
+                        <div className="space-y-4">
+                            <label className="text-sm font-bold text-gray-700 flex items-center gap-2">
+                                <AlignLeft size={16} className="text-gray-400" /> คำอธิบายย่อ (Description)
+                            </label>
+                            <textarea
+                                rows={3}
+                                value={formData.description}
+                                onChange={e => setFormData({ ...formData, description: e.target.value })}
+                                className="w-full px-6 py-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 outline-none"
+                                placeholder="รายละเอียดสั้นๆ สำหรับหน้าแรก..."
+                            />
+                        </div>
+
+                        <div className="space-y-4">
+                            <label className="text-sm font-bold text-gray-700 flex items-center gap-2">
+                                <AlignLeft size={16} className="text-gray-400" /> เนื้อหาข่าว (Content)
+                            </label>
+                            <RichTextEditor
+                                value={formData.content}
+                                onChange={(value) => setFormData({ ...formData, content: value })}
+                                placeholder="เขียนเนื้อหาข่าวอย่างละเอียดที่นี่..."
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right: Sidebar Settings */}
+                <div className="space-y-6">
+                    <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                        <h4 className="text-sm font-bold text-primary uppercase tracking-widest mb-6">ภาพหน้าปกข่าว</h4>
+                        <div
+                            className={`relative aspect-[16/10] rounded-2xl border-2 border-dashed transition-all flex flex-col items-center justify-center overflow-hidden bg-gray-50 ${previewUrl ? 'border-transparent' : 'border-gray-200 hover:border-primary/40'}`}
+                        >
+                            {previewUrl ? (
+                                <>
+                                    <img src={previewUrl} className="w-full h-full object-cover" alt="Preview" />
+                                    <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none text-white font-bold text-xs text-center p-4">
+                                        คลิกเพื่อเปลี่ยนรูป
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="text-center p-6">
+                                    <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mx-auto mb-3">
+                                        <Plus size={24} />
+                                    </div>
+                                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">คลิกเพื่ออัปโหลดรูป</p>
+                                </div>
+                            )}
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                                className="absolute inset-0 opacity-0 cursor-pointer"
+                            />
+                        </div>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">Slug (URL)</label>
-                        <input
-                            required
-                            name="slug"
-                            value={formData.slug}
-                            onChange={handleChange}
-                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all font-medium text-gray-500"
-                            placeholder="slug-news-sample"
-                        />
-                    </div>
+                    <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm space-y-6">
+                        <div className="space-y-2">
+                            <label className="text-sm font-bold text-gray-700">URL Slug</label>
+                            <input
+                                required
+                                value={formData.slug}
+                                onChange={e => setFormData({ ...formData, slug: e.target.value })}
+                                className="w-full px-4 py-3 bg-gray-50 rounded-xl border-none outline-none font-medium text-xs text-gray-500"
+                                placeholder="url-slug-news"
+                            />
+                        </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label className="block text-sm font-bold text-gray-700 mb-2">หมวดหมู่</label>
+                        <div className="space-y-4">
+                            <label className="text-sm font-bold text-gray-700">หมวดหมู่</label>
                             <select
-                                name="category"
-                                value={formData.category} // Assuming ID
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                value={formData.category}
+                                onChange={e => setFormData({ ...formData, category: e.target.value })}
+                                className="w-full px-4 py-3 bg-gray-50 rounded-xl border-none outline-none"
                             >
-                                {categories.length === 0 && <option value="">ไม่ได้เลือกหมวดหมู่</option>}
+                                {categories.length === 0 && <option value="">เลือกหมวดหมู่</option>}
                                 {categories.map(cat => (
                                     <option key={cat.id} value={cat.id}>{cat.name}</option>
                                 ))}
                             </select>
                         </div>
-                        <div>
-                            <label className="block text-sm font-bold text-gray-700 mb-2">วันที่เผยแพร่</label>
+
+                        <div className="space-y-4">
+                            <label className="text-sm font-bold text-gray-700">วันที่เผยแพร่</label>
                             <input
                                 type="datetime-local"
-                                name="publishedAt"
                                 value={formData.publishedAt}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                                onChange={e => setFormData({ ...formData, publishedAt: e.target.value })}
+                                className="w-full px-4 py-3 bg-gray-50 rounded-xl border-none outline-none"
                             />
                         </div>
                     </div>
-
-                    <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">คำอธิบายย่อ (Description)</label>
-                        <textarea
-                            name="description"
-                            rows={3}
-                            value={formData.description}
-                            onChange={handleChange}
-                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                            placeholder="รายละเอียดสั้นๆ..."
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">เนื้อหาข่าว (Content)</label>
-                        <RichTextEditor
-                            value={formData.content}
-                            onChange={(value) => setFormData({ ...formData, content: value })}
-                            placeholder="เขียนเนื้อหาข่าวที่นี่..."
-                        />
-                    </div>
                 </div>
 
-                <div className="pfixed bottom-0 left-0 right-0 md:relative md:p-0 bg-white md:bg-transparent border-t md:border-none p-4 flex justify-end gap-3">
+                {/* Footer Action Bar */}
+                <div className="fixed bottom-0 left-0 md:left-72 right-0 p-6 bg-white/80 backdrop-blur-md border-t border-gray-200 flex justify-end gap-4 z-40">
                     <Link href={`/admin/news?site=${siteParam}`} className="px-6 py-3 bg-gray-100 text-gray-600 font-bold rounded-xl hover:bg-gray-200 transition-colors">
                         ยกเลิก
                     </Link>
                     <button
                         type="submit"
                         disabled={loading}
-                        className="px-8 py-3 bg-primary text-white font-bold rounded-xl shadow-premium hover:bg-accent transition-all active:scale-95 flex items-center gap-2 disabled:opacity-50"
+                        className="px-10 py-3 bg-primary text-white font-bold rounded-xl shadow-premium hover:bg-accent transition-all active:scale-95 flex items-center gap-2 disabled:opacity-50"
                     >
                         {loading ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
                         บันทึกข่าว
