@@ -6,8 +6,8 @@
     },
     "options": {},
     "attributes": {
-        "content": {
-            "type": "blocks"
+        "body": {
+            "type": "text"
         }
     }
 }

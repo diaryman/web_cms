@@ -97,45 +97,56 @@ const mockData: any = {
         {
             title: "การประชุมขับเคลื่อนธรรมาภิบาลข้อมูลภาครัฐสู่การปฏิบัติที่ยั่งยืนประจำปี 2569",
             slug: "meeting-dg-2569",
+            description: "สำนักงานศาลปกครองจัดงานประชุมใหญ่ประจำปีเพื่อชี้แจงแนวทางการจัดการข้อมูลภาครัฐ",
             publishedAt: "2026-02-15T09:00:00.000Z",
             domain: "localhost",
-            content: [{ __component: 'shared.rich-text', content: [{ type: 'paragraph', children: [{ type: 'text', text: 'เนื้อหาจำลองข่าวการประชุม...' }] }] }],
+            content: [
+                {
+                    __component: 'shared.rich-text',
+                    body: '<h3>ความสำคัญของธรรมาภิบาลข้อมูล</h3><p>การจัดการข้อมูลที่มีประสิทธิภาพเป็นรากฐานสำคัญของการเป็น Smart Court...</p>'
+                }
+            ],
         },
         {
             title: "สำนักงานศาลปกครองรับรางวัลองค์กรดีเด่นด้านการจัดการข้อมูลขนาดใหญ่ (Big Data)",
             slug: "award-big-data",
+            description: "สำนักงานศาลปกครองคว้ารางวัลระดับประเทศจากการนำ Big Data มาใช้วิเคราะห์ข้อมูลคดี",
             publishedAt: "2026-02-10T10:30:00.000Z",
             domain: "localhost",
-            content: [{ __component: 'shared.rich-text', content: [{ type: 'paragraph', children: [{ type: 'text', text: 'สำนักงานศาลปกครองมีความภาคภูมิใจที่ได้รับรางวัล...' }] }] }],
+            content: [{ __component: 'shared.rich-text', body: 'สำนักงานศาลปกครองมีความภาคภูมิใจที่ได้รับรางวัล...' }],
         },
         {
             title: "เปิดตัวระบบ Data Catalog อย่างเป็นทางการ เพื่อความโปร่งใสของข้อมูลศาล",
             slug: "launch-data-catalog",
+            description: "เปิดมิติใหม่แห่งความโปร่งใสด้วยการเปิดเผยชุดข้อมูลบัญชีข้อมูลศาลสู่สาธารณะ",
             publishedAt: "2026-02-05T14:45:00.000Z",
             domain: "localhost",
-            content: [{ __component: 'shared.rich-text', content: [{ type: 'paragraph', children: [{ type: 'text', text: 'เชิญชวนประชาชนเข้าใช้งานระบบบัญชีข้อมูล...' }] }] }],
+            content: [{ __component: 'shared.rich-text', body: 'เชิญชวนประชาชนเข้าใช้งานระบบบัญชีข้อมูล...' }],
         },
         // PDPA Articles
         {
             title: "อบรมบุคลากรด้านการรักษาความมั่นคงปลอดภัยข้อมูลส่วนบุคคล",
             slug: "pdpa-training-2569",
+            description: "จัดอบรมยกระดับความรู้บุคลากรศาลฯ เรื่องการรักษาความปลอดภัยข้อมูลตามมาตรฐาน PDPA",
             publishedAt: "2026-02-15T09:00:00.000Z",
             domain: "pdpa.localhost",
-            content: [{ __component: 'shared.rich-text', content: [{ type: 'paragraph', children: [{ type: 'text', text: 'กิจกรรมอบรมสร้างความเข้มแข็งด้านการคุ้มครองข้อมูล...' }] }] }],
+            content: [{ __component: 'shared.rich-text', body: 'กิจกรรมอบรมสร้างความเข้มแข็งด้านการคุ้มครองข้อมูล...' }],
         },
         {
             title: "ประกาศแต่งตั้งคณะทำการตรวจสอบภายในด้าน PDPA ประจำปีงบประมาณ 2569",
             slug: "pdpa-audit-committee",
+            description: "ตั้งแต่งคณะกรรมการเพื่อกำกับดูแลและตรวจสอบการปฏิบัติงานให้เป็นไปตามกฎหมาย PDPA",
             publishedAt: "2026-02-10T10:30:00.000Z",
             domain: "pdpa.localhost",
-            content: [{ __component: 'shared.rich-text', content: [{ type: 'paragraph', children: [{ type: 'text', text: 'ประกาศสำคัญเพื่อความโปร่งใส...' }] }] }],
+            content: [{ __component: 'shared.rich-text', body: 'ประกาศสำคัญเพื่อความโปร่งใส...' }],
         },
         {
             title: "กิจกรรม Roadshow สร้างความรู้ด้านสิทธิเจ้าของข้อมูลให้กับประชาชน",
             slug: "pdpa-roadshow",
+            description: "DPA ลงพื้นที่จัดโรงรถโชว์ให้ความรู้เรื่องสิทธิส่วนบุคคลและการป้องกันข้อมูลรั่วไหล",
             publishedAt: "2026-02-05T14:45:00.000Z",
             domain: "pdpa.localhost",
-            content: [{ __component: 'shared.rich-text', content: [{ type: 'paragraph', children: [{ type: 'text', text: 'ลงพื้นที่ให้ความรู้ด้านกฎหมาย PDPA...' }] }] }],
+            content: [{ __component: 'shared.rich-text', body: 'ลงพื้นที่ให้ความรู้ด้านกฎหมาย PDPA...' }],
         }
     ],
     policyDocuments: [
@@ -212,48 +223,40 @@ export default async function seed() {
             }
         }
 
-        // 3. Articles (News) - Delete existing and recreate for fresh mockup
-        console.log('♻️ Re-seeding Articles...');
-        const existingArticles = await strapi.db.query('api::article.article').findMany();
-        for (const art of existingArticles) {
-            await strapi.db.query('api::article.article').delete({ where: { id: art.id } });
-        }
+        // 3. Articles (News) - Seed only if not exist
+        console.log('🤖 Seeding Articles...');
         for (const art of mockData.articles) {
-            await strapi.documents('api::article.article').create({ data: art, status: 'published' });
-        }
-
-        // 4. Policy Documents - Delete and recreate
-        console.log('♻️ Re-seeding Policy Documents...');
-        const existingDocs = await strapi.db.query('api::policy-document.policy-document').findMany();
-        for (const doc of existingDocs) {
-            await strapi.db.query('api::policy-document.policy-document').delete({ where: { id: doc.id } });
-        }
-        for (const doc of mockData.policyDocuments) {
-            try {
-                await strapi.documents('api::policy-document.policy-document').create({ data: doc, status: 'published' });
-            } catch (e) {
-                console.warn(`⚠️ Could not create doc ${doc.title}`);
+            const exist = await strapi.db.query('api::article.article').findOne({ where: { slug: art.slug } });
+            if (!exist) {
+                await strapi.documents('api::article.article').create({ data: art, status: 'published' });
             }
         }
 
-        // 5. Features - Delete and recreate
-        console.log('♻️ Re-seeding Features...');
-        const existingFeatures = await strapi.db.query('api::feature.feature').findMany();
-        for (const feat of existingFeatures) {
-            await strapi.db.query('api::feature.feature').delete({ where: { id: feat.id } });
-        }
-        for (const feat of mockData.features) {
-            await strapi.documents('api::feature.feature').create({ data: feat, status: 'published' });
+        // 4. Policy Documents - Seed only if not exist
+        console.log('🤖 Seeding Policy Documents...');
+        for (const doc of mockData.policyDocuments) {
+            const exist = await strapi.db.query('api::policy-document.policy-document').findOne({ where: { title: doc.title, domain: doc.domain } });
+            if (!exist) {
+                await strapi.documents('api::policy-document.policy-document').create({ data: doc, status: 'published' });
+            }
         }
 
-        // 6. Timelines - Delete and recreate
-        console.log('♻️ Re-seeding Timelines...');
-        const existingTimelines = await strapi.db.query('api::timeline.timeline').findMany();
-        for (const tl of existingTimelines) {
-            await strapi.db.query('api::timeline.timeline').delete({ where: { id: tl.id } });
+        // 5. Features - Seed only if not exist
+        console.log('🤖 Seeding Features...');
+        for (const feat of mockData.features) {
+            const exist = await strapi.db.query('api::feature.feature').findOne({ where: { title: feat.title, domain: feat.domain } });
+            if (!exist) {
+                await strapi.documents('api::feature.feature').create({ data: feat, status: 'published' });
+            }
         }
+
+        // 6. Timelines - Seed only if not exist
+        console.log('🤖 Seeding Timelines...');
         for (const tl of mockData.timelines) {
-            await strapi.documents('api::timeline.timeline').create({ data: tl, status: 'published' });
+            const exist = await strapi.db.query('api::timeline.timeline').findOne({ where: { title: tl.title, year: tl.year, domain: tl.domain } });
+            if (!exist) {
+                await strapi.documents('api::timeline.timeline').create({ data: tl, status: 'published' });
+            }
         }
 
         // 6. Set Permissions
@@ -262,26 +265,36 @@ export default async function seed() {
         if (publicRole) {
             const permissionsToEnable = {
                 'api::site-config': ['find', 'findOne', 'update'],
-                'api::article': ['find', 'findOne'],
-                'api::category': ['find', 'findOne'],
-                'api::policy-document': ['find', 'findOne'],
-                'api::page': ['find', 'findOne'],
-                'api::contact-submission': ['create', 'find', 'findOne', 'update'],
+                'api::article': ['find', 'findOne', 'create', 'update', 'delete'],
+                'api::category': ['find', 'findOne', 'create', 'update', 'delete'],
+                'api::policy-document': ['find', 'findOne', 'create', 'update', 'delete'],
+                'api::page': ['find', 'findOne', 'create', 'update', 'delete'],
+                'api::contact-submission': ['create', 'find', 'findOne', 'update', 'delete'],
                 'api::feature': ['find', 'findOne', 'create', 'update', 'delete'],
                 'api::service': ['find', 'findOne', 'create', 'update', 'delete'],
                 'api::policy': ['find', 'findOne', 'create', 'update', 'delete'],
-                'api::audit-log': ['find', 'findOne'],
-                'api::chatbot-config': ['find', 'findOne', 'create', 'update'],
-                'api::hero-slide': ['find', 'findOne', 'create', 'update'],
+                'api::audit-log': ['find', 'findOne', 'create'],
+                'api::chatbot-config': ['find', 'findOne', 'create', 'update', 'delete'],
+                'api::hero-slide': ['find', 'findOne', 'create', 'update', 'delete'],
                 'api::timeline': ['find', 'findOne', 'create', 'update', 'delete'],
                 'api::newsletter-subscriber': ['find', 'findOne', 'create', 'update', 'delete'],
-                'plugin::users-permissions.user': ['find', 'findOne', 'create', 'update', 'delete'],
+                'api::gallery': ['find', 'findOne', 'create', 'update', 'delete'],
+                'plugin::upload.api': ['find', 'findOne', 'destroy', 'upload'],
+                'plugin::upload.content-api': ['find', 'findOne', 'destroy', 'upload'],
+                'plugin::users-permissions.user': ['find', 'findOne', 'create', 'update', 'destroy'],
             };
 
             for (const [api, actions] of Object.entries(permissionsToEnable)) {
                 for (const action of actions) {
-                    const apiName = api.split('::')[1];
-                    const actionId = `${api}.${apiName}.${action}`;
+                    let actionId;
+                    if (api.startsWith('plugin::')) {
+                        // For plugins, format is usually plugin::pluginName.controllerName.action or similar. 
+                        // In our list we specified api as plugin::upload.content-api
+                        actionId = `${api}.${action}`;
+                    } else {
+                        const apiName = api.split('::')[1];
+                        actionId = `${api}.${apiName}.${action}`;
+                    }
                     const exists = await strapi.db.query('plugin::users-permissions.permission').findOne({
                         where: { action: actionId, role: publicRole.id }
                     });
