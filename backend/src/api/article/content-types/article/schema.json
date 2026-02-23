@@ -28,7 +28,8 @@
             "components": [
                 "shared.rich-text",
                 "shared.hero",
-                "shared.news-grid"
+                "shared.news-grid",
+                "shared.gallery"
             ]
         },
         "coverImage": {
@@ -44,9 +45,6 @@
             "relation": "manyToOne",
             "target": "api::category.category",
             "inversedBy": "articles"
-        },
-        "publishedAt": {
-            "type": "datetime"
         },
         "domain": {
             "type": "string"

@@ -12,7 +12,13 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
     const params = await props.params;
     const data = await fetchAPI("/articles", {
         filters: { slug: params.slug },
-        populate: "*",
+        populate: {
+            content: {
+                populate: "*"
+            },
+            coverImage: true,
+            category: true
+        },
     });
 
     const article = data.data?.[0];
@@ -31,13 +37,19 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
     const params = await props.params;
     const data = await fetchAPI("/articles", {
         filters: { slug: params.slug },
-        populate: "*",
+        populate: {
+            content: {
+                populate: "*"
+            },
+            coverImage: true,
+            category: true
+        },
     });
 
     const article = data.data?.[0];
     if (!article) notFound();
 
-    const domain = article.domain || "localhost:3000";
+    const domain = article.domain || "localhost";
     const siteParam = domain === "pdpa.localhost" ? "pdpa" : "main";
     const date = new Date(article.publishedAt).toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
     const coverImageUrl = article.coverImage?.url ? getStrapiMedia(article.coverImage.url) : null;

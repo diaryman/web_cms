@@ -7,8 +7,9 @@ import { Save, Loader2, ArrowLeft, Image as ImageIcon, Plus, Type, AlignLeft } f
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { uploadFile } from "@/app/actions/upload";
+import { updateArticle } from "@/app/actions/article";
 
-const RichTextEditor = dynamic(() => import("@/components/RichTextEditor"), {
+const BlockEditor = dynamic(() => import("@/components/BlockEditor"), {
     ssr: false,
     loading: () => <div className="h-[400px] bg-gray-50 rounded-xl animate-pulse" />
 });
@@ -34,12 +35,15 @@ function EditNewsForm({ id }: { id: string }) {
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [existingImage, setExistingImage] = useState<string | null>(null);
+    const [uploadMode, setUploadMode] = useState<"file" | "url">("file");
+    const [imageUrlInput, setImageUrlInput] = useState("");
+    const [fetchingUrl, setFetchingUrl] = useState(false);
 
     const [formData, setFormData] = useState<any>({
         title: "",
         slug: "",
         description: "",
-        content: "",
+        content: [], // Changed from string to array for Blocks
         publishedAt: "",
         category: "",
         domain: domain
@@ -54,17 +58,33 @@ function EditNewsForm({ id }: { id: string }) {
                 });
                 setCategories(catsRes.data || []);
 
-                // Fetch Article
+                // Fetch Article with explicit population and cache buster
                 const res = await fetchAPI(`/articles/${id}`, {
-                    populate: "*"
+                    populate: {
+                        content: {
+                            populate: "*"
+                        },
+                        coverImage: true,
+                        category: true
+                    },
+                    status: "draft",
+                    _t: Date.now()
                 });
                 const article = res.data;
+                console.log("Loaded article:", article);
+
+                // Load content blocks as-is for the BlockEditor
+                const initialBlocks = Array.isArray(article.content) ? article.content : [
+                    { __component: "shared.rich-text", body: "" }
+                ];
+
+                alert(`โหลดข้อมูลสำเร็จ! เข้าสู่โหมด Block Editor\n- จำนวนบล็อก: ${initialBlocks.length}`);
 
                 setFormData({
                     title: article.title || "",
                     slug: article.slug || "",
                     description: article.description || "",
-                    content: article.content || "",
+                    content: initialBlocks,
                     publishedAt: article.publishedAt ? new Date(article.publishedAt).toISOString().slice(0, 16) : "",
                     category: article.category?.id || "",
                     domain: article.domain || domain
@@ -73,8 +93,12 @@ function EditNewsForm({ id }: { id: string }) {
                 if (article.coverImage?.url) {
                     setExistingImage(getStrapiMedia(article.coverImage.url));
                 }
-            } catch (error) {
+            } catch (error: any) {
                 console.error("Error loading article data", error);
+                if (error.message?.includes("404")) {
+                    alert("ไม่พบข่าวนี้ในระบบ อาจถูกลบไปแล้ว");
+                    router.push(`/admin/news?site=${siteParam}`);
+                }
             } finally {
                 setLoading(false);
             }
@@ -87,6 +111,30 @@ function EditNewsForm({ id }: { id: string }) {
             const file = e.target.files[0];
             setImageFile(file);
             setPreviewUrl(URL.createObjectURL(file));
+        }
+    };
+
+    const handleUrlFetch = async () => {
+        if (!imageUrlInput) return;
+        setFetchingUrl(true);
+        try {
+            const response = await fetch(imageUrlInput);
+            if (!response.ok) throw new Error("ไม่สามารถดาวน์โหลดรูปภาพจาก URL นี้ได้");
+            const blob = await response.blob();
+            const urlObj = new URL(imageUrlInput);
+            const pathname = urlObj.pathname;
+            const filename = pathname.substring(pathname.lastIndexOf('/') + 1) || 'image.jpg';
+
+            const file = new File([blob], filename, { type: blob.type });
+            setImageFile(file);
+            setPreviewUrl(URL.createObjectURL(file));
+            setUploadMode("file");
+            setImageUrlInput("");
+        } catch (error: any) {
+            console.error("URL fetch error", error);
+            alert(error.message || "เกิดข้อผิดพลาดในการดึงรูปภาพ");
+        } finally {
+            setFetchingUrl(false);
         }
     };
 
@@ -107,22 +155,46 @@ function EditNewsForm({ id }: { id: string }) {
             }
 
             // 2. Update Article
-            const payload: any = { ...formData };
+            // Format publishedAt correctly for Strapi
+            const publishedAt = formData.publishedAt ? new Date(formData.publishedAt).toISOString() : null;
+
+            // Clean content: remove 'id' and convert media objects to IDs
+            const cleanContent = formData.content.map((block: any) => {
+                const { id, ...rest } = block;
+
+                // For gallery: Strapi expects IDs for the images media field
+                if (rest.__component === "shared.gallery" && Array.isArray(rest.images)) {
+                    rest.images = rest.images.map((img: any) => img.id || img);
+                }
+
+                return rest;
+            });
+
+            const payload: any = {
+                title: formData.title,
+                slug: formData.slug,
+                description: formData.description,
+                publishedAt: publishedAt,
+                domain: formData.domain,
+                category: formData.category || null,
+                content: cleanContent
+            };
+
             if (coverImageId) {
                 payload.coverImage = coverImageId;
             }
 
-            await fetchAPI(`/articles/${id}`, {}, {
-                method: "PUT",
-                body: JSON.stringify({ data: payload })
-            });
+            console.log("Saving payload:", payload);
+            alert(`กำลังบันทึกข้อมูลในโหมด Block Editor...\n- จำนวนบล็อก: ${formData.content?.length || 0}`);
+            await updateArticle(id, payload);
 
             alert("บันทึกการแก้ไขเรียบร้อย");
             router.push(`/admin/news?site=${siteParam}`);
         } catch (error: any) {
             console.error("Error updating article", error);
             alert(error.message || "บันทึกการแก้ไขไม่สำเร็จ");
-        } finally {
+        }
+        finally {
             setSaving(false);
         }
     };
@@ -173,13 +245,14 @@ function EditNewsForm({ id }: { id: string }) {
 
                         <div className="space-y-4">
                             <label className="text-sm font-bold text-gray-700 flex items-center gap-2">
-                                <AlignLeft size={16} className="text-gray-400" /> เนื้อหาข่าว (Content)
+                                <AlignLeft size={16} className="text-gray-400" /> เนื้อหาข่าว (Dynamic Blocks)
                             </label>
-                            <RichTextEditor
-                                value={formData.content}
-                                onChange={(value) => setFormData({ ...formData, content: value })}
-                                placeholder="เขียนเนื้อหาข่าวอย่างละเอียดที่นี่..."
-                            />
+                            <div key={`editor-${id}`}>
+                                <BlockEditor
+                                    blocks={formData.content}
+                                    onChange={(blocks) => setFormData({ ...formData, content: blocks })}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -187,32 +260,79 @@ function EditNewsForm({ id }: { id: string }) {
                 {/* Right: Sidebar Settings */}
                 <div className="space-y-6">
                     <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
-                        <h4 className="text-sm font-bold text-primary uppercase tracking-widest mb-6">ภาพหน้าปกข่าว</h4>
-                        <div
-                            className="relative aspect-[16/10] rounded-2xl border-2 border-dashed border-gray-200 transition-all flex flex-col items-center justify-center overflow-hidden bg-gray-50 hover:border-primary/40"
-                        >
-                            {(previewUrl || existingImage) ? (
-                                <>
-                                    <img src={previewUrl || existingImage || ""} className="w-full h-full object-cover" alt="Cover" />
-                                    <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none text-white font-bold text-xs text-center p-4">
-                                        คลิกเพื่อเปลี่ยนรูป
-                                    </div>
-                                </>
-                            ) : (
-                                <div className="text-center p-6">
-                                    <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mx-auto mb-3">
-                                        <Plus size={24} />
-                                    </div>
-                                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">คลิกเพื่ออัปโหลดรูป</p>
-                                </div>
-                            )}
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                                className="absolute inset-0 opacity-0 cursor-pointer"
-                            />
+                        <div className="flex items-center justify-between mb-6">
+                            <h4 className="text-sm font-bold text-primary uppercase tracking-widest">ภาพหน้าปกข่าว</h4>
+                            <div className="flex bg-gray-100 p-1 rounded-xl">
+                                <button
+                                    type="button"
+                                    onClick={() => setUploadMode("file")}
+                                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${uploadMode === "file" ? "bg-white text-primary shadow-sm" : "text-gray-500 hover:text-primary"}`}
+                                >
+                                    อัปโหลดไฟล์
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setUploadMode("url")}
+                                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${uploadMode === "url" ? "bg-white text-primary shadow-sm" : "text-gray-500 hover:text-primary"}`}
+                                >
+                                    ใช้ URL
+                                </button>
+                            </div>
                         </div>
+
+                        {uploadMode === "url" ? (
+                            <div className="space-y-4">
+                                <div className="flex gap-2">
+                                    <input
+                                        type="url"
+                                        placeholder="วาง URL ของรูปภาพที่นี่..."
+                                        value={imageUrlInput}
+                                        onChange={e => setImageUrlInput(e.target.value)}
+                                        className="flex-1 px-4 py-3 bg-gray-50 rounded-xl border-none outline-none text-sm"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={handleUrlFetch}
+                                        disabled={fetchingUrl || !imageUrlInput}
+                                        className="px-6 py-3 bg-primary text-white text-sm font-bold rounded-xl hover:bg-accent transition-all disabled:opacity-50 flex items-center gap-2"
+                                    >
+                                        {fetchingUrl ? <Loader2 size={16} className="animate-spin" /> : "ดึงรูป"}
+                                    </button>
+                                </div>
+                                {(previewUrl || existingImage) && (
+                                    <div className="text-center">
+                                        <p className="text-xs text-gray-500 mb-2">รูปที่เลือกปัจจุบัน:</p>
+                                        <img src={previewUrl || existingImage || ""} className="w-full h-32 object-cover rounded-xl" alt="Current" />
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <div
+                                className="relative aspect-[16/10] rounded-2xl border-2 border-dashed border-gray-200 transition-all flex flex-col items-center justify-center overflow-hidden bg-gray-50 hover:border-primary/40"
+                            >
+                                {(previewUrl || existingImage) ? (
+                                    <>
+                                        <img src={previewUrl || existingImage || ""} className="w-full h-full object-cover" alt="Cover" />
+                                        <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none text-white font-bold text-xs text-center p-4">
+                                            คลิกเพื่อเปลี่ยนรูป
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div className="text-center p-6">
+                                        <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mx-auto mb-3">
+                                            <Plus size={24} />
+                                        </div>
+                                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">คลิกเพื่ออัปโหลดรูป</p>
+                                    </div>
+                                )}
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    className="absolute inset-0 opacity-0 cursor-pointer"
+                                />
+                            </div>
+                        )}
                         {imageFile && (
                             <p className="mt-2 text-xs text-blue-600 font-bold bg-blue-50 p-2 rounded-lg truncate">
                                 📎 ไฟล์ที่เลือก: {imageFile.name}

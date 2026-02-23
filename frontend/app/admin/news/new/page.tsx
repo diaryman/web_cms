@@ -7,8 +7,9 @@ import { Save, Loader2, ArrowLeft, Image as ImageIcon, Plus, Type, AlignLeft } f
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { uploadFile } from "@/app/actions/upload";
+import { createArticle } from "@/app/actions/article";
 
-const RichTextEditor = dynamic(() => import("@/components/RichTextEditor"), {
+const BlockEditor = dynamic(() => import("@/components/BlockEditor"), {
     ssr: false,
     loading: () => <div className="h-[400px] bg-gray-50 rounded-xl animate-pulse" />
 });
@@ -31,11 +32,17 @@ function CreateNewsForm() {
     const [categories, setCategories] = useState<any[]>([]);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [uploadMode, setUploadMode] = useState<"file" | "url">("file");
+    const [imageUrlInput, setImageUrlInput] = useState("");
+    const [fetchingUrl, setFetchingUrl] = useState(false);
+
     const [formData, setFormData] = useState({
         title: "",
         slug: "",
         description: "",
-        content: "",
+        content: [
+            { __component: "shared.rich-text", body: "" }
+        ],
         publishedAt: new Date().toISOString().slice(0, 16),
         domain: domain,
         category: ""
@@ -66,6 +73,30 @@ function CreateNewsForm() {
         }
     };
 
+    const handleUrlFetch = async () => {
+        if (!imageUrlInput) return;
+        setFetchingUrl(true);
+        try {
+            const response = await fetch(imageUrlInput);
+            if (!response.ok) throw new Error("ไม่สามารถดาวน์โหลดรูปภาพจาก URL นี้ได้");
+            const blob = await response.blob();
+            const urlObj = new URL(imageUrlInput);
+            const pathname = urlObj.pathname;
+            const filename = pathname.substring(pathname.lastIndexOf('/') + 1) || 'image.jpg';
+
+            const file = new File([blob], filename, { type: blob.type });
+            setImageFile(file);
+            setPreviewUrl(URL.createObjectURL(file));
+            setUploadMode("file");
+            setImageUrlInput("");
+        } catch (error: any) {
+            console.error("URL fetch error", error);
+            alert(error.message || "เกิดข้อผิดพลาดในการดึงรูปภาพ");
+        } finally {
+            setFetchingUrl(false);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
@@ -83,15 +114,28 @@ function CreateNewsForm() {
             }
 
             // 2. Create Article
-            await fetchAPI("/articles", {}, {
-                method: "POST",
-                body: JSON.stringify({
-                    data: {
-                        ...formData,
-                        coverImage: coverImageId
-                    }
-                })
+            const publishedAt = formData.publishedAt ? new Date(formData.publishedAt).toISOString() : null;
+
+            const cleanContent = formData.content.map((block: any) => {
+                const { id, ...rest } = block;
+                if (rest.__component === "shared.gallery" && Array.isArray(rest.images)) {
+                    rest.images = rest.images.map((img: any) => img.id || img);
+                }
+                return rest;
             });
+
+            const payload: any = {
+                title: formData.title,
+                slug: formData.slug,
+                description: formData.description,
+                publishedAt: publishedAt,
+                domain: formData.domain,
+                category: formData.category || null,
+                content: cleanContent,
+                coverImage: coverImageId
+            };
+
+            await createArticle(payload);
             alert("สร้างข่าวสำเร็จ");
             router.push(`/admin/news?site=${siteParam}`);
         } catch (error: any) {
@@ -146,12 +190,11 @@ function CreateNewsForm() {
 
                         <div className="space-y-4">
                             <label className="text-sm font-bold text-gray-700 flex items-center gap-2">
-                                <AlignLeft size={16} className="text-gray-400" /> เนื้อหาข่าว (Content)
+                                <AlignLeft size={16} className="text-gray-400" /> เนื้อหาข่าว (Dynamic Blocks)
                             </label>
-                            <RichTextEditor
-                                value={formData.content}
-                                onChange={(value) => setFormData({ ...formData, content: value })}
-                                placeholder="เขียนเนื้อหาข่าวอย่างละเอียดที่นี่..."
+                            <BlockEditor
+                                blocks={formData.content}
+                                onChange={(blocks) => setFormData({ ...formData, content: blocks })}
                             />
                         </div>
                     </div>
@@ -160,32 +203,79 @@ function CreateNewsForm() {
                 {/* Right: Sidebar Settings */}
                 <div className="space-y-6">
                     <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
-                        <h4 className="text-sm font-bold text-primary uppercase tracking-widest mb-6">ภาพหน้าปกข่าว</h4>
-                        <div
-                            className={`relative aspect-[16/10] rounded-2xl border-2 border-dashed transition-all flex flex-col items-center justify-center overflow-hidden bg-gray-50 ${previewUrl ? 'border-transparent' : 'border-gray-200 hover:border-primary/40'}`}
-                        >
-                            {previewUrl ? (
-                                <>
-                                    <img src={previewUrl} className="w-full h-full object-cover" alt="Preview" />
-                                    <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none text-white font-bold text-xs text-center p-4">
-                                        คลิกเพื่อเปลี่ยนรูป
-                                    </div>
-                                </>
-                            ) : (
-                                <div className="text-center p-6">
-                                    <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mx-auto mb-3">
-                                        <Plus size={24} />
-                                    </div>
-                                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">คลิกเพื่ออัปโหลดรูป</p>
-                                </div>
-                            )}
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                                className="absolute inset-0 opacity-0 cursor-pointer"
-                            />
+                        <div className="flex items-center justify-between mb-6">
+                            <h4 className="text-sm font-bold text-primary uppercase tracking-widest">ภาพหน้าปกข่าว</h4>
+                            <div className="flex bg-gray-100 p-1 rounded-xl">
+                                <button
+                                    type="button"
+                                    onClick={() => setUploadMode("file")}
+                                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${uploadMode === "file" ? "bg-white text-primary shadow-sm" : "text-gray-500 hover:text-primary"}`}
+                                >
+                                    อัปโหลดไฟล์
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setUploadMode("url")}
+                                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${uploadMode === "url" ? "bg-white text-primary shadow-sm" : "text-gray-500 hover:text-primary"}`}
+                                >
+                                    ใช้ URL
+                                </button>
+                            </div>
                         </div>
+
+                        {uploadMode === "url" ? (
+                            <div className="space-y-4">
+                                <div className="flex gap-2">
+                                    <input
+                                        type="url"
+                                        placeholder="วาง URL ของรูปภาพที่นี่..."
+                                        value={imageUrlInput}
+                                        onChange={e => setImageUrlInput(e.target.value)}
+                                        className="flex-1 px-4 py-3 bg-gray-50 rounded-xl border-none outline-none text-sm"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={handleUrlFetch}
+                                        disabled={fetchingUrl || !imageUrlInput}
+                                        className="px-6 py-3 bg-primary text-white text-sm font-bold rounded-xl hover:bg-accent transition-all disabled:opacity-50 flex items-center gap-2"
+                                    >
+                                        {fetchingUrl ? <Loader2 size={16} className="animate-spin" /> : "ดึงรูป"}
+                                    </button>
+                                </div>
+                                {previewUrl && (
+                                    <div className="text-center">
+                                        <p className="text-xs text-gray-500 mb-2">รูปที่เลือกปัจจุบัน:</p>
+                                        <img src={previewUrl} className="w-full h-32 object-cover rounded-xl" alt="Current" />
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <div
+                                className={`relative aspect-[16/10] rounded-2xl border-2 border-dashed transition-all flex flex-col items-center justify-center overflow-hidden bg-gray-50 ${previewUrl ? 'border-transparent' : 'border-gray-200 hover:border-primary/40'}`}
+                            >
+                                {previewUrl ? (
+                                    <>
+                                        <img src={previewUrl} className="w-full h-full object-cover" alt="Preview" />
+                                        <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none text-white font-bold text-xs text-center p-4">
+                                            คลิกเพื่อเปลี่ยนรูป
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div className="text-center p-6">
+                                        <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mx-auto mb-3">
+                                            <Plus size={24} />
+                                        </div>
+                                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest text-center">ลากวาง หรือ คลิกอัปโหลด</p>
+                                    </div>
+                                )}
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    className="absolute inset-0 opacity-0 cursor-pointer"
+                                />
+                            </div>
+                        )}
                     </div>
 
                     <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm space-y-6">

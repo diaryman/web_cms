@@ -57,7 +57,11 @@ export async function fetchAPI(
     } catch (error: any) {
         console.error(`Fetch failed for URL: ${requestUrl}`);
         console.error(`Error name: ${error.name}, Message: ${error.message}`);
+        // If it's our thrown custom error, re-throw it instead of hiding it
+        if (error.message.startsWith("API returned ")) {
+            throw error;
+        }
         // Re-throw with more context
-        throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running?`);
+        throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
     }
 }
