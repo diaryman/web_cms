@@ -7,23 +7,30 @@ import { motion } from "motion/react";
 import React, { useState, useEffect } from "react";
 import SpotlightCard from "./SpotlightCard";
 
-export default function ActivitiesSection({ domain = "localhost:3000" }: { domain?: string }) {
-    const [activities, setActivities] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
+export default function ActivitiesSection({ domain = "localhost", initialActivities }: { domain?: string, initialActivities?: any[] }) {
+    const [activities, setActivities] = useState<any[]>(initialActivities || []);
+    const [loading, setLoading] = useState(!initialActivities || initialActivities.length === 0);
 
     useEffect(() => {
+        // If initialActivities is provided, skip fetching
+        if (initialActivities && initialActivities.length > 0) {
+            setLoading(false);
+            return;
+        }
+
         const load = async () => {
             try {
                 // Fetch articles specifically for target domain
-                const { data } = await fetchAPI("/articles", {
+                const queryParams = {
                     filters: {
                         domain: domain
                     },
                     sort: ["publishedAt:desc"],
                     pagination: { limit: 3 },
                     populate: "*"
-                });
-                setActivities(data);
+                };
+                const { data } = await fetchAPI("/articles", queryParams);
+                setActivities(data || []);
             } catch (error) {
                 console.error("Failed to fetch activities:", error);
             } finally {
@@ -31,7 +38,7 @@ export default function ActivitiesSection({ domain = "localhost:3000" }: { domai
             }
         };
         load();
-    }, [domain]);
+    }, [domain, initialActivities]);
 
     const placeholders = ["from-blue-600 to-indigo-600", "from-indigo-600 to-purple-600", "from-cyan-600 to-blue-600"];
 
@@ -41,7 +48,8 @@ export default function ActivitiesSection({ domain = "localhost:3000" }: { domai
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
                     <div>
                         <motion.span
-                            className="text-blue-600 font-black tracking-[0.25em] uppercase text-xs mb-3 block"
+                            className="font-black tracking-[0.25em] uppercase text-xs mb-3 block"
+                            style={{ color: 'var(--accent-color)' }}
                         >
                             Updates & News
                         </motion.span>
@@ -76,7 +84,7 @@ export default function ActivitiesSection({ domain = "localhost:3000" }: { domai
                             return (
                                 <Link href={`/news/${item.slug}`} key={item.id} className="block">
                                     <SpotlightCard
-                                        className="group flex flex-col glass rounded-[2.5rem] border border-white p-4 shadow-premium hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2 h-full"
+                                        className="group flex flex-col glass rounded-[2.5rem] border border-white p-4 shadow-premium hover:shadow-accent/10 transition-all duration-500 hover:-translate-y-2 h-full"
                                     >
                                         <div className="relative aspect-[16/10] rounded-[2rem] overflow-hidden mb-6">
                                             {coverImageUrl ? (
@@ -101,7 +109,7 @@ export default function ActivitiesSection({ domain = "localhost:3000" }: { domai
                                         <div className="px-4 pb-4 flex flex-col flex-1">
                                             <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest mb-4" style={{ color: 'var(--text-muted)' }}>
                                                 <span className="flex items-center gap-1.5"><Calendar size={14} className="text-accent" /> {date}</span>
-                                                <span className="flex items-center gap-1.5"><User size={14} className="text-indigo-400" /> Admin</span>
+                                                <span className="flex items-center gap-1.5"><User size={14} className="text-accent" style={{ opacity: 0.6 }} /> Admin</span>
                                             </div>
 
                                             <h3 className="text-xl font-bold font-heading mb-4 group-hover:text-accent transition-colors line-clamp-2 min-h-[3.5rem] leading-tight" style={{ color: 'var(--foreground)' }}>
@@ -113,7 +121,7 @@ export default function ActivitiesSection({ domain = "localhost:3000" }: { domai
                                                     className="inline-flex items-center gap-2 text-accent font-bold text-sm group/btn"
                                                 >
                                                     อ่านรายละเอียด
-                                                    <div className="w-8 h-8 rounded-full glass border border-blue-100 flex items-center justify-center group-hover/btn:bg-accent group-hover/btn:text-white transition-all duration-300">
+                                                    <div className="w-8 h-8 rounded-full glass border flex items-center justify-center group-hover/btn:bg-accent group-hover/btn:text-white transition-all duration-300" style={{ borderColor: 'var(--accent-subtle)' }}>
                                                         <ChevronRight size={14} />
                                                     </div>
                                                 </div>

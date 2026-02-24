@@ -48,7 +48,7 @@ function Highlight({ text, query }) {
     }, void 0, false);
 }
 _c = Highlight;
-function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
+function SearchModal({ isOpen, onClose, domain = "localhost" }) {
     _s();
     const [query, setQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [results, setResults] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
@@ -392,7 +392,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$newspaper$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Newspaper$3e$__["Newspaper"], {
                                                             size: 14,
-                                                            className: "text-blue-500"
+                                                            className: "text-accent"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/SearchModal.tsx",
                                                             lineNumber: 258,
@@ -422,7 +422,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                         className: "flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "w-10 h-10 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors",
+                                                                className: "w-10 h-10 rounded-xl bg-accent-subtle text-accent flex items-center justify-center flex-shrink-0 transition-colors",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$newspaper$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Newspaper$3e$__["Newspaper"], {
                                                                     size: 18
                                                                 }, void 0, false, {
@@ -475,7 +475,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                                         columnNumber: 65
                                                                     }, this),
                                                                     result.category && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "inline-block mt-1 px-2 py-0.5 bg-blue-50 text-blue-500 rounded-lg text-[10px] font-bold",
+                                                                        className: "inline-block mt-1 px-2 py-0.5 bg-accent-subtle text-accent rounded-lg text-[10px] font-bold",
                                                                         children: result.category
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/my_cms/frontend/components/SearchModal.tsx",
@@ -515,7 +515,10 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"], {
                                                             size: 14,
-                                                            className: "text-emerald-500"
+                                                            className: "text-accent",
+                                                            style: {
+                                                                opacity: 0.8
+                                                            }
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/SearchModal.tsx",
                                                             lineNumber: 294,
@@ -545,7 +548,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                         className: "flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "w-10 h-10 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-100 transition-colors",
+                                                                className: "w-10 h-10 rounded-xl bg-accent-subtle text-accent flex items-center justify-center flex-shrink-0 transition-colors",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"], {
                                                                     size: 18
                                                                 }, void 0, false, {
@@ -598,7 +601,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                                         columnNumber: 65
                                                                     }, this),
                                                                     result.category && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "inline-block mt-1 px-2 py-0.5 bg-emerald-50 text-emerald-500 rounded-lg text-[10px] font-bold",
+                                                                        className: "inline-block mt-1 px-2 py-0.5 bg-accent-subtle text-accent rounded-lg text-[10px] font-bold",
                                                                         children: result.category
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/my_cms/frontend/components/SearchModal.tsx",
@@ -1154,7 +1157,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost:3000" }) {
+function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost" }) {
     _s();
     const [isOpen, setIsOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [scrolled, setScrolled] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -1616,7 +1619,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 ;
 ;
 ;
-function NewsTicker({ domain = "localhost:3000", announcement, notifications }) {
+function NewsTicker({ domain = "localhost", announcement, notifications }) {
     const siteParam = domain === "pdpa.localhost" ? "pdpa" : "main";
     const defaultUpdates = [
         "ประกาศ: มาตรฐานการจัดการข้อมูลภาครัฐฉบับใหม่ ปี 2569 เริ่มประกาศใช้แล้ววันนี้",
@@ -1896,7 +1899,6 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
             const loadData = {
                 "PDPAPageClient.useEffect.loadData": async ()=>{
                     try {
-                        // Fetch articles for PDPA site
                         const articlesRes = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["fetchAPI"])("/articles", {
                             filters: {
                                 domain: "pdpa.localhost"
@@ -1906,9 +1908,12 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                             ],
                             pagination: {
                                 limit: 3
-                            }
+                            },
+                            populate: [
+                                "coverImage",
+                                "category"
+                            ]
                         });
-                        // Fetch documents for PDPA site
                         const docsRes = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["fetchAPI"])("/policy-documents", {
                             filters: {
                                 domain: "pdpa.localhost"
@@ -1918,7 +1923,6 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                             ],
                             populate: "*"
                         });
-                        // Fetch timeline items
                         const timelineRes = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["fetchAPI"])("/timelines", {
                             filters: {
                                 domain: "pdpa.localhost"
@@ -1940,91 +1944,41 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
             loadData();
         }
     }["PDPAPageClient.useEffect"], []);
+    // Icons — use CSS variable colour so they follow the active template
+    const accentIcon = (Icon)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
+            style: {
+                color: "var(--accent-color)"
+            }
+        }, void 0, false, {
+            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+            lineNumber: 55,
+            columnNumber: 9
+        }, this);
     const iconMap = {
-        Lock: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
-            className: "text-emerald-500"
-        }, void 0, false, {
-            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-            lineNumber: 59,
-            columnNumber: 15
-        }, this),
-        Users: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
-            className: "text-emerald-500"
-        }, void 0, false, {
-            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-            lineNumber: 60,
-            columnNumber: 16
-        }, this),
-        Database: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$database$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Database$3e$__["Database"], {
-            className: "text-emerald-500"
-        }, void 0, false, {
-            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-            lineNumber: 61,
-            columnNumber: 19
-        }, this),
-        Shield: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
-            className: "text-emerald-500"
-        }, void 0, false, {
-            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-            lineNumber: 62,
-            columnNumber: 17
-        }, this),
-        FileText: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"], {
-            className: "text-emerald-500"
-        }, void 0, false, {
-            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-            lineNumber: 63,
-            columnNumber: 19
-        }, this),
-        CheckCircle: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"], {
-            className: "text-emerald-500"
-        }, void 0, false, {
-            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-            lineNumber: 64,
-            columnNumber: 22
-        }, this)
+        Lock: accentIcon(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"]),
+        Users: accentIcon(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"]),
+        Database: accentIcon(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$database$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Database$3e$__["Database"]),
+        Shield: accentIcon(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"]),
+        FileText: accentIcon(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"]),
+        CheckCircle: accentIcon(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle2$3e$__["CheckCircle2"])
     };
     const principles = features.length > 0 ? features.map((f)=>({
-            icon: iconMap[f.icon] || /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
-                className: "text-emerald-500"
-            }, void 0, false, {
-                fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                lineNumber: 68,
-                columnNumber: 34
-            }, this),
+            icon: iconMap[f.icon] || accentIcon(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"]),
             title: f.title,
             text: f.description
         })) : [
         {
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
-                className: "text-emerald-500"
-            }, void 0, false, {
-                fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                lineNumber: 73,
-                columnNumber: 19
-            }, this),
+            icon: accentIcon(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"]),
             title: "Data Security",
             text: "รักษาความลับและความปลอดภัยของข้อมูลตามมาตรฐานสากล ISO/IEC 27001"
         },
         {
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
-                className: "text-emerald-500"
-            }, void 0, false, {
-                fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                lineNumber: 78,
-                columnNumber: 19
-            }, this),
+            icon: accentIcon(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"]),
             title: "Data Subject Rights",
             text: "รับรองและคุ้มครองสิทธิของเจ้าของข้อมูลส่วนบุคคลอย่างเคร่งครัดทั้ง 8 ประการ"
         },
         {
-            icon: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$database$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Database$3e$__["Database"], {
-                className: "text-emerald-500"
-            }, void 0, false, {
-                fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                lineNumber: 83,
-                columnNumber: 19
-            }, this),
+            icon: accentIcon(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$database$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Database$3e$__["Database"]),
             title: "Purpose Limitation",
             text: "เก็บรวบรวมและใช้ข้อมูลเฉพาะตามวัตถุประสงค์ที่แจ้งไว้และจำเป็นต่อการปฏิบัติหน้าที่"
         }
@@ -2056,7 +2010,10 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
         }
     ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-        className: "min-h-screen bg-[#f8fafc] selection:bg-emerald-200",
+        className: "min-h-screen bg-[#f8fafc]",
+        style: {
+            "--selection-bg": "var(--accent-subtle)"
+        },
         children: [
             navbar,
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -2082,10 +2039,13 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                     duration: 15,
                                     repeat: Infinity
                                 },
-                                className: "absolute top-0 right-0 w-[400px] h-[400px] bg-emerald-400/10 rounded-full blur-[100px]"
+                                className: "absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[100px]",
+                                style: {
+                                    background: "var(--accent-glow)"
+                                }
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                lineNumber: 107,
+                                lineNumber: 94,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -2105,16 +2065,19 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                     duration: 18,
                                     repeat: Infinity
                                 },
-                                className: "absolute bottom-0 left-0 w-[500px] h-[500px] bg-teal-400/10 rounded-full blur-[120px]"
+                                className: "absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px]",
+                                style: {
+                                    background: "var(--accent-subtle)"
+                                }
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                lineNumber: 112,
+                                lineNumber: 100,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                        lineNumber: 106,
+                        lineNumber: 92,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2136,11 +2099,15 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                     },
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "px-4 py-1 bg-emerald-100 text-emerald-700 rounded-full text-[10px] font-black tracking-widest uppercase mb-6 inline-block",
+                                            className: "px-4 py-1 rounded-full text-[10px] font-black tracking-widest uppercase mb-6 inline-block",
+                                            style: {
+                                                background: "var(--accent-subtle)",
+                                                color: "var(--accent-color)"
+                                            },
                                             children: "Administrative Court Privacy Center"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 126,
+                                            lineNumber: 112,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -2150,29 +2117,31 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                     "การคุ้มครอง ",
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                        lineNumber: 130,
-                                                        columnNumber: 76
+                                                        lineNumber: 122,
+                                                        columnNumber: 51
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-emerald-600",
+                                                        style: {
+                                                            color: "var(--accent-color)"
+                                                        },
                                                         children: "ข้อมูลส่วนบุคคล"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                        lineNumber: 130,
-                                                        columnNumber: 82
+                                                        lineNumber: 122,
+                                                        columnNumber: 57
                                                     }, this),
                                                     " ",
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                        lineNumber: 130,
-                                                        columnNumber: 140
+                                                        lineNumber: 122,
+                                                        columnNumber: 127
                                                     }, this),
                                                     "เป็นหน้าที่ของเรา"
                                                 ]
                                             }, void 0, true)
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 129,
+                                            lineNumber: 120,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2180,7 +2149,7 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                             children: siteConfig?.heroSubheadline || "สำนักงานศาลปกครองมุ่งมั่นรักษาความปลอดภัยของข้อมูลเจ้าหน้าที่และประชาชน ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 เพื่อสร้างความเชื่อมั่นในการใช้บริการยุติธรรมทางปกครอง"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 132,
+                                            lineNumber: 126,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2188,41 +2157,48 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                                     href: "#documents",
-                                                    className: "px-8 py-4 bg-emerald-600 text-white font-bold rounded-2xl shadow-xl shadow-emerald-600/20 hover:bg-emerald-700 transition-all active:scale-95 flex items-center gap-2",
+                                                    className: "px-8 py-4 text-white font-bold rounded-2xl shadow-xl transition-all active:scale-95 flex items-center gap-2",
+                                                    style: {
+                                                        background: "var(--accent-color)"
+                                                    },
                                                     children: [
                                                         "ดาวน์โหลดเอกสาร ",
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
                                                             size: 20
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 137,
+                                                            lineNumber: 136,
                                                             columnNumber: 53
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 136,
+                                                    lineNumber: 131,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                                     href: "/#contact",
-                                                    className: "px-8 py-4 glass border border-emerald-100 text-emerald-800 font-bold rounded-2xl hover:bg-emerald-50 transition-all flex items-center gap-2",
+                                                    className: "px-8 py-4 glass font-bold rounded-2xl transition-all flex items-center gap-2 border",
+                                                    style: {
+                                                        borderColor: "var(--accent-subtle)",
+                                                        color: "var(--primary-color)"
+                                                    },
                                                     children: "ติดต่อเจ้าหน้าที่ DPO"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 139,
+                                                    lineNumber: 138,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 135,
+                                            lineNumber: 130,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 121,
+                                    lineNumber: 110,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -2244,20 +2220,27 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                             className: "space-y-4 pt-12",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$SpotlightCard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                    className: "p-8 bg-white border border-emerald-50 rounded-[2.5rem] shadow-premium",
+                                                    className: "p-8 bg-white rounded-[2.5rem] shadow-premium border",
+                                                    style: {
+                                                        borderColor: "var(--accent-subtle)"
+                                                    },
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-4 text-emerald-600",
+                                                            className: "w-12 h-12 rounded-2xl flex items-center justify-center mb-4",
+                                                            style: {
+                                                                background: "var(--accent-subtle)",
+                                                                color: "var(--accent-color)"
+                                                            },
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FileCheck$3e$__["FileCheck"], {
                                                                 size: 28
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                                lineNumber: 154,
+                                                                lineNumber: 158,
                                                                 columnNumber: 41
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 153,
+                                                            lineNumber: 157,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -2265,7 +2248,7 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                             children: "ROPA"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 156,
+                                                            lineNumber: 160,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2273,17 +2256,20 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                             children: "บันทึกกิจกรรมครบ 100%"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 157,
+                                                            lineNumber: 161,
                                                             columnNumber: 37
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 152,
+                                                    lineNumber: 156,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$SpotlightCard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                    className: "p-8 bg-emerald-600 text-white rounded-[2.5rem] shadow-premium shadow-emerald-600/20",
+                                                    className: "p-8 text-white rounded-[2.5rem] shadow-premium",
+                                                    style: {
+                                                        background: "var(--accent-color)"
+                                                    },
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center mb-4 text-white",
@@ -2291,12 +2277,12 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                                 size: 28
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                                lineNumber: 161,
+                                                                lineNumber: 165,
                                                                 columnNumber: 41
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 160,
+                                                            lineNumber: 164,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -2304,7 +2290,7 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                             children: "Secured"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 163,
+                                                            lineNumber: 167,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2312,39 +2298,46 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                             children: "ปกป้องข้อมูลอย่างดีเยี่ยม"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 164,
+                                                            lineNumber: 168,
                                                             columnNumber: 37
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 159,
+                                                    lineNumber: 163,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 151,
+                                            lineNumber: 155,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "space-y-4",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$SpotlightCard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                    className: "p-8 bg-white border border-emerald-50 rounded-[2.5rem] shadow-premium",
+                                                    className: "p-8 bg-white rounded-[2.5rem] shadow-premium border",
+                                                    style: {
+                                                        borderColor: "var(--accent-subtle)"
+                                                    },
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-4 text-emerald-600",
+                                                            className: "w-12 h-12 rounded-2xl flex items-center justify-center mb-4",
+                                                            style: {
+                                                                background: "var(--accent-subtle)",
+                                                                color: "var(--accent-color)"
+                                                            },
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
                                                                 size: 28
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                                lineNumber: 170,
+                                                                lineNumber: 174,
                                                                 columnNumber: 41
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 169,
+                                                            lineNumber: 173,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -2352,7 +2345,7 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                             children: "Training"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 172,
+                                                            lineNumber: 176,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2360,30 +2353,37 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                             children: "บุคลากรผ่านการอบรมทุกคน"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 173,
+                                                            lineNumber: 177,
                                                             columnNumber: 37
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 168,
+                                                    lineNumber: 172,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$SpotlightCard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                                    className: "p-8 bg-white border border-emerald-50 rounded-[2.5rem] shadow-premium",
+                                                    className: "p-8 bg-white rounded-[2.5rem] shadow-premium border",
+                                                    style: {
+                                                        borderColor: "var(--accent-subtle)"
+                                                    },
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center mb-4 text-emerald-600",
+                                                            className: "w-12 h-12 rounded-2xl flex items-center justify-center mb-4",
+                                                            style: {
+                                                                background: "var(--accent-subtle)",
+                                                                color: "var(--accent-color)"
+                                                            },
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$alert$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertCircle$3e$__["AlertCircle"], {
                                                                 size: 28
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                                lineNumber: 177,
+                                                                lineNumber: 181,
                                                                 columnNumber: 41
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 176,
+                                                            lineNumber: 180,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -2391,7 +2391,7 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                             children: "Audit"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 179,
+                                                            lineNumber: 183,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2399,42 +2399,75 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                             children: "ประเมินผลภายในรายไตรมาส"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 180,
+                                                            lineNumber: 184,
                                                             columnNumber: 37
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 175,
+                                                    lineNumber: 179,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 167,
+                                            lineNumber: 171,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 145,
+                                    lineNumber: 149,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                            lineNumber: 120,
+                            lineNumber: 109,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                        lineNumber: 119,
+                        lineNumber: 108,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                lineNumber: 105,
+                lineNumber: 91,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    background: "#f8fafc",
+                    lineHeight: 0,
+                    overflow: "hidden"
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                    viewBox: "0 0 1440 80",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    preserveAspectRatio: "none",
+                    style: {
+                        display: "block",
+                        width: "100%",
+                        height: 80
+                    },
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M0,40 C240,80 480,0 720,40 C960,80 1200,10 1440,40 L1440,80 L0,80 Z",
+                        fill: "#ffffff"
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                        lineNumber: 195,
+                        columnNumber: 21
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                    lineNumber: 194,
+                    columnNumber: 17
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                lineNumber: 193,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -2451,20 +2484,23 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                     children: "หลักการปฏิบัติงาน 3 ด้าน"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 192,
+                                    lineNumber: 203,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "h-1.5 w-24 bg-emerald-500 mx-auto rounded-full"
+                                    className: "h-1.5 w-24 mx-auto rounded-full",
+                                    style: {
+                                        background: "var(--accent-color)"
+                                    }
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 193,
+                                    lineNumber: 204,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                            lineNumber: 191,
+                            lineNumber: 202,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2486,14 +2522,21 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                         duration: 0.5
                                     },
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$SpotlightCard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                        className: "p-10 rounded-[2.5rem] bg-emerald-50/30 border border-emerald-50 flex flex-col h-full",
+                                        className: "p-10 rounded-[2.5rem] flex flex-col h-full border",
+                                        style: {
+                                            background: "var(--accent-subtle)",
+                                            borderColor: "var(--accent-glow)"
+                                        },
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg border border-emerald-50 mb-6",
+                                                className: "w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg mb-6 border",
+                                                style: {
+                                                    borderColor: "var(--accent-glow)"
+                                                },
                                                 children: p.icon
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                lineNumber: 206,
+                                                lineNumber: 220,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -2501,7 +2544,7 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                 children: p.title
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                lineNumber: 209,
+                                                lineNumber: 223,
                                                 columnNumber: 37
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2509,34 +2552,67 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                 children: p.text
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                lineNumber: 210,
+                                                lineNumber: 224,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                        lineNumber: 205,
+                                        lineNumber: 216,
                                         columnNumber: 33
                                     }, this)
                                 }, i, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 198,
+                                    lineNumber: 209,
                                     columnNumber: 29
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                            lineNumber: 196,
+                            lineNumber: 207,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                    lineNumber: 190,
+                    lineNumber: 201,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                lineNumber: 189,
+                lineNumber: 200,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    background: "#ffffff",
+                    lineHeight: 0,
+                    overflow: "hidden"
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                    viewBox: "0 0 1440 70",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    preserveAspectRatio: "none",
+                    style: {
+                        display: "block",
+                        width: "100%",
+                        height: 70
+                    },
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polygon", {
+                        points: "0,0 1440,70 1440,70 0,70",
+                        fill: "#f8fafc"
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                        lineNumber: 235,
+                        columnNumber: 21
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                    lineNumber: 234,
+                    columnNumber: 17
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                lineNumber: 233,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -2552,7 +2628,7 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                     children: "Roadmap การคุ้มครองข้อมูล"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 222,
+                                    lineNumber: 243,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2560,23 +2636,26 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                     children: "ความมุ่งมั่นพัฒนาระบบอย่างต่อเนื่องตั้งแต่อดีตจนถึงปัจจุบัน"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 223,
+                                    lineNumber: 244,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                            lineNumber: 221,
+                            lineNumber: 242,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "grid grid-cols-1 md:grid-cols-4 gap-8 relative",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "absolute top-1/2 left-0 w-full h-0.5 bg-emerald-100 hidden md:block"
+                                    className: "absolute top-1/2 left-0 w-full h-0.5 hidden md:block",
+                                    style: {
+                                        background: "var(--accent-subtle)"
+                                    }
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 227,
+                                    lineNumber: 249,
                                     columnNumber: 25
                                 }, this),
                                 timeline.map((step, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -2597,25 +2676,32 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                         className: "relative z-10 flex flex-col items-center md:items-start",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center mb-6 shadow-xl shadow-emerald-600/20 text-white",
+                                                className: "w-12 h-12 rounded-full flex items-center justify-center mb-6 shadow-xl text-white",
+                                                style: {
+                                                    background: "var(--accent-color)",
+                                                    boxShadow: "0 20px 30px -8px var(--accent-glow)"
+                                                },
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$clock$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Clock$3e$__["Clock"], {
                                                     size: 20
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 238,
+                                                    lineNumber: 264,
                                                     columnNumber: 37
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                lineNumber: 237,
+                                                lineNumber: 260,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-emerald-700 font-black text-2xl mb-1",
+                                                className: "font-black text-2xl mb-1",
+                                                style: {
+                                                    color: "var(--accent-dark)"
+                                                },
                                                 children: step.year
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                lineNumber: 240,
+                                                lineNumber: 266,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -2623,7 +2709,7 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                 children: step.title
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                lineNumber: 241,
+                                                lineNumber: 267,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2631,30 +2717,63 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                 children: step.desc
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                lineNumber: 242,
+                                                lineNumber: 268,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, i, true, {
                                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                        lineNumber: 229,
+                                        lineNumber: 252,
                                         columnNumber: 29
                                     }, this))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                            lineNumber: 226,
+                            lineNumber: 247,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                    lineNumber: 220,
+                    lineNumber: 241,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                lineNumber: 219,
+                lineNumber: 240,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    background: "#f8fafc",
+                    lineHeight: 0,
+                    overflow: "hidden"
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                    viewBox: "0 0 1440 80",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    preserveAspectRatio: "none",
+                    style: {
+                        display: "block",
+                        width: "100%",
+                        height: 80
+                    },
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M0,80 C480,0 960,0 1440,80 L1440,80 L0,80 Z",
+                        fill: "#ffffff"
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                        lineNumber: 278,
+                        columnNumber: 21
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                    lineNumber: 277,
+                    columnNumber: 17
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                lineNumber: 276,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -2669,11 +2788,14 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-emerald-600 font-black tracking-[0.25em] uppercase text-xs mb-3 block",
+                                            className: "font-black tracking-[0.25em] uppercase text-xs mb-3 block",
+                                            style: {
+                                                color: "var(--accent-color)"
+                                            },
                                             children: "Updates & Activities"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 254,
+                                            lineNumber: 287,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -2681,37 +2803,41 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                             children: "กิจกรรมด้านการคุ้มครองข้อมูล"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 255,
+                                            lineNumber: 293,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 253,
+                                    lineNumber: 286,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/news?site=pdpa",
-                                    className: "flex items-center gap-2 px-6 py-3 glass border border-emerald-100 rounded-2xl text-emerald-700 font-bold hover:bg-emerald-50 transition-all",
+                                    className: "flex items-center gap-2 px-6 py-3 glass rounded-2xl font-bold transition-all border",
+                                    style: {
+                                        borderColor: "var(--accent-subtle)",
+                                        color: "var(--accent-dark)"
+                                    },
                                     children: [
                                         "ดูบทความทั้งหมด ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 258,
+                                            lineNumber: 300,
                                             columnNumber: 45
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 257,
+                                    lineNumber: 295,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                            lineNumber: 252,
+                            lineNumber: 285,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2724,9 +2850,11 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                     className: "h-64 bg-gray-50 rounded-[2.5rem] animate-pulse"
                                 }, i, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 264,
+                                    lineNumber: 306,
                                     columnNumber: 48
-                                }, this)) : articles.length > 0 ? articles.map((item, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                }, this)) : articles.length > 0 ? articles.map((item, i)=>{
+                                const coverImageUrl = item.coverImage?.url ? (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getStrapiMedia"])(item.coverImage.url) : null;
+                                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                     initial: {
                                         opacity: 0,
                                         y: 20
@@ -2745,96 +2873,193 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                         href: `/news/${item.slug}`,
                                         className: "block h-full",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$SpotlightCard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                            className: "group flex flex-col glass rounded-[2.5rem] border border-white p-6 shadow-premium hover:shadow-emerald-500/10 transition-all duration-500 hover:-translate-y-2 cursor-pointer h-full",
+                                            className: "group flex flex-col glass rounded-[2.5rem] border border-white p-6 shadow-premium transition-all duration-500 hover:-translate-y-2 cursor-pointer h-full",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "inline-block px-4 py-1.5 bg-emerald-100 text-emerald-700 rounded-full text-[10px] font-black uppercase tracking-wider mb-4 self-start",
-                                                    children: "News"
-                                                }, void 0, false, {
+                                                    className: "relative aspect-[16/10] rounded-[2rem] overflow-hidden mb-6",
+                                                    style: {
+                                                        background: "var(--accent-subtle)"
+                                                    },
+                                                    children: [
+                                                        coverImageUrl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                            src: coverImageUrl,
+                                                            alt: item.title,
+                                                            className: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                                                            lineNumber: 322,
+                                                            columnNumber: 57
+                                                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "w-full h-full flex flex-col items-center justify-center p-8 text-center",
+                                                            style: {
+                                                                background: `linear-gradient(135deg, var(--primary-color), var(--accent-dark))`
+                                                            },
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "text-white/20 text-4xl font-black mb-4 uppercase",
+                                                                    children: "PDPA"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                                                                    lineNumber: 325,
+                                                                    columnNumber: 61
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "text-white font-bold text-sm leading-tight line-clamp-2",
+                                                                    children: item.title
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                                                                    lineNumber: 326,
+                                                                    columnNumber: 61
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                                                            lineNumber: 324,
+                                                            columnNumber: 57
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "absolute top-4 left-4",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "inline-block px-4 py-1.5 glass-dark text-white rounded-full text-[10px] font-black uppercase tracking-wider backdrop-blur-md border border-white/20",
+                                                                children: item.category?.name || "News"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                                                                lineNumber: 330,
+                                                                columnNumber: 57
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                                                            lineNumber: 329,
+                                                            columnNumber: 53
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 276,
-                                                    columnNumber: 45
+                                                    lineNumber: 320,
+                                                    columnNumber: 49
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"], {
                                                             size: 14,
-                                                            className: "text-emerald-500"
+                                                            style: {
+                                                                color: "var(--accent-color)"
+                                                            }
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 280,
-                                                            columnNumber: 49
+                                                            lineNumber: 337,
+                                                            columnNumber: 53
                                                         }, this),
                                                         new Date(item.publishedAt).toLocaleDateString('th-TH')
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 279,
-                                                    columnNumber: 45
+                                                    lineNumber: 336,
+                                                    columnNumber: 49
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                    className: "text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition-colors mb-6 flex-1 line-clamp-2",
+                                                    className: "text-xl font-bold text-slate-900 transition-colors mb-6 flex-1 line-clamp-2",
+                                                    style: {
+                                                        ["--hover-color"]: "var(--accent-color)"
+                                                    },
                                                     children: item.title
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 283,
-                                                    columnNumber: 45
+                                                    lineNumber: 340,
+                                                    columnNumber: 49
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex items-center gap-2 text-emerald-600 font-bold text-sm",
+                                                    className: "flex items-center gap-2 font-bold text-sm",
+                                                    style: {
+                                                        color: "var(--accent-color)"
+                                                    },
                                                     children: [
                                                         "อ่านรายละเอียด ",
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
                                                             size: 14
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 285,
-                                                            columnNumber: 64
+                                                            lineNumber: 347,
+                                                            columnNumber: 68
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 284,
-                                                    columnNumber: 45
+                                                    lineNumber: 346,
+                                                    columnNumber: 49
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 275,
-                                            columnNumber: 41
+                                            lineNumber: 319,
+                                            columnNumber: 45
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                        lineNumber: 274,
-                                        columnNumber: 37
+                                        lineNumber: 318,
+                                        columnNumber: 41
                                     }, this)
                                 }, item.id, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 267,
-                                    columnNumber: 33
-                                }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    lineNumber: 311,
+                                    columnNumber: 37
+                                }, this);
+                            }) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "col-span-full py-10 text-center opacity-50",
                                 children: "ไม่พบกิจกรรมในระบบ"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                lineNumber: 292,
+                                lineNumber: 355,
                                 columnNumber: 29
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                            lineNumber: 262,
+                            lineNumber: 304,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                    lineNumber: 251,
+                    lineNumber: 284,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                lineNumber: 250,
+                lineNumber: 283,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    background: "#ffffff",
+                    lineHeight: 0,
+                    overflow: "hidden"
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                    viewBox: "0 0 1440 70",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    preserveAspectRatio: "none",
+                    style: {
+                        display: "block",
+                        width: "100%",
+                        height: 70
+                    },
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M0,0 L0,70 L1440,70 L1440,0 C1200,40 960,0 720,30 C480,60 240,20 0,0 Z",
+                        fill: "#f8fafc"
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                        lineNumber: 364,
+                        columnNumber: 21
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                    lineNumber: 363,
+                    columnNumber: 17
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                lineNumber: 362,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -2853,7 +3078,7 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                         children: "ศูนย์รวมเอกสาร PDPA"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                        lineNumber: 303,
+                                        lineNumber: 373,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2861,18 +3086,18 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                         children: "ดาวน์โหลดเอกสารประกาศ นโยบาย และแบบฟอร์มเพื่อการใช้สิทธิสำหรับบุคลากรและประชาชนทั่วไป"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                        lineNumber: 304,
+                                        lineNumber: 374,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                lineNumber: 302,
+                                lineNumber: 372,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                            lineNumber: 301,
+                            lineNumber: 371,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2884,7 +3109,7 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                     className: "h-24 bg-white rounded-2xl animate-pulse"
                                 }, i, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 310,
+                                    lineNumber: 380,
                                     columnNumber: 45
                                 }, this)) : documents.length > 0 ? documents.map((doc, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                                     initial: {
@@ -2910,33 +3135,43 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                             whileHover: {
                                                 x: 10
                                             },
-                                            className: "flex items-center justify-between p-6 bg-white rounded-2xl border border-slate-100 shadow-sm group hover:border-emerald-200 transition-all cursor-pointer",
+                                            className: "flex items-center justify-between p-6 bg-white rounded-2xl border border-slate-100 shadow-sm group transition-all cursor-pointer",
+                                            style: {
+                                                ["--hover-border"]: "var(--accent-subtle)"
+                                            },
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "flex items-center gap-4",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors",
+                                                            className: "w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all",
+                                                            style: {
+                                                                background: "var(--accent-subtle)",
+                                                                color: "var(--accent-color)"
+                                                            },
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"], {
                                                                 size: 20
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                                lineNumber: 332,
+                                                                lineNumber: 406,
                                                                 columnNumber: 53
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 331,
+                                                            lineNumber: 402,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                                                    className: "font-bold text-slate-800 group-hover:text-emerald-700 transition-colors uppercase text-sm tracking-tight",
+                                                                    className: "font-bold text-slate-800 transition-colors uppercase text-sm tracking-tight group-hover:text-accent",
+                                                                    style: {
+                                                                        ["--accent"]: "var(--accent-color)"
+                                                                    },
                                                                     children: doc.title
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                                    lineNumber: 335,
+                                                                    lineNumber: 409,
                                                                     columnNumber: 53
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2948,72 +3183,131 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                                    lineNumber: 336,
+                                                                    lineNumber: 413,
                                                                     columnNumber: 53
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                            lineNumber: 334,
+                                                            lineNumber: 408,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 330,
+                                                    lineNumber: 401,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "bg-slate-50 p-2 rounded-lg text-slate-400 group-hover:bg-emerald-50 group-hover:text-emerald-600 transition-all",
+                                                    className: "p-2 rounded-lg text-slate-400 transition-all",
+                                                    style: {
+                                                        background: "var(--accent-subtle)"
+                                                    },
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
-                                                        size: 18
+                                                        size: 18,
+                                                        style: {
+                                                            color: "var(--accent-color)"
+                                                        }
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                        lineNumber: 340,
+                                                        lineNumber: 420,
                                                         columnNumber: 49
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                                    lineNumber: 339,
+                                                    lineNumber: 416,
                                                     columnNumber: 45
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 326,
+                                            lineNumber: 396,
                                             columnNumber: 41
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                        lineNumber: 320,
+                                        lineNumber: 390,
                                         columnNumber: 37
                                     }, this)
                                 }, doc.id, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 313,
+                                    lineNumber: 383,
                                     columnNumber: 33
                                 }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "col-span-full py-10 text-center opacity-50",
                                 children: "ไม่พบเอกสารในระบบ"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                lineNumber: 347,
+                                lineNumber: 427,
                                 columnNumber: 29
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                            lineNumber: 308,
+                            lineNumber: 378,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                    lineNumber: 300,
+                    lineNumber: 370,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                lineNumber: 299,
+                lineNumber: 369,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    background: "#f8fafc",
+                    lineHeight: 0,
+                    overflow: "hidden"
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                    viewBox: "0 0 1440 100",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    preserveAspectRatio: "none",
+                    style: {
+                        display: "block",
+                        width: "100%",
+                        height: 100
+                    },
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                            d: "M0,60 C360,100 720,20 1080,60 C1260,80 1380,50 1440,60 L1440,100 L0,100 Z",
+                            fill: "#0f172a",
+                            opacity: "0.4"
+                        }, void 0, false, {
+                            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                            lineNumber: 436,
+                            columnNumber: 21
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                            d: "M0,70 C300,30 600,90 900,50 C1100,20 1300,70 1440,70 L1440,100 L0,100 Z",
+                            fill: "#0f172a",
+                            opacity: "0.65"
+                        }, void 0, false, {
+                            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                            lineNumber: 437,
+                            columnNumber: 21
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                            d: "M0,80 C200,60 500,100 800,75 C1050,55 1250,85 1440,80 L1440,100 L0,100 Z",
+                            fill: "#0f172a"
+                        }, void 0, false, {
+                            fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                            lineNumber: 438,
+                            columnNumber: 21
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                    lineNumber: 435,
+                    columnNumber: 17
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
+                lineNumber: 434,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -3021,23 +3315,29 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute top-0 right-0 p-20 opacity-10",
+                        style: {
+                            color: "var(--accent-color)"
+                        },
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Shield$3e$__["Shield"], {
-                            size: 300,
-                            className: "text-emerald-500"
+                            size: 300
                         }, void 0, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                            lineNumber: 356,
+                            lineNumber: 445,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                        lineNumber: 355,
+                        lineNumber: 444,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "bg-emerald-600 rounded-[4rem] p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left shadow-2xl shadow-emerald-600/20",
+                            className: "rounded-[4rem] p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left shadow-2xl",
+                            style: {
+                                background: "var(--accent-color)",
+                                boxShadow: "0 40px 80px -20px var(--accent-glow)"
+                            },
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "max-w-2xl",
@@ -3047,54 +3347,57 @@ function PDPAPageClient({ navbar, footer, siteConfig, features = [] }) {
                                             children: "มีข้อสงสัยด้านข้อมูล?"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 361,
+                                            lineNumber: 453,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-emerald-50 text-xl font-medium leading-relaxed opacity-90",
+                                            className: "text-white/80 text-xl font-medium leading-relaxed",
                                             children: "คุณสามารถติดต่อเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล (DPO) ของสำนักงานศาลปกครองได้โดยตรงผ่านช่องทางเจ้าหน้าทีเฉพาะกิจ หรือโทร 02-XXX-XXXX"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                            lineNumber: 362,
+                                            lineNumber: 454,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 360,
+                                    lineNumber: 452,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/#contact",
-                                    className: "px-12 py-5 bg-white text-emerald-600 font-black rounded-3xl shadow-2xl shadow-black/20 hover:bg-slate-50 transition-all active:scale-95 whitespace-nowrap",
+                                    className: "px-12 py-5 bg-white font-black rounded-3xl shadow-2xl shadow-black/20 hover:bg-slate-50 transition-all active:scale-95 whitespace-nowrap",
+                                    style: {
+                                        color: "var(--accent-color)"
+                                    },
                                     children: "ติดต่อเจ้าหน้าที่ DPO"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                                    lineNumber: 367,
+                                    lineNumber: 459,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                            lineNumber: 359,
+                            lineNumber: 448,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                        lineNumber: 358,
+                        lineNumber: 447,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-                lineNumber: 354,
+                lineNumber: 443,
                 columnNumber: 13
             }, this),
             footer
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/my_cms/frontend/app/pdpa/PDPAPageClient.tsx",
-        lineNumber: 101,
+        lineNumber: 87,
         columnNumber: 9
     }, this);
 }

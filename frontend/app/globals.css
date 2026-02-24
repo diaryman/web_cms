@@ -32,6 +32,29 @@
   --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
   --shadow-inner-soft: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
   --shadow-glow: 0 0 40px -10px var(--accent-color);
+
+  /* Smooth transition whenever JS updates a CSS var (template switch) */
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+/* Make every element inherit colour transitions */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, box-shadow, opacity;
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Exception: don't force transitions on animations / transforms */
+[class*="animate-"],
+[class*="motion-"],
+.group,
+img,
+video {
+  transition-property: none;
 }
 
 /* ========================================

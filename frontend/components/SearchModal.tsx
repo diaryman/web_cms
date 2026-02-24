@@ -43,7 +43,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
     );
 }
 
-export default function SearchModal({ isOpen, onClose, domain = "localhost:3000" }: SearchModalProps) {
+export default function SearchModal({ isOpen, onClose, domain = "localhost" }: SearchModalProps) {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState<SearchResult[]>([]);
     const [isSearching, setIsSearching] = useState(false);
@@ -255,7 +255,7 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost:3000"
                                         {newsResults.length > 0 && (
                                             <div>
                                                 <div className="flex items-center gap-2 px-3 py-2">
-                                                    <Newspaper size={14} className="text-blue-500" />
+                                                    <Newspaper size={14} className="text-accent" />
                                                     <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">ข่าวสาร ({newsResults.length})</span>
                                                 </div>
                                                 {newsResults.map((result) => (
@@ -265,7 +265,7 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost:3000"
                                                         onClick={() => handleResultClick(result)}
                                                         className="flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group"
                                                     >
-                                                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors">
+                                                        <div className="w-10 h-10 rounded-xl bg-accent-subtle text-accent flex items-center justify-center flex-shrink-0 transition-colors">
                                                             <Newspaper size={18} />
                                                         </div>
                                                         <div className="flex-1 min-w-0">
@@ -278,7 +278,7 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost:3000"
                                                                 </p>
                                                             )}
                                                             {result.category && (
-                                                                <span className="inline-block mt-1 px-2 py-0.5 bg-blue-50 text-blue-500 rounded-lg text-[10px] font-bold">{result.category}</span>
+                                                                <span className="inline-block mt-1 px-2 py-0.5 bg-accent-subtle text-accent rounded-lg text-[10px] font-bold">{result.category}</span>
                                                             )}
                                                         </div>
                                                         <ArrowRight size={16} className="text-gray-300 group-hover:text-accent group-hover:translate-x-1 transition-all flex-shrink-0 mt-1" />
@@ -291,7 +291,7 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost:3000"
                                         {docResults.length > 0 && (
                                             <div>
                                                 <div className="flex items-center gap-2 px-3 py-2">
-                                                    <FileText size={14} className="text-emerald-500" />
+                                                    <FileText size={14} className="text-accent" style={{ opacity: 0.8 }} />
                                                     <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">เอกสาร ({docResults.length})</span>
                                                 </div>
                                                 {docResults.map((result) => (
@@ -301,7 +301,7 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost:3000"
                                                         onClick={() => handleResultClick(result)}
                                                         className="flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group"
                                                     >
-                                                        <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-100 transition-colors">
+                                                        <div className="w-10 h-10 rounded-xl bg-accent-subtle text-accent flex items-center justify-center flex-shrink-0 transition-colors">
                                                             <FileText size={18} />
                                                         </div>
                                                         <div className="flex-1 min-w-0">
@@ -314,7 +314,7 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost:3000"
                                                                 </p>
                                                             )}
                                                             {result.category && (
-                                                                <span className="inline-block mt-1 px-2 py-0.5 bg-emerald-50 text-emerald-500 rounded-lg text-[10px] font-bold">{result.category}</span>
+                                                                <span className="inline-block mt-1 px-2 py-0.5 bg-accent-subtle text-accent rounded-lg text-[10px] font-bold">{result.category}</span>
                                                             )}
                                                         </div>
                                                         <ArrowRight size={16} className="text-gray-300 group-hover:text-accent group-hover:translate-x-1 transition-all flex-shrink-0 mt-1" />

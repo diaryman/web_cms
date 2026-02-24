@@ -89,7 +89,10 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
                     </div>
 
                     <div className="space-y-6">
-                        <span className="px-4 py-1.5 bg-blue-50 text-accent rounded-full text-xs font-black uppercase tracking-widest border border-blue-100 inline-block">
+                        <span
+                            className="px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest inline-block"
+                            style={{ background: "var(--accent-subtle)", color: "var(--accent-color)", border: "1px solid var(--accent-glow)" }}
+                        >
                             {article.category?.name || "Governance Update"}
                         </span>
                         <h1 className="text-4xl md:text-5xl font-black font-heading text-primary leading-[1.1] tracking-tighter">
@@ -98,7 +101,10 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
 
                         <div className="flex flex-wrap items-center gap-8 pt-4 pb-8 border-b border-gray-100">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600">
+                                <div
+                                    className="w-10 h-10 rounded-full flex items-center justify-center"
+                                    style={{ background: "var(--accent-subtle)", color: "var(--accent-color)" }}
+                                >
                                     <User size={20} />
                                 </div>
                                 <div>
@@ -107,7 +113,10 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-accent">
+                                <div
+                                    className="w-10 h-10 rounded-full flex items-center justify-center text-accent"
+                                    style={{ background: "var(--accent-subtle)" }}
+                                >
                                     <Calendar size={20} />
                                 </div>
                                 <div>
@@ -116,7 +125,10 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-accent">
+                                <div
+                                    className="w-10 h-10 rounded-full flex items-center justify-center text-accent"
+                                    style={{ background: "var(--accent-subtle)" }}
+                                >
                                     <Clock size={20} />
                                 </div>
                                 <div>
@@ -172,13 +184,13 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
 
                 {/* Next/Prev Navigation UI */}
                 <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="p-8 rounded-[2rem] bg-white border border-gray-100 hover:border-blue-100 transition-all cursor-pointer group">
+                    <div className="p-8 rounded-[2rem] bg-white border border-gray-100 transition-all cursor-pointer group" style={{ ["--hover-border" as any]: "var(--accent-subtle)" }}>
                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-2">
                             <ArrowLeft size={12} /> Previous Article
                         </p>
                         <h4 className="font-bold text-primary group-hover:text-accent transition-colors">สรุปผลการประชุมธรรมาภิบาลข้อมูลไตรมาสที่ 1</h4>
                     </div>
-                    <div className="p-8 rounded-[2rem] bg-white border border-gray-100 hover:border-blue-100 transition-all cursor-pointer group text-right">
+                    <div className="p-8 rounded-[2rem] bg-white border border-gray-100 transition-all cursor-pointer group text-right">
                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center justify-end gap-2">
                             Next Article <ChevronRight size={12} />
                         </p>

@@ -76,8 +76,12 @@ async function fetchAPI(path, urlParamsObject = {}, options = {}) {
     } catch (error) {
         console.error(`Fetch failed for URL: ${requestUrl}`);
         console.error(`Error name: ${error.name}, Message: ${error.message}`);
+        // If it's our thrown custom error, re-throw it instead of hiding it
+        if (error.message.startsWith("API returned ")) {
+            throw error;
+        }
         // Re-throw with more context
-        throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running?`);
+        throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
     }
 }
 }),
@@ -130,7 +134,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 ;
 ;
 ;
-async function Navbar({ domain = "localhost:3000" }) {
+async function Navbar({ domain = "localhost" }) {
     // Fetch site config (Server Side)
     let siteName = domain === "pdpa.localhost" ? "PDPA Center" : "DataGOV";
     let navItems = undefined;
@@ -433,7 +437,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 ;
 ;
 ;
-async function Footer({ domain = "localhost:3000" }) {
+async function Footer({ domain = "localhost" }) {
     let config = null;
     try {
         const data = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["fetchAPI"])("/site-configs", {
@@ -993,6 +997,7 @@ async function Home() {
     let announcement = undefined;
     let siteConfig = undefined;
     let slides = [];
+    let activities = [];
     try {
         const config = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["fetchAPI"])("/site-configs", {
             filters: {
@@ -1014,6 +1019,19 @@ async function Home() {
             ]
         });
         slides = slidesRes.data || [];
+        const activitiesRes = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["fetchAPI"])("/articles", {
+            filters: {
+                domain
+            },
+            sort: [
+                "publishedAt:desc"
+            ],
+            pagination: {
+                limit: 3
+            },
+            populate: "*"
+        });
+        activities = activitiesRes.data || [];
     } catch (e) {
         console.error("Error fetching home data", e);
     }
@@ -1029,17 +1047,17 @@ async function Home() {
                 className: "noise-overlay"
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
-                lineNumber: 64,
+                lineNumber: 73,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$ScrollProgress$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
-                lineNumber: 65,
+                lineNumber: 74,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$BackToTop$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
-                lineNumber: 66,
+                lineNumber: 75,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$NewsTicker$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -1048,14 +1066,14 @@ async function Home() {
                 notifications: siteConfig?.notifications
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
-                lineNumber: 67,
+                lineNumber: 76,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$Navbar$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                 domain: domain
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
-                lineNumber: 68,
+                lineNumber: 77,
                 columnNumber: 7
             }, this),
             showHero && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$Hero$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -1065,48 +1083,210 @@ async function Home() {
                 slides: slides
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
-                lineNumber: 70,
+                lineNumber: 81,
+                columnNumber: 9
+            }, this),
+            showHero && showPolicies && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    background: "var(--primary-color)",
+                    lineHeight: 0,
+                    overflow: "hidden"
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                    viewBox: "0 0 1440 90",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    preserveAspectRatio: "none",
+                    style: {
+                        display: "block",
+                        width: "100%",
+                        height: 90
+                    },
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M0,45 C240,90 480,0 720,45 C960,90 1200,10 1440,45 L1440,90 L0,90 Z",
+                        fill: "#ffffff"
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                        lineNumber: 93,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                    lineNumber: 92,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                lineNumber: 91,
                 columnNumber: 9
             }, this),
             showPolicies && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$PolicySection$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                 domain: domain
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
-                lineNumber: 77,
+                lineNumber: 99,
                 columnNumber: 24
             }, this),
-            showActivities && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$ActivitiesSection$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
-                domain: domain
+            showPolicies && showActivities && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    background: "#ffffff",
+                    lineHeight: 0,
+                    overflow: "hidden"
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                    viewBox: "0 0 1440 70",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    preserveAspectRatio: "none",
+                    style: {
+                        display: "block",
+                        width: "100%",
+                        height: 70
+                    },
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M0,0 L1440,70 L1440,70 L0,70 Z",
+                        fill: "#f1f5f9"
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                        lineNumber: 105,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                    lineNumber: 104,
+                    columnNumber: 11
+                }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
-                lineNumber: 78,
-                columnNumber: 26
+                lineNumber: 103,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    background: "#f1f5f9"
+                },
+                children: showActivities && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$ActivitiesSection$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
+                    domain: domain,
+                    initialActivities: activities
+                }, void 0, false, {
+                    fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                    lineNumber: 112,
+                    columnNumber: 28
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                lineNumber: 111,
+                columnNumber: 7
+            }, this),
+            showActivities && showDownloads && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    background: "#f1f5f9",
+                    lineHeight: 0,
+                    overflow: "hidden"
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                    viewBox: "0 0 1440 80",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    preserveAspectRatio: "none",
+                    style: {
+                        display: "block",
+                        width: "100%",
+                        height: 80
+                    },
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                        d: "M0,80 C360,0 1080,0 1440,80 L1440,80 L0,80 Z",
+                        fill: "#ffffff"
+                    }, void 0, false, {
+                        fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                        lineNumber: 119,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                    lineNumber: 118,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                lineNumber: 117,
+                columnNumber: 9
             }, this),
             showDownloads && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$DownloadsSection$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                 domain: domain
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
-                lineNumber: 79,
+                lineNumber: 125,
                 columnNumber: 25
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    background: "#ffffff",
+                    lineHeight: 0,
+                    overflow: "hidden"
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                    viewBox: "0 0 1440 100",
+                    xmlns: "http://www.w3.org/2000/svg",
+                    preserveAspectRatio: "none",
+                    style: {
+                        display: "block",
+                        width: "100%",
+                        height: 100
+                    },
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                            d: "M0,55 C360,100 720,20 1080,60 C1260,80 1380,45 1440,55 L1440,100 L0,100 Z",
+                            fill: "var(--primary-color)",
+                            opacity: "0.35"
+                        }, void 0, false, {
+                            fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                            lineNumber: 130,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                            d: "M0,68 C300,28 600,95 900,52 C1100,20 1300,72 1440,68 L1440,100 L0,100 Z",
+                            fill: "var(--primary-color)",
+                            opacity: "0.65"
+                        }, void 0, false, {
+                            fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                            lineNumber: 131,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                            d: "M0,80 C200,58 500,100 800,75 C1060,52 1260,84 1440,80 L1440,100 L0,100 Z",
+                            fill: "var(--primary-color)"
+                        }, void 0, false, {
+                            fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                            lineNumber: 132,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                    lineNumber: 129,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
+                lineNumber: 128,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$NewsletterSection$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                 domain: domain
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
-                lineNumber: 80,
+                lineNumber: 137,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$Footer$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                 domain: domain
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
-                lineNumber: 81,
+                lineNumber: 139,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/my_cms/frontend/app/page.tsx",
-        lineNumber: 63,
+        lineNumber: 72,
         columnNumber: 5
     }, this);
 }

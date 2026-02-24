@@ -48,7 +48,7 @@ function Highlight({ text, query }) {
     }, void 0, false);
 }
 _c = Highlight;
-function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
+function SearchModal({ isOpen, onClose, domain = "localhost" }) {
     _s();
     const [query, setQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [results, setResults] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
@@ -392,7 +392,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$newspaper$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Newspaper$3e$__["Newspaper"], {
                                                             size: 14,
-                                                            className: "text-blue-500"
+                                                            className: "text-accent"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/SearchModal.tsx",
                                                             lineNumber: 258,
@@ -422,7 +422,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                         className: "flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "w-10 h-10 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors",
+                                                                className: "w-10 h-10 rounded-xl bg-accent-subtle text-accent flex items-center justify-center flex-shrink-0 transition-colors",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$newspaper$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Newspaper$3e$__["Newspaper"], {
                                                                     size: 18
                                                                 }, void 0, false, {
@@ -475,7 +475,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                                         columnNumber: 65
                                                                     }, this),
                                                                     result.category && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "inline-block mt-1 px-2 py-0.5 bg-blue-50 text-blue-500 rounded-lg text-[10px] font-bold",
+                                                                        className: "inline-block mt-1 px-2 py-0.5 bg-accent-subtle text-accent rounded-lg text-[10px] font-bold",
                                                                         children: result.category
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/my_cms/frontend/components/SearchModal.tsx",
@@ -515,7 +515,10 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"], {
                                                             size: 14,
-                                                            className: "text-emerald-500"
+                                                            className: "text-accent",
+                                                            style: {
+                                                                opacity: 0.8
+                                                            }
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/SearchModal.tsx",
                                                             lineNumber: 294,
@@ -545,7 +548,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                         className: "flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "w-10 h-10 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-100 transition-colors",
+                                                                className: "w-10 h-10 rounded-xl bg-accent-subtle text-accent flex items-center justify-center flex-shrink-0 transition-colors",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"], {
                                                                     size: 18
                                                                 }, void 0, false, {
@@ -598,7 +601,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                                         columnNumber: 65
                                                                     }, this),
                                                                     result.category && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "inline-block mt-1 px-2 py-0.5 bg-emerald-50 text-emerald-500 rounded-lg text-[10px] font-bold",
+                                                                        className: "inline-block mt-1 px-2 py-0.5 bg-accent-subtle text-accent rounded-lg text-[10px] font-bold",
                                                                         children: result.category
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/my_cms/frontend/components/SearchModal.tsx",
@@ -1154,7 +1157,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost:3000" }) {
+function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost" }) {
     _s();
     const [isOpen, setIsOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [scrolled, setScrolled] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -2277,7 +2280,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 ;
 ;
 ;
-function NewsTicker({ domain = "localhost:3000", announcement, notifications }) {
+function NewsTicker({ domain = "localhost", announcement, notifications }) {
     const siteParam = domain === "pdpa.localhost" ? "pdpa" : "main";
     const defaultUpdates = [
         "ประกาศ: มาตรฐานการจัดการข้อมูลภาครัฐฉบับใหม่ ปี 2569 เริ่มประกาศใช้แล้ววันนี้",
@@ -2476,7 +2479,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function PolicySection({ domain = "localhost:3000" }) {
+function PolicySection({ domain = "localhost" }) {
     _s();
     const [policies, setPolicies] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
@@ -2955,17 +2958,22 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function ActivitiesSection({ domain = "localhost:3000" }) {
+function ActivitiesSection({ domain = "localhost", initialActivities }) {
     _s();
-    const [activities, setActivities] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
-    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [activities, setActivities] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(initialActivities || []);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(!initialActivities || initialActivities.length === 0);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ActivitiesSection.useEffect": ()=>{
+            // If initialActivities is provided, skip fetching
+            if (initialActivities && initialActivities.length > 0) {
+                setLoading(false);
+                return;
+            }
             const load = {
                 "ActivitiesSection.useEffect.load": async ()=>{
                     try {
                         // Fetch articles specifically for target domain
-                        const { data } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["fetchAPI"])("/articles", {
+                        const queryParams = {
                             filters: {
                                 domain: domain
                             },
@@ -2976,8 +2984,9 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                                 limit: 3
                             },
                             populate: "*"
-                        });
-                        setActivities(data);
+                        };
+                        const { data } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["fetchAPI"])("/articles", queryParams);
+                        setActivities(data || []);
                     } catch (error) {
                         console.error("Failed to fetch activities:", error);
                     } finally{
@@ -2988,7 +2997,8 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
             load();
         }
     }["ActivitiesSection.useEffect"], [
-        domain
+        domain,
+        initialActivities
     ]);
     const placeholders = [
         "from-blue-600 to-indigo-600",
@@ -3007,11 +3017,14 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].span, {
-                                    className: "text-blue-600 font-black tracking-[0.25em] uppercase text-xs mb-3 block",
+                                    className: "font-black tracking-[0.25em] uppercase text-xs mb-3 block",
+                                    style: {
+                                        color: 'var(--accent-color)'
+                                    },
                                     children: "Updates & News"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                    lineNumber: 43,
+                                    lineNumber: 50,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].h2, {
@@ -3019,13 +3032,13 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                                     children: "ข่าวกิจกรรมและประกาศล่าสุด"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                    lineNumber: 48,
+                                    lineNumber: 56,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                            lineNumber: 42,
+                            lineNumber: 49,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -3038,24 +3051,24 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                                         size: 18
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                        lineNumber: 56,
+                                        lineNumber: 64,
                                         columnNumber: 45
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                lineNumber: 55,
+                                lineNumber: 63,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                            lineNumber: 54,
+                            lineNumber: 62,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                    lineNumber: 41,
+                    lineNumber: 48,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3068,7 +3081,7 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                             className: "bg-white rounded-[2.5rem] h-[400px] animate-pulse border border-gray-100 shadow-sm"
                         }, i, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                            lineNumber: 64,
+                            lineNumber: 72,
                             columnNumber: 29
                         }, this)) : activities.length > 0 ? activities.map((item, index)=>{
                         const date = new Date(item.publishedAt).toLocaleDateString('th-TH', {
@@ -3081,7 +3094,7 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                             href: `/news/${item.slug}`,
                             className: "block",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$SpotlightCard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                className: "group flex flex-col glass rounded-[2.5rem] border border-white p-4 shadow-premium hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2 h-full",
+                                className: "group flex flex-col glass rounded-[2.5rem] border border-white p-4 shadow-premium hover:shadow-accent/10 transition-all duration-500 hover:-translate-y-2 h-full",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "relative aspect-[16/10] rounded-[2rem] overflow-hidden mb-6",
@@ -3092,7 +3105,7 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                                                 className: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                lineNumber: 83,
+                                                lineNumber: 91,
                                                 columnNumber: 49
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: `w-full h-full bg-linear-to-br ${placeholders[index % 3]} flex flex-col items-center justify-center p-8 text-center`,
@@ -3102,7 +3115,7 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                                                         children: "DATA"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                        lineNumber: 90,
+                                                        lineNumber: 98,
                                                         columnNumber: 53
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3110,13 +3123,13 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                                                         children: item.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                        lineNumber: 91,
+                                                        lineNumber: 99,
                                                         columnNumber: 53
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                lineNumber: 89,
+                                                lineNumber: 97,
                                                 columnNumber: 49
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3126,18 +3139,18 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                                                     children: item.category?.name || "Governance"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                    lineNumber: 95,
+                                                    lineNumber: 103,
                                                     columnNumber: 49
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                lineNumber: 94,
+                                                lineNumber: 102,
                                                 columnNumber: 45
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                        lineNumber: 81,
+                                        lineNumber: 89,
                                         columnNumber: 41
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3157,7 +3170,7 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                                                                 className: "text-accent"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                                lineNumber: 103,
+                                                                lineNumber: 111,
                                                                 columnNumber: 93
                                                             }, this),
                                                             " ",
@@ -3165,7 +3178,7 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                        lineNumber: 103,
+                                                        lineNumber: 111,
                                                         columnNumber: 49
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3173,23 +3186,26 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__["User"], {
                                                                 size: 14,
-                                                                className: "text-indigo-400"
+                                                                className: "text-accent",
+                                                                style: {
+                                                                    opacity: 0.6
+                                                                }
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                                lineNumber: 104,
+                                                                lineNumber: 112,
                                                                 columnNumber: 93
                                                             }, this),
                                                             " Admin"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                        lineNumber: 104,
+                                                        lineNumber: 112,
                                                         columnNumber: 49
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                lineNumber: 102,
+                                                lineNumber: 110,
                                                 columnNumber: 45
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3200,7 +3216,7 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                                                 children: item.title
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                lineNumber: 107,
+                                                lineNumber: 115,
                                                 columnNumber: 45
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3210,45 +3226,48 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                                                     children: [
                                                         "อ่านรายละเอียด",
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "w-8 h-8 rounded-full glass border border-blue-100 flex items-center justify-center group-hover/btn:bg-accent group-hover/btn:text-white transition-all duration-300",
+                                                            className: "w-8 h-8 rounded-full glass border flex items-center justify-center group-hover/btn:bg-accent group-hover/btn:text-white transition-all duration-300",
+                                                            style: {
+                                                                borderColor: 'var(--accent-subtle)'
+                                                            },
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
                                                                 size: 14
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                                lineNumber: 117,
+                                                                lineNumber: 125,
                                                                 columnNumber: 57
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                            lineNumber: 116,
+                                                            lineNumber: 124,
                                                             columnNumber: 53
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                    lineNumber: 112,
+                                                    lineNumber: 120,
                                                     columnNumber: 49
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                                lineNumber: 111,
+                                                lineNumber: 119,
                                                 columnNumber: 45
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                        lineNumber: 101,
+                                        lineNumber: 109,
                                         columnNumber: 41
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                                lineNumber: 78,
+                                lineNumber: 86,
                                 columnNumber: 37
                             }, this)
                         }, item.id, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                            lineNumber: 77,
+                            lineNumber: 85,
                             columnNumber: 33
                         }, this);
                     }) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3264,32 +3283,32 @@ function ActivitiesSection({ domain = "localhost:3000" }) {
                             children: "ไม่พบข้อมูลใหม่ในฐานระบบ"
                         }, void 0, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                            lineNumber: 128,
+                            lineNumber: 136,
                             columnNumber: 29
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                        lineNumber: 127,
+                        lineNumber: 135,
                         columnNumber: 25
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-                    lineNumber: 61,
+                    lineNumber: 69,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-            lineNumber: 40,
+            lineNumber: 47,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/Desktop/my_cms/frontend/components/ActivitiesSection.tsx",
-        lineNumber: 39,
+        lineNumber: 46,
         columnNumber: 9
     }, this);
 }
-_s(ActivitiesSection, "C8uifjA9jREC8y+qhfs5+cS/Q5A=");
+_s(ActivitiesSection, "gYbHAY5CXai6H07JVcQqCicTdCs=");
 _c = ActivitiesSection;
 var _c;
 __turbopack_context__.k.register(_c, "ActivitiesSection");
@@ -3324,7 +3343,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function DownloadsSection({ domain = "localhost:3000" }) {
+function DownloadsSection({ domain = "localhost" }) {
     _s();
     const [services, setServices] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
@@ -3365,22 +3384,11 @@ function DownloadsSection({ domain = "localhost:3000" }) {
         };
         return icons[iconName] || __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"];
     };
-    const getColor = (cat)=>{
-        if (cat === 'download') return {
-            color: "text-blue-500",
-            bg: "bg-blue-50"
-        };
-        if (cat === 'service') return {
-            color: "text-emerald-500",
-            bg: "bg-emerald-50"
-        };
-        if (cat === 'tool') return {
-            color: "text-purple-500",
-            bg: "bg-purple-50"
-        };
+    const getColor = (_cat)=>{
+        // All categories use the active theme accent colour
         return {
-            color: "text-indigo-500",
-            bg: "bg-indigo-50"
+            color: "text-accent",
+            bg: "bg-accent-subtle"
         };
     };
     // Fallback data if no services
@@ -3421,7 +3429,7 @@ function DownloadsSection({ domain = "localhost:3000" }) {
                             children: "บริการและเอกสารดาวน์โหลด"
                         }, void 0, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                            lineNumber: 59,
+                            lineNumber: 57,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -3432,13 +3440,13 @@ function DownloadsSection({ domain = "localhost:3000" }) {
                             children: "เครื่องมือและคู่มือสำหรับการบริหารจัดการข้อมูล"
                         }, void 0, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                            lineNumber: 64,
+                            lineNumber: 62,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                    lineNumber: 58,
+                    lineNumber: 56,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3458,12 +3466,12 @@ function DownloadsSection({ domain = "localhost:3000" }) {
                                                 size: 24
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                                                lineNumber: 83,
+                                                lineNumber: 81,
                                                 columnNumber: 45
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                                            lineNumber: 82,
+                                            lineNumber: 80,
                                             columnNumber: 41
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -3474,7 +3482,7 @@ function DownloadsSection({ domain = "localhost:3000" }) {
                                             children: service.title
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                                            lineNumber: 85,
+                                            lineNumber: 83,
                                             columnNumber: 41
                                         }, this),
                                         service.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3485,7 +3493,7 @@ function DownloadsSection({ domain = "localhost:3000" }) {
                                             children: service.description.replace(/<[^>]*>/g, '')
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                                            lineNumber: 89,
+                                            lineNumber: 87,
                                             columnNumber: 45
                                         }, this),
                                         service.link && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -3496,7 +3504,7 @@ function DownloadsSection({ domain = "localhost:3000" }) {
                                                     children: service.category === 'download' ? 'ดาวน์โหลด' : 'เข้าใช้งาน'
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                                                    lineNumber: 98,
+                                                    lineNumber: 96,
                                                     columnNumber: 49
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
@@ -3504,35 +3512,35 @@ function DownloadsSection({ domain = "localhost:3000" }) {
                                                     className: "group-hover:translate-x-1 transition-transform"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                                                    lineNumber: 99,
+                                                    lineNumber: 97,
                                                     columnNumber: 49
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                                            lineNumber: 94,
+                                            lineNumber: 92,
                                             columnNumber: 45
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                                    lineNumber: 81,
+                                    lineNumber: 79,
                                     columnNumber: 37
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                                lineNumber: 80,
+                                lineNumber: 78,
                                 columnNumber: 33
                             }, this)
                         }, service.id, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                            lineNumber: 77,
+                            lineNumber: 75,
                             columnNumber: 29
                         }, this);
                     })
                 }, void 0, false, {
                     fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                    lineNumber: 72,
+                    lineNumber: 70,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -3546,29 +3554,29 @@ function DownloadsSection({ domain = "localhost:3000" }) {
                                 size: 20
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                                lineNumber: 118,
+                                lineNumber: 116,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                        lineNumber: 113,
+                        lineNumber: 111,
                         columnNumber: 21
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-                    lineNumber: 110,
+                    lineNumber: 108,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-            lineNumber: 57,
+            lineNumber: 55,
             columnNumber: 13
         }, this)
     }, void 0, false, {
         fileName: "[project]/Desktop/my_cms/frontend/components/DownloadsSection.tsx",
-        lineNumber: 56,
+        lineNumber: 54,
         columnNumber: 9
     }, this);
 }

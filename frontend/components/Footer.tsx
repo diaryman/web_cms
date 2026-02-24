@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Facebook, Youtube, Mail, Phone, MapPin, ShieldCheck, ChevronRight, Globe } from "lucide-react";
 import { fetchAPI } from "@/lib/api";
 
-export default async function Footer({ domain = "localhost:3000" }: { domain?: string }) {
+export default async function Footer({ domain = "localhost" }: { domain?: string }) {
     let config = null;
     try {
         const data = await fetchAPI("/site-configs", {

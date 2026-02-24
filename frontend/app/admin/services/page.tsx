@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
-import { Plus, Edit, Trash2, Loader2, GripVertical, Download, Wrench, Package } from "lucide-react";
+import { Plus, Edit, Trash2, Loader2, GripVertical, Download, Wrench, Package, X, Columns } from "lucide-react";
 import Link from "next/link";
+import { Reorder } from "motion/react";
 
 export default function ServicesPage() {
     const searchParams = useSearchParams();
@@ -13,6 +14,7 @@ export default function ServicesPage() {
 
     const [services, setServices] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [hasOrderChanged, setHasOrderChanged] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [editing, setEditing] = useState<any>(null);
     const [formData, setFormData] = useState({
@@ -45,6 +47,7 @@ export default function ServicesPage() {
                 pagination: { pageSize: 100 }
             });
             setServices(res.data || []);
+            setHasOrderChanged(false);
         } catch (error) {
             console.error("Error loading services", error);
         } finally {
@@ -104,6 +107,31 @@ export default function ServicesPage() {
         setShowModal(true);
     };
 
+    const handleReorder = (newOrder: any[]) => {
+        setServices(newOrder);
+        setHasOrderChanged(true);
+    };
+
+    const saveNewOrder = async () => {
+        setLoading(true);
+        try {
+            await Promise.all(services.map((service, index) =>
+                fetchAPI(`/services/${service.documentId}`, {}, {
+                    method: "PUT",
+                    body: JSON.stringify({ data: { order: index + 1 } })
+                })
+            ));
+            setHasOrderChanged(false);
+            alert("บันทึกลำดับเรียบร้อยแล้ว");
+            loadServices();
+        } catch (err) {
+            console.error("Failed to save order", err);
+            alert("เกิดข้อผิดพลาดในการบันทึกลำดับ");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const resetForm = () => {
         setEditing(null);
         setFormData({
@@ -127,50 +155,71 @@ export default function ServicesPage() {
                     <h1 className="text-3xl font-black font-heading text-primary">บริการและดาวน์โหลด</h1>
                     <p className="text-gray-400 font-medium mt-2">จัดการรายการบริการและเอกสารดาวน์โหลดสำหรับ {siteParam === "pdpa" ? "PDPA Center" : "DataGOV"}</p>
                 </div>
-                <button
-                    onClick={() => { resetForm(); setShowModal(true); }}
-                    className="px-6 py-3 bg-primary text-white font-bold rounded-xl shadow-premium hover:bg-accent transition-all active:scale-95 flex items-center gap-2"
-                >
-                    <Plus size={20} />
-                    เพิ่มบริการ
-                </button>
+                <div className="flex gap-4">
+                    {hasOrderChanged && (
+                        <button
+                            onClick={saveNewOrder}
+                            className="px-6 py-3 bg-emerald-500 text-white rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-emerald-500/20 hover:bg-emerald-600 transition-all active:scale-95"
+                        >
+                            <Columns size={18} /> บันทึกลำดับใหม่
+                        </button>
+                    )}
+                    <button
+                        onClick={() => { resetForm(); setShowModal(true); }}
+                        className="px-6 py-3 bg-primary text-white font-bold rounded-xl shadow-premium hover:bg-accent transition-all active:scale-95 flex items-center gap-2"
+                    >
+                        <Plus size={20} />
+                        เพิ่มบริการ
+                    </button>
+                </div>
             </div>
 
             {/* Services Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {services.map((service) => (
-                    <div key={service.id} className="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-lg transition-all">
-                        <div className="flex items-start justify-between mb-4">
-                            <div className="flex items-center gap-3">
-                                <GripVertical className="text-gray-300" size={16} />
-                                <span className="text-xs font-bold px-2 py-1 rounded-lg bg-blue-50 text-blue-600">
-                                    {categoryLabels[service.category] || service.category}
-                                </span>
+            <div className="space-y-4">
+                {services.length > 0 && (
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest px-4 flex items-center gap-2 mb-2">
+                        <Columns size={14} /> สามารถลากเพื่อจัดลำดับได้ (Drag to Reorder)
+                    </p>
+                )}
+                <Reorder.Group axis="y" values={services} onReorder={handleReorder} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {services.map((service) => (
+                        <Reorder.Item
+                            key={service.id}
+                            value={service}
+                            className="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-lg transition-all cursor-grab active:cursor-grabbing"
+                        >
+                            <div className="flex items-start justify-between mb-4">
+                                <div className="flex items-center gap-3">
+                                    <GripVertical className="text-gray-300" size={16} />
+                                    <span className="text-xs font-bold px-2 py-1 rounded-lg bg-blue-50 text-blue-600">
+                                        {categoryLabels[service.category] || service.category}
+                                    </span>
+                                </div>
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); openEditModal(service); }}
+                                        className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                                    >
+                                        <Edit size={16} className="text-gray-600" />
+                                    </button>
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); handleDelete(service.id); }}
+                                        className="p-2 hover:bg-red-50 rounded-lg transition-colors"
+                                    >
+                                        <Trash2 size={16} className="text-red-500" />
+                                    </button>
+                                </div>
                             </div>
-                            <div className="flex gap-2">
-                                <button
-                                    onClick={() => openEditModal(service)}
-                                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                                >
-                                    <Edit size={16} className="text-gray-600" />
-                                </button>
-                                <button
-                                    onClick={() => handleDelete(service.id)}
-                                    className="p-2 hover:bg-red-50 rounded-lg transition-colors"
-                                >
-                                    <Trash2 size={16} className="text-red-500" />
-                                </button>
-                            </div>
-                        </div>
-                        <h3 className="font-bold text-lg mb-2">{service.title}</h3>
-                        <p className="text-sm text-gray-500 line-clamp-2">{service.description}</p>
-                        {service.link && (
-                            <a href={service.link} className="text-xs text-accent hover:underline mt-2 block truncate">
-                                {service.link}
-                            </a>
-                        )}
-                    </div>
-                ))}
+                            <h3 className="font-bold text-lg mb-2">{service.title}</h3>
+                            <p className="text-sm text-gray-500 line-clamp-2">{service.description}</p>
+                            {service.link && (
+                                <a href={service.link} target="_blank" rel="noreferrer" onClick={e => e.stopPropagation()} className="text-xs text-accent hover:underline mt-2 block truncate">
+                                    {service.link}
+                                </a>
+                            )}
+                        </Reorder.Item>
+                    ))}
+                </Reorder.Group>
             </div>
 
             {services.length === 0 && (
@@ -181,9 +230,14 @@ export default function ServicesPage() {
 
             {/* Modal */}
             {showModal && (
-                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                        <h2 className="text-2xl font-black mb-6">{editing ? "แก้ไขบริการ" : "เพิ่มบริการใหม่"}</h2>
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => { setShowModal(false); resetForm(); }}>
+                    <div className="bg-white rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+                        <div className="flex justify-between items-center mb-6">
+                            <h2 className="text-2xl font-black">{editing ? "แก้ไขบริการ" : "เพิ่มบริการใหม่"}</h2>
+                            <button onClick={() => { setShowModal(false); resetForm(); }} className="p-2 hover:bg-gray-100 rounded-full text-gray-400 transition-colors">
+                                <X size={24} />
+                            </button>
+                        </div>
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
                                 <label className="block text-sm font-bold mb-2">ชื่อบริการ</label>

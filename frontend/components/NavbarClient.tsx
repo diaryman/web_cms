@@ -13,7 +13,7 @@ interface NavbarClientProps {
     domain?: string;
 }
 
-export default function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost:3000" }: NavbarClientProps) {
+export default function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost" }: NavbarClientProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);

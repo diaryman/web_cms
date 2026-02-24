@@ -110,6 +110,33 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/admin/galleries/edit/[id]/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/galleries/edit/[id]">> = Specific
+  const handler = {} as typeof import("../../../app/admin/galleries/edit/[id]/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/admin/galleries/new/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/galleries/new">> = Specific
+  const handler = {} as typeof import("../../../app/admin/galleries/new/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/admin/galleries/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/admin/galleries">> = Specific
+  const handler = {} as typeof import("../../../app/admin/galleries/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/admin/hero-slides/new/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/admin/hero-slides/new">> = Specific
@@ -294,6 +321,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends AppPageConfig<"/pdpa">> = Specific
   const handler = {} as typeof import("../../../app/pdpa/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/ai-assist/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/ai-assist">> = Specific
+  const handler = {} as typeof import("../../../app/api/ai-assist/route.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

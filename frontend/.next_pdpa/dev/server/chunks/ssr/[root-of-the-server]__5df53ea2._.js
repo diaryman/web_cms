@@ -76,8 +76,12 @@ async function fetchAPI(path, urlParamsObject = {}, options = {}) {
     } catch (error) {
         console.error(`Fetch failed for URL: ${requestUrl}`);
         console.error(`Error name: ${error.name}, Message: ${error.message}`);
+        // If it's our thrown custom error, re-throw it instead of hiding it
+        if (error.message.startsWith("API returned ")) {
+            throw error;
+        }
         // Re-throw with more context
-        throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running?`);
+        throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
     }
 }
 }),
@@ -130,7 +134,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 ;
 ;
 ;
-async function Navbar({ domain = "localhost:3000" }) {
+async function Navbar({ domain = "localhost" }) {
     // Fetch site config (Server Side)
     let siteName = domain === "pdpa.localhost" ? "PDPA Center" : "DataGOV";
     let navItems = undefined;
@@ -217,7 +221,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 ;
 ;
 ;
-async function Footer({ domain = "localhost:3000" }) {
+async function Footer({ domain = "localhost" }) {
     let config = null;
     try {
         const data = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["fetchAPI"])("/site-configs", {
@@ -791,12 +795,15 @@ async function generateMetadata(props) {
 }
 async function NewsPage(props) {
     const searchParams = await props.searchParams;
-    let domain = "localhost:3000";
+    let domain = "localhost";
     if (searchParams.site === "pdpa") {
         domain = "pdpa.localhost";
     }
     let announcement = undefined;
     let notifications = undefined;
+    let initialCategories = [];
+    let initialArticles = [];
+    let initialMeta = null;
     try {
         const config = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["fetchAPI"])("/site-configs", {
             filters: {
@@ -806,8 +813,39 @@ async function NewsPage(props) {
         const siteConfig = config.data?.[0];
         announcement = siteConfig?.announcement;
         notifications = siteConfig?.notifications;
+        // Pre-fetch categories
+        const catsRes = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["fetchAPI"])("/categories", {
+            filters: {
+                domain,
+                type: "news"
+            }
+        });
+        initialCategories = catsRes.data || [];
+        // Pre-fetch articles
+        const page = Number(searchParams.page) || 1;
+        const q = searchParams.q || "";
+        const filters = {
+            domain
+        };
+        if (q) filters.title = {
+            $containsi: q
+        };
+        // For category filter, we'd need it in searchParams, but let's just pass initial
+        const articlesRes = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["fetchAPI"])("/articles", {
+            sort: [
+                "publishedAt:desc"
+            ],
+            pagination: {
+                page,
+                pageSize: 9
+            },
+            populate: "*",
+            filters: filters
+        });
+        initialArticles = articlesRes.data || [];
+        initialMeta = articlesRes.meta || null;
     } catch (e) {
-        console.error("Error fetching announcement", e);
+        console.error("Error fetching news data", e);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
@@ -817,7 +855,7 @@ async function NewsPage(props) {
                 notifications: notifications
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/news/page.tsx",
-                lineNumber: 42,
+                lineNumber: 69,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$app$2f$news$2f$NewsPageClient$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
@@ -825,21 +863,24 @@ async function NewsPage(props) {
                     domain: domain
                 }, void 0, false, {
                     fileName: "[project]/Desktop/my_cms/frontend/app/news/page.tsx",
-                    lineNumber: 44,
+                    lineNumber: 71,
                     columnNumber: 25
                 }, void 0),
                 footer: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$Footer$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                     domain: domain
                 }, void 0, false, {
                     fileName: "[project]/Desktop/my_cms/frontend/app/news/page.tsx",
-                    lineNumber: 45,
+                    lineNumber: 72,
                     columnNumber: 25
                 }, void 0),
-                searchParamsPromise: props.searchParams,
-                domain: domain
+                searchParams: searchParams,
+                domain: domain,
+                initialArticles: initialArticles,
+                initialCategories: initialCategories,
+                initialMeta: initialMeta
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/news/page.tsx",
-                lineNumber: 43,
+                lineNumber: 70,
                 columnNumber: 13
             }, this)
         ]

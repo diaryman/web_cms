@@ -481,7 +481,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   attributes: {
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     content: Schema.Attribute.DynamicZone<
-      ['shared.rich-text', 'shared.hero', 'shared.news-grid']
+      ['shared.rich-text', 'shared.hero', 'shared.news-grid', 'shared.gallery']
     >;
     coverImage: Schema.Attribute.Media<'images'>;
     createdAt: Schema.Attribute.DateTime;

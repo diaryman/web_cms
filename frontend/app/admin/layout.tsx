@@ -1,9 +1,10 @@
 "use client";
 
-import { LayoutDashboard, FileText, ShieldCheck, Settings, Bell, BarChart3, MessageSquare, History, User, LogOut, Search, ChevronRight, Menu, X, LayoutTemplate, Plus, HelpCircle, FolderTree, Mail } from "lucide-react";
+import { LayoutDashboard, FileText, ShieldCheck, Settings, Bell, BarChart3, MessageSquare, History, User, LogOut, Search, ChevronRight, Menu, X, LayoutTemplate, Plus, HelpCircle, FolderTree, Mail, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
-import React, { Suspense } from "react";
-import { useSearchParams, usePathname } from "next/navigation";
+import React, { Suspense, useEffect, useState } from "react";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { checkAuthAction, logoutAction } from "@/app/actions/auth";
 
 export default function AdminLayout({
     children,
@@ -22,20 +23,24 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
     const siteParam = searchParams.get("site") || "main";
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
     const homeLink = siteParam === "pdpa" ? "/pdpa" : "/";
-    const [isAuthorized, setIsAuthorized] = React.useState(false);
+    const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
+    const router = useRouter();
 
-    React.useEffect(() => {
-        const checkAuth = () => {
-            const auth = sessionStorage.getItem(`admin_auth_${siteParam}`);
-            setIsAuthorized(auth === "true");
+    useEffect(() => {
+        const checkAuth = async () => {
+            const auth = await checkAuthAction(siteParam);
+            setIsAuthorized(auth);
         };
 
         checkAuth();
-        window.addEventListener('storage', checkAuth);
-        window.addEventListener('admin-auth-change', checkAuth);
+
+        const handleAuthChange = () => {
+            checkAuth();
+        };
+
+        window.addEventListener('admin-auth-change', handleAuthChange);
         return () => {
-            window.removeEventListener('storage', checkAuth);
-            window.removeEventListener('admin-auth-change', checkAuth);
+            window.removeEventListener('admin-auth-change', handleAuthChange);
         };
     }, [siteParam]);
 
@@ -54,11 +59,16 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
         { icon: <BarChart3 size={20} />, label: "สถิติและการใช้งาน", href: `/admin/stats`, path: `/admin/stats` },
         { icon: <MessageSquare size={20} />, label: "ตั้งค่าแชทบอท", href: `/admin/chatbot`, path: `/admin/chatbot` },
         { icon: <Mail size={20} />, label: "จัดการ Newsletter", href: `/admin/newsletter`, path: `/admin/newsletter` },
+        { icon: <ImageIcon size={20} />, label: "จัดการแกลเลอรี่ลูกเล่น", href: `/admin/galleries`, path: `/admin/galleries` },
         { icon: <LayoutTemplate size={20} />, label: "จัดการสไลด์หน้าแรก", href: `/admin/hero-slides`, path: `/admin/hero-slides` },
         { icon: <History size={20} />, label: "ประวัติการใช้งาน", href: `/admin/logs`, path: `/admin/logs` },
     ];
 
-    if (!isAuthorized) {
+    if (isAuthorized === null) {
+        return <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center"><p className="text-gray-400 font-bold">กำลังตรวจสอบสิทธิ์...</p></div>;
+    }
+
+    if (isAuthorized === false) {
         return <div className="min-h-screen bg-[#f8fafc]">{children}</div>;
     }
 
@@ -66,14 +76,16 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
         <div className="min-h-screen bg-[#f8fafc] flex">
             {/* Sidebar */}
             <aside className="w-72 bg-white border-r border-gray-100 flex flex-col fixed h-full z-50">
+                {/* Accent top strip — reflects the active site theme */}
+                <div className="h-1 w-full" style={{ background: "linear-gradient(to right, var(--primary-color), var(--accent-color))" }} />
                 <div className="p-8">
                     <Link href={homeLink} className="flex items-center gap-3 group">
-                        <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold shadow-lg" style={{ background: "var(--primary-color)" }}>
                             <ShieldCheck size={24} />
                         </div>
                         <div className="flex flex-col">
-                            <span className="font-heading font-black text-xl tracking-tighter leading-none text-primary">{siteName}</span>
-                            <span className="text-[8px] uppercase font-bold tracking-[0.2em] text-accent">ระบบจัดการเนื้อหา</span>
+                            <span className="font-heading font-black text-xl tracking-tighter leading-none" style={{ color: "var(--primary-color)" }}>{siteName}</span>
+                            <span className="text-[8px] uppercase font-bold tracking-[0.2em]" style={{ color: "var(--accent-color)" }}>ระบบจัดการเนื้อหา</span>
                         </div>
                     </Link>
                 </div>
@@ -106,22 +118,25 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                 </nav>
 
                 <div className="p-6 border-t border-gray-50 space-y-4">
-                    <div className="bg-blue-50/50 p-4 rounded-2xl border border-blue-100">
+                    <div className="p-4 rounded-2xl border" style={{ background: "var(--accent-subtle)", borderColor: "var(--accent-glow)" }}>
                         <div className="flex items-center gap-2 mb-2">
-                            <HelpCircle size={16} className="text-accent" />
-                            <p className="text-xs font-bold text-primary">ศูนย์ช่วยเหลือและคู่มือ</p>
+                            <HelpCircle size={16} style={{ color: "var(--accent-color)" }} />
+                            <p className="text-xs font-bold" style={{ color: "var(--primary-color)" }}>ศูนย์ช่วยเหลือและคู่มือ</p>
                         </div>
                         <p className="text-[10px] text-gray-500 leading-relaxed mb-3">ตรวจสอบคู่มือการใช้งานระบบจัดการข้อมูลธรรมาภิบาล</p>
-                        <button className="w-full py-2 bg-white text-[10px] font-bold text-primary rounded-xl border border-blue-100 hover:bg-blue-50 transition-colors">
+                        <button
+                            className="w-full py-2 bg-white text-[10px] font-bold rounded-xl border transition-colors"
+                            style={{ color: "var(--primary-color)", borderColor: "var(--accent-glow)" }}
+                        >
                             ดูคู่มือการใช้งาน
                         </button>
                     </div>
 
                     <button
-                        onClick={() => {
-                            sessionStorage.removeItem(`admin_auth_${siteParam}`);
+                        onClick={async () => {
+                            await logoutAction(siteParam);
                             window.dispatchEvent(new Event('admin-auth-change'));
-                            window.location.href = homeLink;
+                            window.location.href = `${pathname}?site=${siteParam}`;
                         }}
                         className="w-full flex items-center gap-4 px-4 py-3 text-red-500 font-bold text-sm hover:bg-red-50 rounded-2xl transition-all"
                     >

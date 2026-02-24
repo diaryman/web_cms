@@ -76,8 +76,12 @@ async function fetchAPI(path, urlParamsObject = {}, options = {}) {
     } catch (error) {
         console.error(`Fetch failed for URL: ${requestUrl}`);
         console.error(`Error name: ${error.name}, Message: ${error.message}`);
+        // If it's our thrown custom error, re-throw it instead of hiding it
+        if (error.message.startsWith("API returned ")) {
+            throw error;
+        }
         // Re-throw with more context
-        throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running?`);
+        throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
     }
 }
 }),
@@ -130,7 +134,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 ;
 ;
 ;
-async function Navbar({ domain = "localhost:3000" }) {
+async function Navbar({ domain = "localhost" }) {
     // Fetch site config (Server Side)
     let siteName = domain === "pdpa.localhost" ? "PDPA Center" : "DataGOV";
     let navItems = undefined;
@@ -217,7 +221,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 ;
 ;
 ;
-async function Footer({ domain = "localhost:3000" }) {
+async function Footer({ domain = "localhost" }) {
     let config = null;
     try {
         const data = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["fetchAPI"])("/site-configs", {

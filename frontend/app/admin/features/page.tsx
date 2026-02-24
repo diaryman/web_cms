@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
-import { Save, Loader2, Plus, Trash2, Edit2, X, Move, LayoutGrid } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { Save, Loader2, Plus, Trash2, Edit2, X, Move, LayoutGrid, Columns, GripVertical } from "lucide-react";
+import { motion, AnimatePresence, Reorder } from "motion/react";
 
 export default function AdminFeaturesPage() {
     const searchParams = useSearchParams();
@@ -15,6 +15,7 @@ export default function AdminFeaturesPage() {
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingFeature, setEditingFeature] = useState<any | null>(null);
+    const [hasOrderChanged, setHasOrderChanged] = useState(false);
 
     const initialForm = {
         title: "",
@@ -36,6 +37,7 @@ export default function AdminFeaturesPage() {
                 sort: ["section:asc", "order:asc"]
             });
             setFeatures(res.data || []);
+            setHasOrderChanged(false);
         } catch (error) {
             console.error("Error fetching features", error);
         } finally {
@@ -100,6 +102,31 @@ export default function AdminFeaturesPage() {
         }
     };
 
+    const handleReorder = (newOrder: any[]) => {
+        setFeatures(newOrder);
+        setHasOrderChanged(true);
+    };
+
+    const saveNewOrder = async () => {
+        setLoading(true);
+        try {
+            await Promise.all(features.map((feature, index) =>
+                fetchAPI(`/features/${feature.documentId}`, {}, {
+                    method: "PUT",
+                    body: JSON.stringify({ data: { order: index + 1 } })
+                })
+            ));
+            setHasOrderChanged(false);
+            alert("บันทึกลำดับเรียบร้อยแล้ว");
+            fetchFeatures();
+        } catch (err) {
+            console.error("Failed to save order", err);
+            alert("เกิดข้อผิดพลาดในการบันทึกลำดับ");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="max-w-6xl mx-auto pb-20">
             <div className="flex justify-between items-center mb-8">
@@ -107,48 +134,68 @@ export default function AdminFeaturesPage() {
                     <h1 className="text-3xl font-black font-heading text-primary mb-2">จัดการจุดเด่น/หลักการ</h1>
                     <p className="text-gray-500">จัดการข้อมูล Features ที่แสดงหน้าแรก</p>
                 </div>
-                <button
-                    onClick={handleCreate}
-                    className="px-6 py-3 bg-primary text-white font-bold rounded-2xl shadow-premium hover:bg-accent transition-all active:scale-95 flex items-center gap-2"
-                >
-                    <Plus size={20} /> เพิ่มรายการใหม่
-                </button>
+                <div className="flex gap-4">
+                    {hasOrderChanged && (
+                        <button
+                            onClick={saveNewOrder}
+                            className="px-6 py-3 text-white rounded-2xl font-bold flex items-center gap-2 shadow-lg transition-all active:scale-95" style={{ background: "var(--accent-color)" }}
+                        >
+                            <Columns size={18} /> บันทึกลำดับใหม่
+                        </button>
+                    )}
+                    <button
+                        onClick={handleCreate}
+                        className="px-6 py-3 bg-primary text-white font-bold rounded-2xl shadow-premium hover:bg-accent transition-all active:scale-95 flex items-center gap-2"
+                    >
+                        <Plus size={20} /> เพิ่มรายการใหม่
+                    </button>
+                </div>
             </div>
 
             {loading ? (
                 <div className="flex justify-center py-20"><Loader2 className="animate-spin text-primary" size={40} /></div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {features.map((feature) => (
-                        <div key={feature.id} className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-md transition-all group relative">
-                            <span className="absolute top-4 right-4 text-[10px] font-bold bg-gray-100 px-2 py-1 rounded-lg text-gray-500 uppercase tracking-widest">
-                                {feature.section}
-                            </span>
-                            <div className="w-12 h-12 rounded-xl bg-blue-50 text-primary flex items-center justify-center mb-4">
-                                <LayoutGrid size={24} />
-                            </div>
-                            <h3 className="text-lg font-bold font-heading text-gray-800 mb-2 truncate">{feature.title}</h3>
-                            <p className="text-gray-500 text-sm mb-4 line-clamp-2 min-h-[40px]">{feature.description}</p>
-
-                            <div className="flex items-center justify-between pt-4 border-t border-gray-50">
-                                <div className="text-xs font-bold text-gray-400">Order: {feature.order}</div>
-                                <div className="flex gap-2">
-                                    <button
-                                        onClick={() => handleEdit(feature)}
-                                        className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-primary transition-colors"
-                                    >
-                                        <Edit2 size={16} />
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(feature.documentId)}
-                                        className="p-2 hover:bg-red-50 rounded-lg text-gray-400 hover:text-red-500 transition-colors"
-                                    >
-                                        <Trash2 size={16} />
-                                    </button>
+                <div className="space-y-4">
+                    {features.length > 0 && (
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest px-4 flex items-center gap-2 mb-2">
+                            <Columns size={14} /> สามารถลากเพื่อจัดลำดับได้ (Drag to Reorder)
+                        </p>
+                    )}
+                    <Reorder.Group axis="y" values={features} onReorder={handleReorder} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {features.map((feature) => (
+                            <Reorder.Item key={feature.id} value={feature} className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-md transition-all group relative cursor-grab active:cursor-grabbing">
+                                <span className="absolute top-4 right-4 text-[10px] font-bold bg-gray-100 px-2 py-1 rounded-lg text-gray-500 uppercase tracking-widest">
+                                    {feature.section}
+                                </span>
+                                <div className="flex items-center gap-3 mb-4">
+                                    <GripVertical className="text-gray-300" size={16} />
+                                    <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: "var(--accent-subtle)", color: "var(--accent-color)" }}>
+                                        <LayoutGrid size={24} />
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    ))}
+                                <h3 className="text-lg font-bold font-heading text-gray-800 mb-2 truncate">{feature.title}</h3>
+                                <p className="text-gray-500 text-sm mb-4 line-clamp-2 min-h-[40px]">{feature.description}</p>
+
+                                <div className="flex items-center justify-between pt-4 border-t border-gray-50">
+                                    <div className="text-xs font-bold text-gray-400">Order: {feature.order}</div>
+                                    <div className="flex gap-2">
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); handleEdit(feature); }}
+                                            className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-primary transition-colors"
+                                        >
+                                            <Edit2 size={16} />
+                                        </button>
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); handleDelete(feature.documentId); }}
+                                            className="p-2 hover:bg-red-50 rounded-lg text-gray-400 hover:text-red-500 transition-colors"
+                                        >
+                                            <Trash2 size={16} />
+                                        </button>
+                                    </div>
+                                </div>
+                            </Reorder.Item>
+                        ))}
+                    </Reorder.Group>
                 </div>
             )}
 

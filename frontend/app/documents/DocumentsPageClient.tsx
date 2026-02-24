@@ -12,7 +12,7 @@ interface DocumentsPageClientProps {
     domain?: string;
 }
 
-export default function DocumentsPageClient({ navbar, footer, domain = "localhost:3000" }: DocumentsPageClientProps) {
+export default function DocumentsPageClient({ navbar, footer, domain = "localhost" }: DocumentsPageClientProps) {
     const [docs, setDocs] = useState<any[]>([]);
     const [categories, setCategories] = useState<any[]>([]);
     const [filteredDocs, setFilteredDocs] = useState<any[]>([]);
@@ -64,16 +64,9 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
         setFilteredDocs(result);
     }, [searchQuery, selectedCategory, docs]);
 
-    const getColor = (cat: string) => {
-        switch (cat) {
-            case "Policy": return "text-blue-600 bg-blue-50 border-blue-100";
-            case "Manual": return "text-indigo-600 bg-indigo-50 border-indigo-100";
-            case "Guideline": return "text-violet-600 bg-violet-50 border-violet-100";
-            case "Standard": return "text-emerald-600 bg-emerald-50 border-emerald-100";
-            case "Form": return "text-amber-600 bg-amber-50 border-amber-100";
-            case "Report": return "text-rose-600 bg-rose-50 border-rose-100";
-            default: return "text-gray-600 bg-gray-50 border-gray-100";
-        }
+    // All categories use the active theme accent colour — keeps it template-responsive
+    const getColor = (_cat: string) => {
+        return "";
     };
 
     const getIcon = (cat: string) => {
@@ -87,7 +80,7 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
     };
 
     return (
-        <main className="min-h-screen bg-[#f8fafc] selection:bg-blue-100">
+        <main className="min-h-screen bg-[#f8fafc]">
             {navbar}
 
             <div className="pt-[calc(6rem+44px)] pb-12 bg-white relative overflow-hidden border-b border-gray-100">
@@ -100,7 +93,7 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
                             className="text-4xl md:text-6xl font-black font-heading text-slate-900 mb-6 tracking-tight leading-tight"
                         >
                             ศูนย์รวมเอกสาร <br />
-                            <span className="text-blue-600">เผยแพร่และดาวน์โหลด</span>
+                            <span style={{ color: "var(--accent-color)" }}>เผยแพร่และดาวน์โหลด</span>
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
@@ -121,7 +114,7 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="bg-white p-4 rounded-3xl shadow-xl shadow-blue-900/5 border border-gray-100 flex flex-col md:flex-row gap-4 items-center justify-between mb-12"
+                    className="bg-white p-4 rounded-3xl shadow-xl border border-gray-100 flex flex-col md:flex-row gap-4 items-center justify-between mb-12"
                 >
                     <div className="relative w-full md:max-w-md">
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
@@ -130,17 +123,18 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
                             placeholder="ค้นหาชื่อเอกสาร หรือรายละเอียด..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-blue-500/20 outline-none font-medium placeholder:text-gray-400 transition-all text-slate-700"
+                            className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-2xl border-none focus:ring-2 outline-none font-medium placeholder:text-gray-400 transition-all text-slate-700"
                         />
                     </div>
 
                     <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar">
                         <button
                             onClick={() => setSelectedCategory("all")}
-                            className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === "all"
-                                ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
-                                : "bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-blue-600"
-                                }`}
+                            className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all`}
+                            style={selectedCategory === "all"
+                                ? { background: "var(--accent-color)", color: "#fff", boxShadow: "0 8px 20px -4px var(--accent-glow)" }
+                                : { background: "#f9fafb", color: "#6b7280" }
+                            }
                         >
                             ทั้งหมด
                         </button>
@@ -148,10 +142,11 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
                             <button
                                 key={cat.id}
                                 onClick={() => setSelectedCategory(cat.name)}
-                                className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${selectedCategory === cat.name
-                                    ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20"
-                                    : "bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-blue-600"
-                                    }`}
+                                className={`px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all`}
+                                style={selectedCategory === cat.name
+                                    ? { background: "var(--accent-color)", color: "#fff", boxShadow: "0 8px 20px -4px var(--accent-glow)" }
+                                    : { background: "#f9fafb", color: "#6b7280" }
+                                }
                             >
                                 {cat.name}
                             </button>
@@ -185,19 +180,27 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
                                         className="block h-full"
                                     >
                                         <SpotlightCard className="group bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative overflow-hidden cursor-pointer">
-                                            <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity text-blue-500">
+                                            <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "var(--accent-color)" }}>
                                                 <Download size={20} />
                                             </div>
 
                                             <div className="flex items-start gap-4 mb-4">
-                                                <div className={`w-14 h-14 ${styles} rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-sm`}>
+                                                <div
+                                                    className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-sm border"
+                                                    style={{ background: "var(--accent-subtle)", color: "var(--accent-color)", borderColor: "var(--accent-glow)" }}
+                                                >
                                                     {getIcon(doc.category)}
                                                 </div>
                                                 <div>
-                                                    <span className={`inline-block px-2.5 py-1 ${styles} bg-opacity-50 text-[10px] font-black uppercase tracking-widest rounded-lg mb-2`}>
+                                                    <span
+                                                        className="inline-block px-2.5 py-1 text-[10px] font-black uppercase tracking-widest rounded-lg mb-2"
+                                                        style={{ background: "var(--accent-subtle)", color: "var(--accent-color)" }}
+                                                    >
                                                         {doc.category}
                                                     </span>
-                                                    <h3 className="font-bold text-slate-800 text-lg leading-tight group-hover:text-blue-600 transition-colors line-clamp-2">
+                                                    <h3
+                                                        className="font-bold text-slate-800 text-lg leading-tight transition-colors line-clamp-2 group-hover:text-accent"
+                                                    >
                                                         {doc.title}
                                                     </h3>
                                                 </div>
@@ -209,7 +212,7 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
 
                                             <div className="mt-auto pt-4 border-t border-gray-50 flex justify-between items-center text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                 <span>{doc.year || new Date().getFullYear()} Edition</span>
-                                                <span className="flex items-center gap-1 group-hover:text-blue-600 transition-colors">
+                                                <span className="flex items-center gap-1 transition-colors" style={{ color: "var(--accent-color)" }}>
                                                     Download <ChevronRight size={14} />
                                                 </span>
                                             </div>

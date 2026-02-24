@@ -81,14 +81,18 @@ function CreateDocumentForm() {
             }
 
             // 2. Create Document
+            const publishedYear = formData.publishedAt ? new Date(formData.publishedAt).getFullYear() + 543 : new Date().getFullYear() + 543;
+            const payload: any = {
+                title: formData.title,
+                category: formData.category,
+                domain: formData.domain,
+                year: publishedYear,
+                file: uploadedFileId
+            };
+
             await fetchAPI("/policy-documents", {}, {
                 method: "POST",
-                body: JSON.stringify({
-                    data: {
-                        ...formData,
-                        file: uploadedFileId
-                    }
-                })
+                body: JSON.stringify({ data: payload })
             });
             alert("สร้างเอกสารและอัปโหลดไฟล์สำเร็จ");
             router.push(`/admin/documents?site=${siteParam}`);
@@ -200,7 +204,7 @@ function CreateDocumentForm() {
                         <div>
                             <label className="block text-sm font-bold text-gray-700 mb-2">รายละเอียด (Description)</label>
                             <RichTextEditor
-                                value={formData.description}
+                                value={formData.description || ""}
                                 onChange={(value) => setFormData({ ...formData, description: value })}
                                 placeholder="รายละเอียดเกี่ยวกับเอกสาร..."
                             />

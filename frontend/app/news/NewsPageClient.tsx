@@ -9,36 +9,58 @@ import React, { useState, useEffect } from "react";
 export default function NewsPageClient({
     header,
     footer,
-    searchParamsPromise,
-    domain = "localhost:3000"
+    searchParams,
+    domain = "localhost",
+    initialArticles = [],
+    initialCategories = [],
+    initialMeta = null
 }: {
     header: React.ReactNode;
     footer: React.ReactNode;
-    searchParamsPromise: Promise<{ page?: string; q?: string }>;
+    searchParams: { page?: string; q?: string; site?: string };
     domain?: string;
+    initialArticles?: any[];
+    initialCategories?: any[];
+    initialMeta?: any;
 }) {
-    const [articles, setArticles] = useState<any[]>([]);
-    const [categories, setCategories] = useState<any[]>([]);
-    const [meta, setMeta] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
-    const [params, setParams] = useState<{ page: number; q: string }>({ page: 1, q: "" });
+    const [articles, setArticles] = useState<any[]>(initialArticles);
+    const [categories, setCategories] = useState<any[]>(initialCategories);
+    const [meta, setMeta] = useState<any>(initialMeta);
+    const [loading, setLoading] = useState(false);
+
+    const [params, setParams] = useState<{ page: number; q: string }>({ page: Number(searchParams.page) || 1, q: searchParams.q || "" });
     const [selectedCategory, setSelectedCategory] = useState("ทั้งหมด");
+    const prevInitialArticles = React.useRef(initialArticles);
+
+    // Sync state when props strictly change from SSR navigation
+    if (initialArticles !== prevInitialArticles.current) {
+        prevInitialArticles.current = initialArticles;
+        // Only accept SSR articles if we aren't filtering purely on the client
+        if (selectedCategory === "ทั้งหมด") {
+            setArticles(initialArticles);
+            setMeta(initialMeta);
+        }
+    }
 
     useEffect(() => {
         const load = async () => {
-            const p = await searchParamsPromise;
-            const page = Number(p.page) || 1;
-            const q = p.q || "";
+            const page = Number(searchParams.page) || 1;
+            const q = searchParams.q || "";
             setParams({ page, q });
+
+            // If we are showing ALL categories, the Server Component already fetched exactly what we need
+            // So we don't need to re-fetch on the client unless category changed to something else.
+            if (selectedCategory === "ทั้งหมด" && initialArticles === prevInitialArticles.current) {
+                // Return if articles list is already populated accurately from Server
+                if (articles.length > 0 || initialArticles.length === 0) {
+                    // Note: We already set articles from props above. No need to fetch.
+                    setLoading(false);
+                    return;
+                }
+            }
 
             setLoading(true);
             try {
-                // Fetch Categories
-                const catsRes = await fetchAPI("/categories", {
-                    filters: { domain, type: "news" }
-                });
-                setCategories(catsRes.data || []);
-
                 // Fetch Articles
                 const filters: any = { domain };
                 if (q) filters.title = { $containsi: q };
@@ -52,7 +74,7 @@ export default function NewsPageClient({
                     populate: "*",
                     filters: filters
                 });
-                setArticles(data);
+                setArticles(data || []);
                 setMeta(meta);
             } catch (e) {
                 console.error(e);
@@ -61,9 +83,13 @@ export default function NewsPageClient({
             }
         };
         load();
-    }, [searchParamsPromise, selectedCategory, domain]);
+    }, [searchParams, selectedCategory, domain]);
 
-    const placeholders = ["from-blue-100 to-indigo-100", "from-indigo-100 to-purple-100", "from-cyan-100 to-blue-100"];
+    // Placeholder gradients using accent colour — rendered as style
+    const placeholderStyle = (index: number) => {
+        const opacities = [0.08, 0.12, 0.06];
+        return { background: `linear-gradient(135deg, var(--accent-subtle), var(--accent-glow))`, opacity: opacities[index % 3] + 0.5 };
+    };
 
     return (
         <main className="min-h-screen bg-[#fcfdfe]">
@@ -161,7 +187,7 @@ export default function NewsPageClient({
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: index * 0.05 }}
-                                        className="group flex flex-col glass rounded-[2.5rem] border border-white p-4 shadow-premium hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2 h-full"
+                                        className="group flex flex-col glass rounded-[2.5rem] border border-white p-4 shadow-premium transition-all duration-500 hover:-translate-y-2 h-full"
                                     >
                                         <div className="relative aspect-[16/10] rounded-[2rem] overflow-hidden mb-6">
                                             {coverImageUrl ? (
@@ -171,7 +197,10 @@ export default function NewsPageClient({
                                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                                 />
                                             ) : (
-                                                <div className={`w-full h-full bg-linear-to-br ${placeholders[index % 3]} opacity-60 flex items-center justify-center font-bold text-primary/20 text-4xl`}>
+                                                <div
+                                                    className="w-full h-full flex items-center justify-center font-bold text-white/30 text-4xl"
+                                                    style={placeholderStyle(index)}
+                                                >
                                                     {domain === "pdpa.localhost" ? "PDPA" : "DataGOV"}
                                                 </div>
                                             )}
@@ -184,7 +213,7 @@ export default function NewsPageClient({
                                         <div className="px-4 pb-4 flex flex-col flex-grow">
                                             <div className="flex items-center gap-4 text-gray-400 text-xs font-bold uppercase tracking-wider mb-4">
                                                 <span className="flex items-center gap-1.5"><Calendar size={14} className="text-accent" /> {date}</span>
-                                                <span className="flex items-center gap-1.5"><User size={14} className="text-indigo-400" /> Admin</span>
+                                                <span className="flex items-center gap-1.5"><User size={14} className="text-accent" style={{ opacity: 0.6 }} /> Admin</span>
                                             </div>
                                             <h3 className="text-xl font-bold font-heading text-primary mb-4 group-hover:text-accent transition-colors line-clamp-2 min-h-[3.5rem] leading-tight">
                                                 {item.title}
@@ -192,7 +221,7 @@ export default function NewsPageClient({
                                             <div className="mt-auto">
                                                 <div className="inline-flex items-center gap-2 text-accent font-bold text-sm group/btn">
                                                     อ่านรายละเอียด
-                                                    <div className="w-8 h-8 rounded-full glass border border-blue-100 flex items-center justify-center group-hover/btn:bg-accent group-hover/btn:text-white transition-all duration-300">
+                                                    <div className="w-8 h-8 rounded-full glass border flex items-center justify-center group-hover/btn:bg-accent group-hover/btn:text-white transition-all duration-300" style={{ borderColor: 'var(--accent-subtle)' }}>
                                                         <ChevronRight size={14} />
                                                     </div>
                                                 </div>

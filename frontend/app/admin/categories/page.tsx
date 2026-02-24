@@ -35,6 +35,7 @@ function CategoriesContent() {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedType, setSelectedType] = useState("all");
     const [isAdding, setIsAdding] = useState(false);
+    const [editingCategory, setEditingCategory] = useState<Category | null>(null);
     const [newCategory, setNewCategory] = useState({ name: "", type: "news" });
 
     const loadCategories = async () => {
@@ -56,24 +57,49 @@ function CategoriesContent() {
         loadCategories();
     }, [targetDomain]);
 
-    const handleAdd = async (e: React.FormEvent) => {
+    const handleAddOrEdit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await fetchAPI("/categories", {}, {
-                method: "POST",
-                body: JSON.stringify({
-                    data: {
-                        ...newCategory,
-                        domain: targetDomain
-                    }
-                })
-            });
+            if (editingCategory) {
+                await fetchAPI(`/categories/${editingCategory.documentId}`, {}, {
+                    method: "PUT",
+                    body: JSON.stringify({
+                        data: {
+                            ...newCategory,
+                            domain: targetDomain
+                        }
+                    })
+                });
+            } else {
+                await fetchAPI("/categories", {}, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        data: {
+                            ...newCategory,
+                            domain: targetDomain
+                        }
+                    })
+                });
+            }
             setIsAdding(false);
+            setEditingCategory(null);
             setNewCategory({ name: "", type: "news" });
             loadCategories();
         } catch (error) {
-            alert("เพิ่มหมวดหมู่ไม่สำเร็จ");
+            alert(editingCategory ? "แก้ไขหมวดหมู่ไม่สำเร็จ" : "เพิ่มหมวดหมู่ไม่สำเร็จ");
         }
+    };
+
+    const handleEditClick = (cat: Category) => {
+        setEditingCategory(cat);
+        setNewCategory({ name: cat.name, type: cat.type || 'news' });
+        setIsAdding(true);
+    };
+
+    const handleCancel = () => {
+        setIsAdding(false);
+        setEditingCategory(null);
+        setNewCategory({ name: "", type: "news" });
     };
 
     const handleDelete = async (docId: string) => {
@@ -100,7 +126,11 @@ function CategoriesContent() {
                     <p className="text-gray-500">จัดการหมวดหมู่สำหรับข่าวสารและเอกสารของ {siteName}</p>
                 </div>
                 <button
-                    onClick={() => setIsAdding(true)}
+                    onClick={() => {
+                        setEditingCategory(null);
+                        setNewCategory({ name: "", type: "news" });
+                        setIsAdding(true);
+                    }}
                     className="px-6 py-3 bg-primary text-white rounded-2xl font-bold text-sm flex items-center gap-2 shadow-premium hover:bg-accent transition-all active:scale-95"
                 >
                     <Plus size={18} /> เพิ่มหมวดหมู่ใหม่
@@ -114,7 +144,7 @@ function CategoriesContent() {
                     animate={{ opacity: 1, y: 0 }}
                     className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-xl"
                 >
-                    <form onSubmit={handleAdd} className="flex flex-col md:flex-row gap-6 items-end">
+                    <form onSubmit={handleAddOrEdit} className="flex flex-col md:flex-row gap-6 items-end">
                         <div className="flex-1 space-y-2">
                             <label className="text-xs font-bold text-gray-400 uppercase tracking-widest px-2">ชื่อหมวดหมู่</label>
                             <input
@@ -139,7 +169,7 @@ function CategoriesContent() {
                         <div className="flex gap-2">
                             <button
                                 type="button"
-                                onClick={() => setIsAdding(false)}
+                                onClick={handleCancel}
                                 className="px-6 py-4 bg-gray-100 text-gray-500 font-bold rounded-2xl hover:bg-gray-200 transition-all"
                             >
                                 ยกเลิก
@@ -241,6 +271,12 @@ function CategoriesContent() {
                                         </td>
                                         <td className="px-6 py-5 text-right">
                                             <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button
+                                                    onClick={() => handleEditClick(cat)}
+                                                    className="p-2 text-indigo-500 hover:bg-indigo-50 rounded-lg transition-colors"
+                                                >
+                                                    <Edit size={18} />
+                                                </button>
                                                 <button
                                                     onClick={() => handleDelete(cat.documentId)}
                                                     className="p-2 text-rose-500 hover:bg-rose-50 rounded-lg transition-colors"

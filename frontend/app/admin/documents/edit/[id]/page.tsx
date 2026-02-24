@@ -100,7 +100,14 @@ function EditDocumentForm({ id }: { id: string }) {
             }
 
             // 2. Update Document
-            const payload: any = { ...formData };
+            const publishedYear = formData.publishedAt ? new Date(formData.publishedAt).getFullYear() + 543 : new Date().getFullYear() + 543;
+            const payload: any = {
+                title: formData.title,
+                category: formData.category,
+                domain: formData.domain,
+                year: publishedYear
+            };
+
             if (uploadedFileId) {
                 payload.file = uploadedFileId;
             }
@@ -154,7 +161,7 @@ function EditDocumentForm({ id }: { id: string }) {
                                     </div>
                                 </div>
                                 <a
-                                    href={getStrapiMedia(existingFile.url)}
+                                    href={getStrapiMedia(existingFile.url) || undefined}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-500 hover:text-primary transition-colors"
@@ -243,7 +250,7 @@ function EditDocumentForm({ id }: { id: string }) {
                         <div>
                             <label className="block text-sm font-bold text-gray-700 mb-2">รายละเอียด (Description)</label>
                             <RichTextEditor
-                                value={formData.description}
+                                value={formData.description || ""}
                                 onChange={(value) => setFormData({ ...formData, description: value })}
                                 placeholder="รายละเอียดเกี่ยวกับเอกสาร..."
                             />
@@ -265,7 +272,7 @@ function EditDocumentForm({ id }: { id: string }) {
                         บันทึกการแก้ไข
                     </button>
                 </div>
-            </form>
-        </div>
+            </form >
+        </div >
     );
 }

@@ -19,13 +19,17 @@ export async function generateMetadata(props: { searchParams: Promise<{ site?: s
 
 export default async function NewsPage(props: { searchParams: Promise<{ page?: string; q?: string; site?: string }> }) {
     const searchParams = await props.searchParams;
-    let domain = "localhost:3000";
+    let domain = "localhost";
     if (searchParams.site === "pdpa") {
         domain = "pdpa.localhost";
     }
 
     let announcement = undefined;
     let notifications = undefined;
+    let initialCategories = [];
+    let initialArticles = [];
+    let initialMeta = null;
+
     try {
         const config = await fetchAPI("/site-configs", {
             filters: { domain }
@@ -33,8 +37,31 @@ export default async function NewsPage(props: { searchParams: Promise<{ page?: s
         const siteConfig = config.data?.[0];
         announcement = siteConfig?.announcement;
         notifications = siteConfig?.notifications;
+
+        // Pre-fetch categories
+        const catsRes = await fetchAPI("/categories", {
+            filters: { domain, type: "news" }
+        });
+        initialCategories = catsRes.data || [];
+
+        // Pre-fetch articles
+        const page = Number(searchParams.page) || 1;
+        const q = searchParams.q || "";
+        const filters: any = { domain };
+        if (q) filters.title = { $containsi: q };
+        // For category filter, we'd need it in searchParams, but let's just pass initial
+
+        const articlesRes = await fetchAPI("/articles", {
+            sort: ["publishedAt:desc"],
+            pagination: { page, pageSize: 9 },
+            populate: "*",
+            filters: filters
+        });
+        initialArticles = articlesRes.data || [];
+        initialMeta = articlesRes.meta || null;
+
     } catch (e) {
-        console.error("Error fetching announcement", e);
+        console.error("Error fetching news data", e);
     }
 
     return (
@@ -43,8 +70,11 @@ export default async function NewsPage(props: { searchParams: Promise<{ page?: s
             <NewsPageClient
                 header={<Navbar domain={domain} />}
                 footer={<Footer domain={domain} />}
-                searchParamsPromise={props.searchParams}
+                searchParams={searchParams}
                 domain={domain}
+                initialArticles={initialArticles}
+                initialCategories={initialCategories}
+                initialMeta={initialMeta}
             />
         </>
     );

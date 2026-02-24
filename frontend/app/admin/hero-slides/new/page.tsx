@@ -24,6 +24,10 @@ function NewHeroSlideForm() {
     const [saving, setSaving] = useState(false);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [uploadMode, setUploadMode] = useState<"file" | "url">("file");
+    const [imageUrlInput, setImageUrlInput] = useState("");
+    const [fetchingUrl, setFetchingUrl] = useState(false);
+
     const [formData, setFormData] = useState({
         title: "",
         subtitle: "",
@@ -38,6 +42,31 @@ function NewHeroSlideForm() {
             const file = e.target.files[0];
             setImageFile(file);
             setPreviewUrl(URL.createObjectURL(file));
+        }
+    };
+
+    const handleUrlFetch = async () => {
+        if (!imageUrlInput) return;
+        setFetchingUrl(true);
+        try {
+            const response = await fetch(imageUrlInput);
+            if (!response.ok) throw new Error("ไม่สามารถดาวน์โหลดรูปภาพจาก URL นี้ได้");
+            const blob = await response.blob();
+            // get filename from url or use default
+            const urlObj = new URL(imageUrlInput);
+            const pathname = urlObj.pathname;
+            const filename = pathname.substring(pathname.lastIndexOf('/') + 1) || 'image.jpg';
+
+            const file = new File([blob], filename, { type: blob.type });
+            setImageFile(file);
+            setPreviewUrl(URL.createObjectURL(file));
+            setUploadMode("file"); // switch back to preview mode
+            setImageUrlInput(""); // clear input
+        } catch (error: any) {
+            console.error("URL fetch error", error);
+            alert(error.message || "เกิดข้อผิดพลาดในการดึงรูปภาพ");
+        } finally {
+            setFetchingUrl(false);
         }
     };
 
@@ -158,32 +187,80 @@ function NewHeroSlideForm() {
                 {/* Right: Media & Status */}
                 <div className="space-y-6">
                     <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
-                        <h4 className="text-sm font-bold text-primary uppercase tracking-widest mb-6">รูปภาพสไลด์</h4>
-                        <div
-                            className={`relative aspect-video rounded-2xl border-2 border-dashed transition-all flex flex-col items-center justify-center overflow-hidden bg-gray-50 ${previewUrl ? 'border-transparent' : 'border-gray-200 hover:border-primary/40'}`}
-                        >
-                            {previewUrl ? (
-                                <>
-                                    <img src={previewUrl} className="w-full h-full object-cover" alt="Preview" />
-                                    <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none text-white font-bold text-xs">
-                                        คลิกเพื่อเปลี่ยนรูป
-                                    </div>
-                                </>
-                            ) : (
-                                <div className="text-center p-6">
-                                    <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mx-auto mb-3">
-                                        <Plus size={24} />
-                                    </div>
-                                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">ขนาดแนะนำ: 1920x800</p>
-                                </div>
-                            )}
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                                className="absolute inset-0 opacity-0 cursor-pointer"
-                            />
+                        <div className="flex items-center justify-between mb-6">
+                            <h4 className="text-sm font-bold text-primary uppercase tracking-widest">รูปภาพสไลด์</h4>
+                            <div className="flex bg-gray-100 p-1 rounded-xl">
+                                <button
+                                    type="button"
+                                    onClick={() => setUploadMode("file")}
+                                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${uploadMode === "file" ? "bg-white text-primary shadow-sm" : "text-gray-500 hover:text-primary"}`}
+                                >
+                                    อัปโหลดไฟล์
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setUploadMode("url")}
+                                    className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${uploadMode === "url" ? "bg-white text-primary shadow-sm" : "text-gray-500 hover:text-primary"}`}
+                                >
+                                    ใช้ URL
+                                </button>
+                            </div>
                         </div>
+
+                        {uploadMode === "url" ? (
+                            <div className="space-y-4">
+                                <div className="flex gap-2">
+                                    <input
+                                        type="url"
+                                        placeholder="วาง URL ของรูปภาพที่นี่..."
+                                        value={imageUrlInput}
+                                        onChange={e => setImageUrlInput(e.target.value)}
+                                        className="flex-1 px-4 py-3 bg-gray-50 rounded-xl border-none outline-none text-sm"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={handleUrlFetch}
+                                        disabled={fetchingUrl || !imageUrlInput}
+                                        className="px-6 py-3 bg-primary text-white text-sm font-bold rounded-xl hover:bg-accent transition-all disabled:opacity-50 flex items-center gap-2"
+                                    >
+                                        {fetchingUrl ? <Loader2 size={16} className="animate-spin" /> : "ดึงรูป"}
+                                    </button>
+                                </div>
+                                {previewUrl && (
+                                    <div className="text-center">
+                                        <p className="text-xs text-gray-500 mb-2">รูปที่เลือกปัจจุบัน:</p>
+                                        <img src={previewUrl} className="w-full h-32 object-cover rounded-xl" alt="Current" />
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <div
+                                className={`relative aspect-video rounded-2xl border-2 border-dashed transition-all flex flex-col items-center justify-center overflow-hidden bg-gray-50 ${previewUrl ? 'border-transparent' : 'border-gray-200 hover:border-primary/40'}`}
+                            >
+                                {previewUrl ? (
+                                    <>
+                                        <img src={previewUrl} className="w-full h-full object-cover" alt="Preview" />
+                                        <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none text-white font-bold text-xs">
+                                            คลิกเพื่อเปลี่ยนรูป
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div className="text-center p-6">
+                                        <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mx-auto mb-3">
+                                            <Plus size={24} />
+                                        </div>
+                                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">ลากวาง หรือ คลิกอัปโหลด</p>
+                                        <p className="text-[10px] text-gray-400 mt-1">แนะนำ: 1920x800</p>
+                                    </div>
+                                )}
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    className="absolute inset-0 opacity-0 cursor-pointer"
+                                />
+                            </div>
+                        )}
                     </div>
 
                     <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm space-y-6">

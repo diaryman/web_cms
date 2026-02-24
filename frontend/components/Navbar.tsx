@@ -1,7 +1,7 @@
 import { fetchAPI } from "@/lib/api";
 import NavbarClient from "./NavbarClient";
 
-export default async function Navbar({ domain = "localhost:3000" }: { domain?: string }) {
+export default async function Navbar({ domain = "localhost" }: { domain?: string }) {
     // Fetch site config (Server Side)
     let siteName = domain === "pdpa.localhost" ? "PDPA Center" : "DataGOV";
     let navItems = undefined;

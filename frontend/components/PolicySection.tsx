@@ -13,7 +13,7 @@ interface Policy {
     highlightValue?: string;
 }
 
-export default function PolicySection({ domain = "localhost:3000" }: { domain?: string }) {
+export default function PolicySection({ domain = "localhost" }: { domain?: string }) {
     const [policies, setPolicies] = useState<Policy[]>([]);
     const [loading, setLoading] = useState(true);
 

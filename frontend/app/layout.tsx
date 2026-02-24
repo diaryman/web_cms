@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Sarabun, Prompt } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
 
 const sarabun = Sarabun({
@@ -16,16 +17,32 @@ const prompt = Prompt({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  title: "DataGOV - Data Governance Administrative Court",
-  description: "ศูนย์กลางข้อมูลธรรมาภิบาล สำนักงานศาลปกครอง",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const host = headersList.get("host") || "localhost";
+  const isPDPA = host.includes("3004") || host.includes("pdpa");
+
+  return isPDPA
+    ? {
+      title: {
+        default: "PDPA | การคุ้มครองข้อมูลส่วนบุคคล - ศาลปกครอง",
+        template: "%s | PDPA ศาลปกครอง",
+      },
+      description: "การดำเนินงานด้านการคุ้มครองข้อมูลส่วนบุคคล สำนักงานศาลปกครอง ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562",
+    }
+    : {
+      title: {
+        default: "DataGOV | ศูนย์กลางธรรมาภิบาลข้อมูล ศาลปกครอง",
+        template: "%s | DataGOV ศาลปกครอง",
+      },
+      description: "ระบบบริหารจัดการและกำกับดูแลข้อมูลอิเล็กทรอนิกส์ สำนักงานศาลปกครอง ภายใต้มาตรฐานธรรมาภิบาลข้อมูลภาครัฐ",
+    };
+}
 
 import CustomCursor from "@/components/CustomCursor";
 import BackToTop from "@/components/BackToTop";
 import ChatWidget from "@/components/ChatWidget";
 import SiteThemeProvider from "@/components/SiteThemeProvider";
-import { headers } from "next/headers";
 
 export default async function RootLayout({
   children,

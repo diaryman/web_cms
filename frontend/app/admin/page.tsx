@@ -20,6 +20,7 @@ import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { STRAPI_URL } from "@/lib/api";
+import { loginAction, checkAuthAction } from "@/app/actions/auth";
 
 interface DashboardStats {
     newsCount: number;
@@ -51,7 +52,7 @@ export default function AdminDashboardPage() {
 function DashboardContent() {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
-    const [isAuthorized, setIsAuthorized] = useState(false);
+    const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [stats, setStats] = useState<DashboardStats | null>(null);
@@ -72,21 +73,20 @@ function DashboardContent() {
     }, []);
 
     useEffect(() => {
-        const checkAuth = () => {
-            const auth = sessionStorage.getItem(`admin_auth_${siteParam}`);
-            if (auth === "true") {
-                setIsAuthorized(true);
-            } else {
-                setIsAuthorized(false);
-            }
+        const checkAuth = async () => {
+            const auth = await checkAuthAction(siteParam);
+            setIsAuthorized(auth);
         };
 
         checkAuth();
-        window.addEventListener('storage', checkAuth);
-        window.addEventListener('admin-auth-change', checkAuth);
+
+        const handleAuthChange = () => {
+            checkAuth();
+        };
+
+        window.addEventListener('admin-auth-change', handleAuthChange);
         return () => {
-            window.removeEventListener('storage', checkAuth);
-            window.removeEventListener('admin-auth-change', checkAuth);
+            window.removeEventListener('admin-auth-change', handleAuthChange);
         };
     }, [siteParam]);
 
@@ -196,17 +196,20 @@ function DashboardContent() {
         }
     };
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        const correctPassword = siteParam === "pdpa" ? "PDPA1234" : "Admin1234";
 
-        if (password === correctPassword) {
-            sessionStorage.setItem(`admin_auth_${siteParam}`, "true");
-            window.dispatchEvent(new Event('admin-auth-change'));
-            setIsAuthorized(true);
-            setError("");
-        } else {
-            setError("รหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง");
+        try {
+            const result = await loginAction(siteParam, password);
+            if (result.success) {
+                window.dispatchEvent(new Event('admin-auth-change'));
+                setIsAuthorized(true);
+                setError("");
+            } else {
+                setError(result.error || "รหัสผ่านไม่ถูกต้อง");
+            }
+        } catch (err) {
+            setError("เกิดข้อผิดพลาดในการเข้าสู่ระบบ");
         }
     };
 
@@ -227,7 +230,11 @@ function DashboardContent() {
         return date.toLocaleDateString("th-TH", { day: "numeric", month: "short", year: "2-digit" });
     };
 
-    if (!isAuthorized) {
+    if (isAuthorized === null) {
+        return <div className="min-h-[60vh] flex items-center justify-center"><p className="text-gray-400 font-bold">กำลังตรวจสอบสิทธิ์...</p></div>;
+    }
+
+    if (isAuthorized === false) {
         return (
             <div className="min-h-[60vh] flex items-center justify-center">
                 <motion.div
@@ -266,10 +273,10 @@ function DashboardContent() {
     }
 
     const statCards = stats ? [
-        { label: "ข่าวสารทั้งหมด", value: String(stats.newsCount), icon: <FileText size={20} />, color: "bg-blue-500" },
-        { label: "เอกสารนโยบาย", value: String(stats.documentsCount), icon: <ShieldCheck size={20} />, color: "bg-indigo-500" },
-        { label: "นโยบาย/มาตรฐาน", value: String(stats.policiesCount), icon: <ShieldCheck size={20} />, color: "bg-cyan-500" },
-        { label: "บริการ/ดาวน์โหลด", value: String(stats.servicesCount), icon: <Zap size={20} />, color: "bg-amber-500" },
+        { label: "ข่าวสารทั้งหมด", value: String(stats.newsCount), icon: <FileText size={20} /> },
+        { label: "เอกสารนโยบาย", value: String(stats.documentsCount), icon: <ShieldCheck size={20} /> },
+        { label: "นโยบาย/มาตรฐาน", value: String(stats.policiesCount), icon: <ShieldCheck size={20} /> },
+        { label: "บริการ/ดาวน์โหลด", value: String(stats.servicesCount), icon: <Zap size={20} /> },
     ] : [];
 
     return (
@@ -335,10 +342,16 @@ function DashboardContent() {
                             className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-md transition-all group"
                         >
                             <div className="flex justify-between items-start mb-4">
-                                <div className={`w-12 h-12 rounded-2xl ${stat.color} text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
+                                <div
+                                    className="w-12 h-12 rounded-2xl text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform"
+                                    style={{ background: idx % 2 === 0 ? "var(--primary-color)" : "var(--accent-color)" }}
+                                >
                                     {stat.icon}
                                 </div>
-                                <div className="flex items-center gap-1 text-[10px] font-bold px-2 py-1 rounded-lg bg-blue-50 text-blue-600">
+                                <div
+                                    className="flex items-center gap-1 text-[10px] font-bold px-2 py-1 rounded-lg"
+                                    style={{ background: "var(--accent-subtle)", color: "var(--accent-color)" }}
+                                >
                                     <span>จาก API</span>
                                 </div>
                             </div>
@@ -366,7 +379,7 @@ function DashboardContent() {
                     </div>
                     <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm text-center">
                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">สถานะระบบ</p>
-                        <p className="text-2xl font-black text-emerald-500 mt-1">Online</p>
+                        <p className="text-2xl font-black mt-1" style={{ color: "var(--accent-color)" }}>Online</p>
                     </div>
                 </div>
             )}
@@ -411,8 +424,8 @@ function DashboardContent() {
                                                 </td>
                                                 <td className="px-8 py-5">
                                                     <div className="flex items-center gap-2">
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                                        <span className="text-[10px] font-bold text-emerald-600">{item.status}</span>
+                                                        <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--accent-color)" }}></span>
+                                                        <span className="text-[10px] font-bold" style={{ color: "var(--accent-color)" }}>{item.status}</span>
                                                     </div>
                                                 </td>
                                                 <td className="px-8 py-5 text-[10px] font-bold text-gray-400">{formatRelativeTime(item.publishedAt || item.createdAt)}</td>
@@ -441,7 +454,8 @@ function DashboardContent() {
                                     initial={{ height: 0 }}
                                     animate={{ height: `${h}%` }}
                                     transition={{ delay: 1 + (i * 0.1), duration: 1 }}
-                                    className="flex-1 bg-blue-50 hover:bg-accent rounded-t-xl transition-colors relative group"
+                                    className="flex-1 rounded-t-xl transition-colors relative group"
+                                    style={{ background: "var(--accent-subtle)" }}
                                 >
                                     <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[8px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
                                         {h}%
@@ -468,12 +482,15 @@ function DashboardContent() {
                                 <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-accent">
                                     <ShieldCheck size={28} />
                                 </div>
-                                <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-lg text-[10px] font-bold border border-emerald-500/20">Active</span>
+                                <span
+                                    className="px-3 py-1 rounded-lg text-[10px] font-bold border"
+                                    style={{ background: "var(--accent-subtle)", color: "var(--accent-color)", borderColor: "var(--accent-glow)" }}
+                                >Active</span>
                             </div>
                             <h4 className="text-xl font-bold font-heading text-white mb-2">ความปลอดภัยของระบบ</h4>
-                            <p className="text-sm text-blue-100/60 leading-relaxed mb-6">ระบบทำงานปกติ ข้อมูลทั้งหมดถูกเข้ารหัสในระดับสูงสุด</p>
+                            <p className="text-sm text-white/60 leading-relaxed mb-6">ระบบทำงานปกติ ข้อมูลทั้งหมดถูกเข้ารหัสในระดับสูงสุด</p>
                             <div className="mt-auto">
-                                <div className="flex justify-between text-[10px] font-bold text-blue-200 uppercase mb-2">
+                                <div className="flex justify-between text-[10px] font-bold text-white/50 uppercase mb-2">
                                     <span>Health Score</span>
                                     <span>98%</span>
                                 </div>
@@ -507,7 +524,7 @@ function DashboardContent() {
                                                 initial={{ width: 0 }}
                                                 animate={{ width: `${Math.min((item.count / 10) * 100, 100)}%` }}
                                                 transition={{ duration: 1, delay: i * 0.1 }}
-                                                className={`h-full ${item.type === 'news' ? 'bg-blue-500' : 'bg-emerald-500'}`}
+                                                style={{ background: "var(--accent-color)" }}
                                             ></motion.div>
                                         </div>
                                     </div>

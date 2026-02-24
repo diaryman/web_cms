@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function DocumentsPage() {
-    const domain = "localhost:3000";
+    const domain = "localhost";
     let announcement = undefined;
     let notifications = undefined;
 

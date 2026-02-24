@@ -47,11 +47,13 @@ function NewsContent() {
         const loadData = async () => {
             setLoading(true);
             try {
-                // Fetch articles
+                // Fetch articles with status draft to see latest edits
                 const articlesRes = await fetchAPI("/articles", {
-                    fields: ["title", "slug", "publishedAt", "domain"],
+                    fields: ["title", "slug", "description", "publishedAt", "domain"],
                     populate: ["category"],
-                    sort: ["publishedAt:desc"],
+                    sort: ["updatedAt:desc"],
+                    status: "draft",
+                    _t: Date.now()
                 });
                 setArticles(articlesRes.data || []);
 
@@ -169,7 +171,7 @@ function NewsContent() {
                                 ))
                             ) : filteredArticles.length > 0 ? (
                                 filteredArticles.map((article) => (
-                                    <tr key={article.id} className="group hover:bg-blue-50/30 transition-colors">
+                                    <tr key={article.id} className="group hover:bg-accent-subtle/30 transition-colors">
                                         <td className="px-8 py-5">
                                             <div className="flex items-start gap-4">
                                                 <div className="w-10 h-10 rounded-xl bg-gray-100 flex-shrink-0 flex items-center justify-center text-gray-400 group-hover:bg-white group-hover:text-primary group-hover:shadow-md transition-all">

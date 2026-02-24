@@ -224,8 +224,12 @@ async function fetchAPI(path, urlParamsObject = {}, options = {}) {
     } catch (error) {
         console.error(`Fetch failed for URL: ${requestUrl}`);
         console.error(`Error name: ${error.name}, Message: ${error.message}`);
+        // If it's our thrown custom error, re-throw it instead of hiding it
+        if (error.message.startsWith("API returned ")) {
+            throw error;
+        }
         // Re-throw with more context
-        throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running?`);
+        throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
     }
 }
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
@@ -1178,6 +1182,8 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "use strict";
 
 __turbopack_context__.s([
+    "applyThemeColors",
+    ()=>applyThemeColors,
     "default",
     ()=>SiteThemeProvider
 ]);
@@ -1189,16 +1195,60 @@ var _s = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
+/* ── Helpers ────────────────────────────────────────────────────────────── */ function hexToRGB(hex) {
+    const h = hex.replace("#", "");
+    const r = parseInt(h.substring(0, 2), 16);
+    const g = parseInt(h.substring(2, 4), 16);
+    const b = parseInt(h.substring(4, 6), 16);
+    return `${r}, ${g}, ${b}`;
+}
+function lighten(hex, amount) {
+    const h = hex.replace("#", "");
+    const r = Math.round(parseInt(h.substring(0, 2), 16) + (255 - parseInt(h.substring(0, 2), 16)) * amount);
+    const g = Math.round(parseInt(h.substring(2, 4), 16) + (255 - parseInt(h.substring(2, 4), 16)) * amount);
+    const b = Math.round(parseInt(h.substring(4, 6), 16) + (255 - parseInt(h.substring(4, 6), 16)) * amount);
+    return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
+}
+function darken(hex, amount) {
+    const h = hex.replace("#", "");
+    const r = Math.round(parseInt(h.substring(0, 2), 16) * (1 - amount));
+    const g = Math.round(parseInt(h.substring(2, 4), 16) * (1 - amount));
+    const b = Math.round(parseInt(h.substring(4, 6), 16) * (1 - amount));
+    return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
+}
+function applyThemeColors(primary, accent) {
+    const root = document.documentElement;
+    const accentRGB = hexToRGB(accent);
+    const primaryRGB = hexToRGB(primary);
+    root.style.setProperty("--primary-color", primary);
+    root.style.setProperty("--accent-color", accent);
+    root.style.setProperty("--accent-dark", darken(accent, 0.2));
+    root.style.setProperty("--accent-light", lighten(accent, 0.3));
+    root.style.setProperty("--accent-subtle", `rgba(${accentRGB}, 0.06)`);
+    root.style.setProperty("--accent-glow", `rgba(${accentRGB}, 0.14)`);
+    root.style.setProperty("--hero-gradient-from", darken(primary, 0.1));
+    root.style.setProperty("--hero-gradient-to", lighten(primary, 0.08));
+    root.style.setProperty("--badge-bg", `rgba(${accentRGB}, 0.08)`);
+    root.style.setProperty("--badge-text", accent);
+    root.style.setProperty("--glass-border", `rgba(${primaryRGB}, 0.08)`);
+    root.style.setProperty("--premium-shadow", `0 25px 60px -12px rgba(${primaryRGB}, 0.18), 0 0 40px -10px rgba(${accentRGB}, 0.08)`);
+    root.style.setProperty("--shadow-glow", `0 0 40px -10px rgba(${accentRGB}, 0.5)`);
+}
 function SiteThemeProvider({ children }) {
     _s();
     const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
+    const searchParams = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"])();
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "SiteThemeProvider.useEffect": ()=>{
-            const fetchTheme = {
+            const port = window.location.port;
+            const siteParam = searchParams.get("site");
+            const isAdminPage = pathname.startsWith("/admin");
+            const isPDPA = pathname.startsWith("/pdpa") || port === "3004" || isAdminPage && siteParam === "pdpa";
+            // Update data-theme attribute for CSS layer
+            document.documentElement.setAttribute("data-theme", isPDPA ? "pdpa" : "datagov");
+            const targetDomain = isPDPA ? "pdpa.localhost" : "localhost";
+            /** Fetch and apply theme colours from the API */ const fetchTheme = {
                 "SiteThemeProvider.useEffect.fetchTheme": async ()=>{
-                    const domain = window.location.host;
-                    const isPDPA = pathname.startsWith("/pdpa");
-                    const targetDomain = isPDPA ? "pdpa.localhost" : domain;
                     try {
                         const { fetchAPI } = await __turbopack_context__.A("[project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript, async loader)");
                         const res = await fetchAPI("/site-configs", {
@@ -1209,15 +1259,8 @@ function SiteThemeProvider({ children }) {
                         if (res.data && res.data.length > 0) {
                             const config = res.data[0];
                             const colors = config.themeColors;
-                            if (colors) {
-                                const root = document.documentElement;
-                                if (colors.primary) root.style.setProperty("--primary-color", colors.primary);
-                                if (colors.accent) {
-                                    root.style.setProperty("--accent-color", colors.accent);
-                                    // Generate some variants if possible or just use the UI defaults
-                                    root.style.setProperty("--hero-gradient-from", colors.primary);
-                                    root.style.setProperty("--hero-gradient-to", colors.accent);
-                                }
+                            if (colors?.primary && colors?.accent) {
+                                applyThemeColors(colors.primary, colors.accent);
                             }
                         }
                     } catch (err) {
@@ -1225,22 +1268,52 @@ function SiteThemeProvider({ children }) {
                     }
                 }
             }["SiteThemeProvider.useEffect.fetchTheme"];
-            const host = window.location.host;
-            const port = window.location.port;
-            const isPDPA = pathname.startsWith("/pdpa") || port === "3004";
-            document.documentElement.setAttribute("data-theme", isPDPA ? "pdpa" : "datagov");
+            // Initial load
             fetchTheme();
+            // ── Re-fetch when user switches back to this tab ──────────────────
+            // This covers the case where admin saved a new theme in another tab.
+            const handleVisibilityChange = {
+                "SiteThemeProvider.useEffect.handleVisibilityChange": ()=>{
+                    if (document.visibilityState === "visible") {
+                        fetchTheme();
+                    }
+                }
+            }["SiteThemeProvider.useEffect.handleVisibilityChange"];
+            document.addEventListener("visibilitychange", handleVisibilityChange);
+            // ── Re-fetch on same-page theme-updated custom event ─────────────
+            // Admin page dispatches this after a successful save when both tabs
+            // are on the same origin.
+            const handleThemeUpdated = {
+                "SiteThemeProvider.useEffect.handleThemeUpdated": (e)=>{
+                    const detail = e.detail;
+                    if (detail?.primary && detail?.accent) {
+                        applyThemeColors(detail.primary, detail.accent);
+                    } else {
+                        fetchTheme();
+                    }
+                }
+            }["SiteThemeProvider.useEffect.handleThemeUpdated"];
+            window.addEventListener("theme-updated", handleThemeUpdated);
+            return ({
+                "SiteThemeProvider.useEffect": ()=>{
+                    document.removeEventListener("visibilitychange", handleVisibilityChange);
+                    window.removeEventListener("theme-updated", handleThemeUpdated);
+                }
+            })["SiteThemeProvider.useEffect"];
+        // Re-run when site param changes (admin switching DataGOV ↔ PDPA)
         }
     }["SiteThemeProvider.useEffect"], [
-        pathname
+        pathname,
+        searchParams
     ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: children
     }, void 0, false);
 }
-_s(SiteThemeProvider, "V/ldUoOTYUs0Cb2F6bbxKSn7KxI=", false, function() {
+_s(SiteThemeProvider, "h6p6PpCFmP4Mu5bIMduBzSZThBE=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"]
     ];
 });
 _c = SiteThemeProvider;

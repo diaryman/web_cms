@@ -1,5 +1,19 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface SharedGallery extends Struct.ComponentSchema {
+  collectionName: 'components_shared_galleries';
+  info: {
+    description: '';
+    displayName: 'Gallery';
+    icon: 'images';
+  };
+  attributes: {
+    images: Schema.Attribute.Media<'images', true>;
+    layout: Schema.Attribute.Enumeration<['grid', 'slider']> &
+      Schema.Attribute.DefaultTo<'grid'>;
+  };
+}
+
 export interface SharedHero extends Struct.ComponentSchema {
   collectionName: 'components_shared_heroes';
   info: {
@@ -44,6 +58,7 @@ export interface SharedRichText extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'shared.gallery': SharedGallery;
       'shared.hero': SharedHero;
       'shared.news-grid': SharedNewsGrid;
       'shared.rich-text': SharedRichText;

@@ -197,7 +197,7 @@ function ChatbotSettingsContent() {
                     {/* Connection */}
                     <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm space-y-6">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500"><Wifi size={20} /></div>
+                            <div className="w-10 h-10 rounded-xl flex items-center justify-center"><Wifi size={20} /></div>
                             <h3 className="text-xl font-bold text-primary">การเชื่อมต่อ AI</h3>
                         </div>
 

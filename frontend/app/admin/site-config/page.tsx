@@ -3,7 +3,259 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
-import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate, Search, Trash2 } from "lucide-react";
+import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate, Search, Trash2, CheckCircle2 } from "lucide-react";
+
+/* ─── Theme Template Presets ──────────────────────────────────────────────── */
+type ThemeTemplate = {
+    id: string;
+    name: string;
+    style: string; // style tag shown on the card
+    desc: string;
+    colors: { primary: string; accent: string; surface?: string; text?: string };
+    preview: React.ReactNode;
+};
+
+// ── DataGOV Templates ──────────────────────────────────────────────────────
+const DATAGOV_TEMPLATES: ThemeTemplate[] = [
+    {
+        id: "datagov-excellence",
+        name: "Excellence Blue",
+        style: "Classic Government",
+        desc: "ธีมมาตรฐานราชการไทย แถบนำทางสีขาวบนพื้นเข้ม แถบข้อมูล 3 คอลัมน์",
+        colors: { primary: "#0c1222", accent: "#2563eb", surface: "#ffffff", text: "#1e293b" },
+        preview: (
+            <div className="h-36 relative overflow-hidden" style={{ background: "#f1f5f9" }}>
+                {/* Top Navbar - White with dark logo */}
+                <div className="absolute top-0 left-0 right-0 h-8 bg-white shadow-sm flex items-center px-3 gap-2">
+                    <div className="w-4 h-4 rounded bg-[#0c1222]" />
+                    <div className="w-12 h-2 rounded-full bg-[#0c1222]/30" />
+                    <div className="flex gap-2 ml-auto">
+                        {["นโยบาย", "ข่าว"].map(t => <div key={t} className="w-8 h-1.5 rounded-full bg-gray-300" />)}
+                        <div className="w-12 h-4 rounded-full bg-[#2563eb] flex items-center justify-center"><span className="text-[5px] text-white font-bold">ติดต่อ</span></div>
+                    </div>
+                </div>
+                {/* Hero - Dark Blue */}
+                <div className="absolute top-8 left-0 right-0" style={{ background: "#0c1222", height: 52 }}>
+                    <div className="px-3 pt-2">
+                        <div className="h-2 w-2/3 rounded-full bg-white/80 mb-1" />
+                        <div className="h-1.5 w-1/2 rounded-full bg-white/40" />
+                    </div>
+                    <div className="absolute right-3 top-2 w-14 h-8 rounded-lg opacity-20" style={{ background: "#2563eb" }} />
+                </div>
+                {/* Card Row */}
+                <div className="absolute bottom-2 left-2 right-2 flex gap-1.5">
+                    {[0, 1, 2].map(i => (
+                        <div key={i} className="flex-1 h-8 bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col justify-center px-1.5">
+                            <div className="w-3 h-3 rounded mb-0.5" style={{ background: "#2563eb" }} />
+                            <div className="h-1 rounded-full bg-gray-200" />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        ),
+    },
+    {
+        id: "datagov-slate",
+        name: "Night Slate",
+        style: "Dark Glassmorphism",
+        desc: "โหมดมืดสมัยใหม่ ใช้เอฟเฟกต์โปร่งแสง (Glass) สำหรับไซต์ระดับ Innovation",
+        colors: { primary: "#0f172a", accent: "#7c3aed", surface: "#1e293b", text: "#f1f5f9" },
+        preview: (
+            <div className="h-36 relative overflow-hidden" style={{ background: "#0f172a" }}>
+                {/* Purple orbs */}
+                <div className="absolute -top-6 -right-6 w-20 h-20 rounded-full blur-xl" style={{ background: "#7c3aed", opacity: 0.4 }} />
+                <div className="absolute -bottom-4 -left-4 w-14 h-14 rounded-full blur-xl" style={{ background: "#4c1d95", opacity: 0.5 }} />
+                {/* Frosted Navbar */}
+                <div className="absolute top-0 left-0 right-0 h-7 flex items-center px-3 gap-2" style={{ background: "rgba(255,255,255,0.05)", backdropFilter: "blur(8px)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+                    <div className="w-3 h-3 rounded-full" style={{ background: "#7c3aed" }} />
+                    <div className="w-10 h-1.5 rounded-full bg-white/20" />
+                    <div className="flex gap-1.5 ml-auto">
+                        {[1, 2, 3].map(i => <div key={i} className="w-6 h-1 rounded-full bg-white/15" />)}
+                    </div>
+                </div>
+                {/* Split hero */}
+                <div className="absolute top-7 left-0 right-0 bottom-10 flex">
+                    <div className="flex-1 flex flex-col justify-center px-3">
+                        <div className="h-2 w-3/4 rounded-full bg-white/70 mb-1" />
+                        <div className="h-1.5 w-1/2 rounded-full bg-white/30 mb-2" />
+                        <div className="h-5 w-16 rounded-full flex items-center justify-center text-[6px] font-bold text-white" style={{ background: "#7c3aed" }}>Explore →</div>
+                    </div>
+                    <div className="w-16 relative">
+                        <div className="absolute inset-2 rounded-xl" style={{ background: "rgba(124,58,237,0.2)", border: "1px solid rgba(124,58,237,0.3)" }} />
+                        <div className="absolute top-4 right-4 w-6 h-6 rounded-full" style={{ background: "rgba(124,58,237,0.5)" }} />
+                    </div>
+                </div>
+                {/* Glass cards */}
+                <div className="absolute bottom-1.5 left-2 right-2 flex gap-1">
+                    {[0, 1, 2, 3].map(i => (
+                        <div key={i} className="flex-1 h-7 rounded-lg" style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                            <div className="h-1 mx-1 mt-1.5 rounded-full" style={{ background: "rgba(124,58,237,0.6)" }} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        ),
+    },
+    {
+        id: "datagov-royal",
+        name: "Royal Indigo",
+        style: "Premium Editorial",
+        desc: "สไตล์นิตยสาร Layout แบบ Editorial สีทองบน Indigo เข้ม ดูองค์กรระดับสูง",
+        colors: { primary: "#1e1b4b", accent: "#f59e0b", surface: "#f8f7ff", text: "#1e1b4b" },
+        preview: (
+            <div className="h-36 relative overflow-hidden" style={{ background: "#f8f7ff" }}>
+                {/* Gold top accent stripe */}
+                <div className="absolute top-0 left-0 right-0 h-1.5" style={{ background: "linear-gradient(90deg, #f59e0b, #fbbf24)" }} />
+                {/* Dark Indigo Sidebar */}
+                <div className="absolute top-0 left-0 bottom-0 w-14" style={{ background: "#1e1b4b" }}>
+                    <div className="flex flex-col items-center pt-6 gap-2">
+                        <div className="w-6 h-6 rounded-full" style={{ background: "#f59e0b" }} />
+                        {[1, 2, 3, 4].map(i => <div key={i} className="w-8 h-1.5 rounded-full bg-white/20" />)}
+                    </div>
+                </div>
+                {/* Main content area */}
+                <div className="absolute top-4 left-16 right-2 bottom-2">
+                    <div className="h-2 w-3/4 rounded-full mb-1" style={{ background: "#1e1b4b", opacity: 0.8 }} />
+                    <div className="h-1.5 w-1/2 rounded-full bg-gray-300 mb-3" />
+                    <div className="grid grid-cols-2 gap-1.5">
+                        <div className="h-10 rounded-xl" style={{ background: "#1e1b4b" }}>
+                            <div className="h-1.5 mx-2 mt-2 rounded-full" style={{ background: "#f59e0b" }} />
+                        </div>
+                        <div className="h-10 rounded-xl bg-gray-100 border border-gray-200" />
+                    </div>
+                </div>
+            </div>
+        ),
+    },
+];
+
+// ── PDPA Templates ──────────────────────────────────────────────────────────
+const PDPA_TEMPLATES: ThemeTemplate[] = [
+    // 1. EMERALD GREEN — classic PDPA
+    {
+        id: "pdpa-trust",
+        name: "Trust Emerald",
+        style: "Classic PDPA Green",
+        desc: "ธีมมาตรฐาน PDPA สีเขียวน่าไว้วางใจ เน้น Trust Badge และ Gradient เข้มสง่า",
+        colors: { primary: "#064e3b", accent: "#10b981", surface: "#f0fdf4", text: "#064e3b" },
+        preview: (
+            <div className="h-36 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #064e3b 0%, #065f46 60%, #047857 100%)" }}>
+                {/* Center badge */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <div className="w-10 h-10 rounded-2xl mb-1.5 flex items-center justify-center" style={{ background: "rgba(255,255,255,0.15)" }}>
+                        <div className="w-5 h-6 rounded-t-full border-2 border-white/60" />
+                    </div>
+                    <div className="h-2 w-24 rounded-full bg-white/70 mb-1" />
+                    <div className="h-1.5 w-16 rounded-full bg-white/40" />
+                </div>
+                {/* Top tag */}
+                <div className="absolute top-2 left-2 right-2 flex justify-between">
+                    <div className="px-2 py-0.5 rounded-full text-[6px] font-bold text-white" style={{ background: "rgba(16,185,129,0.5)" }}>PDPA Compliant</div>
+                    <div className="w-12 h-4 rounded-full flex gap-1 items-center justify-center" style={{ background: "rgba(255,255,255,0.1)" }}>
+                        {[1, 2, 3].map(i => <div key={i} className="w-2 h-1 rounded-full bg-white/40" />)}
+                    </div>
+                </div>
+                {/* Bottom leaf strip */}
+                <div className="absolute bottom-0 left-0 right-0 h-8" style={{ background: "rgba(16,185,129,0.15)" }}>
+                    <div className="flex gap-1.5 px-2 pt-1.5">
+                        {["สิทธิ์", "ความยินยอม", "DPO"].map(t => (
+                            <div key={t} className="flex-1 h-4 rounded-full flex items-center justify-center" style={{ background: "rgba(16,185,129,0.3)" }}>
+                                <span className="text-[5px] text-white">{t}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        ),
+    },
+    // 2. NAVY BLUE — corporate compliance & law
+    {
+        id: "pdpa-certified",
+        name: "Certified Blue",
+        style: "Corporate Compliance",
+        desc: "ธีมฟ้าเข้มแบบองค์กรสากล เน้นความน่าเชื่อถือด้านกฎหมาย Compliance ระดับสูง",
+        colors: { primary: "#1e3a5f", accent: "#3b82f6", surface: "#eff6ff", text: "#1e3a5f" },
+        preview: (
+            <div className="h-36 relative overflow-hidden" style={{ background: "#eff6ff" }}>
+                {/* White clean nav */}
+                <div className="absolute top-0 left-0 right-0 h-8 bg-white shadow-sm flex items-center px-3 gap-2">
+                    <div className="w-5 h-5 rounded-lg flex items-center justify-center" style={{ background: "#1e3a5f" }}>
+                        <div className="w-2.5 h-2.5 rounded-sm bg-white/80" />
+                    </div>
+                    <div className="w-14 h-2 rounded-full" style={{ background: "#1e3a5f", opacity: 0.2 }} />
+                    <div className="ml-auto flex gap-1.5">
+                        {["นโยบาย", "PDPA"].map(t => <div key={t} className="w-9 h-1.5 rounded-full bg-gray-200" />)}
+                        <div className="w-14 h-5 rounded-full flex items-center justify-center" style={{ background: "#3b82f6" }}>
+                            <span className="text-[5px] text-white font-bold">ขอใช้สิทธิ์</span>
+                        </div>
+                    </div>
+                </div>
+                {/* Blue hero banner */}
+                <div className="absolute top-8 left-0 right-0 h-14" style={{ background: "linear-gradient(135deg, #1e3a5f, #1d4ed8)" }}>
+                    <div className="px-3 pt-2.5">
+                        <div className="h-2 w-3/4 rounded-full bg-white/80 mb-1.5" />
+                        <div className="h-1.5 w-1/2 rounded-full bg-white/40" />
+                    </div>
+                    <div className="absolute right-2 top-2 w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(59,130,246,0.4)", border: "2px dashed rgba(255,255,255,0.5)" }}>
+                        <span className="text-[9px] text-white font-black">✓</span>
+                    </div>
+                </div>
+                {/* Badge row */}
+                <div className="absolute bottom-1.5 left-2 right-2 flex gap-1.5">
+                    {[{ v: "PDPA", c: "#3b82f6" }, { v: "ISO", c: "#1e3a5f" }, { v: "DPO", c: "#3b82f6" }].map(s => (
+                        <div key={s.v} className="flex-1 h-7 rounded-xl flex items-center justify-center" style={{ background: s.c }}>
+                            <span className="text-[7px] text-white font-black">{s.v}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        ),
+    },
+
+    // 3. DARK VIOLET — high-security enterprise
+    {
+        id: "pdpa-secure",
+        name: "Secure Violet",
+        style: "High-Security Privacy",
+        desc: "ธีมดำ-ม่วง High-security แสดงถึงระบบความเป็นส่วนตัวระดับ Enterprise Grade",
+        colors: { primary: "#1a1a2e", accent: "#a855f7", surface: "#faf5ff", text: "#1a1a2e" },
+        preview: (
+            <div className="h-36 relative overflow-hidden" style={{ background: "#0f0f1a" }}>
+                {/* Violet aura */}
+                <div className="absolute top-0 right-0 w-28 h-28 rounded-full" style={{ background: "radial-gradient(circle, rgba(168,85,247,0.4), transparent 70%)", filter: "blur(10px)" }} />
+                <div className="absolute bottom-0 left-4 w-20 h-16 rounded-full" style={{ background: "radial-gradient(circle, rgba(168,85,247,0.2), transparent 70%)" }} />
+                {/* Nav */}
+                <div className="absolute top-0 left-0 right-0 h-6 flex items-center px-3 gap-2" style={{ background: "rgba(168,85,247,0.1)", borderBottom: "1px solid rgba(168,85,247,0.3)" }}>
+                    <div className="w-2 h-2 rounded-full" style={{ background: "#a855f7" }} />
+                    <div className="text-[6px] font-bold" style={{ color: "#a855f7" }}>PDPA Secure</div>
+                    <div className="ml-auto">
+                        <div className="w-14 h-4 rounded-full flex items-center justify-center text-[5px] font-bold" style={{ background: "#a855f7", color: "#fff" }}>
+                            🔒 Encrypted
+                        </div>
+                    </div>
+                </div>
+                {/* Lock hero */}
+                <div className="absolute top-8 left-3 right-3 bottom-9">
+                    <div className="h-2 w-3/4 rounded-full bg-white/70 mb-1.5" />
+                    <div className="h-1.5 w-1/2 rounded-full bg-white/30 mb-2" />
+                    <div className="h-4 w-20 rounded-full flex items-center justify-center text-[5px] font-bold" style={{ background: "rgba(168,85,247,0.8)", color: "#fff" }}>
+                        ปกป้องข้อมูลคุณ
+                    </div>
+                </div>
+                {/* Tech tags */}
+                <div className="absolute bottom-1.5 left-2 right-2 flex gap-1">
+                    {["AES-256", "Zero-Log", "GDPR"].map(v => (
+                        <div key={v} className="flex-1 h-6 rounded-lg flex items-center justify-center text-[5px] font-bold" style={{ background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.35)", color: "#c084fc" }}>
+                            {v}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        ),
+    },
+];
+/* ─────────────────────────────────────────────────────────────────────────── */
+
 
 export default function AdminSiteConfigPage() {
     const searchParams = useSearchParams();
@@ -12,6 +264,7 @@ export default function AdminSiteConfigPage() {
 
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
+    const [savedToast, setSavedToast] = useState(false);
     const [configId, setConfigId] = useState<string | null>(null);
     const [formData, setFormData] = useState({
         siteName: "",
@@ -122,7 +375,47 @@ export default function AdminSiteConfigPage() {
                 method: "PUT",
                 body: JSON.stringify({ data: formData })
             });
-            alert("บันทึกข้อมูลเรียบร้อยแล้ว");
+
+            // 1. Apply new colours immediately (optimistic update)
+            const { primary, accent } = formData.themeColors;
+            if (primary && accent) {
+                const hexToRGB = (hex: string) => {
+                    const h = hex.replace("#", "");
+                    return `${parseInt(h.slice(0, 2), 16)}, ${parseInt(h.slice(2, 4), 16)}, ${parseInt(h.slice(4, 6), 16)}`;
+                };
+                const lighten = (hex: string, a: number) => {
+                    const h = hex.replace("#", "");
+                    const mix = (c: string) => Math.round(parseInt(c, 16) + (255 - parseInt(c, 16)) * a).toString(16).padStart(2, "0");
+                    return `#${mix(h.slice(0, 2))}${mix(h.slice(2, 4))}${mix(h.slice(4, 6))}`;
+                };
+                const darken = (hex: string, a: number) => {
+                    const h = hex.replace("#", "");
+                    const mix = (c: string) => Math.round(parseInt(c, 16) * (1 - a)).toString(16).padStart(2, "0");
+                    return `#${mix(h.slice(0, 2))}${mix(h.slice(2, 4))}${mix(h.slice(4, 6))}`;
+                };
+                const aRGB = hexToRGB(accent);
+                const root = document.documentElement;
+                root.style.setProperty("--primary-color", primary);
+                root.style.setProperty("--accent-color", accent);
+                root.style.setProperty("--accent-dark", darken(accent, 0.2));
+                root.style.setProperty("--accent-light", lighten(accent, 0.3));
+                root.style.setProperty("--accent-subtle", `rgba(${aRGB}, 0.06)`);
+                root.style.setProperty("--accent-glow", `rgba(${aRGB}, 0.14)`);
+            }
+
+            // Notify any other same-origin tabs (e.g. open frontend tab) via custom event
+            window.dispatchEvent(new CustomEvent("theme-updated", {
+                detail: { primary: formData.themeColors.primary, accent: formData.themeColors.accent }
+            }));
+
+            // 2. Show toast
+            setSavedToast(true);
+
+            // 3. Reload page after short delay so all components get the new theme
+            setTimeout(() => {
+                window.location.reload();
+            }, 1200);
+
         } catch (error) {
             console.error("Error saving config", error);
             alert("เกิดข้อผิดพลาดในการบันทึก");
@@ -137,6 +430,20 @@ export default function AdminSiteConfigPage() {
 
     return (
         <div className="max-w-4xl mx-auto pb-40">
+            {/* ── Save Toast ── */}
+            {savedToast && (
+                <div className="fixed bottom-28 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-bottom-4 duration-300">
+                    <div
+                        className="flex items-center gap-3 px-6 py-4 rounded-2xl shadow-2xl text-white font-bold text-sm"
+                        style={{ background: "var(--primary-color)", boxShadow: "0 20px 40px -8px var(--accent-glow)" }}
+                    >
+                        <CheckCircle2 size={20} style={{ color: "var(--accent-color)" }} />
+                        <span>บันทึกสำเร็จ! กำลังโหลดธีมใหม่...</span>
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin ml-1" />
+                    </div>
+                </div>
+            )}
+
             <div className="mb-8 font-sans">
                 <h1 className="text-3xl font-black font-heading text-primary mb-2">ตั้งค่าเว็บไซต์</h1>
                 <p className="text-gray-500">จัดการข้อมูลพื้นฐานและภาพลักษณ์ของเว็บไซต์ {siteParam === "pdpa" ? "PDPA Center" : "DataGOV"}</p>
@@ -169,48 +476,114 @@ export default function AdminSiteConfigPage() {
                         ))}
                     </div>
                 </div>
-                {/* Branding & Theme */}
+                {/* ─────────────────────────────────────
+                    Theme Template Picker
+                ───────────────────────────────────── */}
                 <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
-                        <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center">
                             <LayoutTemplate size={20} />
                         </div>
-                        <h3 className="text-lg font-bold text-gray-800">Branding & AI Theme</h3>
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-800">เทมเพลตธีม (Theme Templates)</h3>
+                            <p className="text-xs text-gray-400 mt-0.5">เลือกชุดสีสำเร็จรูปสำหรับเว็บไซต์ {siteParam === "pdpa" ? "PDPA Center" : "DataGOV"}</p>
+                        </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="space-y-4">
-                            <label className="text-sm font-bold text-gray-700 block">โทนสีหลัก (Primary Context)</label>
-                            <div className="flex items-center gap-4">
-                                <input
-                                    type="color"
-                                    value={formData.themeColors.primary}
-                                    onChange={(e) => handleColorChange('primary', e.target.value)}
-                                    className="w-12 h-12 rounded-lg cursor-pointer border-none"
-                                />
-                                <input
-                                    type="text"
-                                    value={formData.themeColors.primary}
-                                    onChange={(e) => handleColorChange('primary', e.target.value)}
-                                    className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-mono text-sm"
-                                />
+                    {/* Template Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        {(siteParam === "pdpa" ? PDPA_TEMPLATES : DATAGOV_TEMPLATES).map((tpl) => {
+                            const isActive =
+                                formData.themeColors.primary === tpl.colors.primary &&
+                                formData.themeColors.accent === tpl.colors.accent;
+                            return (
+                                <button
+                                    key={tpl.id}
+                                    type="button"
+                                    onClick={() =>
+                                        setFormData({ ...formData, themeColors: { primary: tpl.colors.primary, accent: tpl.colors.accent } })
+                                    }
+                                    className={`group relative text-left rounded-[1.75rem] border-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${isActive
+                                        ? "border-violet-500 shadow-xl shadow-violet-200/50 ring-4 ring-violet-400/20"
+                                        : "border-transparent hover:border-gray-200 shadow-md"
+                                        }`}
+                                >
+                                    {/* Unique Layout Preview */}
+                                    <div className="rounded-t-[1.25rem] overflow-hidden">
+                                        {tpl.preview}
+                                    </div>
+
+                                    {/* Info footer */}
+                                    <div className="p-4 bg-white border-t border-gray-50">
+                                        <div className="flex items-start justify-between mb-1.5">
+                                            <div>
+                                                <p className="font-black text-sm text-gray-900">{tpl.name}</p>
+                                                <span className="text-[9px] font-bold uppercase tracking-wider" style={{ color: tpl.colors.accent }}>
+                                                    {tpl.style}
+                                                </span>
+                                            </div>
+                                            {isActive ? (
+                                                <span className="px-2 py-0.5 bg-violet-100 text-violet-600 text-[9px] font-black rounded-full whitespace-nowrap">✓ กำลังใช้</span>
+                                            ) : (
+                                                <span className="px-2 py-0.5 bg-gray-50 text-gray-400 text-[9px] font-bold rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">เลือก</span>
+                                            )}
+                                        </div>
+                                        <p className="text-[10px] text-gray-400 leading-relaxed mb-3">{tpl.desc}</p>
+                                        <div className="flex items-center gap-1.5">
+                                            <div className="flex -space-x-1">
+                                                <div className="w-5 h-5 rounded-full border-2 border-white shadow-sm" style={{ background: tpl.colors.primary }} />
+                                                <div className="w-5 h-5 rounded-full border-2 border-white shadow-sm" style={{ background: tpl.colors.accent }} />
+                                                {tpl.colors.surface && <div className="w-5 h-5 rounded-full border-2 border-gray-100 shadow-sm" style={{ background: tpl.colors.surface }} />}
+                                            </div>
+                                            <span className="text-[9px] text-gray-300 font-mono">{tpl.colors.primary} · {tpl.colors.accent}</span>
+                                        </div>
+                                    </div>
+                                </button>
+                            );
+                        })}
+                    </div>
+
+                    {/* Manual Override */}
+                    <div className="mt-6 pt-6 border-t border-gray-50">
+                        <p className="text-xs font-bold text-gray-500 mb-4 flex items-center gap-2">
+                            <span className="w-4 h-px bg-gray-300 inline-block" />
+                            หรือปรับสีเองแบบ Custom
+                            <span className="w-4 h-px bg-gray-300 inline-block" />
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-3">
+                                <label className="text-sm font-bold text-gray-700 block">โทนสีหลัก (Primary)</label>
+                                <div className="flex items-center gap-4">
+                                    <input
+                                        type="color"
+                                        value={formData.themeColors.primary}
+                                        onChange={(e) => handleColorChange('primary', e.target.value)}
+                                        className="w-12 h-12 rounded-xl cursor-pointer border border-gray-200"
+                                    />
+                                    <input
+                                        type="text"
+                                        value={formData.themeColors.primary}
+                                        onChange={(e) => handleColorChange('primary', e.target.value)}
+                                        className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-mono text-sm"
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className="space-y-4">
-                            <label className="text-sm font-bold text-gray-700 block">สีเน้น (Accent Color)</label>
-                            <div className="flex items-center gap-4">
-                                <input
-                                    type="color"
-                                    value={formData.themeColors.accent}
-                                    onChange={(e) => handleColorChange('accent', e.target.value)}
-                                    className="w-12 h-12 rounded-lg cursor-pointer border-none"
-                                />
-                                <input
-                                    type="text"
-                                    value={formData.themeColors.accent}
-                                    onChange={(e) => handleColorChange('accent', e.target.value)}
-                                    className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-mono text-sm"
-                                />
+                            <div className="space-y-3">
+                                <label className="text-sm font-bold text-gray-700 block">สีเน้น (Accent)</label>
+                                <div className="flex items-center gap-4">
+                                    <input
+                                        type="color"
+                                        value={formData.themeColors.accent}
+                                        onChange={(e) => handleColorChange('accent', e.target.value)}
+                                        className="w-12 h-12 rounded-xl cursor-pointer border border-gray-200"
+                                    />
+                                    <input
+                                        type="text"
+                                        value={formData.themeColors.accent}
+                                        onChange={(e) => handleColorChange('accent', e.target.value)}
+                                        className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-mono text-sm"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

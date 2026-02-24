@@ -10,7 +10,7 @@ interface ContactFormProps {
     showTypeSelector?: boolean;
 }
 
-export default function ContactForm({ domain = "localhost:3000", showTypeSelector = true }: ContactFormProps) {
+export default function ContactForm({ domain = "localhost", showTypeSelector = true }: ContactFormProps) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -50,16 +50,18 @@ export default function ContactForm({ domain = "localhost:3000", showTypeSelecto
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-emerald-50 border border-emerald-100 rounded-3xl p-8 text-center"
+                className="rounded-3xl p-8 text-center border"
+                style={{ background: 'var(--accent-subtle)', borderColor: 'var(--accent-color)', borderWidth: 1 }}
             >
-                <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6 text-emerald-600">
+                <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{ background: 'var(--accent-glow)', color: 'var(--accent-color)' }}>
                     <CheckCircle size={40} />
                 </div>
-                <h3 className="text-2xl font-black text-emerald-800 mb-2 font-heading">ส่งข้อมูลสำเร็จ!</h3>
-                <p className="text-emerald-600 mb-8">เราได้รับข้อความของคุณแล้ว และจะติดต่อกลับโดยเร็วที่สุด</p>
+                <h3 className="text-2xl font-black mb-2 font-heading" style={{ color: 'var(--primary-color)' }}>ส่งข้อมูลสำเร็จ!</h3>
+                <p className="mb-8" style={{ color: 'var(--accent-dark)' }}>เราได้รับข้อความของคุณแล้ว และจะติดต่อกลับโดยเร็วที่สุด</p>
                 <button
                     onClick={() => setStatus("idle")}
-                    className="px-6 py-3 bg-emerald-600 text-white font-bold rounded-2xl hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/20"
+                    className="px-6 py-3 text-white font-bold rounded-2xl transition-colors shadow-lg"
+                    style={{ background: 'var(--accent-color)' }}
                 >
                     ส่งข้อความอื่นเพิ่มเติม
                 </button>
@@ -78,7 +80,8 @@ export default function ContactForm({ domain = "localhost:3000", showTypeSelecto
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 outline-none transition-all"
+                        style={{ '--tw-ring-color': 'var(--accent-subtle)' } as React.CSSProperties}
                         placeholder="ระบุชื่อผู้ติดต่อ"
                     />
                 </div>
@@ -90,7 +93,8 @@ export default function ContactForm({ domain = "localhost:3000", showTypeSelecto
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 outline-none transition-all"
+                        style={{ '--tw-ring-color': 'var(--accent-subtle)' } as React.CSSProperties}
                         placeholder="email@example.com"
                     />
                 </div>
@@ -149,7 +153,7 @@ export default function ContactForm({ domain = "localhost:3000", showTypeSelecto
             <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="w-full py-4 bg-primary text-white font-bold rounded-2xl shadow-lg shadow-blue-600/20 hover:bg-accent transition-all active:scale-95 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-primary text-white font-bold rounded-2xl hover:bg-accent transition-all active:scale-95 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 style={{ color: 'var(--primary-foreground)' }}
             >
                 {status === "submitting" ? (

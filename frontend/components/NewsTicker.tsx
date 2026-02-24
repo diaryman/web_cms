@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { Zap, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
-export default function NewsTicker({ domain = "localhost:3000", announcement, notifications }: { domain?: string; announcement?: string; notifications?: string[] }) {
+export default function NewsTicker({ domain = "localhost", announcement, notifications }: { domain?: string; announcement?: string; notifications?: string[] }) {
     const siteParam = domain === "pdpa.localhost" ? "pdpa" : "main";
     const defaultUpdates = [
         "ประกาศ: มาตรฐานการจัดการข้อมูลภาครัฐฉบับใหม่ ปี 2569 เริ่มประกาศใช้แล้ววันนี้",

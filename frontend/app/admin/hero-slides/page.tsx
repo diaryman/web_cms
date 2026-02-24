@@ -117,7 +117,7 @@ function HeroSlidesContent() {
                     {hasOrderChanged && (
                         <button
                             onClick={saveNewOrder}
-                            className="px-6 py-3 bg-emerald-500 text-white rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-emerald-500/20 hover:bg-emerald-600 transition-all active:scale-95"
+                            className="px-6 py-3 text-white rounded-2xl font-bold flex items-center gap-2 shadow-lg transition-all active:scale-95" style={{ background: "var(--accent-color)" }}
                         >
                             <LayoutTemplate size={18} /> บันทึกลำดับใหม่
                         </button>

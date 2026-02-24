@@ -7,7 +7,7 @@ import { motion } from "motion/react";
 import React, { useState, useEffect } from "react";
 import SpotlightCard from "./SpotlightCard";
 
-export default function DownloadsSection({ domain = "localhost:3000" }: { domain?: string }) {
+export default function DownloadsSection({ domain = "localhost" }: { domain?: string }) {
     const [services, setServices] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -38,11 +38,9 @@ export default function DownloadsSection({ domain = "localhost:3000" }: { domain
         return icons[iconName] || Download;
     };
 
-    const getColor = (cat: string) => {
-        if (cat === 'download') return { color: "text-blue-500", bg: "bg-blue-50" };
-        if (cat === 'service') return { color: "text-emerald-500", bg: "bg-emerald-50" };
-        if (cat === 'tool') return { color: "text-purple-500", bg: "bg-purple-50" };
-        return { color: "text-indigo-500", bg: "bg-indigo-50" };
+    const getColor = (_cat: string) => {
+        // All categories use the active theme accent colour
+        return { color: "text-accent", bg: "bg-accent-subtle" };
     };
 
     // Fallback data if no services

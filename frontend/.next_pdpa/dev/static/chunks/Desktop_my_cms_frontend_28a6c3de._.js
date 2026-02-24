@@ -118,25 +118,14 @@ function ContactPageClient({ navbar, footer, contactForm, siteConfig, domain }) 
                                                                 strokeWidth: "2",
                                                                 strokeLinecap: "round",
                                                                 strokeLinejoin: "round",
-                                                                children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                                                        d: "M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/Desktop/my_cms/frontend/app/contact/ContactPageClient.tsx",
-                                                                        lineNumber: 49,
-                                                                        columnNumber: 219
-                                                                    }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                                                                        cx: "12",
-                                                                        cy: "10",
-                                                                        r: "3"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/Desktop/my_cms/frontend/app/contact/ContactPageClient.tsx",
-                                                                        lineNumber: 49,
-                                                                        columnNumber: 278
-                                                                    }, this)
-                                                                ]
-                                                            }, void 0, true, {
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                    d: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/Desktop/my_cms/frontend/app/contact/ContactPageClient.tsx",
+                                                                    lineNumber: 49,
+                                                                    columnNumber: 219
+                                                                }, this)
+                                                            }, void 0, false, {
                                                                 fileName: "[project]/Desktop/my_cms/frontend/app/contact/ContactPageClient.tsx",
                                                                 lineNumber: 49,
                                                                 columnNumber: 41
@@ -326,38 +315,41 @@ function ContactPageClient({ navbar, footer, contactForm, siteConfig, domain }) 
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "bg-slate-900 p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden",
+                                    className: "p-8 rounded-[2.5rem] shadow-xl text-white relative overflow-hidden",
+                                    style: {
+                                        background: "#0f172a"
+                                    },
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "relative z-10",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                    className: "text-2xl font-black font-heading mb-4",
+                                                    className: "text-2xl font-black font-heading mb-4 text-white",
                                                     children: "เวลาทำการ"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/contact/ContactPageClient.tsx",
-                                                    lineNumber: 81,
+                                                    lineNumber: 84,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                    className: "opacity-80 leading-relaxed mb-6 whitespace-pre-line",
+                                                    className: "text-white/80 leading-relaxed mb-6 whitespace-pre-line",
                                                     children: siteConfig?.officeHours || "วันจันทร์ - วันศุกร์ \nเวลา 08.30 - 16.30 น. \n(ยกเว้นวันหยุดราชการและวันหยุดนักขัตฤกษ์)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/contact/ContactPageClient.tsx",
-                                                    lineNumber: 82,
+                                                    lineNumber: 85,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/contact/ContactPageClient.tsx",
-                                            lineNumber: 80,
+                                            lineNumber: 83,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/contact/ContactPageClient.tsx",
-                                            lineNumber: 86,
+                                            lineNumber: 89,
                                             columnNumber: 29
                                         }, this)
                                     ]
@@ -380,14 +372,14 @@ function ContactPageClient({ navbar, footer, contactForm, siteConfig, domain }) 
                                     children: "ส่งข้อความถึงเรา"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/contact/ContactPageClient.tsx",
-                                    lineNumber: 92,
+                                    lineNumber: 95,
                                     columnNumber: 25
                                 }, this),
                                 contactForm
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/contact/ContactPageClient.tsx",
-                            lineNumber: 91,
+                            lineNumber: 94,
                             columnNumber: 21
                         }, this)
                     ]
@@ -465,7 +457,7 @@ function Highlight({ text, query }) {
     }, void 0, false);
 }
 _c = Highlight;
-function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
+function SearchModal({ isOpen, onClose, domain = "localhost" }) {
     _s();
     const [query, setQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [results, setResults] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
@@ -1571,7 +1563,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost:3000" }) {
+function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost" }) {
     _s();
     const [isOpen, setIsOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [scrolled, setScrolled] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -2039,7 +2031,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function ContactForm({ domain = "localhost:3000", showTypeSelector = true }) {
+function ContactForm({ domain = "localhost", showTypeSelector = true }) {
     _s();
     const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
         name: "",
@@ -2417,7 +2409,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 ;
 ;
 ;
-function NewsTicker({ domain = "localhost:3000", announcement, notifications }) {
+function NewsTicker({ domain = "localhost", announcement, notifications }) {
     const siteParam = domain === "pdpa.localhost" ? "pdpa" : "main";
     const defaultUpdates = [
         "ประกาศ: มาตรฐานการจัดการข้อมูลภาครัฐฉบับใหม่ ปี 2569 เริ่มประกาศใช้แล้ววันนี้",

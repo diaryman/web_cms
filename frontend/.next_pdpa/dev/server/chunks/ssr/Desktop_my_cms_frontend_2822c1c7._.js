@@ -46,7 +46,7 @@ function Highlight({ text, query }) {
             }, this) : part)
     }, void 0, false);
 }
-function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
+function SearchModal({ isOpen, onClose, domain = "localhost" }) {
     const [query, setQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [results, setResults] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isSearching, setIsSearching] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -363,7 +363,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$newspaper$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Newspaper$3e$__["Newspaper"], {
                                                             size: 14,
-                                                            className: "text-blue-500"
+                                                            className: "text-accent"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/SearchModal.tsx",
                                                             lineNumber: 258,
@@ -393,7 +393,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                         className: "flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "w-10 h-10 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors",
+                                                                className: "w-10 h-10 rounded-xl bg-accent-subtle text-accent flex items-center justify-center flex-shrink-0 transition-colors",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$newspaper$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Newspaper$3e$__["Newspaper"], {
                                                                     size: 18
                                                                 }, void 0, false, {
@@ -446,7 +446,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                                         columnNumber: 65
                                                                     }, this),
                                                                     result.category && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "inline-block mt-1 px-2 py-0.5 bg-blue-50 text-blue-500 rounded-lg text-[10px] font-bold",
+                                                                        className: "inline-block mt-1 px-2 py-0.5 bg-accent-subtle text-accent rounded-lg text-[10px] font-bold",
                                                                         children: result.category
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/my_cms/frontend/components/SearchModal.tsx",
@@ -486,7 +486,10 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"], {
                                                             size: 14,
-                                                            className: "text-emerald-500"
+                                                            className: "text-accent",
+                                                            style: {
+                                                                opacity: 0.8
+                                                            }
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/SearchModal.tsx",
                                                             lineNumber: 294,
@@ -516,7 +519,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                         className: "flex items-start gap-4 p-4 rounded-2xl hover:bg-gray-50 transition-all group",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "w-10 h-10 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-100 transition-colors",
+                                                                className: "w-10 h-10 rounded-xl bg-accent-subtle text-accent flex items-center justify-center flex-shrink-0 transition-colors",
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2d$text$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__FileText$3e$__["FileText"], {
                                                                     size: 18
                                                                 }, void 0, false, {
@@ -569,7 +572,7 @@ function SearchModal({ isOpen, onClose, domain = "localhost:3000" }) {
                                                                         columnNumber: 65
                                                                     }, this),
                                                                     result.category && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                        className: "inline-block mt-1 px-2 py-0.5 bg-emerald-50 text-emerald-500 rounded-lg text-[10px] font-bold",
+                                                                        className: "inline-block mt-1 px-2 py-0.5 bg-accent-subtle text-accent rounded-lg text-[10px] font-bold",
                                                                         children: result.category
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/my_cms/frontend/components/SearchModal.tsx",
@@ -1101,7 +1104,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 ;
 ;
 ;
-function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost:3000" }) {
+function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost" }) {
     const [isOpen, setIsOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [scrolled, setScrolled] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [isSearchOpen, setIsSearchOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
@@ -1550,35 +1553,46 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 ;
 ;
 ;
-function NewsPageClient({ header, footer, searchParamsPromise, domain = "localhost:3000" }) {
-    const [articles, setArticles] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
-    const [categories, setCategories] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
-    const [meta, setMeta] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
+function NewsPageClient({ header, footer, searchParams, domain = "localhost", initialArticles = [], initialCategories = [], initialMeta = null }) {
+    const [articles, setArticles] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(initialArticles);
+    const [categories, setCategories] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(initialCategories);
+    const [meta, setMeta] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(initialMeta);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [params, setParams] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
-        page: 1,
-        q: ""
+        page: Number(searchParams.page) || 1,
+        q: searchParams.q || ""
     });
     const [selectedCategory, setSelectedCategory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("ทั้งหมด");
+    const prevInitialArticles = __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].useRef(initialArticles);
+    // Sync state when props strictly change from SSR navigation
+    if (initialArticles !== prevInitialArticles.current) {
+        prevInitialArticles.current = initialArticles;
+        // Only accept SSR articles if we aren't filtering purely on the client
+        if (selectedCategory === "ทั้งหมด") {
+            setArticles(initialArticles);
+            setMeta(initialMeta);
+        }
+    }
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         const load = async ()=>{
-            const p = await searchParamsPromise;
-            const page = Number(p.page) || 1;
-            const q = p.q || "";
+            const page = Number(searchParams.page) || 1;
+            const q = searchParams.q || "";
             setParams({
                 page,
                 q
             });
+            // If we are showing ALL categories, the Server Component already fetched exactly what we need
+            // So we don't need to re-fetch on the client unless category changed to something else.
+            if (selectedCategory === "ทั้งหมด" && initialArticles === prevInitialArticles.current) {
+                // Return if articles list is already populated accurately from Server
+                if (articles.length > 0 || initialArticles.length === 0) {
+                    // Note: We already set articles from props above. No need to fetch.
+                    setLoading(false);
+                    return;
+                }
+            }
             setLoading(true);
             try {
-                // Fetch Categories
-                const catsRes = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["fetchAPI"])("/categories", {
-                    filters: {
-                        domain,
-                        type: "news"
-                    }
-                });
-                setCategories(catsRes.data || []);
                 // Fetch Articles
                 const filters = {
                     domain
@@ -1602,7 +1616,7 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                     populate: "*",
                     filters: filters
                 });
-                setArticles(data);
+                setArticles(data || []);
                 setMeta(meta);
             } catch (e) {
                 console.error(e);
@@ -1612,15 +1626,22 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
         };
         load();
     }, [
-        searchParamsPromise,
+        searchParams,
         selectedCategory,
         domain
     ]);
-    const placeholders = [
-        "from-blue-100 to-indigo-100",
-        "from-indigo-100 to-purple-100",
-        "from-cyan-100 to-blue-100"
-    ];
+    // Placeholder gradients using accent colour — rendered as style
+    const placeholderStyle = (index)=>{
+        const opacities = [
+            0.08,
+            0.12,
+            0.06
+        ];
+        return {
+            background: `linear-gradient(135deg, var(--accent-subtle), var(--accent-glow))`,
+            opacity: opacities[index % 3] + 0.5
+        };
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
         className: "min-h-screen bg-[#fcfdfe]",
         children: [
@@ -1634,12 +1655,12 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                             className: "w-[1000px] h-[1000px] bg-accent/10 rounded-full blur-[120px]"
                         }, void 0, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                            lineNumber: 75,
+                            lineNumber: 101,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                        lineNumber: 74,
+                        lineNumber: 100,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1658,7 +1679,7 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                 children: "Public Relations"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                lineNumber: 79,
+                                lineNumber: 105,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].h1, {
@@ -1674,7 +1695,7 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                 children: "ข่าวสารและกิจกรรม"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                lineNumber: 86,
+                                lineNumber: 112,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1698,7 +1719,7 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                             className: "w-full bg-white/70 backdrop-blur-xl border-2 border-transparent focus:border-accent shadow-premium pl-14 pr-32 py-5 rounded-[2.5rem] text-lg font-bold outline-none transition-all placeholder:text-gray-400"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                            lineNumber: 101,
+                                            lineNumber: 127,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
@@ -1706,7 +1727,7 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                             size: 24
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                            lineNumber: 108,
+                                            lineNumber: 134,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1714,30 +1735,30 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                             children: "ค้นหา"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                            lineNumber: 109,
+                                            lineNumber: 135,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                    lineNumber: 100,
+                                    lineNumber: 126,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                lineNumber: 95,
+                                lineNumber: 121,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                        lineNumber: 78,
+                        lineNumber: 104,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                lineNumber: 73,
+                lineNumber: 99,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1754,7 +1775,7 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                     children: "ทั้งหมด"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                    lineNumber: 121,
+                                    lineNumber: 147,
                                     columnNumber: 25
                                 }, this),
                                 categories.map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1763,13 +1784,13 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                         children: cat.name
                                     }, cat.id, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                        lineNumber: 128,
+                                        lineNumber: 154,
                                         columnNumber: 29
                                     }, this))
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                            lineNumber: 120,
+                            lineNumber: 146,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1779,25 +1800,25 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                     size: 14
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                    lineNumber: 138,
+                                    lineNumber: 164,
                                     columnNumber: 25
                                 }, this),
                                 " FILTER BY DATE"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                            lineNumber: 137,
+                            lineNumber: 163,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                    lineNumber: 119,
+                    lineNumber: 145,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                lineNumber: 118,
+                lineNumber: 144,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1816,12 +1837,12 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                 className: "bg-white rounded-[2.5rem] h-[450px] animate-pulse border border-gray-100 shadow-sm"
                             }, i, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                lineNumber: 148,
+                                lineNumber: 174,
                                 columnNumber: 29
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                        lineNumber: 146,
+                        lineNumber: 172,
                         columnNumber: 21
                     }, this) : articles.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10",
@@ -1850,7 +1871,7 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                     transition: {
                                         delay: index * 0.05
                                     },
-                                    className: "group flex flex-col glass rounded-[2.5rem] border border-white p-4 shadow-premium hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2 h-full",
+                                    className: "group flex flex-col glass rounded-[2.5rem] border border-white p-4 shadow-premium transition-all duration-500 hover:-translate-y-2 h-full",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "relative aspect-[16/10] rounded-[2rem] overflow-hidden mb-6",
@@ -1861,14 +1882,15 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                                     className: "w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                    lineNumber: 168,
+                                                    lineNumber: 194,
                                                     columnNumber: 49
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: `w-full h-full bg-linear-to-br ${placeholders[index % 3]} opacity-60 flex items-center justify-center font-bold text-primary/20 text-4xl`,
+                                                    className: "w-full h-full flex items-center justify-center font-bold text-white/30 text-4xl",
+                                                    style: placeholderStyle(index),
                                                     children: domain === "pdpa.localhost" ? "PDPA" : "DataGOV"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                    lineNumber: 174,
+                                                    lineNumber: 200,
                                                     columnNumber: 49
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1878,18 +1900,18 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                                         children: item.category?.name || "ข่าวทั่วไป"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                        lineNumber: 179,
+                                                        lineNumber: 208,
                                                         columnNumber: 49
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                    lineNumber: 178,
+                                                    lineNumber: 207,
                                                     columnNumber: 45
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                            lineNumber: 166,
+                                            lineNumber: 192,
                                             columnNumber: 41
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1906,7 +1928,7 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                                                     className: "text-accent"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                                    lineNumber: 186,
+                                                                    lineNumber: 215,
                                                                     columnNumber: 93
                                                                 }, this),
                                                                 " ",
@@ -1914,7 +1936,7 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                            lineNumber: 186,
+                                                            lineNumber: 215,
                                                             columnNumber: 49
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1922,23 +1944,26 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__["User"], {
                                                                     size: 14,
-                                                                    className: "text-indigo-400"
+                                                                    className: "text-accent",
+                                                                    style: {
+                                                                        opacity: 0.6
+                                                                    }
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                                    lineNumber: 187,
+                                                                    lineNumber: 216,
                                                                     columnNumber: 93
                                                                 }, this),
                                                                 " Admin"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                            lineNumber: 187,
+                                                            lineNumber: 216,
                                                             columnNumber: 49
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                    lineNumber: 185,
+                                                    lineNumber: 214,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1946,7 +1971,7 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                                     children: item.title
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                    lineNumber: 189,
+                                                    lineNumber: 218,
                                                     columnNumber: 45
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1956,51 +1981,54 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                                         children: [
                                                             "อ่านรายละเอียด",
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "w-8 h-8 rounded-full glass border border-blue-100 flex items-center justify-center group-hover/btn:bg-accent group-hover/btn:text-white transition-all duration-300",
+                                                                className: "w-8 h-8 rounded-full glass border flex items-center justify-center group-hover/btn:bg-accent group-hover/btn:text-white transition-all duration-300",
+                                                                style: {
+                                                                    borderColor: 'var(--accent-subtle)'
+                                                                },
                                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronRight$3e$__["ChevronRight"], {
                                                                     size: 14
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                                    lineNumber: 196,
+                                                                    lineNumber: 225,
                                                                     columnNumber: 57
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                                lineNumber: 195,
+                                                                lineNumber: 224,
                                                                 columnNumber: 53
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                        lineNumber: 193,
+                                                        lineNumber: 222,
                                                         columnNumber: 49
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                                    lineNumber: 192,
+                                                    lineNumber: 221,
                                                     columnNumber: 45
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                            lineNumber: 184,
+                                            lineNumber: 213,
                                             columnNumber: 41
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                    lineNumber: 159,
+                                    lineNumber: 185,
                                     columnNumber: 37
                                 }, this)
                             }, item.id, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                lineNumber: 158,
+                                lineNumber: 184,
                                 columnNumber: 33
                             }, this);
                         })
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                        lineNumber: 152,
+                        lineNumber: 178,
                         columnNumber: 21
                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "text-center py-32 bg-white rounded-[3rem] border border-gray-100 shadow-xl",
@@ -2012,12 +2040,12 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                     className: "text-gray-300"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                    lineNumber: 209,
+                                    lineNumber: 238,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                lineNumber: 208,
+                                lineNumber: 237,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2025,7 +2053,7 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                 children: "ไม่พบรายการที่คุณต้องการ"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                lineNumber: 211,
+                                lineNumber: 240,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2033,7 +2061,7 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                 children: "ลองเปลี่ยนคำค้นหา หรือใช้คำที่สั้นลง"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                lineNumber: 212,
+                                lineNumber: 241,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2042,13 +2070,13 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                 children: "ล้างข้อมูลการค้นหา"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                lineNumber: 213,
+                                lineNumber: 242,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                        lineNumber: 207,
+                        lineNumber: 236,
                         columnNumber: 21
                     }, this),
                     meta?.pagination?.pageCount > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2061,12 +2089,12 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                     size: 20
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                    lineNumber: 226,
+                                    lineNumber: 255,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                lineNumber: 222,
+                                lineNumber: 251,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2081,12 +2109,12 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                    lineNumber: 230,
+                                    lineNumber: 259,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                lineNumber: 229,
+                                lineNumber: 258,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2096,31 +2124,31 @@ function NewsPageClient({ header, footer, searchParamsPromise, domain = "localho
                                     size: 20
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                    lineNumber: 237,
+                                    lineNumber: 266,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                                lineNumber: 233,
+                                lineNumber: 262,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                        lineNumber: 221,
+                        lineNumber: 250,
                         columnNumber: 21
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-                lineNumber: 144,
+                lineNumber: 170,
                 columnNumber: 13
             }, this),
             footer
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/my_cms/frontend/app/news/NewsPageClient.tsx",
-        lineNumber: 69,
+        lineNumber: 95,
         columnNumber: 9
     }, this);
 }
@@ -2141,7 +2169,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 ;
 ;
 ;
-function NewsTicker({ domain = "localhost:3000", announcement, notifications }) {
+function NewsTicker({ domain = "localhost", announcement, notifications }) {
     const siteParam = domain === "pdpa.localhost" ? "pdpa" : "main";
     const defaultUpdates = [
         "ประกาศ: มาตรฐานการจัดการข้อมูลภาครัฐฉบับใหม่ ปี 2569 เริ่มประกาศใช้แล้ววันนี้",
