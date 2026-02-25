@@ -185,7 +185,7 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost" }: S
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed inset-0 z-[100] backdrop-blur-[20px] bg-primary/30 flex items-start justify-center pt-[10vh] p-4"
+                    className="fixed inset-0 z-[200] backdrop-blur-[20px] bg-primary/30 flex items-start justify-center pt-[10vh] p-4"
                     onClick={onClose}
                 >
                     <motion.div

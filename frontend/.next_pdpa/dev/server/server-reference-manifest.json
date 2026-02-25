@@ -2,6 +2,24 @@
   "node": {
     "409451c4707f0b94624844a304d5f1c473f80e36e0": {
       "workers": {
+        "app/admin/chatbot/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/chatbot/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "checkAuthAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
+        "app/admin/contacts/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/contacts/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "checkAuthAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
+        "app/admin/documents/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/documents/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "checkAuthAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
         "app/admin/galleries/page": {
           "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/galleries/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
@@ -26,6 +44,12 @@
           "exportedName": "checkAuthAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
         },
+        "app/admin/newsletter/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/newsletter/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "checkAuthAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
         "app/admin/page": {
           "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
@@ -43,22 +67,51 @@
           "async": false,
           "exportedName": "checkAuthAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
+        "app/admin/stats/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/stats/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "checkAuthAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
         }
       },
       "layer": {
+        "app/admin/chatbot/page": "action-browser",
+        "app/admin/contacts/page": "action-browser",
+        "app/admin/documents/page": "action-browser",
         "app/admin/galleries/page": "action-browser",
         "app/admin/hero-slides/page": "action-browser",
         "app/admin/logs/page": "action-browser",
         "app/admin/news/page": "action-browser",
+        "app/admin/newsletter/page": "action-browser",
         "app/admin/page": "action-browser",
         "app/admin/services/page": "action-browser",
-        "app/admin/site-config/page": "action-browser"
+        "app/admin/site-config/page": "action-browser",
+        "app/admin/stats/page": "action-browser"
       },
       "filename": "Desktop/my_cms/frontend/app/actions/auth.ts",
       "exportedName": "checkAuthAction"
     },
     "406b2586697d0e64e74cdcede3707915ea735bc91f": {
       "workers": {
+        "app/admin/chatbot/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/chatbot/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logoutAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
+        "app/admin/contacts/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/contacts/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logoutAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
+        "app/admin/documents/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/documents/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logoutAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
         "app/admin/galleries/page": {
           "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/galleries/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
@@ -83,6 +136,12 @@
           "exportedName": "logoutAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
         },
+        "app/admin/newsletter/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/newsletter/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logoutAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
         "app/admin/page": {
           "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
@@ -100,16 +159,27 @@
           "async": false,
           "exportedName": "logoutAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
+        "app/admin/stats/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/stats/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logoutAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
         }
       },
       "layer": {
+        "app/admin/chatbot/page": "action-browser",
+        "app/admin/contacts/page": "action-browser",
+        "app/admin/documents/page": "action-browser",
         "app/admin/galleries/page": "action-browser",
         "app/admin/hero-slides/page": "action-browser",
         "app/admin/logs/page": "action-browser",
         "app/admin/news/page": "action-browser",
+        "app/admin/newsletter/page": "action-browser",
         "app/admin/page": "action-browser",
         "app/admin/services/page": "action-browser",
-        "app/admin/site-config/page": "action-browser"
+        "app/admin/site-config/page": "action-browser",
+        "app/admin/stats/page": "action-browser"
       },
       "filename": "Desktop/my_cms/frontend/app/actions/auth.ts",
       "exportedName": "logoutAction"

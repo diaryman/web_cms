@@ -69,80 +69,91 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                     borderColor: 'var(--glass-border)'
                 }}
             >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center h-16">
+                <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
+                    <div className="flex justify-between items-center py-2 lg:py-0 lg:h-24">
                         {/* Logo Section */}
                         <Link href={domain === "pdpa.localhost" ? "/pdpa" : "/"} className="flex-shrink-0 flex items-center gap-3 group" aria-label={`${siteName} - กลับหน้าแรก`}>
-                            <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform duration-300" style={{ backgroundColor: 'var(--accent-color)' }}>
-                                <ShieldCheck size={28} />
+                            <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform duration-300" style={{ backgroundColor: 'var(--accent-color)' }}>
+                                <ShieldCheck size={32} />
                             </div>
                             <div className="flex flex-col">
-                                <span className={`font-heading font-black text-2xl tracking-tighter leading-none text-primary`}>
+                                <span className={`font-heading font-black text-2xl lg:text-3xl tracking-tighter leading-none text-primary`}>
                                     {siteName}
                                 </span>
-                                <span className="text-[10px] uppercase font-bold tracking-widest" style={{ color: 'var(--accent-color)' }}>Admin Court TH</span>
+                                <span className="text-[10px] uppercase font-bold tracking-widest mt-1" style={{ color: 'var(--accent-color)' }}>Admin Court TH</span>
                             </div>
                         </Link>
 
-                        {/* Desktop Menu */}
-                        <div className="hidden md:flex items-center gap-2">
-                            <div className="flex items-center gap-0.5 glass p-1 rounded-2xl border border-white shadow-sm mr-2">
-                                {navItems.map((item) => (
-                                    <Link
-                                        key={item.name}
-                                        href={item.href}
-                                        className="px-4 py-2.5 font-black text-sm transition-all relative rounded-xl hover:bg-white/10 whitespace-nowrap"
-                                        style={{ color: 'var(--foreground)' }}
-                                    >
-                                        {item.name}
-                                    </Link>
-                                ))}
-                            </div>
-
-                            <div className="flex items-center gap-2">
-                                {/* Search Toggle */}
+                        {/* Desktop Menu - Two Tier Layout */}
+                        <div className="hidden xl:flex flex-col h-full flex-1">
+                            {/* Tier 1: Utility Bar (Top Right) */}
+                            <div className="flex items-center gap-4 border-b border-gray-100/50 dark:border-white/10 py-2 w-full justify-end px-4">
                                 <button
                                     onClick={() => setIsSearchOpen(true)}
-                                    className="flex items-center gap-3 px-4 py-2.5 transition-colors glass rounded-2xl border border-gray-100 dark:border-white/10 hover:bg-white group"
-                                    style={{ color: 'var(--text-muted)' }}
+                                    className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-accent transition-colors"
                                     aria-label="เปิดช่องค้นหา (Ctrl+K)"
-                                    aria-haspopup="dialog"
                                 >
-                                    <Search size={18} className="group-hover:text-accent transition-colors flex-shrink-0" />
-                                    <span className="text-sm font-medium hidden lg:block">ค้นหา...</span>
-                                    <kbd className="hidden lg:flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] font-bold rounded border bg-white/50 border-gray-200 text-gray-400 ml-1">
+                                    <Search size={14} /> ค้นหา
+                                    <kbd className="hidden lg:flex items-center px-1 text-[8px] rounded border bg-gray-50 dark:bg-white/5 border-gray-200 dark:border-white/10 ml-1">
                                         ⌘K
                                     </kbd>
                                 </button>
 
-                                {/* Font/Accessibility Toolbar */}
-                                <div className="hidden lg:flex items-center gap-1">
+                                <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
+
+                                <div className="flex items-center gap-2">
                                     <FontSizeResizer />
                                     <ThemeToggle />
                                 </div>
 
-                                {/* Language Switcher UI */}
-                                <button
-                                    className="p-3 transition-colors glass rounded-2xl border border-gray-100 dark:border-white/10 hover:bg-white flex items-center gap-2 px-4 shadow-sm"
-                                    style={{ color: 'var(--foreground)' }}
-                                    aria-label="เปลี่ยนภาษา"
-                                >
-                                    <Languages size={18} className="text-accent" />
-                                    <span className="text-xs font-bold font-heading">TH</span>
+                                <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
+
+                                <button className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-accent transition-colors">
+                                    <Languages size={14} /> TH
                                 </button>
+
+                                <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
 
                                 <Link
                                     href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`}
-                                    className="px-6 py-3 bg-primary text-sm font-bold rounded-2xl shadow-premium hover:bg-accent transition-all active:scale-95 ml-2 whitespace-nowrap premium-gradient"
-                                    style={{ color: 'var(--primary-foreground)' }}
+                                    className="text-xs font-black text-primary hover:text-accent transition-colors"
                                 >
-                                    เข้าสู่ระบบ
+                                    Portal
                                 </Link>
+                            </div>
+
+                            {/* Tier 2: Main Nav Items (Centered Pill) */}
+                            <div className="flex-1 flex items-center justify-center relative py-2">
+                                <div
+                                    className="flex items-center gap-1 bg-white/40 dark:bg-white/5 backdrop-blur-xl p-1.5 rounded-[1.5rem] border border-white/60 dark:border-white/10 shadow-2xl shadow-primary/10 hover:shadow-primary/20 transition-all duration-500 ring-1 ring-black/5"
+                                >
+                                    {navItems.map((item) => (
+                                        <Link
+                                            key={item.name}
+                                            href={item.href}
+                                            className="px-5 py-2.5 font-black text-sm transition-all relative rounded-2xl hover:scale-105 group whitespace-nowrap"
+                                            style={{ color: 'var(--foreground)' }}
+                                        >
+                                            <span className="relative z-10 group-hover:text-white transition-colors">{item.name}</span>
+                                            <span
+                                                className="absolute inset-0 bg-[var(--accent-color)] opacity-0 group-hover:opacity-100 rounded-2xl transition-all duration-300 shadow-lg shadow-accent/20"
+                                            ></span>
+                                        </Link>
+                                    ))}
+                                    <div className="w-px h-6 bg-gray-200/50 dark:bg-white/10 mx-2"></div>
+                                    <Link
+                                        href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`}
+                                        className="px-6 py-2.5 bg-primary text-sm font-bold rounded-2xl shadow-xl hover:shadow-primary/30 hover:scale-[1.02] transition-all active:scale-95 whitespace-nowrap premium-gradient"
+                                        style={{ color: 'var(--primary-foreground)' }}
+                                    >
+                                        เข้าสู่ระบบ
+                                    </Link>
+                                </div>
                             </div>
                         </div>
 
                         {/* Mobile Menu Button */}
-                        <div className="md:hidden flex items-center gap-2">
+                        <div className="xl:hidden flex items-center gap-2">
                             <button
                                 onClick={() => setIsSearchOpen(true)}
                                 className="p-3 glass rounded-2xl border border-gray-100 dark:border-white/10 text-blue-500"
@@ -173,7 +184,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                         id="mobile-menu"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="md:hidden glass absolute w-full left-0 shadow-2xl overflow-hidden"
+                        className="xl:hidden glass absolute w-full left-0 shadow-2xl overflow-y-auto max-h-[calc(100vh-100px)] custom-scrollbar"
                         aria-live="polite"
                         role="dialog"
                         aria-label="เมนูมือถือ"
@@ -183,11 +194,12 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className="block px-6 py-4 rounded-2xl text-lg font-bold hover:bg-white/10 transition-all border border-transparent hover:border-blue-100/20"
+                                    className="block px-6 py-4 rounded-2xl text-lg font-bold transition-all relative group overflow-hidden"
                                     style={{ color: 'var(--foreground)' }}
                                     onClick={() => setIsOpen(false)}
                                 >
-                                    {item.name}
+                                    <span className="relative z-10 group-hover:text-white transition-colors">{item.name}</span>
+                                    <span className="absolute inset-0 bg-[var(--accent-color)] opacity-0 group-hover:opacity-100 transition-all duration-300"></span>
                                 </Link>
                             ))}
                             <div className="pt-4 border-t border-gray-100 dark:border-white/10 flex flex-col gap-4">

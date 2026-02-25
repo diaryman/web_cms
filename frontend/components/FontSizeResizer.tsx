@@ -64,7 +64,7 @@ export default function FontSizeResizer() {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 8 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute right-0 top-14 z-50 bg-white dark:bg-gray-900 rounded-2xl shadow-premium border border-gray-100 dark:border-white/10 p-2 min-w-[160px] flex shadow-2xl"
+                        className="absolute right-0 top-full mt-2 z-[100] bg-white dark:bg-gray-900 rounded-2xl shadow-premium border border-gray-100 dark:border-white/10 p-2 min-w-[180px] flex shadow-2xl"
                         role="menu"
                     >
                         <button

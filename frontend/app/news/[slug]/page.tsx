@@ -81,6 +81,8 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
 
     let announcement = undefined;
     let notifications = undefined;
+    let prevArticle = null;
+    let nextArticle = null;
     try {
         const config = await fetchAPI("/site-configs", {
             filters: { domain }
@@ -88,8 +90,16 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
         const siteConfig = config.data?.[0];
         announcement = siteConfig?.announcement;
         notifications = siteConfig?.notifications;
+
+        // Fetch prev and next
+        const [prevRes, nextRes] = await Promise.all([
+            fetchAPI("/articles", { filters: { domain, publishedAt: { $lt: article.publishedAt } }, sort: ["publishedAt:desc"], pagination: { pageSize: 1 } }),
+            fetchAPI("/articles", { filters: { domain, publishedAt: { $gt: article.publishedAt } }, sort: ["publishedAt:asc"], pagination: { pageSize: 1 } })
+        ]);
+        prevArticle = prevRes.data?.[0] || null;
+        nextArticle = nextRes.data?.[0] || null;
     } catch (e) {
-        console.error("Error fetching announcement", e);
+        console.error("Error fetching article dependencies", e);
     }
 
     return (
@@ -193,8 +203,8 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
                         <div className="flex items-center gap-3">
                             <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Tags:</span>
                             <div className="flex gap-2">
-                                {["Governance", "Data", "Security"].map(tag => (
-                                    <span key={tag} className="px-3 py-1 bg-gray-50 text-gray-500 rounded-lg text-[10px] font-bold">#{tag}</span>
+                                {(article.seoKeywords ? article.seoKeywords.split(',').map((k: string) => k.trim()) : (article.category?.name ? [article.category.name] : ["ข่าวสาร"])).map((tag: string) => (
+                                    <span key={tag} className="px-3 py-1 bg-gray-50 text-gray-500 rounded-lg text-[10px] font-bold whitespace-nowrap overflow-hidden text-ellipsis">#{tag}</span>
                                 ))}
                             </div>
                         </div>
@@ -211,18 +221,23 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
 
                 {/* Next/Prev Navigation UI */}
                 <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="p-8 rounded-[2rem] bg-white border border-gray-100 transition-all cursor-pointer group" style={{ ["--hover-border" as any]: "var(--accent-subtle)" }}>
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-2">
-                            <ArrowLeft size={12} /> Previous Article
-                        </p>
-                        <h4 className="font-bold text-primary group-hover:text-accent transition-colors">สรุปผลการประชุมธรรมาภิบาลข้อมูลไตรมาสที่ 1</h4>
-                    </div>
-                    <div className="p-8 rounded-[2rem] bg-white border border-gray-100 transition-all cursor-pointer group text-right">
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center justify-end gap-2">
-                            Next Article <ChevronRight size={12} />
-                        </p>
-                        <h4 className="font-bold text-primary group-hover:text-accent transition-colors">แนวทางการจัดการข้อมูลส่วนบุคคล (PDPA)</h4>
-                    </div>
+                    {prevArticle ? (
+                        <Link href={`/news/${prevArticle.slug}`} className="block p-8 rounded-[2rem] bg-white border border-gray-100 transition-all cursor-pointer group" style={{ ["--hover-border" as any]: "var(--accent-subtle)" }}>
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-2">
+                                <ArrowLeft size={12} /> ข่าวก่อนหน้า
+                            </p>
+                            <h4 className="font-bold text-primary group-hover:text-accent transition-colors line-clamp-2">{prevArticle.title}</h4>
+                        </Link>
+                    ) : <div />}
+
+                    {nextArticle ? (
+                        <Link href={`/news/${nextArticle.slug}`} className="block p-8 rounded-[2rem] bg-white border border-gray-100 transition-all cursor-pointer group text-right">
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center justify-end gap-2">
+                                ข่าวถัดไป <ChevronRight size={12} />
+                            </p>
+                            <h4 className="font-bold text-primary group-hover:text-accent transition-colors line-clamp-2">{nextArticle.title}</h4>
+                        </Link>
+                    ) : <div />}
                 </div>
             </div>
 

@@ -74,7 +74,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="th" data-theme={theme}>
+    <html lang="th" data-theme={theme} suppressHydrationWarning>
       <head>
         {/*
           P8 + DGA: Theme & Font Size FOUC Prevention

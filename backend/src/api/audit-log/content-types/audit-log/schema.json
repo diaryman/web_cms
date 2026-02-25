@@ -38,6 +38,10 @@
         },
         "domain": {
             "type": "string"
+        },
+        "isRead": {
+            "type": "boolean",
+            "default": false
         }
     }
 }

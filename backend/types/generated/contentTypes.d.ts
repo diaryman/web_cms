@@ -538,6 +538,7 @@ export interface ApiAuditLogAuditLog extends Struct.CollectionTypeSchema {
     domain: Schema.Attribute.String;
     entityId: Schema.Attribute.String;
     entityTitle: Schema.Attribute.String;
+    isRead: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
