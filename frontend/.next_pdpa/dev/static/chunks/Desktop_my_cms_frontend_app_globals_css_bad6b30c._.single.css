@@ -5427,6 +5427,12 @@
     }
   }
 
+  @media print {
+    .print\:hidden {
+      display: none;
+    }
+  }
+
   .glass {
     background: var(--glass-bg);
     -webkit-backdrop-filter: blur(16px);
@@ -5914,6 +5920,148 @@
 .legal-content th {
   background: #f9fafb;
   font-weight: 700;
+}
+
+@media print {
+  *, :before, :after {
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background: #fff !important;
+  }
+
+  @page {
+    size: A4;
+    margin: 20mm 15mm 25mm;
+  }
+
+  @page :first {
+    margin-top: 15mm;
+  }
+
+  nav, header, footer, .print\:hidden, [class*="NewsTicker"], [class*="ChatWidget"], [class*="CookieBanner"], [class*="BackToTop"], [class*="CustomCursor"], [class*="ScrollProgress"], [class*="ThemeToggle"], button:not([data-print-show]), .skip-link, [aria-label="เมนูหลัก"], [data-print-hide] {
+    display: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.8;
+    font-family: Sarabun, Tahoma, sans-serif !important;
+  }
+
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  [style*="var(--primary-color)"] {
+    color: #000 !important;
+    background: #fff !important;
+    border-bottom: 2pt solid #000 !important;
+    padding: 8mm 0 6mm !important;
+  }
+
+  h1 {
+    margin-bottom: 6mm;
+    font-size: 18pt;
+    font-weight: 800;
+  }
+
+  h2 {
+    margin-top: 8mm;
+    margin-bottom: 4mm;
+    font-size: 14pt;
+    font-weight: 700;
+  }
+
+  h3 {
+    margin-top: 6mm;
+    margin-bottom: 3mm;
+    font-size: 12pt;
+    font-weight: 600;
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
+    margin-bottom: 4mm;
+  }
+
+  .legal-content {
+    max-width: 100% !important;
+  }
+
+  .legal-content h1, .legal-content h2, .legal-content h3 {
+    page-break-after: avoid;
+  }
+
+  .legal-content table {
+    border-collapse: collapse;
+    page-break-inside: avoid;
+    width: 100%;
+  }
+
+  .legal-content th, .legal-content td {
+    border: .5pt solid #333;
+    padding: 3mm 4mm;
+    font-size: 10pt;
+  }
+
+  article {
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  img {
+    page-break-inside: avoid;
+    print-color-adjust: exact;
+    max-width: 100% !important;
+  }
+
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    word-break: break-all;
+    font-size: 8pt;
+    font-style: italic;
+    color: #555 !important;
+  }
+
+  a[href^="/"]:not([href^="//"]):after {
+    content: "";
+  }
+
+  nav[aria-label="Breadcrumb"] {
+    margin-bottom: 4mm;
+    font-size: 8pt;
+    color: #555 !important;
+    display: block !important;
+  }
+
+  body:after {
+    content: "";
+    display: block;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  figure, table, blockquote {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  main > div:last-child {
+    color: #555 !important;
+    border-top: .5pt solid #ccc !important;
+    margin-top: 8mm !important;
+    padding-top: 4mm !important;
+    font-size: 8pt !important;
+  }
 }
 
 @property --tw-translate-x {

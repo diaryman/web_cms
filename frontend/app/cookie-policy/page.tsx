@@ -3,6 +3,7 @@ import { fetchAPI } from "@/lib/api";
 import { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight, Home, Cookie } from "lucide-react";
+import PrintButton from "@/components/PrintButton";
 
 export async function generateMetadata(): Promise<Metadata> {
     const headersList = await headers();
@@ -66,10 +67,11 @@ export default async function CookiePolicyPage() {
                         <p className="text-sm mt-1">กรุณาเพิ่มเนื้อหาในหน้า Admin → ตั้งค่าเว็บไซต์ → หน้าข้อมูลกฎหมาย</p>
                     </div>
                 )}
-                <div className="mt-12 pt-8 border-t border-gray-100">
+                <div className="mt-12 pt-8 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
                     <Link href={homeHref} className="inline-flex items-center gap-2 font-bold text-sm hover:opacity-80 transition-opacity" style={{ color: "var(--accent-color)" }}>
                         <Home size={16} /> กลับหน้าแรก
                     </Link>
+                    <PrintButton label="พิมพ์/บันทึก PDF" />
                 </div>
             </div>
         </main>

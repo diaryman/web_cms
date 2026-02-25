@@ -5,3 +5,5 @@
 [00:00:02.798] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
 [00:00:03.232] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
 [00:00:03.232] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:01:09.746] Server  LOG     ✓ Compiled in 222ms
+[00:01:44.359] Server  LOG     ✓ Compiled in 141ms

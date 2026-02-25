@@ -623,3 +623,190 @@ video {
   background: #f9fafb;
   font-weight: 700;
 }
+
+/* ========================================
+   Print Stylesheet
+   ======================================== */
+@media print {
+
+  /* ── Reset colors for ink economy ── */
+  *,
+  *::before,
+  *::after {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* ── Page setup ── */
+  @page {
+    size: A4;
+    margin: 20mm 15mm 25mm 15mm;
+  }
+
+  @page :first {
+    margin-top: 15mm;
+  }
+
+  /* ── Hide all UI chrome ── */
+  nav,
+  header,
+  footer,
+  .print\:hidden,
+  [class*="NewsTicker"],
+  [class*="ChatWidget"],
+  [class*="CookieBanner"],
+  [class*="BackToTop"],
+  [class*="CustomCursor"],
+  [class*="ScrollProgress"],
+  [class*="ThemeToggle"],
+  button:not([data-print-show]),
+  .skip-link,
+  [aria-label="เมนูหลัก"],
+  [data-print-hide] {
+    display: none !important;
+  }
+
+  /* ── Main content ── */
+  body {
+    font-family: 'Sarabun', 'Tahoma', sans-serif !important;
+    font-size: 11pt;
+    line-height: 1.8;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* ── Legal page header (dark band → white for print) ── */
+  [style*="var(--primary-color)"] {
+    background: white !important;
+    color: black !important;
+    border-bottom: 2pt solid #000 !important;
+    padding: 8mm 0 6mm !important;
+  }
+
+  /* ── Typography ── */
+  h1 {
+    font-size: 18pt;
+    font-weight: 800;
+    margin-bottom: 6mm;
+  }
+
+  h2 {
+    font-size: 14pt;
+    font-weight: 700;
+    margin-top: 8mm;
+    margin-bottom: 4mm;
+  }
+
+  h3 {
+    font-size: 12pt;
+    font-weight: 600;
+    margin-top: 6mm;
+    margin-bottom: 3mm;
+  }
+
+  p {
+    margin-bottom: 4mm;
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* ── Legal content ── */
+  .legal-content {
+    max-width: 100% !important;
+  }
+
+  .legal-content h1,
+  .legal-content h2,
+  .legal-content h3 {
+    page-break-after: avoid;
+  }
+
+  .legal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    page-break-inside: avoid;
+  }
+
+  .legal-content th,
+  .legal-content td {
+    border: 0.5pt solid #333;
+    padding: 3mm 4mm;
+    font-size: 10pt;
+  }
+
+  /* ── Article / News page ── */
+  article {
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* ── Images ── */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+    print-color-adjust: exact;
+  }
+
+  /* ── Links: show URL ── */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    color: #555 !important;
+    font-style: italic;
+    word-break: break-all;
+  }
+
+  a[href^="/"]:not([href^="//"])::after {
+    content: "";
+  }
+
+  /* ── Breadcrumb ── */
+  nav[aria-label="Breadcrumb"] {
+    display: block !important;
+    font-size: 8pt;
+    color: #555 !important;
+    margin-bottom: 4mm;
+  }
+
+  /* ── Page number footer via CSS counter ── */
+  body::after {
+    content: "";
+    display: block;
+  }
+
+  /* ── Avoid orphaned headings ── */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* ── Keep figures and tables together ── */
+  figure,
+  table,
+  blockquote {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* ── Document footer line ── */
+  main>div:last-child {
+    border-top: 0.5pt solid #ccc !important;
+    padding-top: 4mm !important;
+    margin-top: 8mm !important;
+    font-size: 8pt !important;
+    color: #555 !important;
+  }
+}
