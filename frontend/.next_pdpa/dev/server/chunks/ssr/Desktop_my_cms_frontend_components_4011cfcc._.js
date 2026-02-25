@@ -1550,6 +1550,7 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/my_cms/frontend/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/my_cms/frontend/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/my_cms/frontend/node_modules/next/image.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__ = __turbopack_context__.i("[project]/Desktop/my_cms/frontend/node_modules/lucide-react/dist/esm/icons/arrow-right.js [app-ssr] (ecmascript) <export default as ArrowRight>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sparkles$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sparkles$3e$__ = __turbopack_context__.i("[project]/Desktop/my_cms/frontend/node_modules/lucide-react/dist/esm/icons/sparkles.js [app-ssr] (ecmascript) <export default as Sparkles>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$left$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronLeft$3e$__ = __turbopack_context__.i("[project]/Desktop/my_cms/frontend/node_modules/lucide-react/dist/esm/icons/chevron-left.js [app-ssr] (ecmascript) <export default as ChevronLeft>");
@@ -1558,6 +1559,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$fronten
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/my_cms/frontend/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript)");
 "use client";
+;
 ;
 ;
 ;
@@ -1604,33 +1606,36 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "absolute inset-0 z-0",
                                 children: [
-                                    slides[currentSlide].image && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                    slides[currentSlide].image && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                         src: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getStrapiMedia"])(slides[currentSlide].image.url) || "",
                                         alt: slides[currentSlide].title,
-                                        className: "w-full h-full object-cover"
+                                        fill: true,
+                                        priority: currentSlide === 0,
+                                        sizes: "100vw",
+                                        className: "object-cover"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                        lineNumber: 58,
+                                        lineNumber: 59,
                                         columnNumber: 33
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute inset-0 bg-gradient-to-r from-primary via-primary/60 to-transparent z-10"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                        lineNumber: 64,
+                                        lineNumber: 68,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent z-10"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                        lineNumber: 65,
+                                        lineNumber: 69,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                lineNumber: 56,
+                                lineNumber: 57,
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1658,20 +1663,20 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                                     className: "text-accent"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                                    lineNumber: 77,
+                                                    lineNumber: 81,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     children: "สำนักงานศาลปกครอง • Administrative Court"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                                    lineNumber: 78,
+                                                    lineNumber: 82,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                            lineNumber: 71,
+                                            lineNumber: 75,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].h1, {
@@ -1691,7 +1696,7 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                             children: slides[currentSlide].title
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                            lineNumber: 81,
+                                            lineNumber: 85,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -1711,7 +1716,7 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                             children: slides[currentSlide].subtitle
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                            lineNumber: 90,
+                                            lineNumber: 94,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1739,40 +1744,40 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                                         className: "group-hover:translate-x-1 transition-transform"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                                        lineNumber: 109,
+                                                        lineNumber: 113,
                                                         columnNumber: 75
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                                lineNumber: 105,
+                                                lineNumber: 109,
                                                 columnNumber: 37
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                            lineNumber: 99,
+                                            lineNumber: 103,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                    lineNumber: 70,
+                                    lineNumber: 74,
                                     columnNumber: 29
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                lineNumber: 69,
+                                lineNumber: 73,
                                 columnNumber: 25
                             }, this)
                         ]
                     }, currentSlide, true, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                        lineNumber: 47,
+                        lineNumber: 48,
                         columnNumber: 21
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                    lineNumber: 46,
+                    lineNumber: 47,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1785,12 +1790,12 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                     className: `h-1.5 transition-all duration-300 rounded-full ${currentSlide === idx ? 'w-8 bg-primary' : 'w-2 bg-white/20 hover:bg-white/40'}`
                                 }, idx, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                    lineNumber: 121,
+                                    lineNumber: 125,
                                     columnNumber: 29
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                            lineNumber: 119,
+                            lineNumber: 123,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1803,12 +1808,12 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                         size: 24
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                        lineNumber: 133,
+                                        lineNumber: 137,
                                         columnNumber: 29
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                    lineNumber: 129,
+                                    lineNumber: 133,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1818,24 +1823,24 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                         size: 24
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                        lineNumber: 139,
+                                        lineNumber: 143,
                                         columnNumber: 29
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                    lineNumber: 135,
+                                    lineNumber: 139,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                            lineNumber: 128,
+                            lineNumber: 132,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                    lineNumber: 118,
+                    lineNumber: 122,
                     columnNumber: 17
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1857,23 +1862,23 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                             className: "w-1 h-2 bg-white rounded-full"
                         }, void 0, false, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                            lineNumber: 151,
+                            lineNumber: 155,
                             columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                        lineNumber: 146,
+                        lineNumber: 150,
                         columnNumber: 21
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                    lineNumber: 145,
+                    lineNumber: 149,
                     columnNumber: 17
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-            lineNumber: 45,
+            lineNumber: 46,
             columnNumber: 13
         }, this);
     }
@@ -1910,7 +1915,7 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                         className: "absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full blur-[120px] bg-primary/5"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                        lineNumber: 162,
+                        lineNumber: 166,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1939,13 +1944,13 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                         className: "absolute top-[20%] -right-[5%] w-[35%] h-[35%] rounded-full blur-[100px] bg-accent/5"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                        lineNumber: 167,
+                        lineNumber: 171,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                lineNumber: 161,
+                lineNumber: 165,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1970,20 +1975,20 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                 className: "text-accent"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                lineNumber: 181,
+                                lineNumber: 185,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "Data Governance Framework 2.0"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                lineNumber: 182,
+                                lineNumber: 186,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                        lineNumber: 175,
+                        lineNumber: 179,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].h1, {
@@ -2008,13 +2013,13 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                     children: "ธรรมาภิบาลข้อมูล"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                    lineNumber: 191,
+                                    lineNumber: 195,
                                     columnNumber: 44
                                 }, this),
                                 " ",
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                    lineNumber: 191,
+                                    lineNumber: 195,
                                     columnNumber: 99
                                 }, this),
                                 "สู่มาตรฐานสากล"
@@ -2022,7 +2027,7 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                         }, void 0, true)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                        lineNumber: 185,
+                        lineNumber: 189,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].p, {
@@ -2042,7 +2047,7 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                         children: subHeadline || "ขับเคลื่อนองค์กรด้วยข้อมูลที่มีคุณภาพ โปร่งใส และปลอดภัย เพื่อการตัดสินใจที่แม่นยำและการบริการประชาชนที่มีประสิทธิภาพสูงสุด"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                        lineNumber: 194,
+                        lineNumber: 198,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -2070,13 +2075,13 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                         className: "group-hover:translate-x-1 transition-transform"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                        lineNumber: 213,
+                                        lineNumber: 217,
                                         columnNumber: 40
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                lineNumber: 209,
+                                lineNumber: 213,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2085,13 +2090,13 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                 children: "ศึกษาหลักเกณฑ์"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                lineNumber: 215,
+                                lineNumber: 219,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                        lineNumber: 203,
+                        lineNumber: 207,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2140,7 +2145,7 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                         children: item.value
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                        lineNumber: 238,
+                                        lineNumber: 242,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2148,7 +2153,7 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                         children: item.label
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                        lineNumber: 241,
+                                        lineNumber: 245,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2156,30 +2161,30 @@ function Hero({ headline, subHeadline, heroStats, slides = [] }) {
                                         children: item.sublabel
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                        lineNumber: 242,
+                                        lineNumber: 246,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, idx, true, {
                                 fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                                lineNumber: 230,
+                                lineNumber: 234,
                                 columnNumber: 25
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                        lineNumber: 223,
+                        lineNumber: 227,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-                lineNumber: 174,
+                lineNumber: 178,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/my_cms/frontend/components/Hero.tsx",
-        lineNumber: 160,
+        lineNumber: 164,
         columnNumber: 9
     }, this);
 }

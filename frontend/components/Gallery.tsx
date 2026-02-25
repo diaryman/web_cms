@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import { getStrapiMedia } from "@/lib/api";
@@ -39,11 +40,18 @@ const Gallery = ({ images: rawImages, layout = "grid" }: GalleryProps) => {
                         whileHover={{ scale: 1.02, y: -5 }}
                         whileTap={{ scale: 0.98 }}
                         className="relative aspect-square cursor-pointer rounded-2xl overflow-hidden shadow-md group"
+                        role="button"
+                        aria-label={`ดูรูปที่ ${index + 1}: ${img.name || 'Gallery image'}`}
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && openLightbox(index)}
                     >
-                        <img
+                        <Image
                             src={getStrapiMedia(img.url) || ""}
-                            alt={img.name || "Gallery image"}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            alt={img.name || `Gallery image ${index + 1}`}
+                            fill
+                            sizes="(max-width: 768px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                            loading="lazy"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                             <div className="bg-white/20 backdrop-blur-md p-3 rounded-full text-white">
@@ -71,6 +79,7 @@ const Gallery = ({ images: rawImages, layout = "grid" }: GalleryProps) => {
                         <button
                             onClick={prevImage}
                             className="absolute left-4 md:left-10 z-50 p-4 bg-white/10 hover:bg-white/20 rounded-full text-white backdrop-blur-md transition-all"
+                            aria-label="รูปก่อนหน้า"
                         >
                             <ChevronLeft size={32} />
                         </button>
@@ -78,23 +87,30 @@ const Gallery = ({ images: rawImages, layout = "grid" }: GalleryProps) => {
                         <button
                             onClick={nextImage}
                             className="absolute right-4 md:right-10 z-50 p-4 bg-white/10 hover:bg-white/20 rounded-full text-white backdrop-blur-md transition-all"
+                            aria-label="รูปถัดไป"
                         >
                             <ChevronRight size={32} />
                         </button>
 
                         <motion.div
                             layoutId={`img-${images[selectedIndex].id || selectedIndex}`}
-                            className="relative max-w-5xl max-h-full aspect-auto rounded-3xl overflow-hidden shadow-2xl"
+                            className="relative max-w-5xl w-full rounded-3xl overflow-hidden shadow-2xl"
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             transition={{ type: "spring", damping: 25, stiffness: 300 }}
                         >
-                            <img
-                                src={getStrapiMedia(images[selectedIndex].url) || ""}
-                                alt="Enlarged view"
-                                className="w-full h-auto max-h-[80vh] object-contain"
-                            />
+                            {/* Use unoptimized=false for lightbox — full res with next/image */}
+                            <div className="relative aspect-video max-h-[80vh]">
+                                <Image
+                                    src={getStrapiMedia(images[selectedIndex].url) || ""}
+                                    alt={images[selectedIndex].name || `รูปที่ ${selectedIndex + 1}`}
+                                    fill
+                                    sizes="90vw"
+                                    className="object-contain"
+                                    priority
+                                />
+                            </div>
                             <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/60 to-transparent text-white">
                                 <p className="text-center font-medium">รูปที่ {selectedIndex + 1} จาก {images.length}</p>
                             </div>

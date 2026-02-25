@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Shield, Download, ArrowRight, CheckCircle2, Users, Database, FileText, Lock, Calendar, ChevronRight, FileCheck, AlertCircle, Clock } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import SpotlightCard from "@/components/SpotlightCard";
 import { fetchAPI, getStrapiMedia } from "@/lib/api";
 
@@ -319,7 +320,14 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
                                             <SpotlightCard className="group flex flex-col glass rounded-[2.5rem] border border-white p-6 shadow-premium transition-all duration-500 hover:-translate-y-2 cursor-pointer h-full">
                                                 <div className="relative aspect-[16/10] rounded-[2rem] overflow-hidden mb-6" style={{ background: "var(--accent-subtle)" }}>
                                                     {coverImageUrl ? (
-                                                        <img src={coverImageUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                                        <Image
+                                                            src={coverImageUrl}
+                                                            alt={item.title}
+                                                            fill
+                                                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                                                            className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                                            loading="lazy"
+                                                        />
                                                     ) : (
                                                         <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center" style={{ background: `linear-gradient(135deg, var(--primary-color), var(--accent-dark))` }}>
                                                             <div className="text-white/20 text-4xl font-black mb-4 uppercase">PDPA</div>

@@ -3,6 +3,7 @@ import BlockRenderer from "@/components/BlockRenderer";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NewsTicker from "@/components/NewsTicker";
+import Image from "next/image";
 import { ArrowLeft, Calendar, Clock, Share2, User, Bookmark, MoreHorizontal, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -164,10 +165,13 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
                     {/* Featured Image */}
                     {coverImageUrl && (
                         <div className="mb-16 -mx-8 md:-mx-16 -mt-8 md:-mt-16 relative aspect-video overflow-hidden">
-                            <img
+                            <Image
                                 src={coverImageUrl}
                                 alt={article.title}
-                                className="w-full h-full object-cover"
+                                fill
+                                priority
+                                sizes="(max-width: 1024px) 100vw, 896px"
+                                className="object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                         </div>

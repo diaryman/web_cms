@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { fetchAPI, getStrapiMedia } from "@/lib/api";
 import { Calendar, ChevronRight, ChevronLeft, Search, User, Filter } from "lucide-react";
 import { motion } from "motion/react";
@@ -199,10 +200,13 @@ export default function NewsPageClient({
                                     >
                                         <div className="relative aspect-[16/10] rounded-[2rem] overflow-hidden mb-6">
                                             {coverImageUrl ? (
-                                                <img
+                                                <Image
                                                     src={coverImageUrl}
                                                     alt={item.title}
-                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                                    fill
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                                                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                                    loading="lazy"
                                                 />
                                             ) : (
                                                 <div

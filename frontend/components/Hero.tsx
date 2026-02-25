@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { getStrapiMedia } from "@/lib/api";
@@ -55,10 +56,13 @@ export default function Hero({ headline, subHeadline, heroStats, slides = [] }: 
                         {/* Background Image */}
                         <div className="absolute inset-0 z-0">
                             {slides[currentSlide].image && (
-                                <img
+                                <Image
                                     src={getStrapiMedia(slides[currentSlide].image.url) || ""}
                                     alt={slides[currentSlide].title}
-                                    className="w-full h-full object-cover"
+                                    fill
+                                    priority={currentSlide === 0}
+                                    sizes="100vw"
+                                    className="object-cover"
                                 />
                             )}
                             <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/60 to-transparent z-10" />
