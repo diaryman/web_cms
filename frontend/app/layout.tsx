@@ -77,13 +77,14 @@ export default async function RootLayout({
     <html lang="th" data-theme={theme}>
       <head>
         {/*
-          P8: Dark Mode FOUC Prevention — inline blocking script runs before first paint.
-          Reads localStorage('theme') and applies 'dark' class immediately.
-          Also wires system-preference change listener (syncs when no explicit pref set).
+          P8 + DGA: Theme & Font Size FOUC Prevention
+          Inline blocking script runs before first paint.
+          Reads localStorage('theme') and 'dga-font-size' and applies them immediately.
+          Also wires system-preference change listener.
         */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=localStorage.getItem('theme'),p=window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(s===null&&p)){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){if(!localStorage.getItem('theme')){e.matches?document.documentElement.classList.add('dark'):document.documentElement.classList.remove('dark');}});}catch(e){}})();`,
+            __html: `(function(){try{var s=localStorage.getItem('theme'),p=window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(s===null&&p)){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){if(!localStorage.getItem('theme')){e.matches?document.documentElement.classList.add('dark'):document.documentElement.classList.remove('dark');}});var fs=localStorage.getItem('dga-font-size');if(fs){var scale=100;if(fs==='-1')scale=90;if(fs==='1')scale=110;if(fs==='2')scale=120;document.documentElement.style.fontSize=scale+'%';}}catch(e){}})();`,
           }}
         />
       </head>

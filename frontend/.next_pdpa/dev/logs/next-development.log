@@ -482,3 +482,5 @@ the name `sarabun` is defined multiple times
 [00:21:50.240] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
 [00:21:50.240] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
 [00:22:05.029] Server  LOG     ✓ Compiled in 50ms
+[00:26:05.758] Server  LOG     ✓ Compiled in 169ms
+[00:26:20.464] Server  LOG     ✓ Compiled in 242ms

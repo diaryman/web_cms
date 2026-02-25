@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import SearchModal from "./SearchModal";
 import ThemeToggle from "./ThemeToggle";
+import FontSizeResizer from "./FontSizeResizer";
 
 interface NavbarClientProps {
     siteName: string;
@@ -114,8 +115,11 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                                     </kbd>
                                 </button>
 
-                                {/* Theme Toggle */}
-                                <ThemeToggle />
+                                {/* Font/Accessibility Toolbar */}
+                                <div className="hidden lg:flex items-center gap-1">
+                                    <FontSizeResizer />
+                                    <ThemeToggle />
+                                </div>
 
                                 {/* Language Switcher UI */}
                                 <button
@@ -145,6 +149,10 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                             >
                                 <Search size={20} />
                             </button>
+                            <div className="flex items-center gap-1">
+                                <FontSizeResizer />
+                                <ThemeToggle />
+                            </div>
                             <button
                                 onClick={() => setIsOpen(!isOpen)}
                                 className="p-3 glass rounded-2xl border border-gray-100 dark:border-white/10"
