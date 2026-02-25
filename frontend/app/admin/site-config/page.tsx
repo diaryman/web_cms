@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
-import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate, Search, Trash2, CheckCircle2, Zap, Plus, BarChart3 } from "lucide-react";
+import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate, Search, Trash2, CheckCircle2, Zap, Plus, BarChart3, Shield, FileText, HelpCircle } from "lucide-react";
 
 /* ─── Theme Template Presets ──────────────────────────────────────────────── */
 type ThemeTemplate = {
@@ -278,19 +278,27 @@ export default function AdminSiteConfigPage() {
         email: "",
         officeHours: "",
         footerText: "",
-        themeColors: {
-            primary: "#0c1222",
-            accent: "#2563eb"
-        },
+        themeColors: { primary: "#0c1222", accent: "#2563eb" },
         navbarMenu: [] as any[],
         footerMenu: [] as any[],
-        sectionToggles: {
-            hero: true,
-            policies: true,
-            activities: true,
-            downloads: true,
-            news: true,
-            documents: true
+        sectionToggles: { hero: true, policies: true, activities: true, downloads: true, news: true, documents: true },
+        cookieConsent: {
+            enabled: true,
+            title: "เว็บไซต์นี้ใช้คุกกี้ (Cookies)",
+            description: "เราใช้คุกกี้เพื่อพัฒนาประสบการณ์การใช้งาน วิเคราะห์การเข้าชมเว็บไซต์ และนำเสนอเนื้อหาที่เกี่ยวข้อง สามารถเลือกการตั้งค่าคุกกี้ได้ตามความต้องการของคุณ",
+            acceptAllLabel: "ยอมรับทั้งหมด",
+            rejectLabel: "ปฏิเสธที่ไม่จำเป็น",
+            policyLink: "/cookie-policy"
+        },
+        legalPages: {
+            privacyPolicy: { title: "นโยบายความเป็นส่วนตัว", content: "" },
+            cookiePolicy: { title: "นโยบายคุกกี้", content: "" },
+            termsOfUse: { title: "ข้อตกลงการใช้งาน", content: "" }
+        },
+        notFoundPage: {
+            title: "ไม่พบหน้าที่คุณต้องการ",
+            description: "หน้าที่คุณกำลังมองหาอาจถูกย้ายหรือลบออกแล้ว",
+            buttonText: "กลับหน้าแรก"
         }
     });
 
@@ -318,13 +326,24 @@ export default function AdminSiteConfigPage() {
                         themeColors: config.themeColors || { primary: "#0c1222", accent: "#2563eb" },
                         navbarMenu: config.navbarMenu || [],
                         footerMenu: config.footerMenu || [],
-                        sectionToggles: config.sectionToggles || {
-                            hero: true,
-                            policies: true,
-                            activities: true,
-                            downloads: true,
-                            news: true,
-                            documents: true
+                        sectionToggles: config.sectionToggles || { hero: true, policies: true, activities: true, downloads: true, news: true, documents: true },
+                        cookieConsent: config.cookieConsent || {
+                            enabled: true,
+                            title: "เว็บไซต์นี้ใช้คุกกี้ (Cookies)",
+                            description: "เราใช้คุกกี้เพื่อพัฒนาประสบการณ์การใช้งาน",
+                            acceptAllLabel: "ยอมรับทั้งหมด",
+                            rejectLabel: "ปฏิเสธที่ไม่จำเป็น",
+                            policyLink: "/cookie-policy"
+                        },
+                        legalPages: config.legalPages || {
+                            privacyPolicy: { title: "นโยบายความเป็นส่วนตัว", content: "" },
+                            cookiePolicy: { title: "นโยบายคุกกี้", content: "" },
+                            termsOfUse: { title: "ข้อตกลงการใช้งาน", content: "" }
+                        },
+                        notFoundPage: config.notFoundPage || {
+                            title: "ไม่พบหน้าที่คุณต้องการ",
+                            description: "หน้าที่คุณกำลังมองหาอาจถูกย้ายหรือลบออกแล้ว",
+                            buttonText: "กลับหน้าแรก"
                         }
                     });
                 }
@@ -952,6 +971,212 @@ export default function AdminSiteConfigPage() {
                                 rows={2}
                                 className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-medium"
                                 placeholder="วันจันทร์ - ศุกร์..."
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Cookie Consent Banner ─────────────────────────────── */}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
+                            <Shield size={20} />
+                        </div>
+                        <div className="flex-1">
+                            <h3 className="text-lg font-bold text-gray-800">Cookie Consent Banner</h3>
+                            <p className="text-xs text-gray-400 mt-0.5">ข้อความแจ้งการใช้คุกกี้ตามกฎหมาย PDPA</p>
+                        </div>
+                        {/* Toggle */}
+                        <label className="flex items-center gap-3 cursor-pointer">
+                            <span className="text-sm font-bold text-gray-600">เปิดใช้งาน</span>
+                            <button
+                                type="button"
+                                onClick={() => setFormData({ ...formData, cookieConsent: { ...formData.cookieConsent, enabled: !formData.cookieConsent.enabled } })}
+                                className={`relative w-12 h-6 rounded-full transition-all ${formData.cookieConsent.enabled ? 'bg-primary' : 'bg-gray-300'}`}
+                            >
+                                <span className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-all ${formData.cookieConsent.enabled ? 'left-7' : 'left-1'}`} />
+                            </button>
+                        </label>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                            <label className="text-sm font-bold text-gray-700">หัวข้อ Banner (Title)</label>
+                            <input
+                                value={formData.cookieConsent.title}
+                                onChange={(e) => setFormData({ ...formData, cookieConsent: { ...formData.cookieConsent, title: e.target.value } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-medium"
+                                placeholder="เว็บไซต์นี้ใช้คุกกี้..."
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-bold text-gray-700">ลิงก์ Cookie Policy</label>
+                            <input
+                                value={formData.cookieConsent.policyLink}
+                                onChange={(e) => setFormData({ ...formData, cookieConsent: { ...formData.cookieConsent, policyLink: e.target.value } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-medium"
+                                placeholder="/cookie-policy"
+                            />
+                        </div>
+                        <div className="col-span-1 md:col-span-2 space-y-2">
+                            <label className="text-sm font-bold text-gray-700">รายละเอียดคุกกี้ (Description)</label>
+                            <textarea
+                                rows={3}
+                                value={formData.cookieConsent.description}
+                                onChange={(e) => setFormData({ ...formData, cookieConsent: { ...formData.cookieConsent, description: e.target.value } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-medium resize-none"
+                                placeholder="เราใช้คุกกี้เพื่อ..."
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-bold text-gray-700">ปุ่ม "ยอมรับ" (Accept Label)</label>
+                            <input
+                                value={formData.cookieConsent.acceptAllLabel}
+                                onChange={(e) => setFormData({ ...formData, cookieConsent: { ...formData.cookieConsent, acceptAllLabel: e.target.value } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-medium"
+                                placeholder="ยอมรับทั้งหมด"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-bold text-gray-700">ปุ่ม "ปฏิเสธ" (Reject Label)</label>
+                            <input
+                                value={formData.cookieConsent.rejectLabel}
+                                onChange={(e) => setFormData({ ...formData, cookieConsent: { ...formData.cookieConsent, rejectLabel: e.target.value } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-medium"
+                                placeholder="ปฏิเสธที่ไม่จำเป็น"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Legal Pages ──────────────────────────────────────────── */}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--primary-color)' }}>
+                            <FileText size={20} />
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-800">หน้าข้อมูลกฎหมาย</h3>
+                            <p className="text-xs text-gray-400 mt-0.5">แสดงที่ /privacy-policy, /cookie-policy, /terms-of-use</p>
+                        </div>
+                    </div>
+
+                    {/* Privacy Policy */}
+                    <div className="space-y-4 mb-6 pb-6 border-b border-gray-50">
+                        <h4 className="font-bold text-gray-700 flex items-center gap-2">
+                            <span className="w-5 h-5 rounded-full text-[9px] font-black flex items-center justify-center text-white" style={{ background: 'var(--primary-color)' }}>1</span>
+                            นโยบายความเป็นส่วนตัว (Privacy Policy)
+                        </h4>
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">หัวข้อหน้า</label>
+                            <input
+                                value={formData.legalPages.privacyPolicy.title}
+                                onChange={(e) => setFormData({ ...formData, legalPages: { ...formData.legalPages, privacyPolicy: { ...formData.legalPages.privacyPolicy, title: e.target.value } } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-medium"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">เนื้อหา (รองรับ HTML)</label>
+                            <textarea
+                                rows={8}
+                                value={formData.legalPages.privacyPolicy.content}
+                                onChange={(e) => setFormData({ ...formData, legalPages: { ...formData.legalPages, privacyPolicy: { ...formData.legalPages.privacyPolicy, content: e.target.value } } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-mono text-sm resize-y"
+                                placeholder="<h2>1. การเก็บรวบรวมข้อมูล</h2><p>...</p>"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Cookie Policy */}
+                    <div className="space-y-4 mb-6 pb-6 border-b border-gray-50">
+                        <h4 className="font-bold text-gray-700 flex items-center gap-2">
+                            <span className="w-5 h-5 rounded-full text-[9px] font-black flex items-center justify-center text-white" style={{ background: 'var(--primary-color)' }}>2</span>
+                            นโยบายคุกกี้ (Cookie Policy)
+                        </h4>
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">หัวข้อหน้า</label>
+                            <input
+                                value={formData.legalPages.cookiePolicy.title}
+                                onChange={(e) => setFormData({ ...formData, legalPages: { ...formData.legalPages, cookiePolicy: { ...formData.legalPages.cookiePolicy, title: e.target.value } } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-medium"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">เนื้อหา (รองรับ HTML)</label>
+                            <textarea
+                                rows={8}
+                                value={formData.legalPages.cookiePolicy.content}
+                                onChange={(e) => setFormData({ ...formData, legalPages: { ...formData.legalPages, cookiePolicy: { ...formData.legalPages.cookiePolicy, content: e.target.value } } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-mono text-sm resize-y"
+                                placeholder="<h2>คุกกี้คืออะไร?</h2><p>...</p>"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Terms of Use */}
+                    <div className="space-y-4">
+                        <h4 className="font-bold text-gray-700 flex items-center gap-2">
+                            <span className="w-5 h-5 rounded-full text-[9px] font-black flex items-center justify-center text-white" style={{ background: 'var(--primary-color)' }}>3</span>
+                            ข้อตกลงการใช้งาน (Terms of Use)
+                        </h4>
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">หัวข้อหน้า</label>
+                            <input
+                                value={formData.legalPages.termsOfUse.title}
+                                onChange={(e) => setFormData({ ...formData, legalPages: { ...formData.legalPages, termsOfUse: { ...formData.legalPages.termsOfUse, title: e.target.value } } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-medium"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">เนื้อหา (รองรับ HTML)</label>
+                            <textarea
+                                rows={8}
+                                value={formData.legalPages.termsOfUse.content}
+                                onChange={(e) => setFormData({ ...formData, legalPages: { ...formData.legalPages, termsOfUse: { ...formData.legalPages.termsOfUse, content: e.target.value } } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-mono text-sm resize-y"
+                                placeholder="<h2>1. การใช้งานเว็บไซต์</h2><p>...</p>"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Custom 404 Page ─────────────────────────────────────── */}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
+                            <HelpCircle size={20} />
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-800">หน้า 404 (ไม่พบหน้า)</h3>
+                            <p className="text-xs text-gray-400 mt-0.5">ข้อความที่แสดงเมื่อผู้ใช้เข้าหน้าที่ไม่มีอยู่</p>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="space-y-2">
+                            <label className="text-sm font-bold text-gray-700">หัวข้อ (Title)</label>
+                            <input
+                                value={formData.notFoundPage.title}
+                                onChange={(e) => setFormData({ ...formData, notFoundPage: { ...formData.notFoundPage, title: e.target.value } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-medium"
+                                placeholder="ไม่พบหน้าที่คุณต้องการ"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-bold text-gray-700">คำอธิบาย (Description)</label>
+                            <input
+                                value={formData.notFoundPage.description}
+                                onChange={(e) => setFormData({ ...formData, notFoundPage: { ...formData.notFoundPage, description: e.target.value } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-medium"
+                                placeholder="หน้าที่คุณมองหาอาจถูกย้าย..."
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-sm font-bold text-gray-700">ข้อความปุ่ม (Button Text)</label>
+                            <input
+                                value={formData.notFoundPage.buttonText}
+                                onChange={(e) => setFormData({ ...formData, notFoundPage: { ...formData.notFoundPage, buttonText: e.target.value } })}
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none font-medium"
+                                placeholder="กลับหน้าแรก"
                             />
                         </div>
                     </div>

@@ -43,6 +43,8 @@ import CustomCursor from "@/components/CustomCursor";
 import BackToTop from "@/components/BackToTop";
 import ChatWidget from "@/components/ChatWidget";
 import SiteThemeProvider from "@/components/SiteThemeProvider";
+import CookieBanner from "@/components/CookieBanner";
+import { fetchAPI } from "@/lib/api";
 
 export default async function RootLayout({
   children,
@@ -61,6 +63,16 @@ export default async function RootLayout({
 
   const theme = domain.includes("pdpa") ? "pdpa" : "datagov";
 
+  // Fetch cookie consent config from site-config
+  let cookieConsentConfig = undefined;
+  try {
+    const res = await fetchAPI("/site-configs", { filters: { domain } });
+    const config = res.data?.[0];
+    if (config?.cookieConsent) cookieConsentConfig = config.cookieConsent;
+  } catch (e) {
+    // If fetch fails, banner simply won't show — non-critical
+  }
+
   return (
     <html lang="th" data-theme={theme}>
       <body
@@ -71,6 +83,7 @@ export default async function RootLayout({
           {children}
           <BackToTop />
           <ChatWidget domainOverride={domain} />
+          <CookieBanner config={cookieConsentConfig} domain={domain} />
         </SiteThemeProvider>
       </body>
     </html>

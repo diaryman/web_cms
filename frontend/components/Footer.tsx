@@ -122,11 +122,12 @@ export default async function Footer({ domain = "localhost" }: { domain?: string
 
                 <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-[11px] font-bold uppercase tracking-[0.2em] opacity-40">
-                        © {currentYear} OFFICE OF THE ADMINISTRATIVE COURTS
+                        {config?.footerText || `© ${currentYear} OFFICE OF THE ADMINISTRATIVE COURTS`}
                     </p>
                     <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest opacity-40">
-                        <Link href="#" className="hover:text-accent transition-colors">การเข้าถึงเว็บไซต์</Link>
-                        <Link href="#" className="hover:text-accent transition-colors">มาตรฐานความปลอดภัย</Link>
+                        <Link href={`${domain === "pdpa.localhost" ? "" : ""}/privacy-policy`} className="hover:text-accent hover:opacity-100 transition-all">นโยบายความเป็นส่วนตัว</Link>
+                        <Link href={`${domain === "pdpa.localhost" ? "" : ""}/cookie-policy`} className="hover:text-accent hover:opacity-100 transition-all">นโยบายคุกกี้</Link>
+                        <Link href={`${domain === "pdpa.localhost" ? "" : ""}/terms-of-use`} className="hover:text-accent hover:opacity-100 transition-all">ข้อตกลงการใช้งาน</Link>
                     </div>
                 </div>
             </div>

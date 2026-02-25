@@ -971,6 +971,7 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
   attributes: {
     address: Schema.Attribute.Text;
     announcement: Schema.Attribute.String;
+    cookieConsent: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -983,6 +984,7 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
     heroHeadline: Schema.Attribute.Text;
     heroStats: Schema.Attribute.JSON;
     heroSubheadline: Schema.Attribute.Text;
+    legalPages: Schema.Attribute.JSON;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -991,6 +993,7 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     logoImage: Schema.Attribute.Media<'images'>;
     navbarMenu: Schema.Attribute.JSON;
+    notFoundPage: Schema.Attribute.JSON;
     notifications: Schema.Attribute.JSON;
     officeHours: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u0E27\u0E31\u0E19\u0E08\u0E31\u0E19\u0E17\u0E23\u0E4C - \u0E27\u0E31\u0E19\u0E28\u0E38\u0E01\u0E23\u0E4C \u0E40\u0E27\u0E25\u0E32 08.30 - 16.30 \u0E19. (\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E27\u0E31\u0E19\u0E2B\u0E22\u0E38\u0E14\u0E23\u0E32\u0E0A\u0E01\u0E32\u0E23)'>;

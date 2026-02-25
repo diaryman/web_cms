@@ -69,6 +69,15 @@
         },
         "sectionToggles": {
             "type": "json"
+        },
+        "cookieConsent": {
+            "type": "json"
+        },
+        "legalPages": {
+            "type": "json"
+        },
+        "notFoundPage": {
+            "type": "json"
         }
     }
 }
