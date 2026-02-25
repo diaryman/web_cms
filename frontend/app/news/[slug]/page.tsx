@@ -9,6 +9,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
 import PrintButton from "@/components/PrintButton";
+import { trackArticleView } from "@/app/actions/article";
 
 // Generate Metadata (SEO)
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
@@ -67,6 +68,9 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
 
     const article = data.data?.[0];
     if (!article) notFound();
+
+    // Fire-and-forget: track page view (never blocks rendering)
+    void trackArticleView(article.documentId);
 
     const domain = article.domain || "localhost";
     const siteParam = domain === "pdpa.localhost" ? "pdpa" : "main";

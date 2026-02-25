@@ -60,6 +60,7 @@ function DashboardContent() {
     const [loadingStats, setLoadingStats] = useState(true);
     const [dateRange, setDateRange] = useState("all"); // 'all', 'today', '7days', '30days'
     const [categoryStats, setCategoryStats] = useState<any[]>([]);
+    const [topArticles, setTopArticles] = useState<any[]>([]);
 
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
     const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
@@ -137,11 +138,12 @@ function DashboardContent() {
                 contactsCount: contactsRes?.meta?.pagination?.total || 0,
             });
 
-            // Fetch recent articles and documents for the activity table
-            const [recentArticles, recentDocs, categoriesRes] = await Promise.all([
+            // Fetch recent articles, documents, and top articles by view count
+            const [recentArticles, recentDocs, categoriesRes, topViewsRes] = await Promise.all([
                 fetch(`${STRAPI_URL}/api/articles?filters[domain][$eq]=${domain}&sort=publishedAt:desc&pagination[pageSize]=5&populate=category`).then(r => r.json()),
                 fetch(`${STRAPI_URL}/api/policy-documents?filters[domain][$eq]=${domain}&sort=createdAt:desc&pagination[pageSize]=5`).then(r => r.json()),
                 fetch(`${STRAPI_URL}/api/categories?filters[domain][$eq]=${domain}&populate[articles][count]=true`).then(r => r.json()),
+                fetch(`${STRAPI_URL}/api/articles?filters[domain][$eq]=${domain}&sort=viewCount:desc&pagination[pageSize]=7&fields[0]=title&fields[1]=viewCount&fields[2]=slug&populate=category`).then(r => r.json()),
             ]);
 
             // Set Category Stats
@@ -152,6 +154,16 @@ function DashboardContent() {
                 type: cat.type
             })).sort((a: any, b: any) => b.count - a.count).slice(0, 5);
             setCategoryStats(catStats);
+
+            // Set Top Articles by views
+            const topViews = (topViewsRes?.data || []).map((a: any) => ({
+                id: a.id,
+                title: a.title,
+                slug: a.slug,
+                viewCount: a.viewCount || 0,
+                category: a.category?.name || 'ข่าวทั่วไป',
+            }));
+            setTopArticles(topViews);
 
             const items: RecentItem[] = [];
 
@@ -444,34 +456,56 @@ function DashboardContent() {
 
                 {/* Sidebar Cards */}
                 <div className="space-y-8">
-                    {/* Data Quality Visualization */}
+                    {/* Top Articles by Views (Analytics) */}
                     <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm">
-                        <h3 className="text-lg font-bold font-heading text-primary mb-6">คุณภาพข้อมูลสถาบัน</h3>
-                        <div className="flex items-end justify-between h-40 gap-2 mb-4">
-                            {[40, 70, 45, 90, 65, 80, 95].map((h, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ height: 0 }}
-                                    animate={{ height: `${h}%` }}
-                                    transition={{ delay: 1 + (i * 0.1), duration: 1 }}
-                                    className="flex-1 rounded-t-xl transition-colors relative group"
-                                    style={{ background: "var(--accent-subtle)" }}
-                                >
-                                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[8px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                                        {h}%
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                        <div className="flex justify-between text-[10px] font-bold text-gray-400 uppercase tracking-widest px-2">
-                            <span>Mon</span>
-                            <span>Tue</span>
-                            <span>Wed</span>
-                            <span>Thu</span>
-                            <span>Fri</span>
-                            <span>Sat</span>
-                            <span>Sun</span>
-                        </div>
+                        <h3 className="text-lg font-bold font-heading text-primary mb-1 flex items-center gap-2">
+                            <BarChart3 size={18} className="text-accent" />
+                            บทความยอดนิยม
+                        </h3>
+                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-6">เรียงตามจำนวนผู้เข้าชม (viewCount)</p>
+                        {loadingStats ? (
+                            <div className="space-y-3">
+                                {[1, 2, 3, 4].map(i => <div key={i} className="h-10 bg-gray-50 rounded-xl animate-pulse" />)}
+                            </div>
+                        ) : topArticles.length > 0 ? (
+                            <div className="space-y-3">
+                                {topArticles.map((a, i) => {
+                                    const maxViews = topArticles[0]?.viewCount || 1;
+                                    const pct = Math.max(8, (a.viewCount / maxViews) * 100);
+                                    const rankColors = ['bg-yellow-400', 'bg-gray-300', 'bg-amber-600', 'bg-accent/40', 'bg-accent/25'];
+                                    return (
+                                        <div key={a.id} className="group">
+                                            <div className="flex items-center justify-between mb-1 gap-2">
+                                                <div className="flex items-center gap-2 min-w-0">
+                                                    <span className={`w-5 h-5 rounded-md flex items-center justify-center text-[9px] font-black text-white flex-shrink-0 ${rankColors[i] || 'bg-gray-200'}`}>
+                                                        {i + 1}
+                                                    </span>
+                                                    <p className="text-xs font-bold text-primary truncate">{a.title}</p>
+                                                </div>
+                                                <span className="text-[10px] font-black text-gray-400 flex-shrink-0 flex items-center gap-1">
+                                                    <Users size={10} /> {a.viewCount.toLocaleString()}
+                                                </span>
+                                            </div>
+                                            <div className="w-full h-1.5 bg-gray-50 rounded-full overflow-hidden">
+                                                <motion.div
+                                                    initial={{ width: 0 }}
+                                                    animate={{ width: `${pct}%` }}
+                                                    transition={{ duration: 0.8, delay: i * 0.08 }}
+                                                    className="h-full rounded-full"
+                                                    style={{ background: 'var(--accent-color)' }}
+                                                />
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        ) : (
+                            <div className="text-center py-8 text-gray-300">
+                                <BarChart3 size={32} className="mx-auto mb-2 opacity-30" />
+                                <p className="text-xs font-bold">ยังไม่มีข้อมูลการเข้าชม</p>
+                                <p className="text-[10px] mt-1">ข้อมูลจะปรากฏหลังจากมีผู้เข้าชมบทความ</p>
+                            </div>
+                        )}
                     </div>
 
                     {/* System Health Card */}

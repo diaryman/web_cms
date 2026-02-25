@@ -96,3 +96,22 @@ export async function createArticle(data: any) {
         throw error;
     }
 }
+
+/**
+ * trackArticleView — fire-and-forget (never throws).
+ * Called from article page's Server Component on each request.
+ * Increments viewCount on the Strapi article via the custom POST /view route.
+ */
+export async function trackArticleView(documentId: string): Promise<void> {
+    if (!documentId) return;
+    try {
+        await fetch(`${STRAPI_URL}/api/articles/${documentId}/view`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            cache: "no-store",
+        });
+    } catch (err) {
+        // Tracking failure must never break page rendering
+        console.warn("[trackArticleView] Failed silently:", err);
+    }
+}
