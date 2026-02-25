@@ -1043,30 +1043,44 @@ var _s = __turbopack_context__.k.signature();
 function ThemeToggle() {
     _s();
     const [isDark, setIsDark] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Sync state from DOM class (set by FOUC-prevention script in layout.tsx)
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ThemeToggle.useEffect": ()=>{
-            const theme = localStorage.getItem("theme");
-            if (theme === "dark" || !theme && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-                setIsDark(true);
-                document.documentElement.classList.add("dark");
-            }
+            const checkDark = {
+                "ThemeToggle.useEffect.checkDark": ()=>{
+                    setIsDark(document.documentElement.classList.contains("dark"));
+                }
+            }["ThemeToggle.useEffect.checkDark"];
+            checkDark();
+            // Listen for external changes (e.g., system-preference sync, other tabs)
+            const observer = new MutationObserver(checkDark);
+            observer.observe(document.documentElement, {
+                attributes: true,
+                attributeFilter: [
+                    "class"
+                ]
+            });
+            return ({
+                "ThemeToggle.useEffect": ()=>observer.disconnect()
+            })["ThemeToggle.useEffect"];
         }
     }["ThemeToggle.useEffect"], []);
     const toggleTheme = ()=>{
-        if (isDark) {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-            setIsDark(false);
-        } else {
+        const nowDark = !isDark;
+        if (nowDark) {
             document.documentElement.classList.add("dark");
             localStorage.setItem("theme", "dark");
-            setIsDark(true);
+        } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("theme", "light");
         }
+        setIsDark(nowDark);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
         onClick: toggleTheme,
         className: "p-3 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors glass rounded-2xl border border-gray-100 dark:border-white/10 hover:bg-white dark:hover:bg-white/5 group relative overflow-hidden",
-        "aria-label": "Toggle Theme",
+        "aria-label": isDark ? "สลับเป็นโหมดสว่าง" : "สลับเป็นโหมดมืด",
+        "aria-pressed": isDark,
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                 initial: false,
@@ -1083,12 +1097,12 @@ function ThemeToggle() {
                     className: "group-hover:rotate-45 transition-transform"
                 }, void 0, false, {
                     fileName: "[project]/Desktop/my_cms/frontend/components/ThemeToggle.tsx",
-                    lineNumber: 41,
+                    lineNumber: 50,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/components/ThemeToggle.tsx",
-                lineNumber: 36,
+                lineNumber: 45,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -1107,18 +1121,18 @@ function ThemeToggle() {
                     className: "group-hover:-rotate-12 transition-transform text-accent"
                 }, void 0, false, {
                     fileName: "[project]/Desktop/my_cms/frontend/components/ThemeToggle.tsx",
-                    lineNumber: 49,
+                    lineNumber: 58,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/components/ThemeToggle.tsx",
-                lineNumber: 43,
+                lineNumber: 52,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/my_cms/frontend/components/ThemeToggle.tsx",
-        lineNumber: 31,
+        lineNumber: 39,
         columnNumber: 9
     }, this);
 }

@@ -4,13 +4,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NewsTicker from "@/components/NewsTicker";
 import Image from "next/image";
-import { ArrowLeft, Calendar, Clock, Share2, User, Bookmark, MoreHorizontal, ChevronRight } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, User, Bookmark, MoreHorizontal, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
 import PrintButton from "@/components/PrintButton";
 import { trackArticleView } from "@/app/actions/article";
 import NewsletterSection from "@/components/NewsletterSection";
+import ShareButton from "@/components/ShareButton";
 
 // Generate Metadata (SEO)
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
@@ -200,11 +201,10 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
                         <div className="flex items-center gap-4">
                             <PrintButton label="พิมพ์" />
                             <p className="text-sm font-bold text-primary">แชร์บทความนี้</p>
-                            <div className="flex gap-2">
-                                <button className="w-10 h-10 rounded-xl bg-gray-50 hover:bg-accent hover:text-white transition-all flex items-center justify-center text-gray-400">
-                                    <Share2 size={18} />
-                                </button>
-                            </div>
+                            <ShareButton
+                                title={article.title}
+                                description={article.description || article.seoDescription || undefined}
+                            />
                         </div>
                     </div>
                 </article>

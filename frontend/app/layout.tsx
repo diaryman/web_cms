@@ -56,7 +56,6 @@ export default async function RootLayout({
   const headersList = await headers();
   const host = headersList.get("host") || "localhost";
 
-  // Normalize domain for config fetching
   let domain = host;
   if (host.includes(":3004")) domain = "pdpa.localhost";
   else if (host.includes(":3002")) domain = "localhost";
@@ -65,33 +64,37 @@ export default async function RootLayout({
 
   const theme = domain.includes("pdpa") ? "pdpa" : "datagov";
 
-  // Fetch cookie consent config from site-config
   let cookieConsentConfig = undefined;
   try {
     const res = await fetchAPI("/site-configs", { filters: { domain } });
     const config = res.data?.[0];
     if (config?.cookieConsent) cookieConsentConfig = config.cookieConsent;
   } catch (e) {
-    // Non-critical — banner simply won't show
+    // Non-critical
   }
 
   return (
     <html lang="th" data-theme={theme}>
-      <body
-        className={`${sarabun.variable} ${prompt.variable} antialiased font-sans`}
-      >
-        {/* ── Skip to main content (WCAG 2.1 / DGA v3 accessibility requirement) ── */}
-        <a
-          href="#main-content"
-          className="skip-link"
-          aria-label="ข้ามไปยังเนื้อหาหลัก"
-        >
+      <head>
+        {/*
+          P8: Dark Mode FOUC Prevention — inline blocking script runs before first paint.
+          Reads localStorage('theme') and applies 'dark' class immediately.
+          Also wires system-preference change listener (syncs when no explicit pref set).
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('theme'),p=window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(s===null&&p)){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(e){if(!localStorage.getItem('theme')){e.matches?document.documentElement.classList.add('dark'):document.documentElement.classList.remove('dark');}});}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className={`${sarabun.variable} ${prompt.variable} antialiased font-sans`}>
+        {/* Skip to main (WCAG 2.1) */}
+        <a href="#main-content" className="skip-link" aria-label="ข้ามไปยังเนื้อหาหลัก">
           ข้ามไปยังเนื้อหาหลัก
         </a>
 
         <SiteThemeProvider>
           <CustomCursor />
-          {/* id="main-content" is placed on <main> in each page — skip-link target */}
           {children}
           <BackToTop />
           <ChatWidget domainOverride={domain} />

@@ -7,31 +7,40 @@ import { motion } from "motion/react";
 export default function ThemeToggle() {
     const [isDark, setIsDark] = useState(false);
 
+    // Sync state from DOM class (set by FOUC-prevention script in layout.tsx)
     useEffect(() => {
-        const theme = localStorage.getItem("theme");
-        if (theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-            setIsDark(true);
-            document.documentElement.classList.add("dark");
-        }
+        const checkDark = () => {
+            setIsDark(document.documentElement.classList.contains("dark"));
+        };
+        checkDark();
+
+        // Listen for external changes (e.g., system-preference sync, other tabs)
+        const observer = new MutationObserver(checkDark);
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["class"],
+        });
+        return () => observer.disconnect();
     }, []);
 
     const toggleTheme = () => {
-        if (isDark) {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-            setIsDark(false);
-        } else {
+        const nowDark = !isDark;
+        if (nowDark) {
             document.documentElement.classList.add("dark");
             localStorage.setItem("theme", "dark");
-            setIsDark(true);
+        } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("theme", "light");
         }
+        setIsDark(nowDark);
     };
 
     return (
         <button
             onClick={toggleTheme}
             className="p-3 text-gray-500 hover:text-primary dark:text-gray-400 dark:hover:text-white transition-colors glass rounded-2xl border border-gray-100 dark:border-white/10 hover:bg-white dark:hover:bg-white/5 group relative overflow-hidden"
-            aria-label="Toggle Theme"
+            aria-label={isDark ? "สลับเป็นโหมดสว่าง" : "สลับเป็นโหมดมืด"}
+            aria-pressed={isDark}
         >
             <motion.div
                 initial={false}
