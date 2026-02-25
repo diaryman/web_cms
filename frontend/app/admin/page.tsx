@@ -29,6 +29,7 @@ interface DashboardStats {
     servicesCount: number;
     featuresCount: number;
     contactsCount: number;
+    newsletterCount: number;
 }
 
 interface RecentItem {
@@ -120,13 +121,14 @@ function DashboardContent() {
             const rangeFilter = getRangeFilter();
 
             // Fetch all counts in parallel
-            const [articlesRes, docsRes, policiesRes, servicesRes, featuresRes, contactsRes] = await Promise.all([
+            const [articlesRes, docsRes, policiesRes, servicesRes, featuresRes, contactsRes, newsletterRes] = await Promise.all([
                 fetch(`${STRAPI_URL}/api/articles?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
                 fetch(`${STRAPI_URL}/api/policy-documents?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
                 fetch(`${STRAPI_URL}/api/policies?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
                 fetch(`${STRAPI_URL}/api/services?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
                 fetch(`${STRAPI_URL}/api/features?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
                 fetch(`${STRAPI_URL}/api/contact-submissions?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
+                fetch(`${STRAPI_URL}/api/newsletter-subscribers?filters[domain][$eq]=${domain}&filters[isActive][$eq]=true&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
             ]);
 
             setStats({
@@ -136,6 +138,7 @@ function DashboardContent() {
                 servicesCount: servicesRes?.meta?.pagination?.total || 0,
                 featuresCount: featuresRes?.meta?.pagination?.total || 0,
                 contactsCount: contactsRes?.meta?.pagination?.total || 0,
+                newsletterCount: newsletterRes?.meta?.pagination?.total || 0,
             });
 
             // Fetch recent articles, documents, and top articles by view count
@@ -386,8 +389,8 @@ function DashboardContent() {
                         <p className="text-2xl font-black text-primary mt-1">{stats.contactsCount}</p>
                     </div>
                     <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm text-center">
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">เนื้อหาทั้งหมด</p>
-                        <p className="text-2xl font-black text-primary mt-1">{stats.newsCount + stats.documentsCount + stats.policiesCount + stats.servicesCount}</p>
+                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Newsletter</p>
+                        <p className="text-2xl font-black mt-1" style={{ color: 'var(--accent-color)' }}>{stats.newsletterCount}</p>
                     </div>
                     <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm text-center">
                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">สถานะระบบ</p>

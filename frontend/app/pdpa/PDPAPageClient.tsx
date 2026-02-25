@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SpotlightCard from "@/components/SpotlightCard";
 import { fetchAPI, getStrapiMedia } from "@/lib/api";
+import NewsletterSection from "@/components/NewsletterSection";
 
 interface PDPAPageClientProps {
     navbar: React.ReactNode;
@@ -474,6 +475,8 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
                     </div>
                 </div>
             </section>
+
+            <NewsletterSection domain="pdpa.localhost" siteName="PDPA Center" />
 
             {footer}
         </main>

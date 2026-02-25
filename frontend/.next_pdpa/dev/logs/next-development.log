@@ -8,3 +8,20 @@
 [00:01:09.746] Server  LOG     ✓ Compiled in 222ms
 [00:01:44.359] Server  LOG     ✓ Compiled in 141ms
 [00:08:48.279] Server  LOG     ✓ Compiled in 251ms
+[00:13:53.184] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:53.353] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:13:53.353] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:13:56.947] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:57.075] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:13:57.075] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:14:28.434] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:14:28.556] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:14:28.556] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:15:26.644] Server  LOG     ✓ Compiled in 64ms
+[00:15:53.949] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:15:53.971] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:15:54.232] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:15:54.232] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:15:54.257] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
+[00:15:55.230] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:15:55.230] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found

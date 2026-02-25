@@ -10,6 +10,7 @@ import { notFound } from "next/navigation";
 import Breadcrumb from "@/components/Breadcrumb";
 import PrintButton from "@/components/PrintButton";
 import { trackArticleView } from "@/app/actions/article";
+import NewsletterSection from "@/components/NewsletterSection";
 
 // Generate Metadata (SEO)
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
@@ -224,6 +225,8 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
                     </div>
                 </div>
             </div>
+
+            <NewsletterSection domain={domain} />
 
             <Footer domain={domain} />
         </main>
