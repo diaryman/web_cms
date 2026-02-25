@@ -462,3 +462,26 @@ Import traces:
 [36:33:38.324] Server  LOG     ✓ Compiled in 167ms
 [36:35:29.586] Server  LOG     ✓ Compiled in 352ms
 [36:36:54.328] Server  LOG     ✓ Compiled in 311ms
+[36:38:51.885] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[36:38:52.035] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[36:38:52.035] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[36:41:07.765] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[36:41:07.888] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[36:41:07.888] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[36:41:15.461] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[36:41:15.591] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[36:41:15.591] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[36:41:17.723] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[36:41:17.842] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[36:41:17.842] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[36:41:18.823] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[36:41:18.960] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[36:41:18.960] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[36:41:20.492] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[36:41:20.608] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[36:41:20.608] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[36:41:22.052] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[36:41:22.178] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[36:41:22.178] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[37:26:59.360] Server  LOG     ✓ Compiled in 127ms
+[37:27:55.485] Server  LOG     ✓ Compiled in 748ms

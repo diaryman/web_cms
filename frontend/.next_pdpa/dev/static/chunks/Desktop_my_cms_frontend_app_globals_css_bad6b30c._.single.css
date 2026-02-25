@@ -5098,6 +5098,12 @@
   }
 
   @media (hover: hover) {
+    .hover\:text-rose-600:hover {
+      color: var(--color-rose-600);
+    }
+  }
+
+  @media (hover: hover) {
     .hover\:text-white:hover {
       color: var(--color-white);
     }
@@ -5118,6 +5124,12 @@
   @media (hover: hover) {
     .hover\:opacity-70:hover {
       opacity: .7;
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:opacity-80:hover {
+      opacity: .8;
     }
   }
 

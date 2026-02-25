@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
-import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate, Search, Trash2, CheckCircle2 } from "lucide-react";
+import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate, Search, Trash2, CheckCircle2, Zap, Plus, BarChart3 } from "lucide-react";
 
 /* ─── Theme Template Presets ──────────────────────────────────────────────── */
 type ThemeTemplate = {
@@ -269,8 +269,10 @@ export default function AdminSiteConfigPage() {
     const [formData, setFormData] = useState({
         siteName: "",
         announcement: "",
+        notifications: [] as string[],
         heroHeadline: "",
         heroSubheadline: "",
+        heroStats: [] as { value: string; label: string; sublabel: string }[],
         address: "",
         phone: "",
         email: "",
@@ -304,8 +306,10 @@ export default function AdminSiteConfigPage() {
                     setFormData({
                         siteName: config.siteName || "",
                         announcement: config.announcement || "",
+                        notifications: config.notifications || [],
                         heroHeadline: config.heroHeadline || "",
                         heroSubheadline: config.heroSubheadline || "",
+                        heroStats: config.heroStats || [],
                         address: config.address || "",
                         phone: config.phone || "",
                         email: config.email || "",
@@ -731,7 +735,51 @@ export default function AdminSiteConfigPage() {
                     </div>
                 </div>
 
-                {/* Hero Section */}
+                {/* News Ticker Notifications ──────────────────────────── */}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
+                            <Zap size={20} />
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-800">ข้อความ News Ticker (Live Updates)</h3>
+                            <p className="text-xs text-gray-400 mt-0.5">ข้อความที่เลื่อนบนแถบด้านบนสุดของเว็บไซต์ หากไม่มีจะใช้ announcements แทน</p>
+                        </div>
+                    </div>
+                    <div className="space-y-3">
+                        {formData.notifications.map((notif, idx) => (
+                            <div key={idx} className="flex gap-2 items-center">
+                                <span className="w-6 h-6 flex-shrink-0 rounded-full text-[10px] font-black flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>{idx + 1}</span>
+                                <input
+                                    value={notif}
+                                    onChange={(e) => {
+                                        const arr = [...formData.notifications];
+                                        arr[idx] = e.target.value;
+                                        setFormData({ ...formData, notifications: arr });
+                                    }}
+                                    className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                    placeholder={`ข้อความที่ ${idx + 1}...`}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setFormData({ ...formData, notifications: formData.notifications.filter((_, i) => i !== idx) })}
+                                    className="p-2 text-rose-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all"
+                                >
+                                    <Trash2 size={16} />
+                                </button>
+                            </div>
+                        ))}
+                        <button
+                            type="button"
+                            onClick={() => setFormData({ ...formData, notifications: [...formData.notifications, ""] })}
+                            className="mt-2 flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-sm border-2 border-dashed transition-all hover:opacity-80"
+                            style={{ borderColor: 'var(--accent-color)', color: 'var(--accent-color)' }}
+                        >
+                            <Plus size={16} /> เพิ่มข้อความใหม่
+                        </button>
+                    </div>
+                </div>
+
                 <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
                         <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--primary-color)' }}>
@@ -764,6 +812,84 @@ export default function AdminSiteConfigPage() {
                                 placeholder="ข้อความอธิบายเพิ่มเติม..."
                             />
                         </div>
+                    </div>
+                </div>
+
+                {/* Hero Stats ──────────────────────────────────────────── */}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
+                            <BarChart3 size={20} />
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-800">สถิติในส่วน Hero (Hero Stats)</h3>
+                            <p className="text-xs text-gray-400 mt-0.5">ตัวเลขสถิติที่แสดงในส่วน Hero Banner มีได้สูงสุด 3 รายการ</p>
+                        </div>
+                    </div>
+                    <div className="space-y-4">
+                        {formData.heroStats.map((stat, idx) => (
+                            <div key={idx} className="flex gap-3 items-start p-4 bg-gray-50 rounded-2xl">
+                                <span className="w-6 h-6 flex-shrink-0 rounded-full text-[10px] font-black flex items-center justify-center mt-3" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>{idx + 1}</span>
+                                <div className="flex-1 grid grid-cols-3 gap-3">
+                                    <div className="space-y-1">
+                                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">ตัวเลข (Value)</label>
+                                        <input
+                                            value={stat.value}
+                                            onChange={(e) => {
+                                                const arr = [...formData.heroStats];
+                                                arr[idx] = { ...arr[idx], value: e.target.value };
+                                                setFormData({ ...formData, heroStats: arr });
+                                            }}
+                                            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-bold outline-none focus:ring-2 focus:ring-primary/20"
+                                            placeholder="เช่น 1,200+"
+                                        />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">ชื่อสถิติ (Label)</label>
+                                        <input
+                                            value={stat.label}
+                                            onChange={(e) => {
+                                                const arr = [...formData.heroStats];
+                                                arr[idx] = { ...arr[idx], label: e.target.value };
+                                                setFormData({ ...formData, heroStats: arr });
+                                            }}
+                                            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-primary/20"
+                                            placeholder="เช่น ชุดข้อมูล"
+                                        />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">คำอธิบาย (Sublabel)</label>
+                                        <input
+                                            value={stat.sublabel}
+                                            onChange={(e) => {
+                                                const arr = [...formData.heroStats];
+                                                arr[idx] = { ...arr[idx], sublabel: e.target.value };
+                                                setFormData({ ...formData, heroStats: arr });
+                                            }}
+                                            className="w-full px-3 py-2 bg-white border border-gray-200 rounded-xl text-sm font-medium outline-none focus:ring-2 focus:ring-primary/20"
+                                            placeholder="เช่น Open Data"
+                                        />
+                                    </div>
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => setFormData({ ...formData, heroStats: formData.heroStats.filter((_, i) => i !== idx) })}
+                                    className="p-2 text-rose-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all mt-6"
+                                >
+                                    <Trash2 size={16} />
+                                </button>
+                            </div>
+                        ))}
+                        {formData.heroStats.length < 3 && (
+                            <button
+                                type="button"
+                                onClick={() => setFormData({ ...formData, heroStats: [...formData.heroStats, { value: "", label: "", sublabel: "" }] })}
+                                className="mt-2 flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-sm border-2 border-dashed transition-all hover:opacity-80"
+                                style={{ borderColor: 'var(--accent-color)', color: 'var(--accent-color)' }}
+                            >
+                                <Plus size={16} /> เพิ่มสถิติ (สูงสุด 3)
+                            </button>
+                        )}
                     </div>
                 </div>
 

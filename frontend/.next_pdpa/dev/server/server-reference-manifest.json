@@ -8,6 +8,12 @@
           "exportedName": "checkAuthAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
         },
+        "app/admin/chatbot/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/chatbot/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "checkAuthAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
         "app/admin/contacts/page": {
           "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/contacts/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
@@ -22,6 +28,12 @@
         },
         "app/admin/features/page": {
           "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/features/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "checkAuthAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
+        "app/admin/galleries/edit/[id]/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/galleries/edit/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/upload.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
           "exportedName": "checkAuthAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
@@ -62,6 +74,12 @@
           "exportedName": "checkAuthAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
         },
+        "app/admin/newsletter/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/newsletter/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "checkAuthAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
         "app/admin/page": {
           "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
@@ -89,15 +107,18 @@
       },
       "layer": {
         "app/admin/categories/page": "action-browser",
+        "app/admin/chatbot/page": "action-browser",
         "app/admin/contacts/page": "action-browser",
         "app/admin/documents/page": "action-browser",
         "app/admin/features/page": "action-browser",
+        "app/admin/galleries/edit/[id]/page": "action-browser",
         "app/admin/galleries/new/page": "action-browser",
         "app/admin/galleries/page": "action-browser",
         "app/admin/hero-slides/page": "action-browser",
         "app/admin/logs/page": "action-browser",
         "app/admin/news/edit/[id]/page": "action-browser",
         "app/admin/news/page": "action-browser",
+        "app/admin/newsletter/page": "action-browser",
         "app/admin/page": "action-browser",
         "app/admin/policies/page": "action-browser",
         "app/admin/services/page": "action-browser",
@@ -114,6 +135,12 @@
           "exportedName": "logoutAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
         },
+        "app/admin/chatbot/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/chatbot/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logoutAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
         "app/admin/contacts/page": {
           "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/contacts/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
@@ -128,6 +155,12 @@
         },
         "app/admin/features/page": {
           "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/features/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logoutAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
+        "app/admin/galleries/edit/[id]/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/galleries/edit/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/upload.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
           "exportedName": "logoutAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
@@ -168,6 +201,12 @@
           "exportedName": "logoutAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
         },
+        "app/admin/newsletter/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/newsletter/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logoutAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
         "app/admin/page": {
           "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
@@ -195,15 +234,18 @@
       },
       "layer": {
         "app/admin/categories/page": "action-browser",
+        "app/admin/chatbot/page": "action-browser",
         "app/admin/contacts/page": "action-browser",
         "app/admin/documents/page": "action-browser",
         "app/admin/features/page": "action-browser",
+        "app/admin/galleries/edit/[id]/page": "action-browser",
         "app/admin/galleries/new/page": "action-browser",
         "app/admin/galleries/page": "action-browser",
         "app/admin/hero-slides/page": "action-browser",
         "app/admin/logs/page": "action-browser",
         "app/admin/news/edit/[id]/page": "action-browser",
         "app/admin/news/page": "action-browser",
+        "app/admin/newsletter/page": "action-browser",
         "app/admin/page": "action-browser",
         "app/admin/policies/page": "action-browser",
         "app/admin/services/page": "action-browser",
@@ -229,6 +271,12 @@
     },
     "401552791a60441f9a7e35cfa242ae6f786a8c8bd5": {
       "workers": {
+        "app/admin/galleries/edit/[id]/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/galleries/edit/[id]/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/upload.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "uploadFile",
+          "filename": "Desktop/my_cms/frontend/app/actions/upload.ts"
+        },
         "app/admin/galleries/new/page": {
           "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/galleries/new/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/upload.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
@@ -249,6 +297,7 @@
         }
       },
       "layer": {
+        "app/admin/galleries/edit/[id]/page": "action-browser",
         "app/admin/galleries/new/page": "action-browser",
         "app/admin/news/edit/[id]/page": "action-browser",
         "app/admin/policies/page": "action-browser"
