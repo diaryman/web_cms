@@ -1184,10 +1184,6 @@
     aspect-ratio: 16 / 10;
   }
 
-  .aspect-auto {
-    aspect-ratio: auto;
-  }
-
   .aspect-square {
     aspect-ratio: 1;
   }
@@ -1378,10 +1374,6 @@
 
   .max-h-\[90vh\] {
     max-height: 90vh;
-  }
-
-  .max-h-full {
-    max-height: 100%;
   }
 
   .min-h-\[2\.5rem\] {

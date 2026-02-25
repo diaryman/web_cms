@@ -1,10 +1,7 @@
-[00:00:01.485] Server  LOG     ✓ Ready in 1277ms
-[00:00:04.511] Server  LOG     ○ Compiling /admin/news ...
-[00:00:08.006] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:08.188] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:08.278] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
-[00:00:08.278] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
-[00:00:08.761] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
-[00:00:08.761] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
-[00:01:39.759] Browser ERROR   uncaughtError: Error: Invalid src prop (http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg) on `next/image`, hostname "127.0.0.1" is not configured under images in your `next.config.js`
-See more info: https://nextjs.org/docs/messages/next-image-unconfigured-host
+[00:00:01.243] Server  LOG     ✓ Ready in 803ms
+[00:00:02.521] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:02.622] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:02.798] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:00:02.798] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:00:03.232] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:00:03.232] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found

@@ -14,10 +14,17 @@ const nextConfig: NextConfig = {
 
   images: {
     remotePatterns: [
-      // Local Strapi backend (dev)
+      // Local Strapi backend (dev) — localhost
       {
         protocol: 'http',
         hostname: 'localhost',
+        port: '1337',
+        pathname: '/uploads/**',
+      },
+      // Local Strapi backend (dev) — 127.0.0.1 (Node resolves differently)
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
         port: '1337',
         pathname: '/uploads/**',
       },
