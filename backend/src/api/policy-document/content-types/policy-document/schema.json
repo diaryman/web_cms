@@ -33,6 +33,12 @@
         },
         "domain": {
             "type": "string"
+        },
+        "seoTitle": {
+            "type": "string"
+        },
+        "seoDescription": {
+            "type": "text"
         }
     }
 }

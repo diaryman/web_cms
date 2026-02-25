@@ -6,30 +6,47 @@ import NewsTicker from "@/components/NewsTicker";
 import { ArrowLeft, Calendar, Clock, Share2, User, Bookmark, MoreHorizontal, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Breadcrumb from "@/components/Breadcrumb";
 
 // Generate Metadata (SEO)
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
     const params = await props.params;
     const data = await fetchAPI("/articles", {
         filters: { slug: params.slug },
-        populate: {
-            content: {
-                populate: "*"
-            },
-            coverImage: true,
-            category: true
-        },
+        populate: { coverImage: true, ogImage: true, category: true },
     });
 
     const article = data.data?.[0];
-    if (!article) return { title: "Article Not Found" };
+    if (!article) return { title: "ไม่พบบทความ" };
 
     const isPDPA = article.domain === 'pdpa.localhost';
     const siteName = isPDPA ? "PDPA Center" : "DataGOV";
 
+    const title = article.seoTitle || `${article.title} | ${siteName}`;
+    const description = article.seoDescription || article.description || "อ่านรายละเอียดข่าวสารและกิจกรรมล่าสุด";
+    const ogImageUrl = article.ogImage?.url
+        ? getStrapiMedia(article.ogImage.url)
+        : article.coverImage?.url
+            ? getStrapiMedia(article.coverImage.url)
+            : undefined;
+
     return {
-        title: `${article.title} - ${siteName}`,
-        description: article.description || "อ่านรายละเอียดข่าวสารและกิจกรรมล่าสุด",
+        title,
+        description,
+        keywords: article.seoKeywords || undefined,
+        openGraph: {
+            title,
+            description,
+            type: "article",
+            publishedTime: article.publishedAt,
+            ...(ogImageUrl ? { images: [{ url: ogImageUrl, width: 1200, height: 630 }] } : {})
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            ...(ogImageUrl ? { images: [ogImageUrl] } : {})
+        }
     };
 }
 
@@ -75,13 +92,12 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
             {/* Reading Context Header */}
             <div className="pt-[calc(8rem+44px)] pb-12 bg-white">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between mb-8">
-                        <Link href={`/news?site=${siteParam}`} className="group flex items-center gap-2 text-sm font-bold text-gray-400 hover:text-primary transition-all">
-                            <div className="w-8 h-8 rounded-full border border-gray-100 flex items-center justify-center group-hover:border-primary transition-colors">
-                                <ArrowLeft size={16} />
-                            </div>
-                            กลับไปหน้าข่าวสาร
-                        </Link>
+                    <div className="flex items-center justify-between mb-6">
+                        <Breadcrumb
+                            currentLabel={article.title}
+                            homeHref={domain === "pdpa.localhost" ? "/pdpa" : "/"}
+                            homeName={domain === "pdpa.localhost" ? "PDPA Center" : "DataGOV"}
+                        />
                         <div className="flex items-center gap-3">
                             <button className="p-2 text-gray-400 hover:text-accent transition-colors"><Bookmark size={20} /></button>
                             <button className="p-2 text-gray-400 hover:text-accent transition-colors"><MoreHorizontal size={20} /></button>

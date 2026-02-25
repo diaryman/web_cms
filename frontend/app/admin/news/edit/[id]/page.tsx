@@ -3,7 +3,7 @@
 import { useState, useEffect, use, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fetchAPI, getStrapiMedia } from "@/lib/api";
-import { Save, Loader2, ArrowLeft, Image as ImageIcon, Plus, Type, AlignLeft } from "lucide-react";
+import { Save, Loader2, ArrowLeft, Image as ImageIcon, Plus, Type, AlignLeft, Search } from "lucide-react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { uploadFile } from "@/app/actions/upload";
@@ -43,10 +43,13 @@ function EditNewsForm({ id }: { id: string }) {
         title: "",
         slug: "",
         description: "",
-        content: [], // Changed from string to array for Blocks
+        content: [],
         publishedAt: "",
         category: "",
-        domain: domain
+        domain: domain,
+        seoTitle: "",
+        seoDescription: "",
+        seoKeywords: ""
     });
 
     useEffect(() => {
@@ -87,7 +90,10 @@ function EditNewsForm({ id }: { id: string }) {
                     content: initialBlocks,
                     publishedAt: article.publishedAt ? new Date(article.publishedAt).toISOString().slice(0, 16) : "",
                     category: article.category?.id || "",
-                    domain: article.domain || domain
+                    domain: article.domain || domain,
+                    seoTitle: article.seoTitle || "",
+                    seoDescription: article.seoDescription || "",
+                    seoKeywords: article.seoKeywords || ""
                 });
 
                 if (article.coverImage?.url) {
@@ -177,7 +183,10 @@ function EditNewsForm({ id }: { id: string }) {
                 publishedAt: publishedAt,
                 domain: formData.domain,
                 category: formData.category || null,
-                content: cleanContent
+                content: cleanContent,
+                seoTitle: formData.seoTitle || null,
+                seoDescription: formData.seoDescription || null,
+                seoKeywords: formData.seoKeywords || null
             };
 
             if (coverImageId) {
@@ -373,6 +382,73 @@ function EditNewsForm({ id }: { id: string }) {
                                 onChange={e => setFormData({ ...formData, publishedAt: e.target.value })}
                                 className="w-full px-4 py-3 bg-gray-50 rounded-xl border-none outline-none"
                             />
+                        </div>
+                    </div>
+
+                    {/* SEO Section */}
+                    <div className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm">
+                        <div className="flex items-center gap-2 mb-5">
+                            <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
+                                <Search size={16} />
+                            </div>
+                            <h4 className="text-sm font-bold text-gray-800">SEO Settings</h4>
+                        </div>
+
+                        <div className="space-y-4">
+                            <div className="space-y-1.5">
+                                <div className="flex items-center justify-between">
+                                    <label className="text-xs font-bold text-gray-600">SEO Title</label>
+                                    <span className={`text-[10px] font-bold ${(formData.seoTitle || formData.title).length > 60 ? 'text-red-500' : 'text-gray-400'}`}>
+                                        {(formData.seoTitle || formData.title).length}/60
+                                    </span>
+                                </div>
+                                <input
+                                    value={formData.seoTitle}
+                                    onChange={e => setFormData({ ...formData, seoTitle: e.target.value })}
+                                    placeholder={formData.title || 'ใช้หัวข้อข่าวถ้าว่าง...'}
+                                    className="w-full px-3 py-2.5 bg-gray-50 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 outline-none text-sm"
+                                />
+                            </div>
+
+                            <div className="space-y-1.5">
+                                <div className="flex items-center justify-between">
+                                    <label className="text-xs font-bold text-gray-600">Meta Description</label>
+                                    <span className={`text-[10px] font-bold ${(formData.seoDescription || formData.description).length > 160 ? 'text-red-500' : 'text-gray-400'}`}>
+                                        {(formData.seoDescription || formData.description).length}/160
+                                    </span>
+                                </div>
+                                <textarea
+                                    rows={3}
+                                    value={formData.seoDescription}
+                                    onChange={e => setFormData({ ...formData, seoDescription: e.target.value })}
+                                    placeholder={formData.description || 'คำอธิบายสำหรับ Google...'}
+                                    className="w-full px-3 py-2.5 bg-gray-50 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 outline-none text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="space-y-1.5">
+                                <label className="text-xs font-bold text-gray-600">Keywords (คั่นด้วยจุลภาค)</label>
+                                <input
+                                    value={formData.seoKeywords}
+                                    onChange={e => setFormData({ ...formData, seoKeywords: e.target.value })}
+                                    placeholder="คำสำคัญ, ธรรมาภิบาล, ข้อมูล"
+                                    className="w-full px-3 py-2.5 bg-gray-50 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary/20 outline-none text-sm"
+                                />
+                            </div>
+
+                            {/* Google Preview */}
+                            <div className="mt-4 pt-4 border-t border-gray-50">
+                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">ตัวอย่างใน Google</p>
+                                <div className="bg-white border border-gray-200 rounded-xl p-4 space-y-1">
+                                    <p className="text-[11px] text-gray-400">localhost › news › {formData.slug || 'slug'}</p>
+                                    <p className="text-sm font-bold text-blue-700 leading-tight line-clamp-1">
+                                        {formData.seoTitle || formData.title || 'หัวข้อข่าว'}
+                                    </p>
+                                    <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                                        {formData.seoDescription || formData.description || 'คำอธิบายข่าวจะปรากฏที่นี่'}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

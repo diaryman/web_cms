@@ -48,6 +48,22 @@
         },
         "domain": {
             "type": "string"
+        },
+        "seoTitle": {
+            "type": "string"
+        },
+        "seoDescription": {
+            "type": "text"
+        },
+        "seoKeywords": {
+            "type": "string"
+        },
+        "ogImage": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": [
+                "images"
+            ]
         }
     }
 }
