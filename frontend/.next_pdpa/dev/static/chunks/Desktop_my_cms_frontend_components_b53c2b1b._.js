@@ -1232,6 +1232,7 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
+                "aria-label": "เมนูหลัก",
                 className: `fixed w-full z-[140] transition-all duration-500 top-[44px] ${scrolled ? "py-3 shadow-premium border-b" : "py-6 bg-transparent"}`,
                 style: {
                     backgroundColor: scrolled ? 'var(--glass-bg)' : 'transparent',
@@ -1247,6 +1248,7 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     href: domain === "pdpa.localhost" ? "/pdpa" : "/",
                                     className: "flex-shrink-0 flex items-center gap-3 group",
+                                    "aria-label": `${siteName} - กลับหน้าแรก`,
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform duration-300",
@@ -1257,12 +1259,12 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                                 size: 28
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                lineNumber: 75,
+                                                lineNumber: 76,
                                                 columnNumber: 33
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                            lineNumber: 74,
+                                            lineNumber: 75,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1273,7 +1275,7 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                                     children: siteName
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                    lineNumber: 78,
+                                                    lineNumber: 79,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1284,19 +1286,19 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                                     children: "Admin Court TH"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                    lineNumber: 81,
+                                                    lineNumber: 82,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                            lineNumber: 77,
+                                            lineNumber: 78,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                    lineNumber: 73,
+                                    lineNumber: 74,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1313,12 +1315,12 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                                     children: item.name
                                                 }, item.name, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                    lineNumber: 89,
+                                                    lineNumber: 90,
                                                     columnNumber: 37
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                            lineNumber: 87,
+                                            lineNumber: 88,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1330,13 +1332,15 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                                     style: {
                                                         color: 'var(--text-muted)'
                                                     },
+                                                    "aria-label": "เปิดช่องค้นหา (Ctrl+K)",
+                                                    "aria-haspopup": "dialog",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
                                                             size: 18,
                                                             className: "group-hover:text-accent transition-colors flex-shrink-0"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                            lineNumber: 107,
+                                                            lineNumber: 110,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1344,7 +1348,7 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                                             children: "ค้นหา..."
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                            lineNumber: 108,
+                                                            lineNumber: 111,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("kbd", {
@@ -1352,18 +1356,18 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                                             children: "⌘K"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                            lineNumber: 109,
+                                                            lineNumber: 112,
                                                             columnNumber: 37
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                    lineNumber: 102,
+                                                    lineNumber: 103,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$ThemeToggle$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                    lineNumber: 115,
+                                                    lineNumber: 118,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1371,13 +1375,14 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                                     style: {
                                                         color: 'var(--foreground)'
                                                     },
+                                                    "aria-label": "เปลี่ยนภาษา",
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$languages$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Languages$3e$__["Languages"], {
                                                             size: 18,
                                                             className: "text-accent"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                            lineNumber: 122,
+                                                            lineNumber: 126,
                                                             columnNumber: 37
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1385,13 +1390,13 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                                             children: "TH"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                            lineNumber: 123,
+                                                            lineNumber: 127,
                                                             columnNumber: 37
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                    lineNumber: 118,
+                                                    lineNumber: 121,
                                                     columnNumber: 33
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1403,19 +1408,19 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                                     children: "เข้าสู่ระบบ"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                    lineNumber: 126,
+                                                    lineNumber: 130,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                            lineNumber: 100,
+                                            lineNumber: 101,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                    lineNumber: 86,
+                                    lineNumber: 87,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1428,12 +1433,12 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                                 size: 20
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                lineNumber: 142,
+                                                lineNumber: 146,
                                                 columnNumber: 33
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                            lineNumber: 138,
+                                            lineNumber: 142,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1442,42 +1447,46 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                             style: {
                                                 color: 'var(--foreground)'
                                             },
+                                            "aria-label": isOpen ? "ปิดเมนู" : "เปิดเมนู",
+                                            "aria-expanded": isOpen,
+                                            "aria-controls": "mobile-menu",
                                             children: isOpen ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
                                                 size: 24
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                lineNumber: 149,
+                                                lineNumber: 156,
                                                 columnNumber: 43
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$menu$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Menu$3e$__["Menu"], {
                                                 size: 24
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                lineNumber: 149,
+                                                lineNumber: 156,
                                                 columnNumber: 61
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                            lineNumber: 144,
+                                            lineNumber: 148,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                    lineNumber: 137,
+                                    lineNumber: 141,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                            lineNumber: 71,
+                            lineNumber: 72,
                             columnNumber: 21
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                        lineNumber: 70,
+                        lineNumber: 71,
                         columnNumber: 17
                     }, this),
                     isOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        id: "mobile-menu",
                         initial: {
                             opacity: 0,
                             y: -20
@@ -1487,6 +1496,9 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                             y: 0
                         },
                         className: "md:hidden glass absolute w-full left-0 shadow-2xl overflow-hidden",
+                        "aria-live": "polite",
+                        role: "dialog",
+                        "aria-label": "เมนูมือถือ",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "px-4 pt-4 pb-8 space-y-2",
                             children: [
@@ -1500,7 +1512,7 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                         children: item.name
                                     }, item.name, false, {
                                         fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                        lineNumber: 164,
+                                        lineNumber: 175,
                                         columnNumber: 33
                                     }, this)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1511,7 +1523,7 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$components$2f$ThemeToggle$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                    lineNumber: 176,
+                                                    lineNumber: 187,
                                                     columnNumber: 37
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1525,26 +1537,26 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                                             className: "text-accent"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                            lineNumber: 181,
+                                                            lineNumber: 192,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             children: "Thai / English"
                                                         }, void 0, false, {
                                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                            lineNumber: 182,
+                                                            lineNumber: 193,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                                    lineNumber: 177,
+                                                    lineNumber: 188,
                                                     columnNumber: 37
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                            lineNumber: 175,
+                                            lineNumber: 186,
                                             columnNumber: 33
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$my_cms$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1557,24 +1569,24 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                                             children: "เข้าสู่ระบบจัดการข้อมูล"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                            lineNumber: 185,
+                                            lineNumber: 196,
                                             columnNumber: 33
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                                    lineNumber: 174,
+                                    lineNumber: 185,
                                     columnNumber: 29
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                            lineNumber: 162,
+                            lineNumber: 173,
                             columnNumber: 25
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                        lineNumber: 157,
+                        lineNumber: 164,
                         columnNumber: 21
                     }, this)
                 ]
@@ -1589,7 +1601,7 @@ function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost"
                 domain: domain
             }, void 0, false, {
                 fileName: "[project]/Desktop/my_cms/frontend/components/NavbarClient.tsx",
-                lineNumber: 199,
+                lineNumber: 210,
                 columnNumber: 13
             }, this)
         ]

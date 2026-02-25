@@ -1085,6 +1085,10 @@
     top: 44px;
   }
 
+  .top-\[calc\(8rem\+52px\)\] {
+    top: calc(8rem + 52px);
+  }
+
   .top-full {
     top: 100%;
   }
@@ -4572,12 +4576,6 @@
   }
 
   @media (hover: hover) {
-    .group-hover\:border-primary:is(:where(.group):hover *) {
-      border-color: var(--color-primary);
-    }
-  }
-
-  @media (hover: hover) {
     .group-hover\:bg-accent\/10:is(:where(.group):hover *) {
       background-color: var(--color-accent);
     }
@@ -5990,6 +5988,75 @@
 
 [class*="animate-"], [class*="motion-"], .group, img, video {
   transition-property: none;
+}
+
+.skip-link {
+  z-index: 9999;
+  background: var(--primary-color);
+  color: var(--primary-foreground);
+  white-space: nowrap;
+  border-radius: 0 0 .75rem .75rem;
+  padding: .75rem 1.5rem;
+  font-size: .9rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: top .2s;
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  box-shadow: 0 4px 16px #0003;
+}
+
+.skip-link:focus {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+  top: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, :before, :after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .noise-overlay {
+    animation: none !important;
+  }
+
+  .premium-gradient {
+    background-position: 0% !important;
+    animation: none !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  :root, [data-theme="datagov"] {
+    --accent-color: #00c;
+    --primary-color: #000;
+    --foreground: #000;
+    --background: #fff;
+    --accent-subtle: #0000cc1a;
+  }
+
+  [data-theme="pdpa"] {
+    --accent-color: #005a2b;
+    --primary-color: #003018;
+  }
+
+  .glass, .glass-dark {
+    background: var(--background) !important;
+    border: 2px solid var(--foreground) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
 }
 
 :root, [data-theme="datagov"] {

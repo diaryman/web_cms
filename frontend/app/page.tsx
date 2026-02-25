@@ -69,7 +69,7 @@ export default async function Home() {
   const showDownloads = toggles.downloads !== false;
 
   return (
-    <main className="min-h-screen selection:bg-accent/30 relative">
+    <main id="main-content" className="min-h-screen selection:bg-accent/30 relative">
       <div className="noise-overlay" />
       <ScrollProgress />
       <BackToTop />

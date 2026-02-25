@@ -5,6 +5,7 @@ import { fetchAPI, getStrapiMedia } from "@/lib/api";
 import { Calendar, ChevronRight, ChevronLeft, Search, User, Filter } from "lucide-react";
 import { motion } from "motion/react";
 import React, { useState, useEffect } from "react";
+import Breadcrumb from "@/components/Breadcrumb";
 
 export default function NewsPageClient({
     header,
@@ -92,11 +93,18 @@ export default function NewsPageClient({
     };
 
     return (
-        <main className="min-h-screen bg-[#fcfdfe]">
+        <main id="main-content" className="min-h-screen bg-[#fcfdfe]">
             {header}
 
             {/* Premium Header */}
             <div className="relative pt-[calc(8rem+44px)] pb-24 overflow-hidden">
+                {/* Breadcrumb (above header blob) */}
+                <div className="absolute top-[calc(8rem+52px)] left-0 right-0 z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <Breadcrumb
+                        homeHref={domain === "pdpa.localhost" ? "/pdpa" : "/"}
+                        homeName={domain === "pdpa.localhost" ? "PDPA Center" : "DataGOV"}
+                    />
+                </div>
                 <div className="absolute inset-0 bg-primary/2 flex items-center justify-center opacity-30 pointer-events-none">
                     <div className="w-[1000px] h-[1000px] bg-accent/10 rounded-full blur-[120px]"></div>
                 </div>

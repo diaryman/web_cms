@@ -29,6 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
         template: "%s | PDPA ศาลปกครอง",
       },
       description: "การดำเนินงานด้านการคุ้มครองข้อมูลส่วนบุคคล สำนักงานศาลปกครอง ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562",
+      robots: { index: true, follow: true },
     }
     : {
       title: {
@@ -36,6 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
         template: "%s | DataGOV ศาลปกครอง",
       },
       description: "ระบบบริหารจัดการและกำกับดูแลข้อมูลอิเล็กทรอนิกส์ สำนักงานศาลปกครอง ภายใต้มาตรฐานธรรมาภิบาลข้อมูลภาครัฐ",
+      robots: { index: true, follow: true },
     };
 }
 
@@ -58,7 +60,7 @@ export default async function RootLayout({
   let domain = host;
   if (host.includes(":3004")) domain = "pdpa.localhost";
   else if (host.includes(":3002")) domain = "localhost";
-  else if (host.includes(":3000")) domain = "localhost"; // Legacy fallback
+  else if (host.includes(":3000")) domain = "localhost";
   else domain = host.split(":")[0];
 
   const theme = domain.includes("pdpa") ? "pdpa" : "datagov";
@@ -70,7 +72,7 @@ export default async function RootLayout({
     const config = res.data?.[0];
     if (config?.cookieConsent) cookieConsentConfig = config.cookieConsent;
   } catch (e) {
-    // If fetch fails, banner simply won't show — non-critical
+    // Non-critical — banner simply won't show
   }
 
   return (
@@ -78,8 +80,18 @@ export default async function RootLayout({
       <body
         className={`${sarabun.variable} ${prompt.variable} antialiased font-sans`}
       >
+        {/* ── Skip to main content (WCAG 2.1 / DGA v3 accessibility requirement) ── */}
+        <a
+          href="#main-content"
+          className="skip-link"
+          aria-label="ข้ามไปยังเนื้อหาหลัก"
+        >
+          ข้ามไปยังเนื้อหาหลัก
+        </a>
+
         <SiteThemeProvider>
           <CustomCursor />
+          {/* id="main-content" is placed on <main> in each page — skip-link target */}
           {children}
           <BackToTop />
           <ChatWidget domainOverride={domain} />

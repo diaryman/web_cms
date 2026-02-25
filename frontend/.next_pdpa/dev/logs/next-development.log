@@ -510,3 +510,23 @@ Import traces:
 [39:09:30.164] Server  LOG     ✓ Compiled in 56ms
 [39:09:54.463] Server  LOG     ✓ Compiled in 992ms
 [39:10:14.875] Server  LOG     ✓ Compiled in 185ms
+[39:12:09.167] Server  LOG     ✓ Compiled in 120ms
+[39:12:13.525] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[39:12:13.525] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[39:12:13.525] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[39:12:13.525] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[39:12:13.529] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[39:12:13.529] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[39:12:13.529] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[39:12:13.529] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[39:12:30.915] Server  LOG     ✓ Compiled in 887ms
+[39:12:47.265] Server  LOG     ✓ Compiled in 78ms
+[39:12:54.721] Server  LOG     ✓ Compiled in 107ms
+[39:13:59.337] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[39:13:59.397] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[39:14:00.523] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[39:14:00.523] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[39:14:00.523] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[39:14:00.523] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[39:14:45.731] Server  LOG     ✓ Compiled in 857ms
+[39:15:34.324] Server  LOG     ✓ Compiled in 155ms

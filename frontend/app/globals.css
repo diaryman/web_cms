@@ -58,6 +58,92 @@ video {
 }
 
 /* ========================================
+   Skip to Main Content (WCAG 2.1 req.)
+   ======================================== */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary-color);
+  color: var(--primary-foreground);
+  font-weight: 800;
+  font-size: 0.9rem;
+  border-radius: 0 0 0.75rem 0.75rem;
+  text-decoration: none;
+  transition: top 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   Keyboard Focus Ring (WCAG 2.1)
+   ======================================== */
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ========================================
+   prefers-reduced-motion (WCAG 2.1 req.)
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .noise-overlay {
+    animation: none !important;
+  }
+
+  .premium-gradient {
+    animation: none !important;
+    background-position: 0% 50% !important;
+  }
+}
+
+/* ========================================
+   High Contrast Mode (Windows / prefers-contrast)
+   ======================================== */
+@media (prefers-contrast: high) {
+
+  :root,
+  [data-theme="datagov"] {
+    --accent-color: #0000cc;
+    --primary-color: #000000;
+    --foreground: #000000;
+    --background: #ffffff;
+    --accent-subtle: rgba(0, 0, 204, 0.1);
+  }
+
+  [data-theme="pdpa"] {
+    --accent-color: #005a2b;
+    --primary-color: #003018;
+  }
+
+  .glass,
+  .glass-dark {
+    background: var(--background) !important;
+    border: 2px solid var(--foreground) !important;
+    backdrop-filter: none !important;
+  }
+}
+
+/* ========================================
    DataGOV Theme (Excellence Blue)
    Default theme
    ======================================== */

@@ -32,7 +32,7 @@ export default async function CookiePolicyPage() {
     const homeHref = domain === "pdpa.localhost" ? "/pdpa" : "/";
 
     return (
-        <main className="min-h-screen" style={{ background: "var(--background)" }}>
+        <main id="main-content" className="min-h-screen" style={{ background: "var(--background)" }}>
             <div className="py-16 px-6" style={{ background: "var(--primary-color)" }}>
                 <div className="max-w-4xl mx-auto">
                     <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-bold mb-6" style={{ color: "rgba(255,255,255,0.6)" }}>

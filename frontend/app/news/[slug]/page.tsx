@@ -85,7 +85,7 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
     }
 
     return (
-        <main className="min-h-screen bg-[#fcfdfe]">
+        <main id="main-content" className="min-h-screen bg-[#fcfdfe]">
             <NewsTicker domain={domain} announcement={announcement} notifications={notifications} />
             <Navbar domain={domain} />
 

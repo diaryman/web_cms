@@ -57,6 +57,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
     return (
         <>
             <nav
+                aria-label="เมนูหลัก"
                 className={`fixed w-full z-[140] transition-all duration-500 top-[44px] ${scrolled
                     ? "py-3 shadow-premium border-b"
                     : "py-6 bg-transparent"
@@ -70,7 +71,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         {/* Logo Section */}
-                        <Link href={domain === "pdpa.localhost" ? "/pdpa" : "/"} className="flex-shrink-0 flex items-center gap-3 group">
+                        <Link href={domain === "pdpa.localhost" ? "/pdpa" : "/"} className="flex-shrink-0 flex items-center gap-3 group" aria-label={`${siteName} - กลับหน้าแรก`}>
                             <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform duration-300" style={{ backgroundColor: 'var(--accent-color)' }}>
                                 <ShieldCheck size={28} />
                             </div>
@@ -103,6 +104,8 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                                     onClick={() => setIsSearchOpen(true)}
                                     className="flex items-center gap-3 px-4 py-2.5 transition-colors glass rounded-2xl border border-gray-100 dark:border-white/10 hover:bg-white group"
                                     style={{ color: 'var(--text-muted)' }}
+                                    aria-label="เปิดช่องค้นหา (Ctrl+K)"
+                                    aria-haspopup="dialog"
                                 >
                                     <Search size={18} className="group-hover:text-accent transition-colors flex-shrink-0" />
                                     <span className="text-sm font-medium hidden lg:block">ค้นหา...</span>
@@ -118,6 +121,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                                 <button
                                     className="p-3 transition-colors glass rounded-2xl border border-gray-100 dark:border-white/10 hover:bg-white flex items-center gap-2 px-4 shadow-sm"
                                     style={{ color: 'var(--foreground)' }}
+                                    aria-label="เปลี่ยนภาษา"
                                 >
                                     <Languages size={18} className="text-accent" />
                                     <span className="text-xs font-bold font-heading">TH</span>
@@ -145,6 +149,9 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                                 onClick={() => setIsOpen(!isOpen)}
                                 className="p-3 glass rounded-2xl border border-gray-100 dark:border-white/10"
                                 style={{ color: 'var(--foreground)' }}
+                                aria-label={isOpen ? "ปิดเมนู" : "เปิดเมนู"}
+                                aria-expanded={isOpen}
+                                aria-controls="mobile-menu"
                             >
                                 {isOpen ? <X size={24} /> : <Menu size={24} />}
                             </button>
@@ -155,9 +162,13 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                 {/* Mobile Menu */}
                 {isOpen && (
                     <motion.div
+                        id="mobile-menu"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="md:hidden glass absolute w-full left-0 shadow-2xl overflow-hidden"
+                        aria-live="polite"
+                        role="dialog"
+                        aria-label="เมนูมือถือ"
                     >
                         <div className="px-4 pt-4 pb-8 space-y-2">
                             {navItems.map((item) => (
