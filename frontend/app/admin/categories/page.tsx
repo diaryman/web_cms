@@ -244,7 +244,7 @@ function CategoriesContent() {
                                 ))
                             ) : filteredCategories.length > 0 ? (
                                 filteredCategories.map((cat) => (
-                                    <tr key={cat.id} className="group hover:bg-blue-50/30 transition-colors">
+                                    <tr key={cat.id} className="group transition-colors" style={{ ':hover': {} } as any} onMouseEnter={e => (e.currentTarget.style.background = 'var(--accent-subtle)')} onMouseLeave={e => (e.currentTarget.style.background = '')}>
                                         <td className="px-8 py-5">
                                             <div className="flex items-center gap-4">
                                                 <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 group-hover:bg-white group-hover:text-primary transition-all">
@@ -256,11 +256,11 @@ function CategoriesContent() {
                                         <td className="px-6 py-5">
                                             <div className="flex items-center gap-2">
                                                 {cat.type === 'news' ? (
-                                                    <div className="flex items-center gap-2 text-indigo-500 bg-indigo-50 px-3 py-1.5 rounded-xl text-xs font-bold">
+                                                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold" style={{ background: 'var(--accent-subtle)', color: 'var(--primary-color)' }}>
                                                         <Megaphone size={14} /> ข่าวสาร
                                                     </div>
                                                 ) : (
-                                                    <div className="flex items-center gap-2 text-emerald-500 bg-emerald-50 px-3 py-1.5 rounded-xl text-xs font-bold">
+                                                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
                                                         <FileText size={14} /> เอกสาร
                                                     </div>
                                                 )}
@@ -273,7 +273,8 @@ function CategoriesContent() {
                                             <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                                 <button
                                                     onClick={() => handleEditClick(cat)}
-                                                    className="p-2 text-indigo-500 hover:bg-indigo-50 rounded-lg transition-colors"
+                                                    className="p-2 hover:opacity-70 rounded-lg transition-colors"
+                                                    style={{ color: 'var(--primary-color)' }}
                                                 >
                                                     <Edit size={18} />
                                                 </button>

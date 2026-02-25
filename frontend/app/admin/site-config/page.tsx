@@ -453,7 +453,7 @@ export default function AdminSiteConfigPage() {
                 {/* Section Toggles */}
                 <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
                             <LayoutTemplate size={20} />
                         </div>
                         <h3 className="text-lg font-bold text-gray-800">การแสดงผลวิดเจ็ต (Section Toggles)</h3>
@@ -481,7 +481,7 @@ export default function AdminSiteConfigPage() {
                 ───────────────────────────────────── */}
                 <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
-                        <div className="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
                             <LayoutTemplate size={20} />
                         </div>
                         <div>
@@ -523,7 +523,7 @@ export default function AdminSiteConfigPage() {
                                                 </span>
                                             </div>
                                             {isActive ? (
-                                                <span className="px-2 py-0.5 bg-violet-100 text-violet-600 text-[9px] font-black rounded-full whitespace-nowrap">✓ กำลังใช้</span>
+                                                <span className="px-2 py-0.5 text-white text-[9px] font-black rounded-full whitespace-nowrap" style={{ background: 'var(--accent-color)' }}>✓ กำลังใช้</span>
                                             ) : (
                                                 <span className="px-2 py-0.5 bg-gray-50 text-gray-400 text-[9px] font-bold rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">เลือก</span>
                                             )}
@@ -593,7 +593,7 @@ export default function AdminSiteConfigPage() {
                 <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
                     <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-50">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
                                 <Search size={20} />
                             </div>
                             <h3 className="text-lg font-bold text-gray-800">จัดการเมนูนำทาง (Navbar)</h3>
@@ -688,7 +688,7 @@ export default function AdminSiteConfigPage() {
                 {/* General Info */}
                 <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
                             <Globe size={20} />
                         </div>
                         <h3 className="text-lg font-bold text-gray-800">ข้อมูลทั่วไป</h3>
@@ -734,7 +734,7 @@ export default function AdminSiteConfigPage() {
                 {/* Hero Section */}
                 <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
-                        <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--primary-color)' }}>
                             <LayoutTemplate size={20} />
                         </div>
                         <h3 className="text-lg font-bold text-gray-800">ส่วนหัวของหน้าแรก (Hero Banner)</h3>
@@ -770,7 +770,7 @@ export default function AdminSiteConfigPage() {
                 {/* Contact Info */}
                 <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
-                        <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
                             <MapPin size={20} />
                         </div>
                         <h3 className="text-lg font-bold text-gray-800">ข้อมูลติดต่อ</h3>

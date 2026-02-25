@@ -110,21 +110,25 @@ function StatsContent() {
             {/* Quick Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
-                    { label: "ข่าวประชาสัมพันธ์", value: stats.articles.toLocaleString(), change: "+2", trend: "up", icon: <Eye size={24} />, color: "bg-blue-500" },
-                    { label: "เอกสารทางนโยบาย", value: stats.documents.toLocaleString(), change: "Stable", trend: "neutral", icon: <Download size={24} />, color: "bg-emerald-500" },
-                    { label: "การส่งแบบฟอร์มติดต่อ", value: stats.contacts.toLocaleString(), change: "+5", trend: "up", icon: <Activity size={24} />, color: "bg-indigo-500" },
-                    { label: "สถานะระบบ", value: "Online", change: "99.9%", trend: "up", icon: <ShieldCheck size={24} />, color: "bg-amber-500" },
+                    { label: "ข่าวประชาสัมพันธ์", value: stats.articles.toLocaleString(), change: "+2", trend: "up", icon: <Eye size={24} /> },
+                    { label: "เอกสารทางนโยบาย", value: stats.documents.toLocaleString(), change: "Stable", trend: "neutral", icon: <Download size={24} /> },
+                    { label: "การส่งแบบฟอร์มติดต่อ", value: stats.contacts.toLocaleString(), change: "+5", trend: "up", icon: <Activity size={24} /> },
+                    { label: "สถานะระบบ", value: "Online", change: "99.9%", trend: "up", icon: <ShieldCheck size={24} /> },
                 ].map((stat, idx) => (
                     <div key={idx} className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-md transition-all group relative overflow-hidden">
-                        <div className={`absolute top-0 right-0 w-24 h-24 ${stat.color} opacity-5 rounded-full blur-2xl -translate-y-8 translate-x-8 group-hover:opacity-10 transition-opacity`}></div>
+                        <div className="absolute top-0 right-0 w-24 h-24 rounded-full blur-2xl -translate-y-8 translate-x-8 group-hover:opacity-30 transition-opacity" style={{ background: 'var(--accent-subtle)', opacity: 0.15 }}></div>
 
                         <div className="flex justify-between items-start mb-6">
-                            <div className={`w-14 h-14 rounded-[1.2rem] ${stat.color} text-white flex items-center justify-center shadow-lg shadow-${stat.color.split('-')[1]}-500/20 group-hover:scale-110 transition-transform`}>
+                            <div
+                                className="w-14 h-14 rounded-[1.2rem] text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform"
+                                style={{ background: idx % 2 === 0 ? 'var(--primary-color)' : 'var(--accent-color)' }}
+                            >
                                 {stat.icon}
                             </div>
-                            <div className={`flex items-center gap-1 text-[10px] font-bold px-2 py-1 rounded-lg ${stat.trend === 'up' ? 'bg-emerald-50 text-emerald-600' :
-                                stat.trend === 'down' ? 'bg-red-50 text-red-600' : 'bg-gray-50 text-gray-500'
-                                }`}>
+                            <div className={`flex items-center gap-1 text-[10px] font-bold px-2 py-1 rounded-lg ${stat.trend === 'down' ? 'bg-red-50 text-red-600' : 'bg-gray-50 text-gray-500'
+                                }`}
+                                style={stat.trend === 'up' ? { background: 'var(--accent-subtle)', color: 'var(--accent-color)' } : {}}
+                            >
                                 {stat.trend === 'up' ? <TrendingUp size={12} /> : stat.trend === 'down' ? <TrendingDown size={12} /> : <Activity size={12} />}
                                 {stat.change}
                             </div>
@@ -165,8 +169,8 @@ function StatsContent() {
                         {[45, 78, 52, 90, 65, 85, 40].map((h, i) => (
                             <div key={i} className="flex-1 flex flex-col items-center gap-2 group relative z-10 w-full h-full justify-end">
                                 <div
-                                    className="w-full bg-blue-500 rounded-t-xl hover:bg-accent transition-all duration-500 relative group-hover:shadow-lg group-hover:shadow-blue-500/20"
-                                    style={{ height: `${h}%` }}
+                                    className="w-full rounded-t-xl transition-all duration-500 relative group-hover:shadow-lg"
+                                    style={{ height: `${h}%`, background: 'var(--accent-color)' }}
                                 >
                                     <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all shadow-xl whitespace-nowrap z-20">
                                         {Math.round(h * 15.4)} Views
@@ -222,7 +226,7 @@ function StatsContent() {
                         <div className="flex justify-between items-start">
                             <div>
                                 <h3 className="text-2xl font-black font-heading tracking-tight mb-2">Platform Traffic</h3>
-                                <p className="text-blue-100/60 text-sm max-w-xs">ผู้ใช้งานส่วนใหญ่เข้าถึงผ่าน Desktop แต่ Mobile มีแนวโน้มสูงขึ้น 15%</p>
+                                <p className="text-white/60 text-sm max-w-xs">ผู้ใช้งานส่วนใหญ่เข้าถึงผ่าน Desktop แต่ Mobile มีแนวโน้มสูงขึ้น 15%</p>
                             </div>
                             <div className="p-3 bg-white/10 rounded-2xl backdrop-blur-md">
                                 <Target size={24} className="text-accent" />
@@ -231,7 +235,7 @@ function StatsContent() {
 
                         <div className="mt-8 space-y-4">
                             <div>
-                                <div className="flex justify-between text-xs font-bold mb-2 text-blue-100/80">
+                                <div className="flex justify-between text-xs font-bold mb-2 text-white/60">
                                     <span>Desktop (Chrome, Safari)</span>
                                     <span>65%</span>
                                 </div>
@@ -240,7 +244,7 @@ function StatsContent() {
                                 </div>
                             </div>
                             <div>
-                                <div className="flex justify-between text-xs font-bold mb-2 text-blue-100/80">
+                                <div className="flex justify-between text-xs font-bold mb-2 text-white/60">
                                     <span>Mobile (iOS, Android)</span>
                                     <span>30%</span>
                                 </div>

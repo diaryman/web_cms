@@ -4727,6 +4727,10 @@
     color: var(--color-blue-500);
   }
 
+  .group-focus-within\:text-primary:is(:where(.group):focus-within *) {
+    color: var(--color-primary);
+  }
+
   @media (hover: hover) {
     .group-hover\:translate-x-1:is(:where(.group):hover *) {
       --tw-translate-x: calc(var(--spacing) * 1);
@@ -4915,6 +4919,12 @@
   @media (hover: hover) {
     .group-hover\:opacity-10:is(:where(.group):hover *) {
       opacity: .1;
+    }
+  }
+
+  @media (hover: hover) {
+    .group-hover\:opacity-30:is(:where(.group):hover *) {
+      opacity: .3;
     }
   }
 
@@ -5500,6 +5510,12 @@
   @media (hover: hover) {
     .hover\:underline:hover {
       text-decoration-line: underline;
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:opacity-70:hover {
+      opacity: .7;
     }
   }
 

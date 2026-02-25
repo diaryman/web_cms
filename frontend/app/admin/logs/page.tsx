@@ -57,13 +57,13 @@ function LogsContent() {
     const getActionBadge = (action: string) => {
         switch (action) {
             case "CREATE":
-                return { color: "bg-emerald-50 text-emerald-600 border-emerald-100", icon: <PlusCircle size={14} />, label: "เพิ่มข้อมูล" };
+                return { color: "", style: { background: 'var(--accent-subtle)', color: 'var(--accent-color)', borderColor: 'var(--accent-glow)' }, icon: <PlusCircle size={14} />, label: "เพิ่มข้อมูล" };
             case "UPDATE":
-                return { color: "bg-blue-50 text-blue-600 border-blue-100", icon: <Edit size={14} />, label: "แก้ไขข้อมูล" };
+                return { color: "", style: { background: 'var(--accent-subtle)', color: 'var(--primary-color)', borderColor: 'var(--glass-border)' }, icon: <Edit size={14} />, label: "แก้ไขข้อมูล" };
             case "DELETE":
-                return { color: "bg-rose-50 text-rose-600 border-rose-100", icon: <Trash2 size={14} />, label: "ลบข้อมูล" };
+                return { color: "bg-rose-50 text-rose-600 border-rose-100", style: {}, icon: <Trash2 size={14} />, label: "ลบข้อมูล" };
             default:
-                return { color: "bg-gray-50 text-gray-600 border-gray-100", icon: <History size={14} />, label: action };
+                return { color: "bg-gray-50 text-gray-600 border-gray-100", style: {}, icon: <History size={14} />, label: action };
         }
     };
 
@@ -116,11 +116,11 @@ function LogsContent() {
                 {/* Table Header Controls */}
                 <div className="p-6 border-b border-gray-50 flex flex-col md:flex-row gap-4 justify-between bg-gray-50/30">
                     <div className="relative group max-w-md w-full">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors" size={18} />
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors" size={18} />
                         <input
                             type="text"
                             placeholder="ค้นหาตามหัวข้อ, ประเภทเนื้อหา หรือผู้ใช้งาน..."
-                            className="w-full pl-12 pr-4 py-3 bg-white border border-gray-100 rounded-2xl text-sm focus:outline-none focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 transition-all font-medium"
+                            className="w-full pl-12 pr-4 py-3 bg-white border border-gray-100 rounded-2xl text-sm focus:outline-none focus:ring-4 focus:border-primary transition-all font-medium"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -168,7 +168,7 @@ function LogsContent() {
                                     return (
                                         <tr key={log.id} className="hover:bg-gray-50/50 transition-colors group">
                                             <td className="px-8 py-6">
-                                                <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border ${badge.color} text-xs font-bold leading-none`}>
+                                                <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold leading-none ${badge.color}`} style={badge.style}>
                                                     {badge.icon}
                                                     {badge.label}
                                                 </div>
@@ -189,7 +189,7 @@ function LogsContent() {
                                             </td>
                                             <td className="px-8 py-6">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center border border-blue-100">
+                                                    <div className="w-8 h-8 rounded-full flex items-center justify-center border" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)', borderColor: 'var(--accent-glow)' }}>
                                                         <User size={14} />
                                                     </div>
                                                     <span className="text-sm font-medium text-gray-600">{log.userEmail || "System"}</span>
@@ -211,7 +211,7 @@ function LogsContent() {
                                             </td>
                                             <td className="px-8 py-6 text-center">
                                                 <div className="flex justify-center">
-                                                    <CheckCircle2 size={18} className="text-emerald-500" />
+                                                    <CheckCircle2 size={18} style={{ color: 'var(--accent-color)' }} />
                                                 </div>
                                             </td>
                                         </tr>

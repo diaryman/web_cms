@@ -458,3 +458,7 @@ Import traces:
 [27:27:34.794] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [27:27:34.935] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
 [27:27:34.935] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[36:33:14.604] Server  LOG     ✓ Compiled in 459ms
+[36:33:38.324] Server  LOG     ✓ Compiled in 167ms
+[36:35:29.586] Server  LOG     ✓ Compiled in 352ms
+[36:36:54.328] Server  LOG     ✓ Compiled in 311ms

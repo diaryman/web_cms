@@ -66,15 +66,18 @@ function NotificationsContent() {
                         notifications.map((notif) => (
                             <div
                                 key={notif.id}
-                                className={`p-6 hover:bg-gray-50 transition-colors group relative ${notif.read ? 'opacity-70' : 'bg-blue-50/20'}`}
+                                className={`p-6 hover:bg-gray-50 transition-colors group relative ${notif.read ? 'opacity-70' : ''}`}
+                                style={!notif.read ? { background: 'var(--accent-subtle)' } : {}}
                             >
                                 <div className="flex items-start gap-4 pr-10">
                                     {/* Icon */}
-                                    <div className={`w-12 h-12 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-sm ${notif.type === 'info' ? 'bg-blue-100 text-blue-600' :
-                                            notif.type === 'warning' ? 'bg-amber-100 text-amber-600' :
-                                                notif.type === 'success' ? 'bg-emerald-100 text-emerald-600' :
-                                                    'bg-red-100 text-red-600'
-                                        }`}>
+                                    <div
+                                        className="w-12 h-12 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-sm"
+                                        style={notif.type === 'info' ? { background: 'var(--accent-subtle)', color: 'var(--accent-color)' } :
+                                            notif.type === 'success' ? { background: 'var(--accent-subtle)', color: 'var(--accent-color)' } :
+                                                notif.type === 'warning' ? { background: 'rgba(245,158,11,0.08)', color: '#f59e0b' } :
+                                                    { background: 'rgba(244,63,94,0.07)', color: '#f43f5e' }}
+                                    >
                                         {notif.type === 'info' ? <Info size={24} /> :
                                             notif.type === 'warning' ? <AlertTriangle size={24} /> :
                                                 notif.type === 'success' ? <CheckCircle size={24} /> :
@@ -98,7 +101,7 @@ function NotificationsContent() {
                                     {!notif.read && (
                                         <button
                                             onClick={() => handleMarkAsRead(notif.id)}
-                                            className="p-2 text-primary hover:bg-blue-50 rounded-lg transition-colors"
+                                            className="p-2 text-primary rounded-lg transition-colors hover:opacity-70"
                                             title="Mark as read"
                                         >
                                             <CheckCircle size={16} />

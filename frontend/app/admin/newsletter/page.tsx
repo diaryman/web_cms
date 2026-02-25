@@ -185,7 +185,7 @@ function NewsletterContent() {
                     <button onClick={() => setShowAddForm(!showAddForm)} className="flex items-center gap-2 px-5 py-3 border-2 border-primary text-primary rounded-2xl font-bold text-sm hover:bg-primary/5 transition-all">
                         <Plus size={18} /> เพิ่มสมาชิก
                     </button>
-                    <button onClick={handleExport} className="flex items-center gap-2 px-5 py-3 bg-emerald-500 text-white rounded-2xl font-bold text-sm shadow-lg shadow-emerald-500/20 hover:scale-105 transition-all">
+                    <button onClick={handleExport} className="flex items-center gap-2 px-5 py-3 text-white rounded-2xl font-bold text-sm shadow-lg hover:scale-105 transition-all" style={{ background: 'var(--accent-color)' }}>
                         <Download size={18} /> Export Excel
                     </button>
                     <button onClick={fetchSubscribers} className="w-11 h-11 flex items-center justify-center border border-gray-100 rounded-2xl text-gray-400 hover:text-primary hover:border-primary/20 transition-all">
@@ -198,7 +198,8 @@ function NewsletterContent() {
             <AnimatePresence>
                 {notification && (
                     <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                        className={`p-4 rounded-2xl flex items-center gap-3 text-sm font-bold border ${notification.type === "success" ? "bg-emerald-50 text-emerald-600 border-emerald-100" : "bg-rose-50 text-rose-600 border-rose-100"}`}>
+                        className={`p-4 rounded-2xl flex items-center gap-3 text-sm font-bold border ${notification.type === "error" ? "bg-rose-50 text-rose-600 border-rose-100" : ""}`}
+                        style={notification.type === "success" ? { background: 'var(--accent-subtle)', color: 'var(--accent-color)', borderColor: 'var(--accent-glow)' } : {}}>
                         {notification.type === "success" ? <CheckCircle2 size={18} /> : <XCircle size={18} />}
                         {notification.text}
                     </motion.div>
@@ -227,17 +228,19 @@ function NewsletterContent() {
             {/* Stats Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                 {[
-                    { icon: <Users size={22} />, label: "สมาชิกทั้งหมด", value: stats.total, color: "blue" },
-                    { icon: <UserCheck size={22} />, label: "ใช้งานอยู่", value: stats.active, color: "emerald" },
-                    { icon: <UserX size={22} />, label: "ยกเลิกแล้ว", value: stats.inactive, color: "rose" },
-                    { icon: <TrendingUp size={22} />, label: "เดือนนี้", value: stats.thisMonth, color: "amber" },
+                    { icon: <Users size={22} />, label: "สมาชิกทั้งหมด", value: stats.total, primary: true },
+                    { icon: <UserCheck size={22} />, label: "ใช้งานอยู่", value: stats.active, primary: false },
+                    { icon: <UserX size={22} />, label: "ยกเลิกแล้ว", value: stats.inactive, rose: true },
+                    { icon: <TrendingUp size={22} />, label: "เดือนนี้", value: stats.thisMonth, amber: true },
                 ].map((stat, i) => (
-                    <div key={i} className={`bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm`}>
-                        <div className={`w-10 h-10 rounded-xl mb-3 flex items-center justify-center
-                            ${stat.color === "blue" ? "bg-blue-50 text-blue-500" :
-                                stat.color === "emerald" ? "bg-emerald-50 text-emerald-500" :
-                                    stat.color === "rose" ? "bg-rose-50 text-rose-500" :
-                                        "bg-amber-50 text-amber-500"}`}>
+                    <div key={i} className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm">
+                        <div
+                            className="w-10 h-10 rounded-xl mb-3 flex items-center justify-center"
+                            style={stat.rose ? { background: 'rgba(244,63,94,0.07)', color: '#f43f5e' } :
+                                stat.amber ? { background: 'rgba(245,158,11,0.07)', color: '#f59e0b' } :
+                                    stat.primary ? { background: 'var(--accent-subtle)', color: 'var(--primary-color)' } :
+                                        { background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}
+                        >
                             {stat.icon}
                         </div>
                         <div className="text-3xl font-black text-primary">{stat.value.toLocaleString()}</div>
@@ -327,13 +330,16 @@ function NewsletterContent() {
                                             {sub.name && <div className="text-xs text-gray-400 font-medium mt-0.5">{sub.name}</div>}
                                         </td>
                                         <td className="p-4">
-                                            <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider ${sub.isActive ? "bg-emerald-50 text-emerald-600" : "bg-gray-100 text-gray-400"}`}>
-                                                <span className={`w-1.5 h-1.5 rounded-full ${sub.isActive ? "bg-emerald-500" : "bg-gray-400"}`} />
+                                            <span
+                                                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider ${!sub.isActive ? "bg-gray-100 text-gray-400" : ""}`}
+                                                style={sub.isActive ? { background: 'var(--accent-subtle)', color: 'var(--accent-color)' } : {}}
+                                            >
+                                                <span className="w-1.5 h-1.5 rounded-full" style={{ background: sub.isActive ? 'var(--accent-color)' : '#9ca3af' }} />
                                                 {sub.isActive ? "ใช้งาน" : "ยกเลิก"}
                                             </span>
                                         </td>
                                         <td className="p-4">
-                                            <span className="px-3 py-1 bg-blue-50 text-blue-500 rounded-full text-[10px] font-bold capitalize">{sub.source || "website"}</span>
+                                            <span className="px-3 py-1 rounded-full text-[10px] font-bold capitalize" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>{sub.source || "website"}</span>
                                         </td>
                                         <td className="p-4 text-sm text-gray-400 font-medium">
                                             {sub.subscribedAt ? new Date(sub.subscribedAt).toLocaleDateString("th-TH", { day: "numeric", month: "short", year: "numeric" }) : "-"}
@@ -341,7 +347,9 @@ function NewsletterContent() {
                                         <td className="p-4 pr-6">
                                             <div className="flex items-center justify-end gap-2">
                                                 <button onClick={() => handleToggleActive(sub)} title={sub.isActive ? "ปิดรับ" : "เปิดรับ"}
-                                                    className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all hover:scale-110 ${sub.isActive ? "bg-amber-50 text-amber-500 hover:bg-amber-100" : "bg-emerald-50 text-emerald-500 hover:bg-emerald-100"}`}>
+                                                    className="w-9 h-9 rounded-xl flex items-center justify-center transition-all hover:scale-110"
+                                                    style={sub.isActive ? { background: 'rgba(245,158,11,0.08)', color: '#f59e0b' } : { background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}
+                                                >
                                                     {sub.isActive ? <UserX size={16} /> : <UserCheck size={16} />}
                                                 </button>
                                                 <button onClick={() => handleDelete(sub)} title="ลบ"

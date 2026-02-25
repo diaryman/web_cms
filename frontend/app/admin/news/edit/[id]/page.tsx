@@ -334,7 +334,7 @@ function EditNewsForm({ id }: { id: string }) {
                             </div>
                         )}
                         {imageFile && (
-                            <p className="mt-2 text-xs text-blue-600 font-bold bg-blue-50 p-2 rounded-lg truncate">
+                            <p className="mt-2 text-xs font-bold p-2 rounded-lg truncate" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
                                 📎 ไฟล์ที่เลือก: {imageFile.name}
                             </p>
                         )}
