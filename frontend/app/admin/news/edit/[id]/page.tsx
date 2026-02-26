@@ -80,9 +80,7 @@ function EditNewsForm({ id }: { id: string }) {
                 const initialBlocks = Array.isArray(article.content) ? article.content : [
                     { __component: "shared.rich-text", body: "" }
                 ];
-
-                alert(`โหลดข้อมูลสำเร็จ! เข้าสู่โหมด Block Editor\n- จำนวนบล็อก: ${initialBlocks.length}`);
-
+                // Removed debug alert
                 setFormData({
                     title: article.title || "",
                     slug: article.slug || "",
@@ -194,7 +192,6 @@ function EditNewsForm({ id }: { id: string }) {
             }
 
             console.log("Saving payload:", payload);
-            alert(`กำลังบันทึกข้อมูลในโหมด Block Editor...\n- จำนวนบล็อก: ${formData.content?.length || 0}`);
             await updateArticle(id, payload);
 
             alert("บันทึกการแก้ไขเรียบร้อย");
