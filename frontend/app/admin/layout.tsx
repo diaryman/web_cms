@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { checkAuthAction, logoutAction } from "@/app/actions/auth";
+import AdminNotificationBell from "@/components/AdminNotificationBell";
 
 export default function AdminLayout({
     children,
@@ -186,10 +187,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                     </div>
 
                     <div className="flex items-center gap-6">
-                        <button className="relative w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary transition-colors">
-                            <Bell size={20} />
-                            <span className="absolute top-2 right-2 w-2 h-2 bg-accent rounded-full border-2 border-white"></span>
-                        </button>
+                        <AdminNotificationBell siteParam={siteParam} />
 
                         <div className="h-8 w-px bg-gray-100"></div>
 

@@ -48,6 +48,10 @@
         "unsubscribeToken": {
             "type": "string",
             "unique": true
+        },
+        "isRead": {
+            "type": "boolean",
+            "default": false
         }
     }
 }

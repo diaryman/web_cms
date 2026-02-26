@@ -806,6 +806,7 @@ export interface ApiNewsletterSubscriberNewsletterSubscriber
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    isRead: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
