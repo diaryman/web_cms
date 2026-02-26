@@ -14,6 +14,7 @@ import {
     Loader2,
     RefreshCw
 } from "lucide-react";
+import AdminChart from "@/components/AdminChart";
 import { Suspense } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
@@ -50,6 +51,21 @@ export default function AdminDashboardPage() {
     );
 }
 
+// Generate mock data for the chart since we don't have analytics API yet
+const generateMockChartData = () => {
+    const data = [];
+    const now = new Date();
+    for (let i = 6; i >= 0; i--) {
+        const d = new Date(now);
+        d.setDate(d.getDate() - i);
+        data.push({
+            date: d.toLocaleDateString("th-TH", { day: "numeric", month: "short" }),
+            views: Math.floor(Math.random() * (500 - 100 + 1)) + 100, // Random between 100 - 500
+        });
+    }
+    return data;
+};
+
 function DashboardContent() {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
@@ -62,6 +78,7 @@ function DashboardContent() {
     const [dateRange, setDateRange] = useState("all"); // 'all', 'today', '7days', '30days'
     const [categoryStats, setCategoryStats] = useState<any[]>([]);
     const [topArticles, setTopArticles] = useState<any[]>([]);
+    const [chartData, setChartData] = useState<any[]>([]);
 
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
     const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
@@ -120,8 +137,8 @@ function DashboardContent() {
 
             const rangeFilter = getRangeFilter();
 
-            // Fetch all counts in parallel
-            const [articlesRes, docsRes, policiesRes, servicesRes, featuresRes, contactsRes, newsletterRes] = await Promise.all([
+            // Fetch all counts and page views in parallel
+            const [articlesRes, docsRes, policiesRes, servicesRes, featuresRes, contactsRes, newsletterRes, pageViewsRes] = await Promise.all([
                 fetch(`${STRAPI_URL}/api/articles?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
                 fetch(`${STRAPI_URL}/api/policy-documents?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
                 fetch(`${STRAPI_URL}/api/policies?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
@@ -129,6 +146,7 @@ function DashboardContent() {
                 fetch(`${STRAPI_URL}/api/features?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
                 fetch(`${STRAPI_URL}/api/contact-submissions?filters[domain][$eq]=${domain}${rangeFilter}&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
                 fetch(`${STRAPI_URL}/api/newsletter-subscribers?filters[domain][$eq]=${domain}&filters[isActive][$eq]=true&pagination[pageSize]=1&pagination[withCount]=true`).then(r => r.json()),
+                fetch(`${STRAPI_URL}/api/page-views?filters[domain][$eq]=${domain}&pagination[pageSize]=2000`).then(r => r.json()),
             ]);
 
             setStats({
@@ -140,6 +158,31 @@ function DashboardContent() {
                 contactsCount: contactsRes?.meta?.pagination?.total || 0,
                 newsletterCount: newsletterRes?.meta?.pagination?.total || 0,
             });
+
+            // Process Chart Data (Last 7 Days)
+            const rawViews = pageViewsRes?.data || [];
+            const processedChartData = [];
+            const nowChart = new Date();
+            for (let i = 6; i >= 0; i--) {
+                const targetDate = new Date(nowChart);
+                targetDate.setDate(targetDate.getDate() - i);
+                const dateStr = targetDate.toLocaleDateString("th-TH", { day: "numeric", month: "short" });
+
+                // Count views matching this date
+                const count = rawViews.filter((v: any) => {
+                    if (!v.viewed_at) return false;
+                    const vDate = new Date(v.viewed_at);
+                    return vDate.getDate() === targetDate.getDate() &&
+                        vDate.getMonth() === targetDate.getMonth() &&
+                        vDate.getFullYear() === targetDate.getFullYear();
+                }).length;
+
+                processedChartData.push({
+                    date: dateStr,
+                    views: count
+                });
+            }
+            setChartData(processedChartData);
 
             // Fetch recent articles, documents, and top articles by view count
             const [recentArticles, recentDocs, categoriesRes, topViewsRes] = await Promise.all([
@@ -400,8 +443,25 @@ function DashboardContent() {
             )}
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Table Area */}
+                {/* Main Content Area */}
                 <div className="lg:col-span-2 space-y-6">
+                    {/* Visitor Chart */}
+                    <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm">
+                        <div className="flex justify-between items-center mb-6">
+                            <div>
+                                <h3 className="text-xl font-bold font-heading text-primary">สถิติผู้เข้าชมเว็บไซต์</h3>
+                                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">ข้อมูลจำลอง 7 วันย้อนหลัง</p>
+                            </div>
+                        </div>
+                        <AdminChart
+                            data={chartData.length > 0 ? chartData : generateMockChartData()}
+                            dataKey="views"
+                            xAxisKey="date"
+                            color="#3b82f6"
+                        />
+                    </div>
+
+                    {/* Table Area */}
                     <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden flex flex-col">
                         <div className="p-8 border-b border-gray-50 flex justify-between items-center">
                             <h3 className="text-xl font-bold font-heading text-primary">เนื้อหาล่าสุด</h3>

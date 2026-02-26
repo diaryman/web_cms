@@ -826,6 +826,39 @@ export interface ApiNewsletterSubscriberNewsletterSubscriber
   };
 }
 
+export interface ApiPageViewPageView extends Struct.CollectionTypeSchema {
+  collectionName: 'page_views';
+  info: {
+    description: 'Store website page views for analytics';
+    displayName: 'Page View';
+    pluralName: 'page-views';
+    singularName: 'page-view';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    domain: Schema.Attribute.String & Schema.Attribute.Required;
+    ip_address: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::page-view.page-view'
+    > &
+      Schema.Attribute.Private;
+    path: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user_agent: Schema.Attribute.Text;
+    viewed_at: Schema.Attribute.DateTime & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiPagePage extends Struct.CollectionTypeSchema {
   collectionName: 'pages';
   info: {
@@ -1578,6 +1611,7 @@ declare module '@strapi/strapi' {
       'api::gallery.gallery': ApiGalleryGallery;
       'api::hero-slide.hero-slide': ApiHeroSlideHeroSlide;
       'api::newsletter-subscriber.newsletter-subscriber': ApiNewsletterSubscriberNewsletterSubscriber;
+      'api::page-view.page-view': ApiPageViewPageView;
       'api::page.page': ApiPagePage;
       'api::policy-document.policy-document': ApiPolicyDocumentPolicyDocument;
       'api::policy.policy': ApiPolicyPolicy;

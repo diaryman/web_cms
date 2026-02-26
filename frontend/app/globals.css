@@ -117,7 +117,7 @@ video {
 }
 
 /* ========================================
-   High Contrast Mode (Windows / prefers-contrast)
+   High Contrast Mode (Windows / prefers-contrast & User Toggle)
    ======================================== */
 @media (prefers-contrast: high) {
 
@@ -141,6 +141,48 @@ video {
     border: 2px solid var(--foreground) !important;
     backdrop-filter: none !important;
   }
+}
+
+html.high-contrast,
+html.high-contrast body {
+  /* Extreme High Contrast: Black Background, Yellow/White text */
+  --background: #000000 !important;
+  --foreground: #ffffff !important;
+  --primary-color: #000000 !important;
+  --primary-foreground: #ffffff !important;
+
+  --accent-color: #ffff00 !important;
+  --accent-dark: #b8b800 !important;
+  --accent-light: #ffff66 !important;
+  --accent-subtle: rgba(255, 255, 0, 0.15) !important;
+  --accent-glow: rgba(255, 255, 0, 0.25) !important;
+
+  --glass-bg: #000000 !important;
+  --glass-border: #ffff00 !important;
+  --text-muted: #cccccc !important;
+  --badge-bg: transparent !important;
+  --badge-text: #ffff00 !important;
+
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+html.high-contrast * {
+  border-color: #ffff00 !important;
+}
+
+html.high-contrast .glass,
+html.high-contrast .glass-dark {
+  background: var(--background) !important;
+  border: 2px solid var(--accent-color) !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+html.high-contrast img,
+html.high-contrast video,
+html.high-contrast [style*="background-image"] {
+  filter: grayscale(100%) contrast(120%);
 }
 
 /* ========================================

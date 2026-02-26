@@ -1,18 +1,4 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/admin/chatbot/page": "app/admin/chatbot/page.js",
-  "/admin/contacts/page": "app/admin/contacts/page.js",
-  "/admin/documents/page": "app/admin/documents/page.js",
-  "/admin/galleries/page": "app/admin/galleries/page.js",
-  "/admin/hero-slides/page": "app/admin/hero-slides/page.js",
-  "/admin/logs/page": "app/admin/logs/page.js",
-  "/admin/news/page": "app/admin/news/page.js",
-  "/admin/newsletter/page": "app/admin/newsletter/page.js",
   "/admin/page": "app/admin/page.js",
-  "/admin/services/page": "app/admin/services/page.js",
-  "/admin/site-config/page": "app/admin/site-config/page.js",
-  "/admin/stats/page": "app/admin/stats/page.js",
-  "/news/page": "app/news/page.js",
-  "/page": "app/page.js",
-  "/pdpa/page": "app/pdpa/page.js"
+  "/page": "app/page.js"
 }
