@@ -42,7 +42,9 @@ export default function AdminNotificationBell({ siteParam }: { siteParam: string
             >
                 <Bell size={20} />
                 {counts.total > 0 && (
-                    <span className="absolute top-2 right-2 flex h-3 w-3 items-center justify-center bg-red-500 rounded-full border-2 border-white text-[8px] font-bold text-white"></span>
+                    <span className="absolute top-2 right-2 flex h-4 w-4 items-center justify-center bg-red-500 rounded-full border-2 border-white text-[9px] font-black text-white">
+                        {counts.total > 9 ? '9+' : counts.total}
+                    </span>
                 )}
             </button>
 

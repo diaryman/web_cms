@@ -32,7 +32,13 @@ export default {
       'api::timeline.timeline',
       'api::feature.feature',
       'api::service.service',
-      'api::policy.policy'
+      'api::policy.policy',
+      'api::chatbot-config.chatbot-config',
+      'api::hero-slide.hero-slide',
+      'api::gallery.gallery',
+      'api::category.category',
+      'api::contact-submission.contact-submission',
+      'api::newsletter-subscriber.newsletter-subscriber'
     ];
 
     strapi.db.lifecycles.subscribe({
