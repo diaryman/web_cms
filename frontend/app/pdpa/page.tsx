@@ -3,10 +3,31 @@ import Footer from "@/components/Footer";
 import NewsTicker from "@/components/NewsTicker";
 import PDPAPageClient from "./PDPAPageClient";
 import { fetchAPI } from "@/lib/api";
+import { Metadata } from "next";
 
-export const metadata = {
+const PDPA_URL = process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004";
+
+export const metadata: Metadata = {
     title: "PDPA | การคุ้มครองข้อมูลส่วนบุคคล - ศาลปกครอง",
-    description: "การดำเนินงานด้านการคุ้มครองข้อมูลส่วนบุคคล สำนักงานศาลปกครอง",
+    description: "การดำเนินงานด้านการคุ้มครองข้อมูลส่วนบุคคล สำนักงานศาลปกครอง ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562",
+    keywords: ["PDPA", "คุ้มครองข้อมูลส่วนบุคคล", "DPO", "ศาลปกครอง", "กฎหมายคุ้มครองข้อมูล", "Privacy Policy"],
+    alternates: {
+        canonical: `${PDPA_URL}/pdpa`,
+    },
+    openGraph: {
+        title: "PDPA | การคุ้มครองข้อมูลส่วนบุคคล - ศาลปกครอง",
+        description: "การดำเนินงานด้านการคุ้มครองข้อมูลส่วนบุคคล สำนักงานศาลปกครอง ตาม พ.ร.บ. PDPA พ.ศ. 2562",
+        url: `${PDPA_URL}/pdpa`,
+        siteName: "PDPA ศาลปกครอง",
+        locale: "th_TH",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "PDPA | คุ้มครองข้อมูลส่วนบุคคล ศาลปกครอง",
+        description: "การดำเนินงานด้านการคุ้มครองข้อมูลส่วนบุคคล ຕาม พ.ร.บ. PDPA พ.ศ. 2562",
+    },
+    robots: { index: true, follow: true },
 };
 
 import { headers } from "next/headers";

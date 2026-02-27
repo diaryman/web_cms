@@ -1,65 +1,618 @@
-[00:00:00.694] Server  LOG     ✓ Ready in 547ms
-[00:00:32.495] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:32.692] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
-[00:00:32.692] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
-[00:00:36.027] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[00:00:36.027] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[05:40:37.872] Server  LOG     ✓ Compiled in 83ms
-[05:41:30.729] Server  LOG     ✓ Compiled in 42ms
-[25:57:50.145] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[25:57:50.353] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
-[25:57:50.353] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
-[25:57:56.290] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
-[25:57:56.292] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[25:57:57.134] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
-[25:57:57.134] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
-[25:58:20.024] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[25:58:20.024] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[25:58:20.184] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[25:58:20.184] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
-       please check the style of container, or the props width(100%) and height(100%),
-       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
-       height and width.
-[26:00:42.104] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[26:00:42.287] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
-[26:00:42.504] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
-[26:00:42.504] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
-[26:02:31.275] Server  LOG     ✓ Compiled in 618ms
-[26:02:31.293] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./Desktop/my_cms/frontend/lib/api.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[26:02:31.299] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./Desktop/my_cms/frontend/lib/api.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[26:02:31.838] Server  ERROR   ⨯ Error: Module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/lib/metadata/generate/icon-mark.js [app-ssr] (ecmascript) was instantiated because it was required from module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/build/templates/app-page.js?page=/admin/site-config/page { GLOBAL_ERROR_MODULE => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", METADATA_0 => "[project]/Desktop/my_cms/frontend/app/favicon.ico.mjs { IMAGE => \"[project]/Desktop/my_cms/frontend/app/favicon.ico (static in ecmascript, tag client)\" } [app-rsc] (structured image object, ecmascript, Next.js Server Component)", MODULE_1 => "[project]/Desktop/my_cms/frontend/app/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_2 => "[project]/Desktop/my_cms/frontend/app/template.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_3 => "[project]/Desktop/my_cms/frontend/app/not-found.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_4 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/forbidden.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_5 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/unauthorized.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_6 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_7 => "[project]/Desktop/my_cms/frontend/app/admin/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_8 => "[project]/Desktop/my_cms/frontend/app/admin/site-config/page.tsx [app-rsc] (ecmascript, Next.js Server Component)" } [app-rsc] (ecmascript) <locals>, but the module factory is not available.
-[26:02:32.120] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[26:02:32.203] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[26:02:32.841] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
-[26:02:32.841] Browser ERROR   uncaughtError: Error: Switched to client rendering because the server rendering errored:
+[00:00:00.936] Server  LOG     ✓ Ready in 718ms
+[00:00:01.848] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:02.055] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:00:02.055] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:00:02.544] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
+[00:00:02.567] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:02.904] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
+[00:00:03.801] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
 
-Module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/lib/metadata/generate/icon-mark.js [app-ssr] (ecmascript) was instantiated because it was required from module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/build/templates/app-page.js?page=/admin/site-config/page { GLOBAL_ERROR_MODULE => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", METADATA_0 => "[project]/Desktop/my_cms/frontend/app/favicon.ico.mjs { IMAGE => \"[project]/Desktop/my_cms/frontend/app/favicon.ico (static in ecmascript, tag client)\" } [app-rsc] (structured image object, ecmascript, Next.js Server Component)", MODULE_1 => "[project]/Desktop/my_cms/frontend/app/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_2 => "[project]/Desktop/my_cms/frontend/app/template.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_3 => "[project]/Desktop/my_cms/frontend/app/not-found.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_4 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/forbidden.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_5 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/unauthorized.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_6 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_7 => "[project]/Desktop/my_cms/frontend/app/admin/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_8 => "[project]/Desktop/my_cms/frontend/app/admin/site-config/page.tsx [app-rsc] (ecmascript, Next.js Server Component)" } [app-rsc] (ecmascript) <locals>, but the module factory is not available.
-[26:02:32.841] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
-[26:02:32.842] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
-[26:02:32.842] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
-[26:02:41.935] Server  LOG     ✓ Compiled in 51ms
-[26:03:26.218] Server  LOG     ✓ Compiled in 68ms
-[26:03:39.530] Server  LOG     ✓ Compiled in 67ms
-[26:03:52.682] Server  LOG       Reload env: .env.local
-[26:04:02.541] Server  LOG     ✓ Compiled in 0ms
-[26:11:08.344] Server  LOG     ✓ Compiled in 47ms
-[26:11:10.215] Server  LOG       Reload env: .env.local
-[26:11:10.937] Server  LOG     ✓ Compiled in 662ms
-[26:12:34.845] Server  LOG     ✓ Compiled in 89ms
-[26:13:01.282] Server  LOG     ✓ Compiled in 81ms
-[26:15:32.628] Server  LOG     ✓ Compiled in 345ms
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="pdpa/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/pdpa" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
+                <SegmentViewNode type="page" pagePath="/Desktop/m...">
+                  <SegmentTrieNode>
+                  <PDPAPage>
+                    <NewsTicker>
+                    <PDPAPage>
+                      <PDPAPageClient navbar={{...}} footer={{...}} siteConfig={{id:45, ...}} features={[...]} ...>
+                        <main className="min-h-scre..." style={{...}}>
+                          <NavbarClient>
+                          ...
+                            <div className="grid grid-..." style={{opacity:0, ...}} ...>
+                              <div className="space-y-4 ...">
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                              <div className="space-y-4">
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                          <div>
+                          ...
+                            <div className="grid grid-...">
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                          <div>
+                          <section>
+                          <div>
+                          <section id="news" className="py-24 bg-w...">
+                            <div className="max-w-7xl ...">
+                              <div>
+                              <div className="grid grid-...">
+                                <div
++                                 className="h-64 bg-gray-50 rounded-[2.5rem] animate-pulse"
+-                                 className={null}
+-                                 style={{opacity:"0",transform:"translateY..."}}
+                                >
+-                                 <a className="block h-full" href="/news/pdpa-roadshow">
+                                ...
+                          ...
+                ...
+              ...
+
+[00:00:03.801] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:00:03.801] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:00:03.801] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:00:03.801] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:01:29.562] Server  LOG     ✓ Compiled in 44ms
+[00:01:29.635] Server  ERROR   ⨯ ReferenceError: isPDPA is not defined
+[00:01:29.648] Server  ERROR   ⨯ ReferenceError: isPDPA is not defined
+[00:01:29.676] Server  ERROR   ⨯ ReferenceError: isPDPA is not defined
+[00:01:29.685] Server  ERROR   ⨯ ReferenceError: isPDPA is not defined
+[00:01:29.807] Browser ERROR   uncaughtError: ReferenceError: isPDPA is not defined
+[00:01:30.801] Browser ERROR   uncaughtError: ReferenceError: isPDPA is not defined
+[00:01:53.118] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:53.145] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
+[00:01:53.211] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:53.403] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:01:53.403] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:01:53.924] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
+[00:01:54.804] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="pdpa/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/pdpa" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
+                <SegmentViewNode type="page" pagePath="/Desktop/m...">
+                  <SegmentTrieNode>
+                  <PDPAPage>
+                    <NewsTicker>
+                    <PDPAPage>
+                      <PDPAPageClient navbar={{...}} footer={{...}} siteConfig={{id:45, ...}} features={[...]} ...>
+                        <main className="min-h-scre..." style={{...}}>
+                          <NavbarClient>
+                          ...
+                            <div className="grid grid-..." style={{opacity:0, ...}} ...>
+                              <div className="space-y-4 ...">
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                              <div className="space-y-4">
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                          <div>
+                          ...
+                            <div className="grid grid-...">
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                          <div>
+                          <section>
+                          <div>
+                          <section id="news" className="py-24 bg-w...">
+                            <div className="max-w-7xl ...">
+                              <div>
+                              <div className="grid grid-...">
+                                <div
++                                 className="h-64 bg-gray-50 rounded-[2.5rem] animate-pulse"
+-                                 className={null}
+-                                 style={{opacity:"0",transform:"translateY..."}}
+                                >
+-                                 <a className="block h-full" href="/news/pdpa-roadshow">
+                                ...
+                          ...
+                ...
+              ...
+
+[00:01:54.805] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:01:54.805] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:01:54.805] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:01:54.805] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:02:06.878] Server  LOG     ✓ Compiled in 193ms
+[00:02:08.074] Server  ERROR   ⨯ Error: Module [project]/Desktop/my_cms/frontend/components/SiteThemeProvider.tsx [app-ssr] (ecmascript) was instantiated because it was required from module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/build/templates/app-page.js?page=/pdpa/page { GLOBAL_ERROR_MODULE => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", METADATA_0 => "[project]/Desktop/my_cms/frontend/app/favicon.ico.mjs { IMAGE => \"[project]/Desktop/my_cms/frontend/app/favicon.ico (static in ecmascript, tag client)\" } [app-rsc] (structured image object, ecmascript, Next.js Server Component)", MODULE_1 => "[project]/Desktop/my_cms/frontend/app/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_2 => "[project]/Desktop/my_cms/frontend/app/template.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_3 => "[project]/Desktop/my_cms/frontend/app/not-found.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_4 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/forbidden.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_5 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/unauthorized.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_6 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_7 => "[project]/Desktop/my_cms/frontend/app/pdpa/page.tsx [app-rsc] (ecmascript, Next.js Server Component)" } [app-rsc] (ecmascript) <locals>, but the module factory is not available.
+[00:02:08.227] Server  ERROR   ⨯ Error: Module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/lib/metadata/generate/icon-mark.js [app-ssr] (ecmascript) was instantiated because it was required from module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/build/templates/app-page.js?page=/pdpa/page { GLOBAL_ERROR_MODULE => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", METADATA_0 => "[project]/Desktop/my_cms/frontend/app/favicon.ico.mjs { IMAGE => \"[project]/Desktop/my_cms/frontend/app/favicon.ico (static in ecmascript, tag client)\" } [app-rsc] (structured image object, ecmascript, Next.js Server Component)", MODULE_1 => "[project]/Desktop/my_cms/frontend/app/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_2 => "[project]/Desktop/my_cms/frontend/app/template.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_3 => "[project]/Desktop/my_cms/frontend/app/not-found.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_4 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/forbidden.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_5 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/unauthorized.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_6 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_7 => "[project]/Desktop/my_cms/frontend/app/pdpa/page.tsx [app-rsc] (ecmascript, Next.js Server Component)" } [app-rsc] (ecmascript) <locals>, but the module factory is not available.
+[00:02:08.480] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
+[00:02:08.481] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:08.492] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
+[00:02:08.497] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:08.834] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:02:08.834] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:02:09.659] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
+[00:02:09.803] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="pdpa/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/pdpa" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
+                <SegmentViewNode type="page" pagePath="/Desktop/m...">
+                  <SegmentTrieNode>
+                  <PDPAPage>
+                    <NewsTicker>
+                    <PDPAPage>
+                      <PDPAPageClient navbar={{...}} footer={{...}} siteConfig={{id:45, ...}} features={[...]} ...>
+                        <main className="min-h-scre..." style={{...}}>
+                          <NavbarClient>
+                          ...
+                            <div className="grid grid-..." style={{opacity:0, ...}} ...>
+                              <div className="space-y-4 ...">
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                              <div className="space-y-4">
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                          <div>
+                          ...
+                            <div className="grid grid-...">
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                          <div>
+                          <section>
+                          <div>
+                          <section id="news" className="py-24 bg-w...">
+                            <div className="max-w-7xl ...">
+                              <div>
+                              <div className="grid grid-...">
+                                <div
++                                 className="h-64 bg-gray-50 rounded-[2.5rem] animate-pulse"
+-                                 className={null}
+-                                 style={{opacity:"0",transform:"translateY..."}}
+                                >
+-                                 <a className="block h-full" href="/news/pdpa-roadshow">
+                                ...
+                          ...
+                ...
+              ...
+
+[00:02:09.803] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:02:09.803] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:02:09.803] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:02:09.803] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found

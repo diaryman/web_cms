@@ -65,6 +65,7 @@ export default async function RootLayout({
   else domain = host.split(":")[0];
 
   const theme = domain.includes("pdpa") ? "pdpa" : "datagov";
+  const isPDPA = domain.includes("pdpa");
 
   let cookieConsentConfig = undefined;
   try {
@@ -93,6 +94,75 @@ export default async function RootLayout({
         <a href="#main-content" className="skip-link" aria-label="ข้ามไปยังเนื้อหาหลัก">
           ข้ามไปยังเนื้อหาหลัก
         </a>
+
+        {/* JSON-LD Structured Data (Schema.org) — SEO Rich Snippets */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(isPDPA ? {
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}/#organization`,
+                  "name": "ศูนย์ PDPA สำนักงานศาลปกครอง",
+                  "url": process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004",
+                  "description": "การคุ้มครองข้อมูลส่วนบุคคล สำนักงานศาลปกครอง ตาม พ.ร.บ. PDPA พ.ศ. 2562",
+                  "sameAs": ["https://www.admincourt.go.th"],
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "contactType": "customer service",
+                    "areaServed": "TH",
+                    "availableLanguage": "Thai"
+                  }
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}/#website`,
+                  "url": process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004",
+                  "name": "PDPA ศาลปกครอง",
+                  "inLanguage": "th",
+                  "publisher": { "@id": `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}/#organization` }
+                }
+              ]
+            } : {
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": `${process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002"}/#organization`,
+                  "name": "สำนักงานศาลปกครอง — DataGOV",
+                  "url": process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002",
+                  "description": "ศูนย์กลางธรรมาภิบาลข้อมูล สำนักงานศาลปกครอง มาตรฐานธรรมาภิบาลข้อมูลภาครัฐ",
+                  "sameAs": ["https://www.admincourt.go.th"],
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+66-2141-1111",
+                    "contactType": "customer service",
+                    "areaServed": "TH",
+                    "availableLanguage": "Thai"
+                  }
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": `${process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002"}/#website`,
+                  "url": process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002",
+                  "name": "DataGOV ศาลปกครอง",
+                  "inLanguage": "th",
+                  "publisher": { "@id": `${process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002"}/#organization` },
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {
+                      "@type": "EntryPoint",
+                      "urlTemplate": `${process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002"}/news?q={search_term_string}`
+                    },
+                    "query-input": "required name=search_term_string"
+                  }
+                }
+              ]
+            })
+          }}
+        />
 
         <SiteThemeProvider>
           <AnalyticsProvider domain={domain} />

@@ -1,6 +1,6 @@
 {
-  "/admin/page": "app/admin/page.js",
-  "/admin/site-config/page": "app/admin/site-config/page.js",
-  "/page": "app/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/news/page": "app/admin/news/page.js",
+  "/manifest.webmanifest/route": "app/manifest.webmanifest/route.js",
   "/pdpa/page": "app/pdpa/page.js"
 }

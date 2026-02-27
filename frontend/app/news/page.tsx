@@ -8,12 +8,32 @@ import { fetchAPI } from "@/lib/api";
 export async function generateMetadata(props: { searchParams: Promise<{ site?: string }> }): Promise<Metadata> {
     const searchParams = await props.searchParams;
     const isPDPA = searchParams.site === 'pdpa';
+    const siteUrl = isPDPA
+        ? process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"
+        : process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002";
+
+    const title = isPDPA ? "กิจกรรมและประกาศ - PDPA Center" : "ข่าวสารและกิจกรรมล่าสุด - DataGOV";
+    const description = isPDPA
+        ? "ติดตามข่าวสารและกิจกรรมล่าสุดด้านการคุ้มครองข้อมูลส่วนบุคคล"
+        : "ติดตามข่าวสาร กิจกรรม และประกาศล่าสุดจากศูนย์กลางธรรมาภิบาลข้อมูล";
+    const canonicalUrl = `${siteUrl}/news`;
 
     return {
-        title: isPDPA ? "กิจกรรมและประกาศ - PDPA Center" : "ข่าวสารและกิจกรรมล่าสุด - DataGOV",
-        description: isPDPA
-            ? "ติดตามข่าวสารและกิจกรรมล่าสุดด้านการคุ้มครองข้อมูลส่วนบุคคล"
-            : "ติดตามข่าวสาร กิจกรรม และประกาศล่าสุดจากศูนย์กลางธรรมาภิบาลข้อมูล",
+        title,
+        description,
+        keywords: isPDPA
+            ? ["PDPA", "ข่าว PDPA", "กิจกรรม PDPA", "คุ้มครองข้อมูล"]
+            : ["ข่าวสาร", "องค์กร", "ติดตามข่าว", "DataGOV", "ศาลปกครอง"],
+        alternates: { canonical: canonicalUrl },
+        openGraph: {
+            title,
+            description,
+            url: canonicalUrl,
+            siteName: isPDPA ? "PDPA ศาลปกครอง" : "DataGOV ศาลปกครอง",
+            locale: "th_TH",
+            type: "website",
+        },
+        twitter: { card: "summary", title, description },
     };
 }
 

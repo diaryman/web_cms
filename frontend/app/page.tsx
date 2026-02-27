@@ -8,9 +8,29 @@ import NewsletterSection from "@/components/NewsletterSection";
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
 
+const SITE_URL = process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002";
+
 export const metadata: Metadata = {
   title: "DataGOV | ศูนย์กลางธรรมาภิบาลข้อมูล ศาลปกครอง",
   description: "ระบบบริหารจัดการและกำกับดูแลข้อมูลอิเล็กทรอนิกส์ สำนักงานศาลปกครอง ภายใต้มาตรฐานธรรมาภิบาลข้อมูลภาครัฐ",
+  keywords: ["ธรรมาภิบาลข้อมูล", "ศาลปกครอง", "DataGOV", "Open Data", "ข้อมูลภาครัฐ", "DGA"],
+  alternates: {
+    canonical: SITE_URL,
+  },
+  openGraph: {
+    title: "DataGOV | ศูนย์กลางธรรมาภิบาลข้อมูล ศาลปกครอง",
+    description: "ระบบบริหารจัดการและกำกับดูแลข้อมูลอิเล็กทรอนิกส์ สำนักงานศาลปกครอง ภายใต้มาตรฐานธรรมาภิบาลข้อมูลภาครัฐ",
+    url: SITE_URL,
+    siteName: "DataGOV ศาลปกครอง",
+    locale: "th_TH",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DataGOV | ธรรมาภิบาลข้อมูล ศาลปกครอง",
+    description: "ระบบบริหารจัดการและกำกับดูแลข้อมูลภาครัฐ สำนักงานศาลปกครอง",
+  },
+  robots: { index: true, follow: true },
 };
 
 import ScrollProgress from "@/components/ScrollProgress";
