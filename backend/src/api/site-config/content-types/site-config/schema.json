@@ -78,6 +78,16 @@
         },
         "notFoundPage": {
             "type": "json"
+        },
+        "dpoPhone": {
+            "type": "string"
+        },
+        "dpoEmail": {
+            "type": "email"
+        },
+        "socialLinks": {
+            "type": "json",
+            "description": "Social media links: { facebook, youtube, twitter, line }"
         }
     }
 }

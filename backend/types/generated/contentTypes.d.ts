@@ -1027,6 +1027,8 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
     domain: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    dpoEmail: Schema.Attribute.Email;
+    dpoPhone: Schema.Attribute.String;
     email: Schema.Attribute.Email;
     footerMenu: Schema.Attribute.JSON;
     footerText: Schema.Attribute.Text;
@@ -1050,6 +1052,7 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     sectionToggles: Schema.Attribute.JSON;
     siteName: Schema.Attribute.String & Schema.Attribute.Required;
+    socialLinks: Schema.Attribute.JSON;
     themeColors: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

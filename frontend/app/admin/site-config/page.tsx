@@ -299,7 +299,10 @@ export default function AdminSiteConfigPage() {
             title: "ไม่พบหน้าที่คุณต้องการ",
             description: "หน้าที่คุณกำลังมองหาอาจถูกย้ายหรือลบออกแล้ว",
             buttonText: "กลับหน้าแรก"
-        }
+        },
+        dpoPhone: "",
+        dpoEmail: "",
+        socialLinks: { facebook: "", youtube: "", twitter: "", line: "" }
     });
 
     useEffect(() => {
@@ -344,7 +347,10 @@ export default function AdminSiteConfigPage() {
                             title: "ไม่พบหน้าที่คุณต้องการ",
                             description: "หน้าที่คุณกำลังมองหาอาจถูกย้ายหรือลบออกแล้ว",
                             buttonText: "กลับหน้าแรก"
-                        }
+                        },
+                        dpoPhone: config.dpoPhone || "",
+                        dpoEmail: config.dpoEmail || "",
+                        socialLinks: config.socialLinks || { facebook: "", youtube: "", twitter: "", line: "" }
                     });
                 }
             } catch (error) {
@@ -972,6 +978,60 @@ export default function AdminSiteConfigPage() {
                                 className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-medium"
                                 placeholder="วันจันทร์ - ศุกร์..."
                             />
+                        </div>
+                        {/* DPO Contact */}
+                        <div className="col-span-1 md:col-span-2 border-t border-gray-50 pt-6 mt-2">
+                            <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">ข้อมูลเจ้าหน้าที่คุ้มครองข้อมูล (DPO)</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <Phone size={14} className="text-gray-400" />
+                                        <label className="text-sm font-bold text-gray-700">เบอร์โทร DPO</label>
+                                    </div>
+                                    <input
+                                        name="dpoPhone"
+                                        value={(formData as any).dpoPhone || ""}
+                                        onChange={handleChange}
+                                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-medium"
+                                        placeholder="02-141-XXXX"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <Mail size={14} className="text-gray-400" />
+                                        <label className="text-sm font-bold text-gray-700">อีเมล DPO</label>
+                                    </div>
+                                    <input
+                                        name="dpoEmail"
+                                        type="email"
+                                        value={(formData as any).dpoEmail || ""}
+                                        onChange={handleChange}
+                                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-medium"
+                                        placeholder="dpo@admincourt.go.th"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        {/* Social Links */}
+                        <div className="col-span-1 md:col-span-2 border-t border-gray-50 pt-6">
+                            <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Social Media Links</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {(["facebook", "youtube", "twitter", "line"] as const).map((platform) => (
+                                    <div key={platform} className="space-y-2">
+                                        <label className="text-sm font-bold text-gray-700 capitalize">{platform}</label>
+                                        <input
+                                            type="url"
+                                            value={(formData as any).socialLinks?.[platform] || ""}
+                                            onChange={(e) => setFormData({
+                                                ...formData,
+                                                socialLinks: { ...(formData as any).socialLinks, [platform]: e.target.value }
+                                            } as any)}
+                                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-medium"
+                                            placeholder={`https://${platform}.com/...`}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

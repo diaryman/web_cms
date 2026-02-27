@@ -470,7 +470,7 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
                             <h2 className="text-4xl md:text-6xl font-black font-heading text-white mb-6 tracking-tighter">มีข้อสงสัยด้านข้อมูล?</h2>
                             <p className="text-white/80 text-xl font-medium leading-relaxed">
                                 คุณสามารถติดต่อเจ้าหน้าที่คุ้มครองข้อมูลส่วนบุคคล (DPO)
-                                ของสำนักงานศาลปกครองได้โดยตรงผ่านช่องทางเจ้าหน้าทีเฉพาะกิจ หรือโทร 02-XXX-XXXX
+                                ของสำนักงานศาลปกครองได้โดยตรงผ่านช่องทางเจ้าหน้าทีเฉพาะกิจ{siteConfig?.dpoPhone ? ` หรือโทร ${siteConfig.dpoPhone}` : ""}
                             </p>
                         </div>
                         <Link

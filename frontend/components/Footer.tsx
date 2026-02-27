@@ -39,11 +39,24 @@ export default async function Footer({ domain = "localhost" }: { domain?: string
                             {config?.heroSubheadline || "มุ่งมั่นสู่การเป็นศูนย์กลางข้อมูลธรรมาภิบาลที่มีมาตรฐาน โปร่งใส และปลอดภัยสูงสุด เพื่อสร้างความเชื่อมั่นในยุคดิจิทัล"}
                         </p>
                         <div className="flex items-center gap-4">
-                            {[Facebook, Youtube].map((Icon, idx) => (
-                                <Link key={idx} href="#" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all duration-300">
-                                    <Icon size={18} />
+                            {config?.socialLinks?.facebook && (
+                                <Link href={config.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all duration-300">
+                                    <Facebook size={18} />
                                 </Link>
-                            ))}
+                            )}
+                            {config?.socialLinks?.youtube && (
+                                <Link href={config.socialLinks.youtube} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent hover:text-white transition-all duration-300">
+                                    <Youtube size={18} />
+                                </Link>
+                            )}
+                            {!config?.socialLinks && (
+                                // Fallback placeholder icons if not configured
+                                [Facebook, Youtube].map((Icon, idx) => (
+                                    <span key={idx} className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center opacity-30">
+                                        <Icon size={18} />
+                                    </span>
+                                ))
+                            )}
                         </div>
                     </div>
 
@@ -64,9 +77,9 @@ export default async function Footer({ domain = "localhost" }: { domain?: string
                                 [
                                     { name: "หน้าแรก", href: domain === "pdpa.localhost" ? "/pdpa" : "/" },
                                     { name: "ข่าวกิจกรรม", href: domain === "pdpa.localhost" ? "/news?site=pdpa" : "/news?site=main" },
-                                    { name: "PDPA/คุ้มครองข้อมูล", href: "http://localhost:3004" },
-                                    { name: "นโยบายความเป็นส่วนตัว", href: domain === "pdpa.localhost" ? "/pdpa#principles" : "http://localhost:3004#principles" },
-                                    { name: "ติดต่อเจ้าหน้าที่ DPO", href: domain === "pdpa.localhost" ? "/pdpa#contact" : "http://localhost:3004#contact" }
+                                    { name: "PDPA/คุ้มครองข้อมูล", href: process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004" },
+                                    { name: "นโยบายความเป็นส่วนตัว", href: domain === "pdpa.localhost" ? "/pdpa#principles" : `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}#principles` },
+                                    { name: "ติดต่อเจ้าหน้าที่ DPO", href: domain === "pdpa.localhost" ? "/pdpa#contact" : `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}#contact` }
                                 ].map((item, idx) => (
                                     <li key={idx}>
                                         <Link href={item.href} className="hover:text-white flex items-center gap-2 transition-all duration-300 text-sm group opacity-60 hover:opacity-100">
