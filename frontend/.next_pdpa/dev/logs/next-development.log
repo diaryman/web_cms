@@ -12,3 +12,48 @@
        height and width.
 [05:40:37.872] Server  LOG     ✓ Compiled in 83ms
 [05:41:30.729] Server  LOG     ✓ Compiled in 42ms
+[25:57:50.145] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:57:50.353] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[25:57:50.353] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[25:57:56.290] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
+[25:57:56.292] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[25:57:57.134] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[25:57:57.134] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[25:58:20.024] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:58:20.024] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:58:20.184] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[25:58:20.184] Browser WARN    The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[26:00:42.104] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:00:42.287] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
+[26:00:42.504] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[26:00:42.504] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[26:02:31.275] Server  LOG     ✓ Compiled in 618ms
+[26:02:31.293] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./Desktop/my_cms/frontend/lib/api.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[26:02:31.299] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./Desktop/my_cms/frontend/lib/api.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[26:02:31.838] Server  ERROR   ⨯ Error: Module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/lib/metadata/generate/icon-mark.js [app-ssr] (ecmascript) was instantiated because it was required from module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/build/templates/app-page.js?page=/admin/site-config/page { GLOBAL_ERROR_MODULE => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", METADATA_0 => "[project]/Desktop/my_cms/frontend/app/favicon.ico.mjs { IMAGE => \"[project]/Desktop/my_cms/frontend/app/favicon.ico (static in ecmascript, tag client)\" } [app-rsc] (structured image object, ecmascript, Next.js Server Component)", MODULE_1 => "[project]/Desktop/my_cms/frontend/app/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_2 => "[project]/Desktop/my_cms/frontend/app/template.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_3 => "[project]/Desktop/my_cms/frontend/app/not-found.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_4 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/forbidden.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_5 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/unauthorized.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_6 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_7 => "[project]/Desktop/my_cms/frontend/app/admin/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_8 => "[project]/Desktop/my_cms/frontend/app/admin/site-config/page.tsx [app-rsc] (ecmascript, Next.js Server Component)" } [app-rsc] (ecmascript) <locals>, but the module factory is not available.
+[26:02:32.120] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:02:32.203] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[26:02:32.841] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[26:02:32.841] Browser ERROR   uncaughtError: Error: Switched to client rendering because the server rendering errored:
+
+Module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/lib/metadata/generate/icon-mark.js [app-ssr] (ecmascript) was instantiated because it was required from module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/build/templates/app-page.js?page=/admin/site-config/page { GLOBAL_ERROR_MODULE => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", METADATA_0 => "[project]/Desktop/my_cms/frontend/app/favicon.ico.mjs { IMAGE => \"[project]/Desktop/my_cms/frontend/app/favicon.ico (static in ecmascript, tag client)\" } [app-rsc] (structured image object, ecmascript, Next.js Server Component)", MODULE_1 => "[project]/Desktop/my_cms/frontend/app/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_2 => "[project]/Desktop/my_cms/frontend/app/template.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_3 => "[project]/Desktop/my_cms/frontend/app/not-found.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_4 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/forbidden.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_5 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/unauthorized.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_6 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_7 => "[project]/Desktop/my_cms/frontend/app/admin/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_8 => "[project]/Desktop/my_cms/frontend/app/admin/site-config/page.tsx [app-rsc] (ecmascript, Next.js Server Component)" } [app-rsc] (ecmascript) <locals>, but the module factory is not available.
+[26:02:32.841] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[26:02:32.842] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[26:02:32.842] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[26:02:41.935] Server  LOG     ✓ Compiled in 51ms
+[26:03:26.218] Server  LOG     ✓ Compiled in 68ms
+[26:03:39.530] Server  LOG     ✓ Compiled in 67ms
+[26:03:52.682] Server  LOG       Reload env: .env.local
+[26:04:02.541] Server  LOG     ✓ Compiled in 0ms

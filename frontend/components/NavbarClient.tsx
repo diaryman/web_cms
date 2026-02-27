@@ -46,7 +46,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
     const defaultNavItems = [
         { name: "หน้าแรก", href: "/" },
         { name: "ข่าวกิจกรรม", href: "/news?site=main" },
-        { name: "PDPA", href: "http://localhost:3004" },
+        { name: "PDPA", href: process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004" },
         { name: "นโยบาย/มาตรฐาน", href: "/#policy" },
         { name: "เอกสารเผยแพร่", href: "/documents" },
         { name: "ดาวน์โหลด", href: "/#downloads" },

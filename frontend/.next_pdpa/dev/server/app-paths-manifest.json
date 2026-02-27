@@ -1,4 +1,6 @@
 {
   "/admin/page": "app/admin/page.js",
-  "/page": "app/page.js"
+  "/admin/site-config/page": "app/admin/site-config/page.js",
+  "/page": "app/page.js",
+  "/pdpa/page": "app/pdpa/page.js"
 }

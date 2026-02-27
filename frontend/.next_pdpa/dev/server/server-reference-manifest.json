@@ -3,14 +3,21 @@
     "4043e44ea08a526235c5792421bffe0198cee2fda3": {
       "workers": {
         "app/admin/page": {
-          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/notifications.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "checkAuthAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
+        "app/admin/site-config/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/site-config/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/notifications.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
           "exportedName": "checkAuthAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
         }
       },
       "layer": {
-        "app/admin/page": "action-browser"
+        "app/admin/page": "action-browser",
+        "app/admin/site-config/page": "action-browser"
       },
       "filename": "Desktop/my_cms/frontend/app/actions/auth.ts",
       "exportedName": "checkAuthAction"
@@ -18,22 +25,73 @@
     "40e999a61eee93563cb6b8d7e2496eb26315a7bea7": {
       "workers": {
         "app/admin/page": {
-          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/notifications.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "logoutAction",
+          "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
+        },
+        "app/admin/site-config/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/site-config/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/notifications.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
           "exportedName": "logoutAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"
         }
       },
       "layer": {
-        "app/admin/page": "action-browser"
+        "app/admin/page": "action-browser",
+        "app/admin/site-config/page": "action-browser"
       },
       "filename": "Desktop/my_cms/frontend/app/actions/auth.ts",
       "exportedName": "logoutAction"
     },
+    "40591740fce772bb8dd11cd06564cf213637f4d384": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/notifications.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getNotificationCounts",
+          "filename": "Desktop/my_cms/frontend/app/actions/notifications.ts"
+        },
+        "app/admin/site-config/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/site-config/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/notifications.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getNotificationCounts",
+          "filename": "Desktop/my_cms/frontend/app/actions/notifications.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "action-browser",
+        "app/admin/site-config/page": "action-browser"
+      },
+      "filename": "Desktop/my_cms/frontend/app/actions/notifications.ts",
+      "exportedName": "getNotificationCounts"
+    },
+    "40ada0661e82d4a27657c5c228368652542111c546": {
+      "workers": {
+        "app/admin/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/notifications.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getRecentNotifications",
+          "filename": "Desktop/my_cms/frontend/app/actions/notifications.ts"
+        },
+        "app/admin/site-config/page": {
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/site-config/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/notifications.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "async": false,
+          "exportedName": "getRecentNotifications",
+          "filename": "Desktop/my_cms/frontend/app/actions/notifications.ts"
+        }
+      },
+      "layer": {
+        "app/admin/page": "action-browser",
+        "app/admin/site-config/page": "action-browser"
+      },
+      "filename": "Desktop/my_cms/frontend/app/actions/notifications.ts",
+      "exportedName": "getRecentNotifications"
+    },
     "60d44ec52e83506f94ccd5d4dd977e897da8414182": {
       "workers": {
         "app/admin/page": {
-          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
+          "moduleId": "[project]/Desktop/my_cms/frontend/.next-internal/server/app/admin/page/actions.js { ACTIONS_MODULE0 => \"[project]/Desktop/my_cms/frontend/app/actions/auth.ts [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/Desktop/my_cms/frontend/app/actions/notifications.ts [app-rsc] (ecmascript)\" } [app-rsc] (server actions loader, ecmascript)",
           "async": false,
           "exportedName": "loginAction",
           "filename": "Desktop/my_cms/frontend/app/actions/auth.ts"

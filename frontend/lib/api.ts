@@ -1,3 +1,5 @@
+import qs from "qs";
+
 export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
 
 export function getStrapiURL(path = "") {
@@ -21,16 +23,20 @@ export function getStrapiMedia(url: string | null) {
 export async function fetchAPI(
     path: string,
     urlParamsObject = {},
-    options = {}
+    options: RequestInit & { revalidate?: number | false } = {}
 ) {
-    const qs = require("qs");
-    const mergedOptions = {
+    const { revalidate = 60, ...fetchOptions } = options;
+
+    const mergedOptions: RequestInit = {
         headers: {
             "Content-Type": "application/json",
             ...(process.env.STRAPI_API_TOKEN ? { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` } : {}),
         },
-        ...options,
+        // Enable ISR caching for Server Components; client-side fetch ignores this
+        next: revalidate === false ? { revalidate: 0 } : { revalidate },
+        ...fetchOptions,
     };
+
 
     // Build request URL
     const queryString = qs.stringify(urlParamsObject, {

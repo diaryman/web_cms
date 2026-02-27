@@ -14,16 +14,24 @@ interface PDPAPageClientProps {
     footer: React.ReactNode;
     siteConfig?: any;
     features?: any[];
+    initialArticles?: any[];
+    initialDocuments?: any[];
+    initialTimeline?: any[];
 }
 
-export default function PDPAPageClient({ navbar, footer, siteConfig, features = [] }: PDPAPageClientProps) {
-    const [articles, setArticles] = useState<any[]>([]);
-    const [documents, setDocuments] = useState<any[]>([]);
-    const [timelineItems, setTimelineItems] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
+export default function PDPAPageClient({ navbar, footer, siteConfig, features = [], initialArticles = [], initialDocuments = [], initialTimeline = [] }: PDPAPageClientProps) {
+    const [articles, setArticles] = useState<any[]>(initialArticles);
+    const [documents, setDocuments] = useState<any[]>(initialDocuments);
+    const [timelineItems, setTimelineItems] = useState<any[]>(initialTimeline);
+    const [loading, setLoading] = useState(false);
 
+    // Only fetch client-side if no initial data was provided (e.g. direct client navigation)
     useEffect(() => {
+        if (initialArticles.length > 0 || initialDocuments.length > 0 || initialTimeline.length > 0) {
+            return; // Data already provided by SSR
+        }
         const loadData = async () => {
+            setLoading(true);
             try {
                 const articlesRes = await fetchAPI("/articles", {
                     filters: { domain: "pdpa.localhost" },
@@ -40,8 +48,8 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
                     filters: { domain: "pdpa.localhost" },
                     sort: ["order:asc"]
                 });
-                setArticles(articlesRes.data);
-                setDocuments(docsRes.data);
+                setArticles(articlesRes.data || []);
+                setDocuments(docsRes.data || []);
                 setTimelineItems(timelineRes.data || []);
             } catch (error) {
                 console.error("Failed to fetch PDPA data:", error);
@@ -50,7 +58,7 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
             }
         };
         loadData();
-    }, []);
+    }, [initialArticles.length, initialDocuments.length, initialTimeline.length]);
 
     // Icons — use CSS variable colour so they follow the active template
     const accentIcon = (Icon: React.ElementType) => (
