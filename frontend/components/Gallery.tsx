@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import { getStrapiMedia } from "@/lib/api";
@@ -45,13 +44,11 @@ const Gallery = ({ images: rawImages, layout = "grid" }: GalleryProps) => {
                         tabIndex={0}
                         onKeyDown={(e) => e.key === 'Enter' && openLightbox(index)}
                     >
-                        <Image
+                        <img
                             src={getStrapiMedia(img.url) || ""}
                             alt={img.name || `Gallery image ${index + 1}`}
-                            fill
-                            sizes="(max-width: 768px) 50vw, 33vw"
-                            className="object-cover transition-transform duration-500 group-hover:scale-110"
                             loading="lazy"
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                             <div className="bg-white/20 backdrop-blur-md p-3 rounded-full text-white">
@@ -100,15 +97,11 @@ const Gallery = ({ images: rawImages, layout = "grid" }: GalleryProps) => {
                             exit={{ scale: 0.9, opacity: 0 }}
                             transition={{ type: "spring", damping: 25, stiffness: 300 }}
                         >
-                            {/* Use unoptimized=false for lightbox — full res with next/image */}
                             <div className="relative aspect-video max-h-[80vh]">
-                                <Image
+                                <img
                                     src={getStrapiMedia(images[selectedIndex].url) || ""}
                                     alt={images[selectedIndex].name || `รูปที่ ${selectedIndex + 1}`}
-                                    fill
-                                    sizes="90vw"
-                                    className="object-contain"
-                                    priority
+                                    className="w-full h-full object-contain"
                                 />
                             </div>
                             <div className="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/60 to-transparent text-white">
