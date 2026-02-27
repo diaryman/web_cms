@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
 import { Save, Loader2, Plus, Trash2, Edit2, X, Move, LayoutGrid, Columns, GripVertical } from "lucide-react";
-import { motion, AnimatePresence, Reorder } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
 
 export default function AdminFeaturesPage() {
     const searchParams = useSearchParams();
@@ -45,7 +46,10 @@ export default function AdminFeaturesPage() {
         }
     };
 
+    const [isMounted, setIsMounted] = useState(false);
+
     useEffect(() => {
+        setIsMounted(true);
         fetchFeatures();
     }, [domain]);
 
@@ -102,7 +106,15 @@ export default function AdminFeaturesPage() {
         }
     };
 
-    const handleReorder = (newOrder: any[]) => {
+    const handleDragEnd = (result: DropResult) => {
+        if (!result.destination) {
+            return;
+        }
+
+        const newOrder = Array.from(features);
+        const [reorderedItem] = newOrder.splice(result.source.index, 1);
+        newOrder.splice(result.destination.index, 0, reorderedItem);
+
         setFeatures(newOrder);
         setHasOrderChanged(true);
     };
@@ -161,41 +173,68 @@ export default function AdminFeaturesPage() {
                             <Columns size={14} /> สามารถลากเพื่อจัดลำดับได้ (Drag to Reorder)
                         </p>
                     )}
-                    <Reorder.Group axis="y" values={features} onReorder={handleReorder} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {features.map((feature) => (
-                            <Reorder.Item key={feature.id} value={feature} className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-md transition-all group relative cursor-grab active:cursor-grabbing">
-                                <span className="absolute top-4 right-4 text-[10px] font-bold bg-gray-100 px-2 py-1 rounded-lg text-gray-500 uppercase tracking-widest">
-                                    {feature.section}
-                                </span>
-                                <div className="flex items-center gap-3 mb-4">
-                                    <GripVertical className="text-gray-300" size={16} />
-                                    <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: "var(--accent-subtle)", color: "var(--accent-color)" }}>
-                                        <LayoutGrid size={24} />
-                                    </div>
-                                </div>
-                                <h3 className="text-lg font-bold font-heading text-gray-800 mb-2 truncate">{feature.title}</h3>
-                                <p className="text-gray-500 text-sm mb-4 line-clamp-2 min-h-[40px]">{feature.description}</p>
+                    {features.length > 0 && isMounted && (
+                        <DragDropContext onDragEnd={handleDragEnd}>
+                            <Droppable droppableId="features">
+                                {(provided) => (
+                                    <div
+                                        {...provided.droppableProps}
+                                        ref={provided.innerRef}
+                                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                                    >
+                                        {features.map((feature, index) => (
+                                            <Draggable key={feature.id.toString()} draggableId={feature.id.toString()} index={index}>
+                                                {(provided, snapshot) => (
+                                                    <div
+                                                        ref={provided.innerRef}
+                                                        {...provided.draggableProps}
+                                                        className={`bg-white p-6 rounded-[2rem] border border-gray-100 transition-all group relative cursor-grab active:cursor-grabbing ${snapshot.isDragging ? "shadow-2xl scale-[1.02] ring-2 ring-primary/20 z-50" : "shadow-sm hover:shadow-md"
+                                                            }`}
+                                                    >
+                                                        <span className="absolute top-4 right-4 text-[10px] font-bold bg-gray-100 px-2 py-1 rounded-lg text-gray-500 uppercase tracking-widest">
+                                                            {feature.section}
+                                                        </span>
+                                                        <div className="flex items-center gap-3 mb-4">
+                                                            <div
+                                                                {...provided.dragHandleProps}
+                                                                className="p-1 rounded-md text-gray-300 hover:text-primary hover:bg-gray-50 transition-colors"
+                                                            >
+                                                                <GripVertical size={16} />
+                                                            </div>
+                                                            <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: "var(--accent-subtle)", color: "var(--accent-color)" }}>
+                                                                <LayoutGrid size={24} />
+                                                            </div>
+                                                        </div>
+                                                        <h3 className="text-lg font-bold font-heading text-gray-800 mb-2 truncate">{feature.title}</h3>
+                                                        <p className="text-gray-500 text-sm mb-4 line-clamp-2 min-h-[40px]">{feature.description}</p>
 
-                                <div className="flex items-center justify-between pt-4 border-t border-gray-50">
-                                    <div className="text-xs font-bold text-gray-400">Order: {feature.order}</div>
-                                    <div className="flex gap-2">
-                                        <button
-                                            onClick={(e) => { e.stopPropagation(); handleEdit(feature); }}
-                                            className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-primary transition-colors"
-                                        >
-                                            <Edit2 size={16} />
-                                        </button>
-                                        <button
-                                            onClick={(e) => { e.stopPropagation(); handleDelete(feature.documentId); }}
-                                            className="p-2 hover:bg-red-50 rounded-lg text-gray-400 hover:text-red-500 transition-colors"
-                                        >
-                                            <Trash2 size={16} />
-                                        </button>
+                                                        <div className="flex items-center justify-between pt-4 border-t border-gray-50">
+                                                            <div className="text-xs font-bold text-gray-400">Order: {feature.order}</div>
+                                                            <div className="flex gap-2">
+                                                                <button
+                                                                    onClick={(e) => { e.stopPropagation(); handleEdit(feature); }}
+                                                                    className="p-2 hover:bg-gray-100 rounded-lg text-gray-500 hover:text-primary transition-colors"
+                                                                >
+                                                                    <Edit2 size={16} />
+                                                                </button>
+                                                                <button
+                                                                    onClick={(e) => { e.stopPropagation(); handleDelete(feature.documentId); }}
+                                                                    className="p-2 hover:bg-red-50 rounded-lg text-gray-400 hover:text-red-500 transition-colors"
+                                                                >
+                                                                    <Trash2 size={16} />
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </Draggable>
+                                        ))}
+                                        {provided.placeholder}
                                     </div>
-                                </div>
-                            </Reorder.Item>
-                        ))}
-                    </Reorder.Group>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                    )}
                 </div>
             )}
 

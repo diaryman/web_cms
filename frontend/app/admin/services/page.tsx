@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
 import { Plus, Edit, Trash2, Loader2, GripVertical, Download, Wrench, Package, X, Columns } from "lucide-react";
 import Link from "next/link";
-import { Reorder } from "motion/react";
+import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
 
 export default function ServicesPage() {
     const searchParams = useSearchParams();
@@ -35,7 +35,10 @@ export default function ServicesPage() {
         "tool": "เครื่องมือ"
     };
 
+    const [isMounted, setIsMounted] = useState(false);
+
     useEffect(() => {
+        setIsMounted(true);
         loadServices();
     }, [domain]);
 
@@ -107,7 +110,15 @@ export default function ServicesPage() {
         setShowModal(true);
     };
 
-    const handleReorder = (newOrder: any[]) => {
+    const handleDragEnd = (result: DropResult) => {
+        if (!result.destination) {
+            return;
+        }
+
+        const newOrder = Array.from(services);
+        const [reorderedItem] = newOrder.splice(result.source.index, 1);
+        newOrder.splice(result.destination.index, 0, reorderedItem);
+
         setServices(newOrder);
         setHasOrderChanged(true);
     };
@@ -179,48 +190,72 @@ export default function ServicesPage() {
             <div className="space-y-4">
                 {services.length > 0 && (
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest px-4 flex items-center gap-2 mb-2">
-                        <Columns size={14} /> สามารถลากเพื่อจัดลำดับได้ (Drag to Reorder)
+                        <Columns size={14} /> สามารถลาก (Drag and Drop) เพื่อจัดลำดับได้
                     </p>
                 )}
-                <Reorder.Group axis="y" values={services} onReorder={handleReorder} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {services.map((service) => (
-                        <Reorder.Item
-                            key={service.id}
-                            value={service}
-                            className="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-lg transition-all cursor-grab active:cursor-grabbing"
-                        >
-                            <div className="flex items-start justify-between mb-4">
-                                <div className="flex items-center gap-3">
-                                    <GripVertical className="text-gray-300" size={16} />
-                                    <span className="text-xs font-bold px-2 py-1 rounded-lg" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
-                                        {categoryLabels[service.category] || service.category}
-                                    </span>
+
+                {isMounted && services.length > 0 ? (
+                    <DragDropContext onDragEnd={handleDragEnd}>
+                        <Droppable droppableId="services">
+                            {(provided) => (
+                                <div
+                                    {...provided.droppableProps}
+                                    ref={provided.innerRef}
+                                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                                >
+                                    {services.map((service, index) => (
+                                        <Draggable key={service.id.toString()} draggableId={service.id.toString()} index={index}>
+                                            {(provided, snapshot) => (
+                                                <div
+                                                    ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    className={`bg-white p-6 rounded-2xl border border-gray-100 transition-all ${snapshot.isDragging ? "shadow-2xl scale-[1.02] ring-2 ring-primary/20 z-50 cursor-grabbing" : "hover:shadow-lg"
+                                                        }`}
+                                                >
+                                                    <div className="flex items-start justify-between mb-4">
+                                                        <div className="flex items-center gap-3">
+                                                            <div
+                                                                {...provided.dragHandleProps}
+                                                                className="p-1 rounded-md text-gray-300 hover:text-primary hover:bg-gray-50 transition-colors cursor-grab active:cursor-grabbing"
+                                                            >
+                                                                <GripVertical size={16} />
+                                                            </div>
+                                                            <span className="text-xs font-bold px-2 py-1 rounded-lg" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
+                                                                {categoryLabels[service.category] || service.category}
+                                                            </span>
+                                                        </div>
+                                                        <div className="flex gap-2">
+                                                            <button
+                                                                onClick={(e) => { e.stopPropagation(); openEditModal(service); }}
+                                                                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                                                            >
+                                                                <Edit size={16} className="text-gray-600" />
+                                                            </button>
+                                                            <button
+                                                                onClick={(e) => { e.stopPropagation(); handleDelete(service.id); }}
+                                                                className="p-2 hover:bg-red-50 rounded-lg transition-colors"
+                                                            >
+                                                                <Trash2 size={16} className="text-red-500" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <h3 className="font-bold text-lg mb-2">{service.title}</h3>
+                                                    <p className="text-sm text-gray-500 line-clamp-2">{service.description}</p>
+                                                    {service.link && (
+                                                        <a href={service.link} target="_blank" rel="noreferrer" onClick={e => e.stopPropagation()} className="text-xs text-accent hover:underline mt-2 block truncate">
+                                                            {service.link}
+                                                        </a>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </Draggable>
+                                    ))}
+                                    {provided.placeholder}
                                 </div>
-                                <div className="flex gap-2">
-                                    <button
-                                        onClick={(e) => { e.stopPropagation(); openEditModal(service); }}
-                                        className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                                    >
-                                        <Edit size={16} className="text-gray-600" />
-                                    </button>
-                                    <button
-                                        onClick={(e) => { e.stopPropagation(); handleDelete(service.id); }}
-                                        className="p-2 hover:bg-red-50 rounded-lg transition-colors"
-                                    >
-                                        <Trash2 size={16} className="text-red-500" />
-                                    </button>
-                                </div>
-                            </div>
-                            <h3 className="font-bold text-lg mb-2">{service.title}</h3>
-                            <p className="text-sm text-gray-500 line-clamp-2">{service.description}</p>
-                            {service.link && (
-                                <a href={service.link} target="_blank" rel="noreferrer" onClick={e => e.stopPropagation()} className="text-xs text-accent hover:underline mt-2 block truncate">
-                                    {service.link}
-                                </a>
                             )}
-                        </Reorder.Item>
-                    ))}
-                </Reorder.Group>
+                        </Droppable>
+                    </DragDropContext>
+                ) : null}
             </div>
 
             {services.length === 0 && (
