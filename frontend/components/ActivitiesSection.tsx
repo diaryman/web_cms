@@ -4,15 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { Calendar, ChevronRight, User } from "lucide-react";
 import { fetchAPI, getStrapiMedia } from "@/lib/api";
-import { motion } from "motion/react";
 import React, { useState, useEffect } from "react";
 import SpotlightCard from "./SpotlightCard";
 
 export default function ActivitiesSection({ domain = "localhost", initialActivities }: { domain?: string, initialActivities?: any[] }) {
     const [activities, setActivities] = useState<any[]>(initialActivities || []);
     const [loading, setLoading] = useState(!initialActivities || initialActivities.length === 0);
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
+        setIsMounted(true);
         // If initialActivities is provided, skip fetching
         if (initialActivities && initialActivities.length > 0) {
             setLoading(false);
@@ -48,23 +49,23 @@ export default function ActivitiesSection({ domain = "localhost", initialActivit
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
                     <div>
-                        <motion.span
+                        <span
                             className="font-black tracking-[0.25em] uppercase text-xs mb-3 block"
                             style={{ color: 'var(--accent-color)' }}
                         >
                             Updates & News
-                        </motion.span>
-                        <motion.h2
+                        </span>
+                        <h2
                             className="text-4xl md:text-5xl font-black font-heading text-slate-900 dark:text-white tracking-tight"
                         >
                             ข่าวกิจกรรมและประกาศล่าสุด
-                        </motion.h2>
+                        </h2>
                     </div>
-                    <motion.div>
+                    <div>
                         <Link href="/news?site=main" className="flex items-center gap-2 px-6 py-3 glass border border-gray-200 rounded-2xl text-primary font-bold hover:bg-white transition-all">
                             ดูบทความทั้งหมด <ChevronRight size={18} />
                         </Link>
-                    </motion.div>
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -93,6 +94,7 @@ export default function ActivitiesSection({ domain = "localhost", initialActivit
                                                     src={coverImageUrl}
                                                     alt={item.title}
                                                     fill
+                                                    loading="lazy"
                                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                                                 />

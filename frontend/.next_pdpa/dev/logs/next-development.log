@@ -1034,3 +1034,276 @@ https://react.dev/link/hydration-mismatch
 [00:05:21.224] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
 [00:05:53.022] Server  LOG     ✓ Compiled in 45ms
 [00:06:09.670] Server  LOG     ✓ Compiled in 30ms
+[00:07:06.663] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:06.882] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="pdpa/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/pdpa" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
+                <SegmentViewNode type="page" pagePath="/Desktop/m...">
+                  <SegmentTrieNode>
+                  <PDPAPage>
+                    <NewsTicker>
+                    <PDPAPage>
+                      <PDPAPageClient navbar={{...}} footer={{...}} siteConfig={{id:45, ...}} features={[...]} ...>
+                        <main className="min-h-scre..." style={{...}}>
+                          <NavbarClient>
+                          ...
+                            <div className="grid grid-...">
+                              <motion.div initial={{opacity:0,x:-30}} animate={{opacity:1,x:0}} ...>
+                                <div
+                                  style={{
++                                   opacity: 0
++                                   transform: "translateX(-30px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                              <motion.div initial={{opacity:0, ...}} animate={{opacity:1,scale:1}} ...>
+                                <div
+                                  className="grid grid-cols-2 gap-4"
++                                 style={{opacity:0,transform:"scale(0.9)"}}
+-                                 style={{}}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                                  <div className="space-y-4 ...">
+                                    ...
+                                      <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                        <motion.div className="pointer-ev..." style={{...}}>
+                                          <div
+                                            className="pointer-events-none absolute -inset-px rounded-inherit opacity-..."
+                                            style={{
++                                             background: "radial-gradient(600px circle at [object Object]px [object O..."
+-                                             background-image: ""
+-                                             background-position-x: ""
+-                                             background-position-y: ""
+-                                             background-size: ""
+-                                             background-repeat: ""
+-                                             background-attachment: ""
+-                                             background-origin: ""
+-                                             background-clip: ""
+-                                             background-color: ""
+                                            }}
+                                            ref={function useMotionRef.useCallback}
+                                          >
+                                        ...
+                                    ...
+                                      <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                        <motion.div className="pointer-ev..." style={{...}}>
+                                          <div
+                                            className="pointer-events-none absolute -inset-px rounded-inherit opacity-..."
+                                            style={{
++                                             background: "radial-gradient(600px circle at [object Object]px [object O..."
+-                                             background-image: ""
+-                                             background-position-x: ""
+-                                             background-position-y: ""
+-                                             background-size: ""
+-                                             background-repeat: ""
+-                                             background-attachment: ""
+-                                             background-origin: ""
+-                                             background-clip: ""
+-                                             background-color: ""
+                                            }}
+                                            ref={function useMotionRef.useCallback}
+                                          >
+                                        ...
+                                  <div className="space-y-4">
+                                    ...
+                                      <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                        <motion.div className="pointer-ev..." style={{...}}>
+                                          <div
+                                            className="pointer-events-none absolute -inset-px rounded-inherit opacity-..."
+                                            style={{
++                                             background: "radial-gradient(600px circle at [object Object]px [object O..."
+-                                             background-image: ""
+-                                             background-position-x: ""
+-                                             background-position-y: ""
+-                                             background-size: ""
+-                                             background-repeat: ""
+-                                             background-attachment: ""
+-                                             background-origin: ""
+-                                             background-clip: ""
+-                                             background-color: ""
+                                            }}
+                                            ref={function useMotionRef.useCallback}
+                                          >
+                                        ...
+                                    ...
+                                      <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                        <motion.div className="pointer-ev..." style={{...}}>
+                                          <div
+                                            className="pointer-events-none absolute -inset-px rounded-inherit opacity-..."
+                                            style={{
++                                             background: "radial-gradient(600px circle at [object Object]px [object O..."
+-                                             background-image: ""
+-                                             background-position-x: ""
+-                                             background-position-y: ""
+-                                             background-size: ""
+-                                             background-repeat: ""
+-                                             background-attachment: ""
+-                                             background-origin: ""
+-                                             background-clip: ""
+-                                             background-color: ""
+                                            }}
+                                            ref={function useMotionRef.useCallback}
+                                          >
+                                        ...
+                          <div>
+                          ...
+                            <div className="grid grid-...">
+                              <motion.div initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}} ...>
+                                <div
+                                  style={{
++                                   opacity: 0
++                                   transform: "translateY(30px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                                  ...
+                                    <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                      <motion.div className="pointer-ev..." style={{...}}>
+                                        <div
+                                          className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 ..."
+                                          style={{
++                                           background: "radial-gradient(600px circle at [object Object]px [object Obj..."
+-                                           background-image: ""
+-                                           background-position-x: ""
+-                                           background-position-y: ""
+-                                           background-size: ""
+-                                           background-repeat: ""
+-                                           background-attachment: ""
+-                                           background-origin: ""
+-                                           background-clip: ""
+-                                           background-color: ""
+                                          }}
+                                          ref={function useMotionRef.useCallback}
+                                        >
+                                      ...
+                              <motion.div initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}} ...>
+                                <div
+                                  style={{
++                                   opacity: 0
++                                   transform: "translateY(30px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                                  ...
+                                    <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                      <motion.div className="pointer-ev..." style={{...}}>
+                                        <div
+                                          className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 ..."
+                                          style={{
++                                           background: "radial-gradient(600px circle at [object Object]px [object Obj..."
+-                                           background-image: ""
+-                                           background-position-x: ""
+-                                           background-position-y: ""
+-                                           background-size: ""
+-                                           background-repeat: ""
+-                                           background-attachment: ""
+-                                           background-origin: ""
+-                                           background-clip: ""
+-                                           background-color: ""
+                                          }}
+                                          ref={function useMotionRef.useCallback}
+                                        >
+                                      ...
+                              <motion.div initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}} ...>
+                                <div
+                                  style={{
++                                   opacity: 0
++                                   transform: "translateY(30px)"
+                                  }}
+                                  ref={function useMotionRef.useCallback}
+                                >
+                                  ...
+                                    <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                      <motion.div className="pointer-ev..." style={{...}}>
+                                        <div
+                                          className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 ..."
+                                          style={{
++                                           background: "radial-gradient(600px circle at [object Object]px [object Obj..."
+-                                           background-image: ""
+-                                           background-position-x: ""
+-                                           background-position-y: ""
+-                                           background-size: ""
+-                                           background-repeat: ""
+-                                           background-attachment: ""
+-                                           background-origin: ""
+-                                           background-clip: ""
+-                                           background-color: ""
+                                          }}
+                                          ref={function useMotionRef.useCallback}
+                                        >
+                                      ...
+                          <div>
+                          ...
+                            <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} ...>
+                              <div
+                                className="relative z-10 flex flex-col items-center md:items-start"
+                                style={{
++                                 opacity: 0
++                                 transform: "translateY(20px)"
+                                }}
+                                ref={function useMotionRef.useCallback}
+                              >
+                            <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} ...>
+                              <div
+                                className="relative z-10 flex flex-col items-center md:items-start"
+                                style={{
++                                 opacity: 0
++                                 transform: "translateY(20px)"
+                                }}
+                                ref={function useMotionRef.useCallback}
+                              >
+                            <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} ...>
+                              <div
+                                className="relative z-10 flex flex-col items-center md:items-start"
+                                style={{
++                                 opacity: 0
++                                 transform: "translateY(20px)"
+                                }}
+                                ref={function useMotionRef.useCallback}
+                              >
+                            <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} ...>
+                              <div
+                                className="relative z-10 flex flex-col items-center md:items-start"
+                                style={{
++                                 opacity: 0
++                                 transform: "translateY(20px)"
+                                }}
+                                ref={function useMotionRef.useCallback}
+                              >
+                          <div>
+                          <section id="news" className="py-24 bg-w...">
+                            <div className="max-w-7xl ...">
+                              <div>
+                              <div className="grid grid-...">
+                                <div
++                                 className="h-64 bg-gray-50 rounded-[2.5rem] animate-pulse"
+-                                 className={null}
+                                >
+-                                 <a className="block h-full" href="/news/pdpa-roadshow">
+                                ...
+                          ...
+                ...
+              ...
+
+[00:07:06.882] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:07:06.882] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:07:06.882] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:07:06.882] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:08:38.123] Server  ERROR   ⨯ "upstream image" "http://127.0.0.1:1337/uploads/crypto5_binwalk_84111702cf.jpg" "resolved to private ip" "[\"127.0.0.1\"]"
+[00:08:38.138] Server  LOG     ✓ Compiled in 151ms
