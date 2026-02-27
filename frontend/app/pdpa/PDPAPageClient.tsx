@@ -24,9 +24,12 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
     const [documents, setDocuments] = useState<any[]>(initialDocuments);
     const [timelineItems, setTimelineItems] = useState<any[]>(initialTimeline);
     const [loading, setLoading] = useState(false);
+    // Defer animations until after hydration to prevent SSR/client mismatch
+    const [isMounted, setIsMounted] = useState(false);
 
     // Only fetch client-side if no initial data was provided (e.g. direct client navigation)
     useEffect(() => {
+        setIsMounted(true);
         if (initialArticles.length > 0 || initialDocuments.length > 0 || initialTimeline.length > 0) {
             return; // Data already provided by SSR
         }
@@ -117,7 +120,7 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+                        <motion.div initial={isMounted ? { opacity: 0, x: -30 } : false} animate={isMounted ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8 }}>
                             {/* Hero badge */}
                             <span
                                 className="px-4 py-1 rounded-full text-[10px] font-black tracking-widest uppercase mb-6 inline-block"
@@ -157,8 +160,8 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
 
                         {/* Feature cards grid */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
+                            initial={isMounted ? { opacity: 0, scale: 0.9 } : false}
+                            animate={isMounted ? { opacity: 1, scale: 1 } : {}}
                             transition={{ duration: 0.8, delay: 0.2 }}
                             className="grid grid-cols-2 gap-4"
                         >
@@ -218,8 +221,8 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
                         {principles.map((p, i) => (
                             <motion.div
                                 key={i}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                initial={isMounted ? { opacity: 0, y: 30 } : false}
+                                whileInView={isMounted ? { opacity: 1, y: 0 } : {}}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.2, duration: 0.5 }}
                             >
@@ -261,8 +264,8 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
                         {timeline.map((step, i) => (
                             <motion.div
                                 key={i}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                initial={isMounted ? { opacity: 0, y: 20 } : false}
+                                whileInView={isMounted ? { opacity: 1, y: 0 } : {}}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.2 }}
                                 className="relative z-10 flex flex-col items-center md:items-start"
@@ -320,8 +323,8 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
                                 return (
                                     <motion.div
                                         key={item.id}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
+                                        initial={isMounted ? { opacity: 0, y: 20 } : false}
+                                        whileInView={isMounted ? { opacity: 1, y: 0 } : {}}
                                         viewport={{ once: true }}
                                         transition={{ delay: i * 0.1 }}
                                     >
@@ -399,8 +402,8 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
                             documents.map((doc, i) => (
                                 <motion.div
                                     key={doc.id}
-                                    initial={{ opacity: 0, y: 15 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
+                                    initial={isMounted ? { opacity: 0, y: 15 } : false}
+                                    whileInView={isMounted ? { opacity: 1, y: 0 } : {}}
                                     viewport={{ once: true }}
                                     transition={{ delay: i * 0.05 }}
                                 >

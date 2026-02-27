@@ -616,3 +616,421 @@ https://react.dev/link/hydration-mismatch
 [00:02:09.803] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
 [00:02:09.803] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
 [00:02:09.803] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:03:31.679] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:31.894] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:03:31.894] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:03:41.374] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:41.527] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:03:41.527] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:03:44.278] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:44.485] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="pdpa/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/pdpa" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
+                <SegmentViewNode type="page" pagePath="/Desktop/m...">
+                  <SegmentTrieNode>
+                  <PDPAPage>
+                    <NewsTicker>
+                    <PDPAPage>
+                      <PDPAPageClient navbar={{...}} footer={{...}} siteConfig={{id:45, ...}} features={[...]} ...>
+                        <main className="min-h-scre..." style={{...}}>
+                          <NavbarClient>
+                          ...
+                            <div className="grid grid-..." style={{opacity:0, ...}} ...>
+                              <div className="space-y-4 ...">
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                              <div className="space-y-4">
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                          <div>
+                          ...
+                            <div className="grid grid-...">
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                          <div>
+                          <section>
+                          <div>
+                          <section id="news" className="py-24 bg-w...">
+                            <div className="max-w-7xl ...">
+                              <div>
+                              <div className="grid grid-...">
+                                <div
++                                 className="h-64 bg-gray-50 rounded-[2.5rem] animate-pulse"
+-                                 className={null}
+-                                 style={{opacity:"0",transform:"translateY..."}}
+                                >
+-                                 <a className="block h-full" href="/news/pdpa-roadshow">
+                                ...
+                          ...
+                ...
+              ...
+
+[00:03:44.485] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:03:44.485] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:03:44.485] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:03:44.485] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:04:49.423] Server  LOG     ✓ Compiled in 272ms
+[00:04:49.450] Browser ERROR   React has detected a change in the order of Hooks called by %s. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://react.dev/link/rules-of-hooks
+
+   Previous render            Next render
+   ------------------------------------------------------
+%s   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ SpotlightCard 1. useRef                     useRef
+2. useContext                 useContext
+3. useRef                     useRef
+4. useContext                 useContext
+5. undefined                  useRef
+
+[00:04:49.450] Browser ERROR   uncaughtError: Error: Rendered more hooks than during the previous render.
+[00:05:20.539] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:05:20.680] Server  LOG     ✓ Compiled in 95ms
+[00:05:20.773] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:05:20.773] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:05:21.019] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:21.224] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+      <LoadingBoundary name="pdpa/" loading={null}>
+        <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+          <RedirectBoundary>
+            <RedirectErrorBoundary router={{...}}>
+              <InnerLayoutRouter url="/pdpa" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} ...>
+                <SegmentViewNode type="page" pagePath="/Desktop/m...">
+                  <SegmentTrieNode>
+                  <PDPAPage>
+                    <NewsTicker>
+                    <PDPAPage>
+                      <PDPAPageClient navbar={{...}} footer={{...}} siteConfig={{id:45, ...}} features={[...]} ...>
+                        <main className="min-h-scre..." style={{...}}>
+                          <NavbarClient>
+                          ...
+                            <div className="grid grid-..." style={{opacity:0, ...}} ...>
+                              <div className="space-y-4 ...">
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                              <div className="space-y-4">
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                                ...
+                                  <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                    <motion.div className="pointer-ev..." style={{...}}>
+                                      <div
+                                        className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tr..."
+                                        style={{
++                                         background: "radial-gradient(600px circle at [object Object]px [object Objec..."
+-                                         background-image: ""
+-                                         background-position-x: ""
+-                                         background-position-y: ""
+-                                         background-size: ""
+-                                         background-repeat: ""
+-                                         background-attachment: ""
+-                                         background-origin: ""
+-                                         background-clip: ""
+-                                         background-color: ""
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                    ...
+                          <div>
+                          ...
+                            <div className="grid grid-...">
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                              ...
+                                <div onMouseMove={function handleMouseMove} className="relative o..." style={{...}} ...>
+                                  <motion.div className="pointer-ev..." style={{...}}>
+                                    <div
+                                      className="pointer-events-none absolute -inset-px rounded-inherit opacity-0 tran..."
+                                      style={{
++                                       background: "radial-gradient(600px circle at [object Object]px [object Object]..."
+-                                       background-image: ""
+-                                       background-position-x: ""
+-                                       background-position-y: ""
+-                                       background-size: ""
+-                                       background-repeat: ""
+-                                       background-attachment: ""
+-                                       background-origin: ""
+-                                       background-clip: ""
+-                                       background-color: ""
+                                      }}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  ...
+                          <div>
+                          <section>
+                          <div>
+                          <section id="news" className="py-24 bg-w...">
+                            <div className="max-w-7xl ...">
+                              <div>
+                              <div className="grid grid-...">
+                                <div
++                                 className="h-64 bg-gray-50 rounded-[2.5rem] animate-pulse"
+-                                 className={null}
+                                >
+-                                 <a className="block h-full" href="/news/pdpa-roadshow">
+                                ...
+                          ...
+                ...
+              ...
+
+[00:05:21.224] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:05:21.224] Browser LOG     🤖 ChatBot fetching config for domain: pdpa.localhost
+[00:05:21.224] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:05:21.224] Browser LOG     🤖 ChatBot config received for pdpa.localhost: Found
+[00:05:53.022] Server  LOG     ✓ Compiled in 45ms
+[00:06:09.670] Server  LOG     ✓ Compiled in 30ms
