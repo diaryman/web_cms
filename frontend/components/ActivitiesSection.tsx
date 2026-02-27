@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, ChevronRight, User } from "lucide-react";
 import { fetchAPI, getStrapiMedia } from "@/lib/api";
 import { motion } from "motion/react";
@@ -88,10 +89,12 @@ export default function ActivitiesSection({ domain = "localhost", initialActivit
                                     >
                                         <div className="relative aspect-[16/10] rounded-[2rem] overflow-hidden mb-6">
                                             {coverImageUrl ? (
-                                                <img
+                                                <Image
                                                     src={coverImageUrl}
                                                     alt={item.title}
-                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                                    fill
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                                                 />
                                             ) : (
                                                 <div className={`w-full h-full bg-linear-to-br ${placeholders[index % 3]} flex flex-col items-center justify-center p-8 text-center`}>
