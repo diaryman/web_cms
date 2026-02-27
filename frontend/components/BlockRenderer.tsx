@@ -49,7 +49,7 @@ const BlockRenderer = ({ blocks }: { blocks: any[] }) => {
                             // Fix missing images: convert relative /uploads/ path to absolute Strapi URL
                             const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "";
                             if (strapiUrl) {
-                                richTextContent = richTextContent.replace(/src="(\/uploads\/[^"]+)"/g, `src="${strapiUrl}$1"`);
+                                richTextContent = richTextContent.replace(/(src|href)=["'](\/uploads\/[^"']+)["']/gi, `$1="${strapiUrl}$2"`);
                             }
 
                             return (
