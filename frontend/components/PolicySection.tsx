@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import { ShieldCheck, Lock, CheckCircle, FileCheck, Award, Shield } from "lucide-react";
 import { useEffect, useState } from "react";
 import { fetchAPI } from "@/lib/api";
@@ -15,9 +14,11 @@ interface Policy {
 
 export default function PolicySection({ domain = "localhost" }: { domain?: string }) {
     const [policies, setPolicies] = useState<Policy[]>([]);
-    const [loading, setLoading] = useState(true);
+    // Default false — server and client start with same state (no loading skeleton during SSR)
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         loadPolicies();
     }, [domain]);
 
@@ -37,14 +38,7 @@ export default function PolicySection({ domain = "localhost" }: { domain?: strin
     };
 
     const getIcon = (iconName: string) => {
-        const icons: any = {
-            ShieldCheck,
-            Lock,
-            CheckCircle,
-            FileCheck,
-            Award,
-            Shield
-        };
+        const icons: any = { ShieldCheck, Lock, CheckCircle, FileCheck, Award, Shield };
         return icons[iconName] || ShieldCheck;
     };
 
@@ -64,7 +58,7 @@ export default function PolicySection({ domain = "localhost" }: { domain?: strin
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="lg:grid lg:grid-cols-2 gap-16 items-center">
-                    <motion.div>
+                    <div>
                         <span className="font-black tracking-[0.3em] uppercase text-xs mb-4 block" style={{ color: 'var(--accent-color)' }}>มาตรฐานความปลอดภัย</span>
                         <h2 className="text-4xl md:text-5xl font-extrabold font-heading mb-8 leading-tight" style={{ color: 'var(--foreground)' }}>
                             มาตรฐานการจัดการข้อมูล <br />
@@ -76,7 +70,7 @@ export default function PolicySection({ domain = "localhost" }: { domain?: strin
                         </p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            {displayPolicies.map((policy, idx) => {
+                            {displayPolicies.map((policy) => {
                                 const IconComponent = getIcon(policy.icon);
                                 return (
                                     <div
@@ -92,11 +86,9 @@ export default function PolicySection({ domain = "localhost" }: { domain?: strin
                                 );
                             })}
                         </div>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                        className="mt-12 lg:mt-0 relative"
-                    >
+                    <div className="mt-12 lg:mt-0 relative">
                         <div className="relative z-10 p-8 rounded-[3rem] glass-dark border border-white/10 shadow-2xl backdrop-blur-2xl">
                             <div className="space-y-6">
                                 <div className="flex justify-between items-center bg-white/5 p-6 rounded-2xl border border-white/5">
@@ -130,9 +122,9 @@ export default function PolicySection({ domain = "localhost" }: { domain?: strin
                         {/* Decorative blobs */}
                         <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-[60px]" style={{ backgroundColor: 'var(--accent-glow)' }}></div>
                         <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full blur-[60px]" style={{ backgroundColor: 'var(--accent-glow)' }}></div>
-                    </motion.div>
+                    </div>
                 </div>
-            </div >
-        </section >
+            </div>
+        </section>
     );
 }
