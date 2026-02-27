@@ -1,3 +1,5 @@
+import React from "react";
+
 interface SectionDividerProps {
     /** fill color of the wave shape (should match the NEXT section's bg) */
     fill?: string;
@@ -19,7 +21,7 @@ export default function SectionDivider({
     height = 80,
 }: SectionDividerProps) {
 
-    const shapes: Record<string, JSX.Element> = {
+    const shapes: Record<string, React.JSX.Element> = {
         wave: (
             <svg
                 viewBox="0 0 1440 80"

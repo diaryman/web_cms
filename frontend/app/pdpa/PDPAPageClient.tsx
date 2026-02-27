@@ -353,7 +353,7 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
                                                     </div>
                                                 </div>
 
-                                                <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">
+                                                <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4" suppressHydrationWarning>
                                                     <Calendar size={14} style={{ color: "var(--accent-color)" }} />
                                                     {new Date(item.publishedAt).toLocaleDateString('th-TH')}
                                                 </div>

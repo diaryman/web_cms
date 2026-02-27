@@ -5,29 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 /* ── Helpers ────────────────────────────────────────────────────────────── */
 
-function hexToRGB(hex: string): string {
-    const h = hex.replace("#", "");
-    const r = parseInt(h.substring(0, 2), 16);
-    const g = parseInt(h.substring(2, 4), 16);
-    const b = parseInt(h.substring(4, 6), 16);
-    return `${r}, ${g}, ${b}`;
-}
-
-function lighten(hex: string, amount: number): string {
-    const h = hex.replace("#", "");
-    const r = Math.round(parseInt(h.substring(0, 2), 16) + (255 - parseInt(h.substring(0, 2), 16)) * amount);
-    const g = Math.round(parseInt(h.substring(2, 4), 16) + (255 - parseInt(h.substring(2, 4), 16)) * amount);
-    const b = Math.round(parseInt(h.substring(4, 6), 16) + (255 - parseInt(h.substring(4, 6), 16)) * amount);
-    return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
-}
-
-function darken(hex: string, amount: number): string {
-    const h = hex.replace("#", "");
-    const r = Math.round(parseInt(h.substring(0, 2), 16) * (1 - amount));
-    const g = Math.round(parseInt(h.substring(2, 4), 16) * (1 - amount));
-    const b = Math.round(parseInt(h.substring(4, 6), 16) * (1 - amount));
-    return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
-}
+import { hexToRGB, lighten, darken } from "@/lib/themeUtils";
 
 export function applyThemeColors(primary: string, accent: string) {
     const root = document.documentElement;

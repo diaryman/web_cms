@@ -148,7 +148,7 @@ function GalleryEditForm({ id }: { id: string }) {
                             {/* Existing Images */}
                             {existingImages.map((img) => (
                                 <div key={img.id} className="aspect-square rounded-2xl overflow-hidden relative group border-2 border-gray-50">
-                                    <img src={getStrapiMedia(img.url)} className="w-full h-full object-cover" />
+                                    <img src={getStrapiMedia(img.url) || ""} className="w-full h-full object-cover" />
                                     <button
                                         type="button"
                                         onClick={() => removeExistingImage(img.id)}

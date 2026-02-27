@@ -224,7 +224,7 @@ export default function NewsPageClient({
                                         </div>
                                         <div className="px-4 pb-4 flex flex-col flex-grow">
                                             <div className="flex items-center gap-4 text-gray-400 text-xs font-bold uppercase tracking-wider mb-4">
-                                                <span className="flex items-center gap-1.5"><Calendar size={14} className="text-accent" /> {date}</span>
+                                                <span className="flex items-center gap-1.5" suppressHydrationWarning><Calendar size={14} className="text-accent" /> {date}</span>
                                                 <span className="flex items-center gap-1.5"><User size={14} className="text-accent" style={{ opacity: 0.6 }} /> Admin</span>
                                             </div>
                                             <h3 className="text-xl font-bold font-heading text-primary mb-4 group-hover:text-accent transition-colors line-clamp-2 min-h-[3.5rem] leading-tight">

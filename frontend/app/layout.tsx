@@ -49,6 +49,7 @@ import CookieBanner from "@/components/CookieBanner";
 import AccessibilityToolbar from "@/components/AccessibilityToolbar";
 import AnalyticsProvider from "@/components/AnalyticsProvider";
 import { fetchAPI } from "@/lib/api";
+import { generateThemeCssVariables } from "@/lib/themeUtils";
 
 export default async function RootLayout({
   children,
@@ -68,10 +69,15 @@ export default async function RootLayout({
   const isPDPA = domain.includes("pdpa");
 
   let cookieConsentConfig = undefined;
+  let themeCssVars = "";
+
   try {
     const res = await fetchAPI("/site-configs", { filters: { domain } });
     const config = res.data?.[0];
     if (config?.cookieConsent) cookieConsentConfig = config.cookieConsent;
+    if (config?.themeColors?.primary && config?.themeColors?.accent) {
+      themeCssVars = generateThemeCssVariables(config.themeColors.primary, config.themeColors.accent);
+    }
   } catch (e) {
     // Non-critical
   }
@@ -79,6 +85,9 @@ export default async function RootLayout({
   return (
     <html lang="th" data-theme={theme} suppressHydrationWarning>
       <head>
+        {themeCssVars && (
+          <style id="server-theme" dangerouslySetInnerHTML={{ __html: themeCssVars }} />
+        )}
         {/*
           P8 + DGA: Theme, Font Size & High Contrast FOUC Prevention
           Inline blocking script runs before first paint.
