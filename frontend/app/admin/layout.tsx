@@ -47,22 +47,48 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
 
     const pathname = usePathname();
 
-    const menuItems = [
-        { icon: <LayoutDashboard size={20} />, label: "แดชบอร์ด", href: `/admin`, path: `/admin` },
-        { icon: <Settings size={20} />, label: "ตั้งค่าเว็บไซต์", href: `/admin/site-config`, path: `/admin/site-config` },
-        { icon: <FolderTree size={20} />, label: "จัดการหมวดหมู่", href: `/admin/categories`, path: `/admin/categories` },
-        { icon: <ShieldCheck size={20} />, label: "จุดเด่น/หลักการ", href: `/admin/features`, path: `/admin/features` },
-        { icon: <FileText size={20} />, label: "นโยบายและมาตรฐาน", href: `/admin/policies`, path: `/admin/policies` },
-        { icon: <FileText size={20} />, label: "บริการและดาวน์โหลด", href: `/admin/services`, path: `/admin/services` },
-        { icon: <FileText size={20} />, label: "ข่าวสาร/กิจกรรม", href: `/admin/news`, path: `/admin/news` },
-        { icon: <FileText size={20} />, label: "นโยบาย/เอกสาร", href: `/admin/documents`, path: `/admin/documents` },
-        { icon: <Bell size={20} />, label: "ข้อความติดต่อ", href: `/admin/contacts`, path: `/admin/contacts` },
-        { icon: <BarChart3 size={20} />, label: "สถิติและการใช้งาน", href: `/admin/stats`, path: `/admin/stats` },
-        { icon: <MessageSquare size={20} />, label: "ตั้งค่าแชทบอท", href: `/admin/chatbot`, path: `/admin/chatbot` },
-        { icon: <Mail size={20} />, label: "จัดการ Newsletter", href: `/admin/newsletter`, path: `/admin/newsletter` },
-        { icon: <ImageIcon size={20} />, label: "จัดการแกลเลอรี่ลูกเล่น", href: `/admin/galleries`, path: `/admin/galleries` },
-        { icon: <LayoutTemplate size={20} />, label: "จัดการสไลด์หน้าแรก", href: `/admin/hero-slides`, path: `/admin/hero-slides` },
-        { icon: <History size={20} />, label: "ประวัติการใช้งาน", href: `/admin/logs`, path: `/admin/logs` },
+    const menuGroups = [
+        {
+            label: "ภาพรวม",
+            items: [
+                { icon: <LayoutDashboard size={18} />, label: "แดชบอร์ด", href: `/admin`, path: `/admin`, exact: true },
+            ],
+        },
+        {
+            label: "จัดการเนื้อหา",
+            items: [
+                { icon: <FileText size={18} />, label: "ข่าวสาร/กิจกรรม", href: `/admin/news`, path: `/admin/news` },
+                { icon: <ShieldCheck size={18} />, label: "นโยบายและมาตรฐาน", href: `/admin/policies`, path: `/admin/policies` },
+                { icon: <FileText size={18} />, label: "บริการและดาวน์โหลด", href: `/admin/services`, path: `/admin/services` },
+                { icon: <FileText size={18} />, label: "เอกสารเผยแพร่", href: `/admin/documents`, path: `/admin/documents` },
+                { icon: <ShieldCheck size={18} />, label: "จุดเด่น/หลักการ", href: `/admin/features`, path: `/admin/features` },
+                { icon: <LayoutTemplate size={18} />, label: "สไลด์หน้าแรก", href: `/admin/hero-slides`, path: `/admin/hero-slides` },
+            ],
+        },
+        {
+            label: "จัดการไซต์",
+            items: [
+                { icon: <Settings size={18} />, label: "ตั้งค่าเว็บไซต์", href: `/admin/site-config`, path: `/admin/site-config` },
+                { icon: <FolderTree size={18} />, label: "หมวดหมู่", href: `/admin/categories`, path: `/admin/categories` },
+                { icon: <ImageIcon size={18} />, label: "แกลเลอรี่", href: `/admin/galleries`, path: `/admin/galleries` },
+            ],
+        },
+        {
+            label: "การสื่อสาร",
+            items: [
+                { icon: <Bell size={18} />, label: "ข้อความติดต่อ", href: `/admin/contacts`, path: `/admin/contacts` },
+                { icon: <Mail size={18} />, label: "Newsletter", href: `/admin/newsletter`, path: `/admin/newsletter` },
+                { icon: <Bell size={18} />, label: "การแจ้งเตือน", href: `/admin/notifications`, path: `/admin/notifications` },
+                { icon: <MessageSquare size={18} />, label: "ตั้งค่าแชทบอท", href: `/admin/chatbot`, path: `/admin/chatbot` },
+            ],
+        },
+        {
+            label: "ระบบ",
+            items: [
+                { icon: <BarChart3 size={18} />, label: "สถิติการใช้งาน", href: `/admin/stats`, path: `/admin/stats` },
+                { icon: <History size={18} />, label: "ประวัติการใช้งาน", href: `/admin/logs`, path: `/admin/logs` },
+            ],
+        },
     ];
 
     if (isAuthorized === null) {
@@ -91,31 +117,43 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                     </Link>
                 </div>
 
-                <nav className="flex-1 px-4 space-y-1 overflow-y-auto py-4 custom-scrollbar">
-                    <div className="mb-4 px-4">
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">เมนูหลัก</p>
-                    </div>
-                    {menuItems.map((item) => {
-                        const isActive = item.path === '/admin'
-                            ? pathname === '/admin'
-                            : pathname.startsWith(item.path);
+                <nav className="flex-1 px-4 overflow-y-auto pb-6 custom-scrollbar space-y-5">
+                    {menuGroups.map((group) => (
+                        <div key={group.label}>
+                            {/* Group label */}
+                            <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em] px-4 mb-1.5">
+                                {group.label}
+                            </p>
+                            <div className="space-y-0.5">
+                                {group.items.map((item) => {
+                                    const isActive = (item as any).exact
+                                        ? pathname === item.path
+                                        : pathname.startsWith(item.path);
 
-                        return (
-                            <Link
-                                key={item.label}
-                                href={`${item.href}?site=${siteParam}`}
-                                className={`flex items-center gap-4 px-4 py-3.5 rounded-2xl font-bold text-sm transition-all group ${isActive
-                                    ? "bg-primary text-white shadow-lg shadow-primary/20"
-                                    : "text-gray-500 hover:bg-gray-50 hover:text-primary"
-                                    }`}
-                            >
-                                <span className={isActive ? "text-accent" : "text-gray-400 group-hover:text-primary transition-colors"}>
-                                    {item.icon}
-                                </span>
-                                {item.label}
-                            </Link>
-                        );
-                    })}
+                                    return (
+                                        <Link
+                                            key={item.label}
+                                            href={`${item.href}?site=${siteParam}`}
+                                            className={`flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition-all group ${isActive
+                                                    ? "text-white shadow-md shadow-primary/20"
+                                                    : "text-gray-500 hover:bg-gray-50 hover:text-primary"
+                                                }`}
+                                            style={isActive ? { background: "var(--primary-color)" } : {}}
+                                        >
+                                            <span className={`flex-shrink-0 ${isActive ? "text-white" : "text-gray-350 group-hover:text-primary transition-colors"}`}
+                                                style={isActive ? { color: "var(--accent-color)" } : {}}>
+                                                {item.icon}
+                                            </span>
+                                            <span className="truncate">{item.label}</span>
+                                            {isActive && (
+                                                <ChevronRight size={14} className="ml-auto flex-shrink-0 opacity-60" />
+                                            )}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    ))}
                 </nav>
 
                 <div className="p-6 border-t border-gray-50 space-y-4">
