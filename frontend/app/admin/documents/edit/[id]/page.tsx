@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect, use, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fetchAPI, getStrapiMedia } from "@/lib/api";
@@ -117,11 +118,11 @@ function EditDocumentForm({ id }: { id: string }) {
                 body: JSON.stringify({ data: payload })
             });
 
-            alert("บันทึกการแก้ไขเอกสารเรียบร้อย");
+            Swal.fire({ icon: "success", title: "สำเร็จ", text: "บันทึกการแก้ไขเอกสารเรียบร้อย", timer: 1500, showConfirmButton: false });
             router.push(`/admin/documents?site=${siteParam}`);
         } catch (error: any) {
             console.error("Error updating document", error);
-            alert(error.message || "บันทึกการแก้ไขไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "เกิดข้อผิดพลาด", text: error.message || "บันทึกการแก้ไขไม่สำเร็จ" });
         } finally {
             setSaving(false);
         }

@@ -8,6 +8,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { uploadFile } from "@/app/actions/upload";
 import { updateArticle } from "@/app/actions/article";
+import Swal from "sweetalert2";
 
 const BlockEditor = dynamic(() => import("@/components/BlockEditor"), {
     ssr: false,
@@ -100,8 +101,13 @@ function EditNewsForm({ id }: { id: string }) {
             } catch (error: any) {
                 console.error("Error loading article data", error);
                 if (error.message?.includes("404")) {
-                    alert("ไม่พบข่าวนี้ในระบบ อาจถูกลบไปแล้ว");
-                    router.push(`/admin/news?site=${siteParam}`);
+                    Swal.fire({
+                        icon: "error",
+                        title: "ไม่พบข้อมูล",
+                        text: "ไม่พบข่าวนี้ในระบบ อาจถูกลบไปแล้ว"
+                    }).then(() => {
+                        router.push(`/admin/news?site=${siteParam}`);
+                    });
                 }
             } finally {
                 setLoading(false);
@@ -136,7 +142,11 @@ function EditNewsForm({ id }: { id: string }) {
             setImageUrlInput("");
         } catch (error: any) {
             console.error("URL fetch error", error);
-            alert(error.message || "เกิดข้อผิดพลาดในการดึงรูปภาพ");
+            Swal.fire({
+                icon: "error",
+                title: "เกิดข้อผิดพลาด",
+                text: error.message || "เกิดข้อผิดพลาดในการดึงรูปภาพ"
+            });
         } finally {
             setFetchingUrl(false);
         }
@@ -194,11 +204,21 @@ function EditNewsForm({ id }: { id: string }) {
             console.log("Saving payload:", payload);
             await updateArticle(id, payload);
 
-            alert("บันทึกการแก้ไขเรียบร้อย");
-            router.push(`/admin/news?site=${siteParam}`);
+            Swal.fire({
+                icon: "success",
+                title: "บันทึกสำเร็จ!",
+                text: "บันทึกการแก้ไขเรียบร้อยแล้ว",
+                confirmButtonColor: "#00ae91",
+            }).then(() => {
+                router.push(`/admin/news?site=${siteParam}`);
+            });
         } catch (error: any) {
             console.error("Error updating article", error);
-            alert(error.message || "บันทึกการแก้ไขไม่สำเร็จ");
+            Swal.fire({
+                icon: "error",
+                title: "เกิดข้อผิดพลาด",
+                text: error.message || "บันทึกการแก้ไขไม่สำเร็จ"
+            });
         }
         finally {
             setSaving(false);

@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
@@ -66,20 +67,20 @@ export default function ServicesPage() {
                     method: "PUT",
                     body: JSON.stringify({ data: formData })
                 });
-                alert("อัปเดตบริการเรียบร้อย");
+                Swal.fire({ icon: "success", title: "สำเร็จ", text: "อัปเดตบริการเรียบร้อย", timer: 1500, showConfirmButton: false });
             } else {
                 await fetchAPI("/services", {}, {
                     method: "POST",
                     body: JSON.stringify({ data: formData })
                 });
-                alert("สร้างบริการเรียบร้อย");
+                Swal.fire({ icon: "success", title: "สำเร็จ", text: "สร้างบริการเรียบร้อย", timer: 1500, showConfirmButton: false });
             }
             setShowModal(false);
             resetForm();
             loadServices();
         } catch (error) {
             console.error("Error saving service", error);
-            alert("บันทึกไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "บันทึกไม่สำเร็จ" });
         }
     };
 
@@ -87,11 +88,11 @@ export default function ServicesPage() {
         if (!confirm("ต้องการลบบริการนี้?")) return;
         try {
             await fetchAPI(`/services/${id}`, {}, { method: "DELETE" });
-            alert("ลบเรียบร้อย");
+            Swal.fire({ icon: "success", title: "สำเร็จ", text: "ลบเรียบร้อย", timer: 1500, showConfirmButton: false });
             loadServices();
         } catch (error) {
             console.error("Error deleting service", error);
-            alert("ลบไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "ลบไม่สำเร็จ" });
         }
     };
 
@@ -133,11 +134,11 @@ export default function ServicesPage() {
                 })
             ));
             setHasOrderChanged(false);
-            alert("บันทึกลำดับเรียบร้อยแล้ว");
+            Swal.fire({ icon: "success", title: "สำเร็จ", text: "บันทึกลำดับเรียบร้อยแล้ว", timer: 1500, showConfirmButton: false });
             loadServices();
         } catch (err) {
             console.error("Failed to save order", err);
-            alert("เกิดข้อผิดพลาดในการบันทึกลำดับ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "เกิดข้อผิดพลาดในการบันทึกลำดับ" });
         } finally {
             setLoading(false);
         }

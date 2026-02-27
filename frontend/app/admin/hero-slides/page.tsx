@@ -1,11 +1,12 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
-import { LayoutTemplate, Edit, Trash2, Plus, Search, Image as ImageIcon, ExternalLink, Columns } from "lucide-react";
+import { LayoutTemplate, Edit, Trash2, Plus, GripVertical, Image as ImageIcon, ExternalLink, Columns } from "lucide-react";
 import Link from "next/link";
-import { motion, Reorder } from "motion/react";
+import { DragDropContext, Droppable, Draggable, DropResult } from "@hello-pangea/dnd";
 
 interface HeroSlide {
     id: number;
@@ -63,7 +64,7 @@ function HeroSlidesContent() {
             await fetchAPI(`/hero-slides/${docId}`, {}, { method: "DELETE" });
             setSlides(slides.filter(s => s.documentId !== docId));
         } catch (err) {
-            alert("ลบไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "ลบไม่สำเร็จ" });
         }
     };
 
@@ -75,13 +76,26 @@ function HeroSlidesContent() {
             });
             setSlides(slides.map(s => s.documentId === slide.documentId ? { ...s, isActive: !s.isActive } : s));
         } catch (err) {
-            alert("อัปเดตสถานะไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "อัปเดตสถานะไม่สำเร็จ" });
         }
     };
 
     const [hasOrderChanged, setHasOrderChanged] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
 
-    const handleReorder = (newOrder: HeroSlide[]) => {
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    const handleDragEnd = (result: DropResult) => {
+        if (!result.destination) {
+            return;
+        }
+
+        const newOrder = Array.from(slides);
+        const [reorderedItem] = newOrder.splice(result.source.index, 1);
+        newOrder.splice(result.destination.index, 0, reorderedItem);
+
         setSlides(newOrder);
         setHasOrderChanged(true);
     };
@@ -97,10 +111,10 @@ function HeroSlidesContent() {
                 })
             ));
             setHasOrderChanged(false);
-            alert("บันทึกลำดับสไลด์เรียบร้อยแล้ว");
+            Swal.fire({ icon: "success", title: "สำเร็จ", text: "บันทึกลำดับสไลด์เรียบร้อยแล้ว", timer: 1500, showConfirmButton: false });
         } catch (err) {
             console.error("Failed to save order", err);
-            alert("เกิดข้อผิดพลาดในการบันทึกลำดับ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "เกิดข้อผิดพลาดในการบันทึกลำดับ" });
         } finally {
             setLoading(false);
         }
@@ -138,61 +152,88 @@ function HeroSlidesContent() {
             ) : slides.length > 0 ? (
                 <div className="space-y-4">
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest px-4 flex items-center gap-2">
-                        <Columns size={14} /> สามารถลากเพื่อจัดลำดับสไลด์ได้ (Drag to Reorder)
+                        <Columns size={14} /> สามารถลาก (Drag and Drop) เพื่อจัดลำดับสไลด์ได้
                     </p>
-                    <Reorder.Group axis="y" values={slides} onReorder={handleReorder} className="space-y-4">
-                        {slides.map((slide) => (
-                            <Reorder.Item
-                                key={slide.id}
-                                value={slide}
-                                className="group bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden flex items-center gap-6 p-4 hover:shadow-md transition-all cursor-grab active:cursor-grabbing"
-                            >
-                                <div className="relative w-40 h-24 rounded-2xl overflow-hidden bg-gray-900 flex-shrink-0">
-                                    {slide.image ? (
-                                        <img
-                                            src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${slide.image.url}`}
-                                            alt={slide.title}
-                                            className="w-full h-full object-cover opacity-60"
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full flex items-center justify-center text-gray-700 bg-gray-800">
-                                            <ImageIcon size={24} />
-                                        </div>
-                                    )}
-                                    <div className={`absolute top-2 left-2 w-2 h-2 rounded-full ${slide.isActive ? 'bg-emerald-500' : 'bg-gray-300'} shadow-sm`}></div>
-                                </div>
 
-                                <div className="flex-1 min-w-0">
-                                    <h3 className="text-lg font-bold text-gray-800 truncate">{slide.title}</h3>
-                                    <p className="text-sm text-gray-400 line-clamp-1 italic">"{slide.subtitle}"</p>
-                                </div>
+                    {isMounted ? (
+                        <DragDropContext onDragEnd={handleDragEnd}>
+                            <Droppable droppableId="slides">
+                                {(provided) => (
+                                    <div
+                                        {...provided.droppableProps}
+                                        ref={provided.innerRef}
+                                        className="space-y-4"
+                                    >
+                                        {slides.map((slide, index) => (
+                                            <Draggable key={slide.id.toString()} draggableId={slide.id.toString()} index={index}>
+                                                {(provided, snapshot) => (
+                                                    <div
+                                                        ref={provided.innerRef}
+                                                        {...provided.draggableProps}
+                                                        className={`group bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden flex items-center gap-4 p-4 transition-all ${snapshot.isDragging ? "shadow-2xl scale-[1.02] ring-2 ring-primary/20 z-50" : "hover:shadow-md"
+                                                            }`}
+                                                    >
+                                                        {/* Drag Handle */}
+                                                        <div
+                                                            {...provided.dragHandleProps}
+                                                            className="flex items-center justify-center p-2 text-gray-300 hover:text-primary transition-colors cursor-grab active:cursor-grabbing hover:bg-gray-50 rounded-xl"
+                                                        >
+                                                            <GripVertical size={20} />
+                                                        </div>
 
-                                <div className="flex items-center gap-2 pr-4">
-                                    <button
-                                        onClick={(e) => { e.stopPropagation(); toggleStatus(slide); }}
-                                        className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${slide.isActive ? 'bg-amber-50 text-amber-600 hover:bg-amber-100' : 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100'}`}
-                                        title={slide.isActive ? "ปิด" : "เปิด"}
-                                    >
-                                        <Edit size={18} />
-                                    </button>
-                                    <Link
-                                        href={`/admin/hero-slides/edit/${slide.documentId}?site=${siteParam}`}
-                                        className="w-10 h-10 rounded-xl bg-gray-50 text-gray-600 flex items-center justify-center hover:bg-gray-100 transition-colors"
-                                        onClick={(e) => e.stopPropagation()}
-                                    >
-                                        <ExternalLink size={18} />
-                                    </Link>
-                                    <button
-                                        onClick={(e) => { e.stopPropagation(); handleDelete(slide.documentId); }}
-                                        className="w-10 h-10 rounded-xl bg-neutral-50 text-neutral-400 flex items-center justify-center hover:bg-rose-50 hover:text-rose-500 transition-all opacity-0 group-hover:opacity-100"
-                                        title="ลบ"
-                                    >
-                                        <Trash2 size={18} />
-                                    </button>
-                                </div>
-                            </Reorder.Item>
-                        ))}
-                    </Reorder.Group>
+                                                        <div className="relative w-40 h-24 rounded-2xl overflow-hidden bg-gray-900 flex-shrink-0">
+                                                            {slide.image ? (
+                                                                <img
+                                                                    src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${slide.image.url}`}
+                                                                    alt={slide.title}
+                                                                    className="w-full h-full object-cover opacity-60"
+                                                                />
+                                                            ) : (
+                                                                <div className="w-full h-full flex items-center justify-center text-gray-700 bg-gray-800">
+                                                                    <ImageIcon size={24} />
+                                                                </div>
+                                                            )}
+                                                            <div className={`absolute top-2 left-2 w-2 h-2 rounded-full ${slide.isActive ? 'bg-emerald-500' : 'bg-gray-300'} shadow-sm`}></div>
+                                                        </div>
+
+                                                        <div className="flex-1 min-w-0 pl-2">
+                                                            <h3 className="text-lg font-bold text-gray-800 truncate">{slide.title}</h3>
+                                                            <p className="text-sm text-gray-400 line-clamp-1 italic">"{slide.subtitle}"</p>
+                                                        </div>
+
+                                                        <div className="flex items-center gap-2 pr-4">
+                                                            <button
+                                                                onClick={(e) => { e.stopPropagation(); toggleStatus(slide); }}
+                                                                className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all ${slide.isActive ? 'bg-amber-50 text-amber-600 hover:bg-amber-100' : 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100'}`}
+                                                                title={slide.isActive ? "ปิด" : "เปิด"}
+                                                            >
+                                                                <Edit size={18} />
+                                                            </button>
+                                                            <Link
+                                                                href={`/admin/hero-slides/edit/${slide.documentId}?site=${siteParam}`}
+                                                                className="w-10 h-10 rounded-xl bg-gray-50 text-gray-600 flex items-center justify-center hover:bg-gray-100 transition-colors"
+                                                                onClick={(e) => e.stopPropagation()}
+                                                            >
+                                                                <ExternalLink size={18} />
+                                                            </Link>
+                                                            <button
+                                                                onClick={(e) => { e.stopPropagation(); handleDelete(slide.documentId); }}
+                                                                className="w-10 h-10 rounded-xl bg-neutral-50 text-neutral-400 flex items-center justify-center hover:bg-rose-50 hover:text-rose-500 transition-all opacity-0 group-hover:opacity-100"
+                                                                title="ลบ"
+                                                            >
+                                                                <Trash2 size={18} />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </Draggable>
+                                        ))}
+                                        {provided.placeholder}
+                                    </div>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
+                    ) : null}
                 </div>
             ) : (
                 <div className="text-center py-24 bg-white rounded-[3rem] border border-dashed border-gray-200">

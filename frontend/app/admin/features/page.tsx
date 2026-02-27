@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
@@ -80,7 +81,7 @@ export default function AdminFeaturesPage() {
             fetchFeatures();
         } catch (error) {
             console.error("Error deleting", error);
-            alert("ลบไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "ลบไม่สำเร็จ" });
         }
     };
 
@@ -102,7 +103,7 @@ export default function AdminFeaturesPage() {
             fetchFeatures();
         } catch (error) {
             console.error("Error saving", error);
-            alert("บันทึกไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "บันทึกไม่สำเร็จ" });
         }
     };
 
@@ -129,11 +130,11 @@ export default function AdminFeaturesPage() {
                 })
             ));
             setHasOrderChanged(false);
-            alert("บันทึกลำดับเรียบร้อยแล้ว");
+            Swal.fire({ icon: "success", title: "สำเร็จ", text: "บันทึกลำดับเรียบร้อยแล้ว", timer: 1500, showConfirmButton: false });
             fetchFeatures();
         } catch (err) {
             console.error("Failed to save order", err);
-            alert("เกิดข้อผิดพลาดในการบันทึกลำดับ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "เกิดข้อผิดพลาดในการบันทึกลำดับ" });
         } finally {
             setLoading(false);
         }

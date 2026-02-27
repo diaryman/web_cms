@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
@@ -92,7 +93,7 @@ function NewsContent() {
             setArticles(articles.filter((a) => a.documentId !== id));
         } catch (error) {
             console.error("Failed to delete article", error);
-            alert("ลบข่าวไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "ลบข่าวไม่สำเร็จ" });
         }
     };
 

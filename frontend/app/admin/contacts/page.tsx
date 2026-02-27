@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
@@ -41,7 +42,7 @@ export default function AdminContactsPage() {
             fetchSubmissions();
         } catch (error) {
             console.error("Error updating status", error);
-            alert("อัปเดตสถานะไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "อัปเดตสถานะไม่สำเร็จ" });
         }
     };
 

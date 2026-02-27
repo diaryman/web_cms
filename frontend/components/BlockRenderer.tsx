@@ -43,9 +43,15 @@ const BlockRenderer = ({ blocks }: { blocks: any[] }) => {
             {blocks.map((block, index) => {
                 switch (block.__component) {
                     case "shared.rich-text":
-                        const richTextContent = block.body || block.content;
+                        let richTextContent = block.body || block.content;
                         // Check if content is a string (HTML) or array (Blocks)
                         if (typeof richTextContent === 'string') {
+                            // Fix missing images: convert relative /uploads/ path to absolute Strapi URL
+                            const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "";
+                            if (strapiUrl) {
+                                richTextContent = richTextContent.replace(/src="(\/uploads\/[^"]+)"/g, `src="${strapiUrl}$1"`);
+                            }
+
                             return (
                                 <div
                                     key={index}

@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
@@ -64,7 +65,7 @@ function CreateDocumentForm() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!docFile) {
-            alert("กรุณาเลือกไฟล์เอกสารก่อนบันทึก");
+            Swal.fire({ title: "แจ้งเตือน", text: "กรุณาเลือกไฟล์เอกสารก่อนบันทึก" });
             return;
         }
 
@@ -94,11 +95,11 @@ function CreateDocumentForm() {
                 method: "POST",
                 body: JSON.stringify({ data: payload })
             });
-            alert("สร้างเอกสารและอัปโหลดไฟล์สำเร็จ");
+            Swal.fire({ icon: "success", title: "สำเร็จ", text: "สร้างเอกสารและอัปโหลดไฟล์สำเร็จ", timer: 1500, showConfirmButton: false });
             router.push(`/admin/documents?site=${siteParam}`);
         } catch (error: any) {
             console.error("Error creating document", error);
-            alert(error.message || "สร้างเอกสารไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "เกิดข้อผิดพลาด", text: error.message || "สร้างเอกสารไม่สำเร็จ" });
         } finally {
             setLoading(false);
         }

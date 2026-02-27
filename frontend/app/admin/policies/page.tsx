@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
@@ -69,20 +70,20 @@ export default function PoliciesPage() {
                     method: "PUT",
                     body: JSON.stringify({ data: formData })
                 });
-                alert("อัปเดตนโยบายเรียบร้อย");
+                Swal.fire({ icon: "success", title: "สำเร็จ", text: "อัปเดตนโยบายเรียบร้อย", timer: 1500, showConfirmButton: false });
             } else {
                 await fetchAPI("/policies", {}, {
                     method: "POST",
                     body: JSON.stringify({ data: formData })
                 });
-                alert("สร้างนโยบายเรียบร้อย");
+                Swal.fire({ icon: "success", title: "สำเร็จ", text: "สร้างนโยบายเรียบร้อย", timer: 1500, showConfirmButton: false });
             }
             setShowModal(false);
             resetForm();
             loadPolicies();
         } catch (error) {
             console.error("Error saving policy", error);
-            alert("บันทึกไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "บันทึกไม่สำเร็จ" });
         }
     };
 
@@ -90,11 +91,11 @@ export default function PoliciesPage() {
         if (!confirm("ต้องการลบนโยบายนี้?")) return;
         try {
             await fetchAPI(`/policies/${id}`, {}, { method: "DELETE" });
-            alert("ลบเรียบร้อย");
+            Swal.fire({ icon: "success", title: "สำเร็จ", text: "ลบเรียบร้อย", timer: 1500, showConfirmButton: false });
             loadPolicies();
         } catch (error) {
             console.error("Error deleting policy", error);
-            alert("ลบไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "ลบไม่สำเร็จ" });
         }
     };
 
@@ -128,11 +129,11 @@ export default function PoliciesPage() {
                 })
             ));
             setHasOrderChanged(false);
-            alert("บันทึกลำดับเรียบร้อยแล้ว");
+            Swal.fire({ icon: "success", title: "สำเร็จ", text: "บันทึกลำดับเรียบร้อยแล้ว", timer: 1500, showConfirmButton: false });
             loadPolicies();
         } catch (err) {
             console.error("Failed to save order", err);
-            alert("เกิดข้อผิดพลาดในการบันทึกลำดับ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "เกิดข้อผิดพลาดในการบันทึกลำดับ" });
         } finally {
             setLoading(false);
         }

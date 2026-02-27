@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
@@ -88,7 +89,7 @@ function DocumentsContent() {
             setDocuments(documents.filter(d => d.documentId !== documentId));
         } catch (error) {
             console.error("Error deleting document", error);
-            alert("ลบเอกสารไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "ลบเอกสารไม่สำเร็จ" });
         }
     };
 

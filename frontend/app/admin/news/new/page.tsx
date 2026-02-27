@@ -8,6 +8,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { uploadFile } from "@/app/actions/upload";
 import { createArticle } from "@/app/actions/article";
+import Swal from "sweetalert2";
 
 const BlockEditor = dynamic(() => import("@/components/BlockEditor"), {
     ssr: false,
@@ -94,7 +95,11 @@ function CreateNewsForm() {
             setImageUrlInput("");
         } catch (error: any) {
             console.error("URL fetch error", error);
-            alert(error.message || "เกิดข้อผิดพลาดในการดึงรูปภาพ");
+            Swal.fire({
+                icon: "error",
+                title: "เกิดข้อผิดพลาด",
+                text: error.message || "เกิดข้อผิดพลาดในการดึงรูปภาพ"
+            });
         } finally {
             setFetchingUrl(false);
         }
@@ -142,11 +147,21 @@ function CreateNewsForm() {
             };
 
             await createArticle(payload);
-            alert("สร้างข่าวสำเร็จ");
-            router.push(`/admin/news?site=${siteParam}`);
+            Swal.fire({
+                icon: "success",
+                title: "สร้างข่าวสำเร็จ!",
+                text: "บันทึกข่าวใหม่เรียบร้อยแล้ว",
+                confirmButtonColor: "#00ae91",
+            }).then(() => {
+                router.push(`/admin/news?site=${siteParam}`);
+            });
         } catch (error: any) {
             console.error("Error creating news", error);
-            alert(error.message || "สร้างข่าวไม่สำเร็จ");
+            Swal.fire({
+                icon: "error",
+                title: "เกิดข้อผิดพลาด",
+                text: error.message || "สร้างข่าวไม่สำเร็จ"
+            });
         } finally {
             setLoading(false);
         }

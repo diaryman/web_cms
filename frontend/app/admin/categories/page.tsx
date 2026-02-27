@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
@@ -86,7 +87,7 @@ function CategoriesContent() {
             setNewCategory({ name: "", type: "news" });
             loadCategories();
         } catch (error) {
-            alert(editingCategory ? "แก้ไขหมวดหมู่ไม่สำเร็จ" : "เพิ่มหมวดหมู่ไม่สำเร็จ");
+            Swal.fire({ icon: "info", title: "แจ้งเตือน", text: editingCategory ? "แก้ไขหมวดหมู่ไม่สำเร็จ" : "เพิ่มหมวดหมู่ไม่สำเร็จ" });
         }
     };
 
@@ -108,7 +109,7 @@ function CategoriesContent() {
             await fetchAPI(`/categories/${docId}`, {}, { method: "DELETE" });
             setCategories(categories.filter(c => c.documentId !== docId));
         } catch (error) {
-            alert("ลบไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "ลบไม่สำเร็จ" });
         }
     };
 

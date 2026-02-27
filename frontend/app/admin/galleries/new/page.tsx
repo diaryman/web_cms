@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
@@ -45,7 +46,7 @@ function GalleryForm() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (files.length === 0) {
-            alert("กรุณาเลือกรูปภาพอย่างน้อย 1 รูป");
+            Swal.fire({ title: "แจ้งเตือน", text: "กรุณาเลือกรูปภาพอย่างน้อย 1 รูป" });
             return;
         }
 
@@ -76,11 +77,11 @@ function GalleryForm() {
                 })
             });
 
-            alert("สร้างแกลเลอรี่สำเร็จ");
+            Swal.fire({ icon: "success", title: "สำเร็จ", text: "สร้างแกลเลอรี่สำเร็จ", timer: 1500, showConfirmButton: false });
             router.push(`/admin/galleries?site=${siteParam}`);
         } catch (error) {
             console.error("Failed to create gallery", error);
-            alert("เกิดข้อผิดพลาดในการสร้างแกลเลอรี่");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "เกิดข้อผิดพลาดในการสร้างแกลเลอรี่" });
         } finally {
             setLoading(false);
         }

@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI, getStrapiMedia } from "@/lib/api";
@@ -67,7 +68,7 @@ function GalleriesContent() {
             setGalleries(galleries.filter((g) => g.documentId !== id));
         } catch (error) {
             console.error("Failed to delete gallery", error);
-            alert("ลบแกลเลอรี่ไม่สำเร็จ");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "ลบแกลเลอรี่ไม่สำเร็จ" });
         }
     };
 

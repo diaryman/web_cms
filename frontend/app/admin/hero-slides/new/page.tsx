@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, Suspense } from "react";
 import { uploadFile } from "@/app/actions/upload";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -64,7 +65,7 @@ function NewHeroSlideForm() {
             setImageUrlInput(""); // clear input
         } catch (error: any) {
             console.error("URL fetch error", error);
-            alert(error.message || "เกิดข้อผิดพลาดในการดึงรูปภาพ");
+            Swal.fire({ icon: "error", title: "เกิดข้อผิดพลาด", text: error.message || "เกิดข้อผิดพลาดในการดึงรูปภาพ" });
         } finally {
             setFetchingUrl(false);
         }
@@ -73,7 +74,7 @@ function NewHeroSlideForm() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!imageFile) {
-            alert("กรุณาอัปโหลดรูปภาพ");
+            Swal.fire({ title: "แจ้งเตือน", text: "กรุณาอัปโหลดรูปภาพ" });
             return;
         }
 
@@ -108,7 +109,7 @@ function NewHeroSlideForm() {
             router.push(`/admin/hero-slides?site=${siteParam}`);
         } catch (error: any) {
             console.error("Save failed", error);
-            alert(error.message || "เกิดข้อผิดพลาดในการบันทึก");
+            Swal.fire({ icon: "error", title: "เกิดข้อผิดพลาด", text: error.message || "เกิดข้อผิดพลาดในการบันทึก" });
         } finally {
             setSaving(false);
         }

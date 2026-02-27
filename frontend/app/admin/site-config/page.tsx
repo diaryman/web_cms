@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
@@ -447,7 +448,7 @@ export default function AdminSiteConfigPage() {
 
         } catch (error) {
             console.error("Error saving config", error);
-            alert("เกิดข้อผิดพลาดในการบันทึก");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "เกิดข้อผิดพลาดในการบันทึก" });
         } finally {
             setSaving(false);
         }

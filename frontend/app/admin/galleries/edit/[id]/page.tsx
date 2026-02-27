@@ -1,5 +1,6 @@
 "use client";
 
+import Swal from "sweetalert2";
 import { useState, useEffect, use, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fetchAPI, getStrapiMedia } from "@/lib/api";
@@ -39,7 +40,7 @@ function GalleryEditForm({ id }: { id: string }) {
                 setExistingImages(gallery.images || []);
             } catch (error) {
                 console.error("Failed to load gallery", error);
-                alert("ไม่พบข้อมูลแกลเลอรี่");
+                Swal.fire({ title: "แจ้งเตือน", text: "ไม่พบข้อมูลแกลเลอรี่" });
                 router.push(`/admin/galleries?site=${siteParam}`);
             } finally {
                 setLoading(false);
@@ -96,11 +97,11 @@ function GalleryEditForm({ id }: { id: string }) {
                 })
             });
 
-            alert("บันทึกการแก้ไขแกลเลอรี่สำเร็จ");
+            Swal.fire({ icon: "success", title: "สำเร็จ", text: "บันทึกการแก้ไขแกลเลอรี่สำเร็จ", timer: 1500, showConfirmButton: false });
             router.push(`/admin/galleries?site=${siteParam}`);
         } catch (error) {
             console.error("Failed to update gallery", error);
-            alert("เกิดข้อผิดพลาดในการบันทึก");
+            Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "เกิดข้อผิดพลาดในการบันทึก" });
         } finally {
             setSaving(false);
         }
