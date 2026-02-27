@@ -8,11 +8,11 @@ export async function getNotificationCounts(domain: string) {
             fetchAPI("/audit-logs", {
                 filters: { domain, isRead: false },
                 pagination: { pageSize: 1, withCount: true }
-            }, { cache: "no-store" }),
+            }, { revalidate: false }),
             fetchAPI("/contact-submissions", {
                 filters: { domain, status: "New" },
                 pagination: { pageSize: 1, withCount: true }
-            }, { cache: "no-store" }),
+            }, { revalidate: false }),
             fetchAPI("/newsletter-subscribers", {
                 filters: { domain, isRead: false },
                 pagination: { pageSize: 1, withCount: true }
@@ -42,12 +42,12 @@ export async function getRecentNotifications(domain: string) {
                 filters: { domain, isRead: false },
                 sort: ["createdAt:desc"],
                 pagination: { pageSize: 5 }
-            }, { cache: "no-store" }),
+            }, { revalidate: false }),
             fetchAPI("/contact-submissions", {
                 filters: { domain, status: "New" },
                 sort: ["createdAt:desc"],
                 pagination: { pageSize: 5 }
-            }, { cache: "no-store" }),
+            }, { revalidate: false }),
             fetchAPI("/newsletter-subscribers", {
                 filters: { domain, isRead: false },
                 sort: ["createdAt:desc"],

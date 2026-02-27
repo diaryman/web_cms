@@ -9,9 +9,7 @@ export async function getAuditLogs(domain: string) {
             filters: { domain },
             sort: ["createdAt:desc"],
             pagination: { pageSize: 50 },
-        }, {
-            cache: "no-store"
-        });
+        }, { revalidate: false });
         return res?.data || [];
     } catch (e) {
         console.error("Failed to fetch audit logs:", e);
