@@ -112,7 +112,7 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
                     <div className="flex items-center justify-between mb-6">
                         <Breadcrumb
                             currentLabel={article.title}
-                            homeHref={domain === "pdpa.localhost" ? "/pdpa" : "/"}
+                            homeHref="/"
                             homeName={domain === "pdpa.localhost" ? "PDPA Center" : "DataGOV"}
                         />
                         <div className="flex items-center gap-3">

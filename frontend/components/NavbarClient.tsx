@@ -72,7 +72,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                 <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
                     <div className="flex justify-between items-center py-2 lg:py-0 lg:h-24">
                         {/* Logo Section */}
-                        <Link href={domain === "pdpa.localhost" ? "/pdpa" : "/"} className="flex-shrink-0 flex items-center gap-3 group" aria-label={`${siteName} - กลับหน้าแรก`}>
+                        <Link href="/" className="flex-shrink-0 flex items-center gap-3 group" aria-label={`${siteName} - กลับหน้าแรก`}>
                             <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:rotate-12 transition-transform duration-300" style={{ backgroundColor: 'var(--accent-color)' }}>
                                 <ShieldCheck size={32} />
                             </div>

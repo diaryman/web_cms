@@ -75,11 +75,11 @@ export default async function Footer({ domain = "localhost" }: { domain?: string
                                 ))
                             ) : (
                                 [
-                                    { name: "หน้าแรก", href: domain === "pdpa.localhost" ? "/pdpa" : "/" },
-                                    { name: "ข่าวกิจกรรม", href: domain === "pdpa.localhost" ? "/news?site=pdpa" : "/news?site=main" },
-                                    { name: "PDPA/คุ้มครองข้อมูล", href: process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004" },
-                                    { name: "นโยบายความเป็นส่วนตัว", href: domain === "pdpa.localhost" ? "/pdpa#principles" : `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}#principles` },
-                                    { name: "ติดต่อเจ้าหน้าที่ DPO", href: domain === "pdpa.localhost" ? "/pdpa#contact" : `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}#contact` }
+                                    { name: "หน้าแรก", href: "/" },
+                                    { name: "ข่าวกิจกรรมล่าสุด", href: "/news" },
+                                    { name: "ประกาศและการแจ้งเตือน", href: "/#announcements" },
+                                    { name: "นโยบายความเป็นส่วนตัว", href: domain === "pdpa.localhost" ? "/#principles" : `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}#principles` },
+                                    { name: "ติดต่อเจ้าหน้าที่ DPO", href: domain === "pdpa.localhost" ? "/contact" : `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}/contact` }
                                 ].map((item, idx) => (
                                     <li key={idx}>
                                         <Link href={item.href} className="hover:text-white flex items-center gap-2 transition-all duration-300 text-sm group opacity-60 hover:opacity-100">

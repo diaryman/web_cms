@@ -88,6 +88,10 @@
         "socialLinks": {
             "type": "json",
             "description": "Social media links: { facebook, youtube, twitter, line }"
+        },
+        "sectionOrder": {
+            "type": "json",
+            "description": "Array defining the display order of homepage sections"
         }
     }
 }

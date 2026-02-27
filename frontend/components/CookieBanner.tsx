@@ -48,7 +48,7 @@ export default function CookieBanner({ config, domain }: CookieBannerProps) {
     };
 
     // Derive site prefix for links (PDPa vs DataGOV)
-    const sitePrefix = domain === "pdpa.localhost" ? "/pdpa" : "";
+    const sitePrefix = "";
     const policyHref = config.policyLink?.startsWith("http") ? config.policyLink : `${sitePrefix}${config.policyLink || "/cookie-policy"}`;
 
     return (

@@ -23,7 +23,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
-    const homeLink = siteParam === "pdpa" ? "/pdpa" : "/";
+    const homeLink = siteParam === "pdpa" ? (process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004") : "/";
     const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
     const router = useRouter();
 
@@ -135,8 +135,8 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                                             key={item.label}
                                             href={`${item.href}?site=${siteParam}`}
                                             className={`flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-sm transition-all group ${isActive
-                                                    ? "text-white shadow-md shadow-primary/20"
-                                                    : "text-gray-500 hover:bg-gray-50 hover:text-primary"
+                                                ? "text-white shadow-md shadow-primary/20"
+                                                : "text-gray-500 hover:bg-gray-50 hover:text-primary"
                                                 }`}
                                             style={isActive ? { background: "var(--primary-color)" } : {}}
                                         >

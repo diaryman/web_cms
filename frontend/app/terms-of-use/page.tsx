@@ -30,7 +30,7 @@ export default async function TermsOfUsePage() {
         if (config?.legalPages?.termsOfUse) page = config.legalPages.termsOfUse;
     } catch { /* use defaults */ }
 
-    const homeHref = domain === "pdpa.localhost" ? "/pdpa" : "/";
+    const homeHref = "/";
 
     return (
         <main id="main-content" className="min-h-screen" style={{ background: "var(--background)" }}>

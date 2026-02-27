@@ -11,7 +11,7 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
             name: "PDPA ศาลปกครอง",
             short_name: "PDPA",
             description: "การคุ้มครองข้อมูลส่วนบุคคล สำนักงานศาลปกครอง",
-            start_url: "/pdpa",
+            start_url: "/",
             display: "standalone",
             background_color: "#064e3b",
             theme_color: "#10b981",

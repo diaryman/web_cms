@@ -1050,6 +1050,7 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'\u0E27\u0E31\u0E19\u0E08\u0E31\u0E19\u0E17\u0E23\u0E4C - \u0E27\u0E31\u0E19\u0E28\u0E38\u0E01\u0E23\u0E4C \u0E40\u0E27\u0E25\u0E32 08.30 - 16.30 \u0E19. (\u0E22\u0E01\u0E40\u0E27\u0E49\u0E19\u0E27\u0E31\u0E19\u0E2B\u0E22\u0E38\u0E14\u0E23\u0E32\u0E0A\u0E01\u0E32\u0E23)'>;
     phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    sectionOrder: Schema.Attribute.JSON;
     sectionToggles: Schema.Attribute.JSON;
     siteName: Schema.Attribute.String & Schema.Attribute.Required;
     socialLinks: Schema.Attribute.JSON;

@@ -30,7 +30,7 @@ export default async function CookiePolicyPage() {
         if (config?.legalPages?.cookiePolicy) page = config.legalPages.cookiePolicy;
     } catch { /* use defaults */ }
 
-    const homeHref = domain === "pdpa.localhost" ? "/pdpa" : "/";
+    const homeHref = "/";
 
     return (
         <main id="main-content" className="min-h-screen" style={{ background: "var(--background)" }}>

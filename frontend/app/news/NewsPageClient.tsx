@@ -101,7 +101,7 @@ export default function NewsPageClient({
                 {/* Breadcrumb (above header blob) */}
                 <div className="absolute top-[calc(8rem+52px)] left-0 right-0 z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <Breadcrumb
-                        homeHref={domain === "pdpa.localhost" ? "/pdpa" : "/"}
+                        homeHref="/"
                         homeName={domain === "pdpa.localhost" ? "PDPA Center" : "DataGOV"}
                     />
                 </div>

@@ -93,11 +93,11 @@ export default function NotFound() {
                         <p className="text-sm font-bold text-gray-400 mb-4">ลิงก์ที่อาจเป็นประโยชน์</p>
                         <div className="flex flex-wrap gap-3 justify-center">
                             {[
-                                { label: "หน้าแรก DataGOV", href: "/" },
+                                { label: "หน้าแรก DataGOV", href: process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002" },
                                 { label: "ข่าวสาร", href: "/news" },
                                 { label: "เอกสาร", href: "/documents" },
                                 { label: "ติดต่อเรา", href: "/contact" },
-                                { label: "PDPA Center", href: "/pdpa" },
+                                { label: "PDPA Center", href: process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004" },
                             ].map(link => (
                                 <Link
                                     key={link.href}

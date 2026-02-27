@@ -21,7 +21,6 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
                     "/privacy-policy",
                     "/cookie-policy",
                     "/terms-of-use",
-                    ...(isPDPA ? ["/pdpa/"] : []),
                 ],
                 disallow: [
                     "/admin/",

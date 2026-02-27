@@ -4,7 +4,9 @@ import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
-import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate, Search, Trash2, CheckCircle2, Zap, Plus, BarChart3, Shield, FileText, HelpCircle } from "lucide-react";
+import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate, Search, Trash2, CheckCircle2, Zap, Plus, BarChart3, Shield, FileText, HelpCircle, GripVertical, Upload, ImageIcon, Facebook, Youtube, Twitter, MessageCircle, ArrowUp, ArrowDown } from "lucide-react";
+import { uploadFile } from "@/app/actions/upload";
+import { getStrapiMedia } from "@/lib/api";
 
 /* ─── Theme Template Presets ──────────────────────────────────────────────── */
 type ThemeTemplate = {
@@ -267,6 +269,32 @@ export default function AdminSiteConfigPage() {
     const [saving, setSaving] = useState(false);
     const [savedToast, setSavedToast] = useState(false);
     const [configId, setConfigId] = useState<string | null>(null);
+    const [logoPreview, setLogoPreview] = useState<string | null>(null);
+    const [logoUploading, setLogoUploading] = useState(false);
+    const [dragIndex, setDragIndex] = useState<number | null>(null);
+
+    const isPDPA = siteParam === "pdpa";
+    const DEFAULT_SECTION_ORDER = isPDPA
+        ? ["hero", "principles", "timeline", "news", "documents", "dpo_contact", "newsletter"]
+        : ["hero", "policies", "activities", "downloads", "newsletter"];
+    const SECTION_LABELS: Record<string, { label: string; icon: string; desc: string }> = isPDPA
+        ? {
+            hero: { label: "Hero Banner", icon: "🛡️", desc: "แบนเนอร์หลักพร้อม Shield Cards" },
+            principles: { label: "หลักการปฏิบัติงาน", icon: "📋", desc: "หลักการ 3 ด้าน Data Security, Rights, Limitation" },
+            timeline: { label: "Roadmap/Timeline", icon: "📅", desc: "ลำดับเวลาการดำเนินงาน PDPA" },
+            news: { label: "ข่าวกิจกรรม PDPA", icon: "📰", desc: "กิจกรรมด้านการคุ้มครองข้อมูล" },
+            documents: { label: "เอกสาร PDPA", icon: "📄", desc: "ประกาศ นโยบาย แบบฟอร์ม" },
+            dpo_contact: { label: "ติดต่อ DPO", icon: "📞", desc: "CTA ติดต่อเจ้าหน้าที่คุ้มครองข้อมูล" },
+            newsletter: { label: "สมัครรับข่าวสาร", icon: "📧", desc: "ฟอร์มรับข่าวสาร PDPA" },
+        }
+        : {
+            hero: { label: "Hero Banner", icon: "🎬", desc: "สไลด์ภาพหลักและสถิติ" },
+            policies: { label: "นโยบาย/บริการ", icon: "📋", desc: "การ์ดนโยบายและบริการ" },
+            activities: { label: "ข่าวกิจกรรม", icon: "📰", desc: "รายการข่าวล่าสุด" },
+            downloads: { label: "เอกสารดาวน์โหลด", icon: "📥", desc: "เอกสารสำหรับดาวน์โหลด" },
+            newsletter: { label: "สมัครรับข่าวสาร", icon: "📧", desc: "ฟอร์มรับข่าวสาร" },
+        };
+
     const [formData, setFormData] = useState({
         siteName: "",
         announcement: "",
@@ -283,6 +311,7 @@ export default function AdminSiteConfigPage() {
         navbarMenu: [] as any[],
         footerMenu: [] as any[],
         sectionToggles: { hero: true, policies: true, activities: true, downloads: true, news: true, documents: true },
+        sectionOrder: DEFAULT_SECTION_ORDER,
         cookieConsent: {
             enabled: true,
             title: "เว็บไซต์นี้ใช้คุกกี้ (Cookies)",
@@ -310,11 +339,16 @@ export default function AdminSiteConfigPage() {
         const fetchConfig = async () => {
             try {
                 const res = await fetchAPI("/site-configs", {
-                    filters: { domain }
+                    filters: { domain },
+                    populate: ["logoImage"]
                 });
                 if (res.data && res.data.length > 0) {
                     const config = res.data[0];
                     setConfigId(config.documentId);
+                    // Set logo preview if exists
+                    if (config.logoImage?.url) {
+                        setLogoPreview(getStrapiMedia(config.logoImage.url) || null);
+                    }
                     setFormData({
                         siteName: config.siteName || "",
                         announcement: config.announcement || "",
@@ -331,6 +365,7 @@ export default function AdminSiteConfigPage() {
                         navbarMenu: config.navbarMenu || [],
                         footerMenu: config.footerMenu || [],
                         sectionToggles: config.sectionToggles || { hero: true, policies: true, activities: true, downloads: true, news: true, documents: true },
+                        sectionOrder: config.sectionOrder || DEFAULT_SECTION_ORDER,
                         cookieConsent: config.cookieConsent || {
                             enabled: true,
                             title: "เว็บไซต์นี้ใช้คุกกี้ (Cookies)",
@@ -387,6 +422,50 @@ export default function AdminSiteConfigPage() {
         updatedMenu[index] = { ...updatedMenu[index], [field]: value };
         setFormData({ ...formData, [type]: updatedMenu });
     };
+
+    /* ── Logo Upload ───────────────────────────────────────────────────────── */
+    const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file || !configId) return;
+        setLogoUploading(true);
+        try {
+            const fd = new FormData();
+            fd.append("files", file);
+            const uploaded = await uploadFile(fd);
+            if (uploaded?.[0]?.id) {
+                // Link to site-config
+                await fetchAPI(`/site-configs/${configId}`, {}, {
+                    method: "PUT",
+                    body: JSON.stringify({ data: { logoImage: uploaded[0].id } })
+                });
+                setLogoPreview(getStrapiMedia(uploaded[0].url) || URL.createObjectURL(file));
+                Swal.fire({ icon: "success", title: "อัปโหลดสำเร็จ!", text: "โลโก้ถูกเปลี่ยนแล้ว", timer: 2000 });
+            }
+        } catch (err) {
+            console.error(err);
+            Swal.fire({ icon: "error", title: "ข้อผิดพลาด", text: "อัปโหลดโลโก้ไม่สำเร็จ" });
+        } finally {
+            setLogoUploading(false);
+        }
+    };
+
+    /* ── Section Reorder helpers ────────────────────────────────────────────── */
+    const moveSection = (fromIdx: number, toIdx: number) => {
+        if (toIdx < 0 || toIdx >= formData.sectionOrder.length) return;
+        const arr = [...formData.sectionOrder];
+        const [moved] = arr.splice(fromIdx, 1);
+        arr.splice(toIdx, 0, moved);
+        setFormData({ ...formData, sectionOrder: arr });
+    };
+
+    const handleDragStart = (index: number) => setDragIndex(index);
+    const handleDragOver = (e: React.DragEvent, index: number) => {
+        e.preventDefault();
+        if (dragIndex === null || dragIndex === index) return;
+        moveSection(dragIndex, index);
+        setDragIndex(index);
+    };
+    const handleDragEnd = () => setDragIndex(null);
 
     const handleRemoveMenuItem = (type: 'navbarMenu' | 'footerMenu', index: number) => {
         setFormData({
@@ -480,31 +559,112 @@ export default function AdminSiteConfigPage() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Section Toggles */}
+                {/* ════════════════════════════════════════════════════════════
+                    🖼️ LOGO UPLOAD
+                ════════════════════════════════════════════════════════════ */}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
+                            <ImageIcon size={20} />
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-800">โลโก้เว็บไซต์</h3>
+                            <p className="text-xs text-gray-400 mt-0.5">แสดงที่ Navbar และ Footer (แนะนำ PNG/SVG พื้นหลังโปร่งใส)</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-8">
+                        {/* Preview */}
+                        <div className="w-32 h-32 rounded-2xl border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden bg-gray-50 flex-shrink-0">
+                            {logoPreview ? (
+                                <img src={logoPreview} alt="Logo" className="w-full h-full object-contain p-2" />
+                            ) : (
+                                <div className="text-center">
+                                    <ImageIcon size={32} className="mx-auto text-gray-300 mb-1" />
+                                    <p className="text-[10px] text-gray-400">ยังไม่มีโลโก้</p>
+                                </div>
+                            )}
+                        </div>
+                        {/* Upload */}
+                        <div className="flex-1">
+                            <label className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl font-bold text-sm cursor-pointer transition-all hover:shadow-md border-2 border-dashed hover:border-solid" style={{ borderColor: 'var(--accent-color)', color: 'var(--accent-color)' }}>
+                                {logoUploading ? <Loader2 size={18} className="animate-spin" /> : <Upload size={18} />}
+                                {logoUploading ? "กำลังอัปโหลด..." : "เปลี่ยนโลโก้"}
+                                <input type="file" accept="image/*" className="hidden" onChange={handleLogoUpload} disabled={logoUploading} />
+                            </label>
+                            <p className="text-[10px] text-gray-400 mt-2">รองรับ PNG, SVG, WebP ขนาดไม่เกิน 2 MB</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* ════════════════════════════════════════════════════════════
+                    🔀 SECTION ORDER (Drag & Drop)
+                ════════════════════════════════════════════════════════════ */}
                 <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
                         <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
                             <LayoutTemplate size={20} />
                         </div>
-                        <h3 className="text-lg font-bold text-gray-800">การแสดงผลวิดเจ็ต (Section Toggles)</h3>
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-800">จัดเรียงลำดับ Section หน้าแรก</h3>
+                            <p className="text-xs text-gray-400 mt-0.5">ลากเพื่อสลับลำดับ หรือใช้ปุ่มลูกศรขึ้น/ลง</p>
+                        </div>
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                        {Object.entries(formData.sectionToggles).map(([key, value]) => (
-                            <div key={key} className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                                <span className="text-sm font-bold text-gray-700 capitalize">{key}</span>
-                                <button
-                                    type="button"
-                                    onClick={() => setFormData({
-                                        ...formData,
-                                        sectionToggles: { ...formData.sectionToggles, [key]: !value }
-                                    })}
-                                    className={`w-10 h-5 rounded-full transition-all relative ${value ? 'bg-primary' : 'bg-gray-200'}`}
+                    <div className="space-y-2">
+                        {formData.sectionOrder.map((sectionKey, index) => {
+                            const info = SECTION_LABELS[sectionKey] || { label: sectionKey, icon: "📦", desc: "" };
+                            const isEnabled = formData.sectionToggles[sectionKey as keyof typeof formData.sectionToggles] !== false;
+                            return (
+                                <div
+                                    key={sectionKey}
+                                    draggable
+                                    onDragStart={() => handleDragStart(index)}
+                                    onDragOver={(e) => handleDragOver(e, index)}
+                                    onDragEnd={handleDragEnd}
+                                    className={`flex items-center gap-4 p-4 rounded-2xl border-2 transition-all cursor-grab active:cursor-grabbing ${dragIndex === index
+                                        ? 'border-accent bg-accent/5 shadow-lg scale-[1.02]'
+                                        : isEnabled
+                                            ? 'border-gray-100 bg-gray-50/50 hover:border-gray-200 hover:shadow-sm'
+                                            : 'border-gray-100 bg-gray-100/50 opacity-50'
+                                        }`}
                                 >
-                                    <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full transition-all ${value ? 'right-0.5' : 'left-0.5'}`}></div>
-                                </button>
-                            </div>
-                        ))}
+                                    <GripVertical size={20} className="text-gray-300 flex-shrink-0" />
+                                    <span className="text-2xl flex-shrink-0">{info.icon}</span>
+                                    <div className="flex-1 min-w-0">
+                                        <p className="font-bold text-sm text-gray-800">{info.label}</p>
+                                        <p className="text-[10px] text-gray-400 truncate">{info.desc}</p>
+                                    </div>
+                                    {/* Toggle */}
+                                    <button
+                                        type="button"
+                                        onClick={() => setFormData({
+                                            ...formData,
+                                            sectionToggles: { ...formData.sectionToggles, [sectionKey]: !isEnabled }
+                                        })}
+                                        className={`w-10 h-5 rounded-full transition-all relative flex-shrink-0 ${isEnabled ? 'bg-primary' : 'bg-gray-200'}`}
+                                    >
+                                        <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full transition-all shadow ${isEnabled ? 'right-0.5' : 'left-0.5'}`} />
+                                    </button>
+                                    {/* Up/Down */}
+                                    <div className="flex flex-col gap-0.5 flex-shrink-0">
+                                        <button type="button" onClick={() => moveSection(index, index - 1)} disabled={index === 0} className="p-1 rounded-lg hover:bg-gray-100 disabled:opacity-20 transition-all">
+                                            <ArrowUp size={14} className="text-gray-500" />
+                                        </button>
+                                        <button type="button" onClick={() => moveSection(index, index + 1)} disabled={index === formData.sectionOrder.length - 1} className="p-1 rounded-lg hover:bg-gray-100 disabled:opacity-20 transition-all">
+                                            <ArrowDown size={14} className="text-gray-500" />
+                                        </button>
+                                    </div>
+                                    <span className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center text-[10px] font-black text-gray-400 flex-shrink-0">{index + 1}</span>
+                                </div>
+                            );
+                        })}
                     </div>
+                    <button
+                        type="button"
+                        onClick={() => setFormData({ ...formData, sectionOrder: DEFAULT_SECTION_ORDER })}
+                        className="mt-4 text-xs font-bold text-gray-400 hover:text-accent transition-colors"
+                    >
+                        รีเซ็ตกลับค่าเริ่มต้น
+                    </button>
                 </div>
                 {/* ─────────────────────────────────────
                     Theme Template Picker
@@ -1013,22 +1173,30 @@ export default function AdminSiteConfigPage() {
                                 </div>
                             </div>
                         </div>
-                        {/* Social Links */}
+                        {/* Social Links — Enhanced with icons */}
                         <div className="col-span-1 md:col-span-2 border-t border-gray-50 pt-6">
-                            <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Social Media Links</p>
+                            <p className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">🌐 Social Media Links</p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {(["facebook", "youtube", "twitter", "line"] as const).map((platform) => (
-                                    <div key={platform} className="space-y-2">
-                                        <label className="text-sm font-bold text-gray-700 capitalize">{platform}</label>
+                                {[
+                                    { key: "facebook", icon: <Facebook size={16} />, color: "#1877F2", placeholder: "https://facebook.com/yourpage" },
+                                    { key: "youtube", icon: <Youtube size={16} />, color: "#FF0000", placeholder: "https://youtube.com/@yourchannel" },
+                                    { key: "twitter", icon: <Twitter size={16} />, color: "#1DA1F2", placeholder: "https://x.com/yourhandle" },
+                                    { key: "line", icon: <MessageCircle size={16} />, color: "#06C755", placeholder: "https://line.me/R/ti/p/yourid" },
+                                ].map((platform) => (
+                                    <div key={platform.key} className="space-y-2">
+                                        <label className="text-sm font-bold text-gray-700 flex items-center gap-2">
+                                            <span className="w-6 h-6 rounded-lg flex items-center justify-center text-white" style={{ background: platform.color }}>{platform.icon}</span>
+                                            {platform.key.charAt(0).toUpperCase() + platform.key.slice(1)}
+                                        </label>
                                         <input
                                             type="url"
-                                            value={(formData as any).socialLinks?.[platform] || ""}
+                                            value={(formData as any).socialLinks?.[platform.key] || ""}
                                             onChange={(e) => setFormData({
                                                 ...formData,
-                                                socialLinks: { ...(formData as any).socialLinks, [platform]: e.target.value }
+                                                socialLinks: { ...(formData as any).socialLinks, [platform.key]: e.target.value }
                                             } as any)}
-                                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-medium"
-                                            placeholder={`https://${platform}.com/...`}
+                                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-medium text-sm"
+                                            placeholder={platform.placeholder}
                                         />
                                     </div>
                                 ))}
