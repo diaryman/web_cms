@@ -521,9 +521,13 @@ export default function AdminSiteConfigPage() {
 
         setSaving(true);
         try {
+            const payload = { ...formData };
+            if (payload.email === "") (payload as any).email = null;
+            if (payload.dpoEmail === "") (payload as any).dpoEmail = null;
+
             await fetchAPI(`/site-configs/${configId}`, {}, {
                 method: "PUT",
-                body: JSON.stringify({ data: formData })
+                body: JSON.stringify({ data: payload })
             });
 
             // 1. Apply new colours immediately (optimistic update)
