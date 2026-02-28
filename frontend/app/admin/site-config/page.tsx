@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchAPI } from "@/lib/api";
-import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate, Search, Trash2, CheckCircle2, Zap, Plus, BarChart3, Shield, FileText, HelpCircle, GripVertical, Upload, ImageIcon, Facebook, Youtube, Twitter, MessageCircle, ArrowUp, ArrowDown } from "lucide-react";
+import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate, Search, Trash2, CheckCircle2, Zap, Plus, BarChart3, Shield, FileText, HelpCircle, GripVertical, Upload, ImageIcon, Facebook, Youtube, Twitter, MessageCircle, ArrowUp, ArrowDown, Edit3, X } from "lucide-react";
 import { uploadFile } from "@/app/actions/upload";
 import { getStrapiMedia } from "@/lib/api";
 
@@ -272,6 +272,8 @@ export default function AdminSiteConfigPage() {
     const [logoPreview, setLogoPreview] = useState<string | null>(null);
     const [logoUploading, setLogoUploading] = useState(false);
     const [dragIndex, setDragIndex] = useState<number | null>(null);
+    const [editingBlockIndex, setEditingBlockIndex] = useState<number | null>(null);
+    const [editingBlockData, setEditingBlockData] = useState<any>(null);
 
     const isPDPA = siteParam === "pdpa";
     const DEFAULT_SECTION_ORDER = isPDPA
@@ -310,8 +312,8 @@ export default function AdminSiteConfigPage() {
         themeColors: { primary: "#0c1222", accent: "#2563eb" },
         navbarMenu: [] as any[],
         footerMenu: [] as any[],
-        sectionToggles: { hero: true, policies: true, activities: true, downloads: true, news: true, documents: true },
-        sectionOrder: DEFAULT_SECTION_ORDER,
+        sectionToggles: { hero: true, policies: true, activities: true, downloads: true, news: true, documents: true } as Record<string, boolean>,
+        sectionOrder: DEFAULT_SECTION_ORDER as any[],
         cookieConsent: {
             enabled: true,
             title: "เว็บไซต์นี้ใช้คุกกี้ (Cookies)",
@@ -474,6 +476,45 @@ export default function AdminSiteConfigPage() {
         });
     };
 
+    /* ── Custom Block Handling ──────────────────────────────────────────────── */
+    const handleAddCustomBlock = () => {
+        const newBlock = {
+            id: 'custom-' + Date.now(),
+            type: 'custom',
+            title: 'บล็อกหัวข้อใหม่',
+            content: '<p>พิมพ์เนื้อหาที่นี่...</p>',
+            bgColor: '#ffffff'
+        };
+        const newOrder = [...formData.sectionOrder, newBlock];
+        // Add toggle true for new custom block
+        const newToggles = { ...formData.sectionToggles, [newBlock.id]: true };
+        setFormData({ ...formData, sectionOrder: newOrder, sectionToggles: newToggles });
+        setEditingBlockIndex(newOrder.length - 1);
+        setEditingBlockData(newBlock);
+    };
+
+    const handleSaveCustomBlock = () => {
+        if (editingBlockIndex === null || !editingBlockData) return;
+        const newOrder = [...formData.sectionOrder];
+        newOrder[editingBlockIndex] = editingBlockData;
+        setFormData({ ...formData, sectionOrder: newOrder });
+        setEditingBlockIndex(null);
+        setEditingBlockData(null);
+    };
+
+    const handleDeleteCustomBlock = (index: number) => {
+        const item = formData.sectionOrder[index];
+        const key = typeof item === 'string' ? item : item.id;
+        const newOrder = formData.sectionOrder.filter((_, i) => i !== index);
+        const newToggles = { ...formData.sectionToggles };
+        delete newToggles[key];
+        setFormData({ ...formData, sectionOrder: newOrder, sectionToggles: newToggles });
+        if (editingBlockIndex === index) {
+            setEditingBlockIndex(null);
+            setEditingBlockData(null);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!configId) return;
@@ -610,9 +651,13 @@ export default function AdminSiteConfigPage() {
                         </div>
                     </div>
                     <div className="space-y-2">
-                        {formData.sectionOrder.map((sectionKey, index) => {
-                            const info = SECTION_LABELS[sectionKey] || { label: sectionKey, icon: "📦", desc: "" };
-                            const isEnabled = formData.sectionToggles[sectionKey as keyof typeof formData.sectionToggles] !== false;
+                        {formData.sectionOrder.map((sectionItem, index) => {
+                            const isCustom = typeof sectionItem === "object";
+                            const sectionKey = isCustom ? sectionItem.id : sectionItem;
+                            const info = isCustom
+                                ? { label: sectionItem.title || "Custom Block", icon: "✏️", desc: "บล็อกเนื้อหาที่กำหนดเอง" }
+                                : SECTION_LABELS[sectionKey] || { label: sectionKey, icon: "📦", desc: "" };
+                            const isEnabled = formData.sectionToggles[sectionKey] !== false;
                             return (
                                 <div
                                     key={sectionKey}
@@ -633,6 +678,25 @@ export default function AdminSiteConfigPage() {
                                         <p className="font-bold text-sm text-gray-800">{info.label}</p>
                                         <p className="text-[10px] text-gray-400 truncate">{info.desc}</p>
                                     </div>
+                                    {/* Action Buttons */}
+                                    {isCustom && (
+                                        <>
+                                            <button
+                                                type="button"
+                                                onClick={() => { setEditingBlockIndex(index); setEditingBlockData({ ...sectionItem }); }}
+                                                className="p-2 text-primary hover:bg-gray-100 rounded-lg transition-colors flex-shrink-0"
+                                            >
+                                                <Edit3 size={16} />
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleDeleteCustomBlock(index)}
+                                                className="p-2 text-rose-500 hover:bg-rose-50 rounded-lg transition-colors flex-shrink-0"
+                                            >
+                                                <Trash2 size={16} />
+                                            </button>
+                                        </>
+                                    )}
                                     {/* Toggle */}
                                     <button
                                         type="button"
@@ -658,13 +722,95 @@ export default function AdminSiteConfigPage() {
                             );
                         })}
                     </div>
-                    <button
-                        type="button"
-                        onClick={() => setFormData({ ...formData, sectionOrder: DEFAULT_SECTION_ORDER })}
-                        className="mt-4 text-xs font-bold text-gray-400 hover:text-accent transition-colors"
-                    >
-                        รีเซ็ตกลับค่าเริ่มต้น
-                    </button>
+                    <div className="mt-6 flex items-center justify-between border-t border-gray-100 pt-6">
+                        <button
+                            type="button"
+                            onClick={() => setFormData({ ...formData, sectionOrder: DEFAULT_SECTION_ORDER })}
+                            className="text-xs font-bold text-gray-400 hover:text-accent transition-colors"
+                        >
+                            รีเซ็ตกลับค่าเริ่มต้น
+                        </button>
+                        <button
+                            type="button"
+                            onClick={handleAddCustomBlock}
+                            className="flex items-center gap-2 px-4 py-2 bg-accent/10 text-accent font-bold rounded-xl hover:bg-accent hover:text-white transition-all text-sm"
+                        >
+                            <Plus size={16} /> เพิ่มบล็อกเนื้อหาใหม่
+                        </button>
+                    </div>
+
+                    {/* Custom Block Modal */}
+                    {editingBlockIndex !== null && editingBlockData && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+                            <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh]">
+                                <div className="p-6 border-b border-gray-100 flex items-center justify-between flex-shrink-0">
+                                    <h3 className="text-xl font-bold text-gray-800">จัดการบล็อกเนื้อหา</h3>
+                                    <button
+                                        type="button"
+                                        onClick={() => { setEditingBlockIndex(null); setEditingBlockData(null); }}
+                                        className="p-2 text-gray-400 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                </div>
+                                <div className="p-6 overflow-y-auto flex-1 space-y-6">
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-gray-700">หัวข้อบล็อก (Title)</label>
+                                        <input
+                                            type="text"
+                                            value={editingBlockData.title}
+                                            onChange={(e) => setEditingBlockData({ ...editingBlockData, title: e.target.value })}
+                                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-bold"
+                                            placeholder="กรอกชื่อหัวข้อ"
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-gray-700">สีพื้นหลัง (Background Color)</label>
+                                        <div className="flex items-center gap-4">
+                                            <input
+                                                type="color"
+                                                value={editingBlockData.bgColor}
+                                                onChange={(e) => setEditingBlockData({ ...editingBlockData, bgColor: e.target.value })}
+                                                className="w-12 h-12 rounded-xl cursor-pointer border border-gray-200"
+                                            />
+                                            <input
+                                                type="text"
+                                                value={editingBlockData.bgColor}
+                                                onChange={(e) => setEditingBlockData({ ...editingBlockData, bgColor: e.target.value })}
+                                                className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-mono text-sm"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-gray-700">เนื้อหา (HTML Content)</label>
+                                        <textarea
+                                            value={editingBlockData.content}
+                                            onChange={(e) => setEditingBlockData({ ...editingBlockData, content: e.target.value })}
+                                            className="w-full h-40 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-mono text-sm resize-y"
+                                            placeholder="<p>สามารถใส่ HTML ย่อหน้า, ลิงก์ ฯลฯ ได้ที่นี่</p>"
+                                        />
+                                        <p className="text-[10px] text-gray-400 mt-1">สามารถนำโค้ด HTML มาใส่ได้โดยตรง เช่น &lt;p&gt;, &lt;img&gt;, &lt;a&gt;</p>
+                                    </div>
+                                </div>
+                                <div className="p-6 border-t border-gray-100 flex justify-end gap-3 flex-shrink-0">
+                                    <button
+                                        type="button"
+                                        onClick={() => { setEditingBlockIndex(null); setEditingBlockData(null); }}
+                                        className="px-6 py-3 rounded-xl font-bold text-gray-500 hover:bg-gray-100 transition-colors"
+                                    >
+                                        ยกเลิก
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={handleSaveCustomBlock}
+                                        className="px-6 py-3 bg-primary text-white font-bold rounded-xl hover:bg-accent transition-colors shadow-lg shadow-primary/30 flex items-center gap-2"
+                                    >
+                                        <CheckCircle2 size={18} /> บันทึกบล็อก
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
                 {/* ─────────────────────────────────────
                     Theme Template Picker
@@ -1429,7 +1575,7 @@ export default function AdminSiteConfigPage() {
                         บันทึกการเปลี่ยนแปลง
                     </button>
                 </div>
-            </form>
-        </div>
+            </form >
+        </div >
     );
 }

@@ -6,6 +6,7 @@ import ActivitiesSection from "@/components/ActivitiesSection";
 import DownloadsSection from "@/components/DownloadsSection";
 import NewsletterSection from "@/components/NewsletterSection";
 import Footer from "@/components/Footer";
+import CustomBlock from "@/components/CustomBlock";
 import { Metadata } from "next";
 
 const SITE_URL = process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002";
@@ -83,18 +84,27 @@ export default async function Home() {
   }
 
   const toggles = siteConfig?.sectionToggles || {};
-  const sectionOrder: string[] = siteConfig?.sectionOrder || ["hero", "policies", "activities", "downloads", "newsletter"];
+  const sectionOrder: any[] = siteConfig?.sectionOrder || ["hero", "policies", "activities", "downloads", "newsletter"];
 
   // Build visible sections list based on toggles + order
-  const visibleSections = sectionOrder.filter((key: string) => toggles[key] !== false);
+  const visibleSections = sectionOrder.filter((item: any) => {
+    const key = typeof item === "string" ? item : item.id;
+    return toggles[key] !== false;
+  });
 
   // Section background colors for dividers
-  const sectionBg: Record<string, string> = {
-    hero: "var(--primary-color)",
-    policies: "#ffffff",
-    activities: "#f1f5f9",
-    downloads: "#ffffff",
-    newsletter: "var(--primary-color)",
+  const getSectionBg = (item: any) => {
+    if (typeof item !== "string") {
+      return item.bgColor || "transparent";
+    }
+    const sectionBg: Record<string, string> = {
+      hero: "var(--primary-color)",
+      policies: "#ffffff",
+      activities: "#f1f5f9",
+      downloads: "#ffffff",
+      newsletter: "var(--primary-color)",
+    };
+    return sectionBg[item] || "#ffffff";
   };
 
   // Render a divider between two sections based on their backgrounds
@@ -155,8 +165,11 @@ export default async function Home() {
   };
 
   // Render section content by key
-  const renderSection = (key: string) => {
-    switch (key) {
+  const renderSection = (item: any) => {
+    if (typeof item !== "string") {
+      return <CustomBlock data={item} />;
+    }
+    switch (item) {
       case "hero":
         return (
           <Hero
@@ -192,13 +205,14 @@ export default async function Home() {
       <Navbar domain={domain} />
 
       {/* Dynamic Section Rendering */}
-      {visibleSections.map((sectionKey: string, idx: number) => {
+      {visibleSections.map((sectionItem: any, idx: number) => {
         const elements = [];
-        const curBg = sectionBg[sectionKey] || "#ffffff";
+        const sectionKey = typeof sectionItem === "string" ? sectionItem : sectionItem.id;
+        const curBg = getSectionBg(sectionItem);
 
         // Add divider between previous section and this one
         if (idx > 0) {
-          const prevBg = sectionBg[visibleSections[idx - 1]] || "#ffffff";
+          const prevBg = getSectionBg(visibleSections[idx - 1]);
           const divider = renderDivider(prevBg, curBg, `divider-${idx}`);
           if (divider) elements.push(divider);
         }
@@ -206,7 +220,7 @@ export default async function Home() {
         // Add section content
         elements.push(
           <div key={`section-${sectionKey}`}>
-            {renderSection(sectionKey)}
+            {renderSection(sectionItem)}
           </div>
         );
 

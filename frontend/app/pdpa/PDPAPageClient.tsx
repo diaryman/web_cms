@@ -8,6 +8,7 @@ import Image from "next/image";
 import SpotlightCard from "@/components/SpotlightCard";
 import { fetchAPI, getStrapiMedia } from "@/lib/api";
 import NewsletterSection from "@/components/NewsletterSection";
+import CustomBlock from "@/components/CustomBlock";
 
 interface PDPAPageClientProps {
     navbar: React.ReactNode;
@@ -98,19 +99,28 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
 
     /* ─── Section Order ───────────────────────────────────────────────── */
     const DEFAULT_PDPA_ORDER = ["hero", "principles", "timeline", "news", "documents", "dpo_contact", "newsletter"];
-    const sectionOrder: string[] = siteConfig?.sectionOrder || DEFAULT_PDPA_ORDER;
+    const sectionOrder: any[] = siteConfig?.sectionOrder || DEFAULT_PDPA_ORDER;
     const toggles = siteConfig?.sectionToggles || {};
-    const visibleSections = sectionOrder.filter((key: string) => toggles[key] !== false);
+    const visibleSections = sectionOrder.filter((item: any) => {
+        const key = typeof item === "string" ? item : item.id;
+        return toggles[key] !== false;
+    });
 
     /* ─── Section Background Map ──────────────────────────────────────── */
-    const sectionBg: Record<string, string> = {
-        hero: "#f8fafc",
-        principles: "#ffffff",
-        timeline: "#f8fafc",
-        news: "#ffffff",
-        documents: "#f8fafc",
-        dpo_contact: "#0f172a",
-        newsletter: "var(--primary-color)",
+    const getSectionBg = (item: any) => {
+        if (typeof item !== "string") {
+            return item.bgColor || "transparent";
+        }
+        const sectionBg: Record<string, string> = {
+            hero: "#f8fafc",
+            principles: "#ffffff",
+            timeline: "#f8fafc",
+            news: "#ffffff",
+            documents: "#f8fafc",
+            dpo_contact: "#0f172a",
+            newsletter: "var(--primary-color)",
+        };
+        return sectionBg[item] || "#ffffff";
     };
 
     /* ─── Divider Renderer ────────────────────────────────────────────── */
@@ -541,8 +551,11 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
     );
 
     /* ─── Section Renderer ──────────────────────────────────────────── */
-    const renderSection = (key: string) => {
-        switch (key) {
+    const renderSection = (item: any) => {
+        if (typeof item !== "string") {
+            return <CustomBlock data={item} />;
+        }
+        switch (item) {
             case "hero": return renderHero();
             case "principles": return renderPrinciples();
             case "timeline": return renderTimeline();
@@ -559,13 +572,14 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
             {navbar}
 
             {/* Dynamic Section Rendering based on sectionOrder */}
-            {visibleSections.map((sectionKey: string, idx: number) => {
+            {visibleSections.map((sectionItem: any, idx: number) => {
                 const elements = [];
-                const curBg = sectionBg[sectionKey] || "#ffffff";
+                const sectionKey = typeof sectionItem === "string" ? sectionItem : sectionItem.id;
+                const curBg = getSectionBg(sectionItem);
 
                 // Add divider between previous section and this one
                 if (idx > 0) {
-                    const prevBg = sectionBg[visibleSections[idx - 1]] || "#ffffff";
+                    const prevBg = getSectionBg(visibleSections[idx - 1]);
                     const divider = renderDivider(prevBg, curBg, `divider-${idx}`);
                     if (divider) elements.push(divider);
                 }
@@ -573,7 +587,7 @@ export default function PDPAPageClient({ navbar, footer, siteConfig, features = 
                 // Add section content
                 elements.push(
                     <div key={`section-${sectionKey}`}>
-                        {renderSection(sectionKey)}
+                        {renderSection(sectionItem)}
                     </div>
                 );
 
