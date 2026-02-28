@@ -25,16 +25,24 @@ export async function fetchAPI(
     urlParamsObject = {},
     options: RequestInit & { revalidate?: number | false } = {}
 ) {
-    const { revalidate = 60, ...fetchOptions } = options;
+    const { revalidate, ...restOptions } = options;
+
+    const isServer = typeof window === "undefined";
+    const useCache = isServer && revalidate !== false;
 
     const mergedOptions: RequestInit = {
         headers: {
             "Content-Type": "application/json",
             ...(process.env.STRAPI_API_TOKEN ? { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` } : {}),
         },
-        // Enable ISR caching for Server Components; client-side fetch ignores this
-        next: revalidate === false ? { revalidate: 0 } : { revalidate },
-        ...fetchOptions,
+        ...(useCache ? { cache: 'force-cache' } : { cache: 'no-store' }),
+        ...(isServer && {
+            next: {
+                tags: ["strapi-data"],
+                ...(typeof revalidate === "number" ? { revalidate } : {})
+            }
+        }),
+        ...restOptions,
     };
 
 

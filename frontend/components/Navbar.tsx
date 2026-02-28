@@ -5,6 +5,8 @@ export default async function Navbar({ domain = "localhost" }: { domain?: string
     // Fetch site config (Server Side)
     let siteName = domain === "pdpa.localhost" ? "PDPA Center" : "DataGOV";
     let navItems = undefined;
+    let headerStyle = "style-1";
+    let navbarMenuStyle = "pill";
 
     if (domain === "pdpa.localhost") {
         navItems = [
@@ -33,10 +35,16 @@ export default async function Navbar({ domain = "localhost" }: { domain?: string
                     href: item.href
                 }));
             }
+            if (config.headerStyle) {
+                headerStyle = config.headerStyle;
+            }
+            if (config.navbarMenuStyle) {
+                navbarMenuStyle = config.navbarMenuStyle;
+            }
         }
     } catch (e) {
         console.error("Error fetching navbar config", e);
     }
 
-    return <NavbarClient siteName={siteName} navItems={navItems} domain={domain} />;
+    return <NavbarClient siteName={siteName} navItems={navItems} domain={domain} headerStyle={headerStyle} navbarMenuStyle={navbarMenuStyle} />;
 }

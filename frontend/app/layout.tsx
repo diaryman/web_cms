@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sarabun, Prompt } from "next/font/google";
+import { Sarabun, Prompt, Kanit, Noto_Sans_Thai } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 
@@ -14,6 +14,20 @@ const prompt = Prompt({
   weight: ['300', '400', '500', '600', '700'],
   subsets: ["thai", "latin"],
   variable: "--font-prompt",
+  display: 'swap',
+});
+
+const kanit = Kanit({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ["thai", "latin"],
+  variable: "--font-kanit",
+  display: 'swap',
+});
+
+const notoSansThai = Noto_Sans_Thai({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ["thai", "latin"],
+  variable: "--font-noto-sans-thai",
   display: 'swap',
 });
 
@@ -70,6 +84,7 @@ export default async function RootLayout({
 
   let cookieConsentConfig = undefined;
   let themeCssVars = "";
+  let fontFamilyConfig = "prompt"; // Default to Prompt (Modern Sans-Serif)
 
   try {
     const res = await fetchAPI("/site-configs", { filters: { domain } });
@@ -78,16 +93,28 @@ export default async function RootLayout({
     if (config?.themeColors?.primary && config?.themeColors?.accent) {
       themeCssVars = generateThemeCssVariables(config.themeColors.primary, config.themeColors.accent);
     }
+    if (config?.fontFamily) fontFamilyConfig = config.fontFamily;
   } catch (e) {
     // Non-critical
   }
 
+  let fontVars = "";
+  if (fontFamilyConfig === "sarabun") {
+    fontVars = `--font-sans: var(--font-sarabun), 'Sarabun', ui-sans-serif, system-ui, sans-serif; --font-heading: var(--font-sarabun), 'Sarabun', ui-sans-serif, system-ui, sans-serif;`;
+  } else if (fontFamilyConfig === "kanit") {
+    fontVars = `--font-sans: var(--font-kanit), 'Kanit', ui-sans-serif, system-ui, sans-serif; --font-heading: var(--font-kanit), 'Kanit', ui-sans-serif, system-ui, sans-serif;`;
+  } else if (fontFamilyConfig === "notoSansThai") {
+    fontVars = `--font-sans: var(--font-noto-sans-thai), 'Noto Sans Thai', ui-sans-serif, system-ui, sans-serif; --font-heading: var(--font-noto-sans-thai), 'Noto Sans Thai', ui-sans-serif, system-ui, sans-serif;`;
+  } else {
+    fontVars = `--font-sans: var(--font-prompt), 'Prompt', ui-sans-serif, system-ui, sans-serif; --font-heading: var(--font-prompt), 'Prompt', ui-sans-serif, system-ui, sans-serif;`;
+  }
+
+  const finalCss = themeCssVars ? `${themeCssVars} html:root, body { ${fontVars} }` : `html:root, body { ${fontVars} }`;
+
   return (
     <html lang="th" data-theme={theme} suppressHydrationWarning>
       <head>
-        {themeCssVars && (
-          <style id="server-theme" dangerouslySetInnerHTML={{ __html: themeCssVars }} />
-        )}
+        <style id="server-theme" dangerouslySetInnerHTML={{ __html: finalCss }} />
         {/*
           P8 + DGA: Theme, Font Size & High Contrast FOUC Prevention
           Inline blocking script runs before first paint.
@@ -98,7 +125,7 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className={`${sarabun.variable} ${prompt.variable} antialiased font-sans`}>
+      <body className={`${sarabun.variable} ${prompt.variable} ${kanit.variable} ${notoSansThai.variable} antialiased font-sans flex flex-col min-h-screen`}>
         {/* Skip to main (WCAG 2.1) */}
         <a href="#main-content" className="skip-link" aria-label="ข้ามไปยังเนื้อหาหลัก">
           ข้ามไปยังเนื้อหาหลัก

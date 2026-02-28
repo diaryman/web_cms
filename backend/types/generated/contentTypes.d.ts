@@ -1030,8 +1030,20 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
     dpoEmail: Schema.Attribute.Email;
     dpoPhone: Schema.Attribute.String;
     email: Schema.Attribute.Email;
+    fontFamily: Schema.Attribute.Enumeration<
+      ['sarabun', 'prompt', 'kanit', 'notoSansThai']
+    > &
+      Schema.Attribute.DefaultTo<'prompt'>;
     footerMenu: Schema.Attribute.JSON;
+    footerStyle: Schema.Attribute.Enumeration<
+      ['style-1', 'style-2', 'style-3']
+    > &
+      Schema.Attribute.DefaultTo<'style-1'>;
     footerText: Schema.Attribute.Text;
+    headerStyle: Schema.Attribute.Enumeration<
+      ['style-1', 'style-2', 'style-3']
+    > &
+      Schema.Attribute.DefaultTo<'style-1'>;
     heroHeadline: Schema.Attribute.Text;
     heroStats: Schema.Attribute.JSON;
     heroSubheadline: Schema.Attribute.Text;
@@ -1044,6 +1056,10 @@ export interface ApiSiteConfigSiteConfig extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     logoImage: Schema.Attribute.Media<'images'>;
     navbarMenu: Schema.Attribute.JSON;
+    navbarMenuStyle: Schema.Attribute.Enumeration<
+      ['pill', 'underline', 'outline', 'glow', 'minimal']
+    > &
+      Schema.Attribute.DefaultTo<'pill'>;
     notFoundPage: Schema.Attribute.JSON;
     notifications: Schema.Attribute.JSON;
     officeHours: Schema.Attribute.String &

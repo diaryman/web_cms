@@ -12,9 +12,11 @@ interface NavbarClientProps {
     siteName: string;
     navItems?: { name: string; href: string }[];
     domain?: string;
+    headerStyle?: string;
+    navbarMenuStyle?: string;
 }
 
-export default function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost" }: NavbarClientProps) {
+export default function NavbarClient({ siteName, navItems: customNavItems, domain = "localhost", headerStyle = "style-1", navbarMenuStyle = "pill" }: NavbarClientProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -55,6 +57,45 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
 
     const navItems = customNavItems || defaultNavItems;
 
+    const renderNavItem = (item: { name: string; href: string }) => {
+        switch (navbarMenuStyle) {
+            case "underline":
+                return (
+                    <Link key={item.name} href={item.href} className="text-[14px] lg:text-[15px] px-2 font-bold text-gray-700 hover:text-[var(--accent-color)] dark:text-gray-200 relative group transition-colors">
+                        {item.name}
+                        <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[var(--accent-color)] group-hover:w-full transition-all duration-300"></span>
+                    </Link>
+                );
+            case "outline":
+                return (
+                    <Link key={item.name} href={item.href} className="px-5 py-2 text-[14px] lg:text-[15px] font-bold text-gray-700 dark:text-gray-200 relative group transition-all rounded-full border border-transparent hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] hover:bg-[var(--accent-color)]/5">
+                        <span className="relative z-10 transition-colors">{item.name}</span>
+                    </Link>
+                );
+            case "glow":
+                return (
+                    <Link key={item.name} href={item.href} className="px-5 py-2 rounded-full text-[14px] lg:text-[15px] font-bold relative group transition-all hover:scale-105" style={{ color: 'var(--foreground)' }}>
+                        <span className="relative z-10 group-hover:text-white transition-colors">{item.name}</span>
+                        <span className="absolute inset-0 bg-[var(--accent-color)] opacity-0 group-hover:opacity-100 blur-sm rounded-full transition-all duration-300"></span>
+                    </Link>
+                );
+            case "minimal":
+                return (
+                    <Link key={item.name} href={item.href} className="px-3 py-2 text-[14px] lg:text-[15px] font-bold text-gray-700 dark:text-gray-200 transition-colors hover:text-[var(--accent-color)]">
+                        {item.name}
+                    </Link>
+                );
+            case "pill":
+            default:
+                return (
+                    <Link key={item.name} href={item.href} className="px-5 py-2 font-bold text-[14px] lg:text-[15px] transition-all relative rounded-2xl hover:scale-105 group whitespace-nowrap" style={{ color: 'var(--foreground)' }}>
+                        <span className="relative z-10 group-hover:text-white transition-colors">{item.name}</span>
+                        <span className="absolute inset-0 bg-[var(--accent-color)] opacity-0 group-hover:opacity-100 rounded-2xl transition-all duration-300 shadow-md shadow-accent/20"></span>
+                    </Link>
+                );
+        }
+    };
+
     return (
         <>
             <nav
@@ -84,73 +125,70 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                             </div>
                         </Link>
 
-                        {/* Desktop Menu - Two Tier Layout */}
-                        <div className="hidden xl:flex flex-col h-full flex-1">
-                            {/* Tier 1: Utility Bar (Top Right) */}
-                            <div className="flex items-center gap-4 border-b border-gray-100/50 dark:border-white/10 py-2 w-full justify-end px-4">
-                                <button
-                                    onClick={() => setIsSearchOpen(true)}
-                                    className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-accent transition-colors"
-                                    aria-label="เปิดช่องค้นหา (Ctrl+K)"
-                                >
-                                    <Search size={14} /> ค้นหา
-                                    <kbd className="hidden lg:flex items-center px-1 text-[8px] rounded border bg-gray-50 dark:bg-white/5 border-gray-200 dark:border-white/10 ml-1">
-                                        ⌘K
-                                    </kbd>
-                                </button>
-
-                                <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
-
-                                <div className="flex items-center gap-2">
-                                    <FontSizeResizer />
-                                    <ThemeToggle />
-                                </div>
-
-                                <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
-
-                                <button className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-accent transition-colors">
-                                    <Languages size={14} /> TH
-                                </button>
-
-                                <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
-
-                                <Link
-                                    href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`}
-                                    className="text-xs font-black text-primary hover:text-accent transition-colors"
-                                >
-                                    Portal
-                                </Link>
-                            </div>
-
-                            {/* Tier 2: Main Nav Items (Centered Pill) */}
-                            <div className="flex-1 flex items-center justify-center relative py-2">
-                                <div
-                                    className="flex items-center gap-1 bg-white/40 dark:bg-white/5 backdrop-blur-xl p-1.5 rounded-[1.5rem] border border-white/60 dark:border-white/10 shadow-2xl shadow-primary/10 hover:shadow-primary/20 transition-all duration-500 ring-1 ring-black/5"
-                                >
-                                    {navItems.map((item) => (
-                                        <Link
-                                            key={item.name}
-                                            href={item.href}
-                                            className="px-5 py-2.5 font-black text-sm transition-all relative rounded-2xl hover:scale-105 group whitespace-nowrap"
-                                            style={{ color: 'var(--foreground)' }}
-                                        >
-                                            <span className="relative z-10 group-hover:text-white transition-colors">{item.name}</span>
-                                            <span
-                                                className="absolute inset-0 bg-[var(--accent-color)] opacity-0 group-hover:opacity-100 rounded-2xl transition-all duration-300 shadow-lg shadow-accent/20"
-                                            ></span>
-                                        </Link>
-                                    ))}
+                        {/* Desktop Menu - Conditionally Rendered by Style */}
+                        {headerStyle === "style-3" ? (
+                            <div className="hidden xl:flex flex-1 items-center justify-end h-full">
+                                <div className="flex items-center gap-1 bg-white/40 dark:bg-white/5 backdrop-blur-xl p-1.5 rounded-[1.5rem] border border-white/60 dark:border-white/10 shadow-lg transition-all duration-500 ring-1 ring-black/5">
+                                    {navItems.map((item) => renderNavItem(item))}
+                                    <div className="w-px h-6 bg-gray-200/50 dark:bg-white/10 mx-2"></div>
+                                    <div className="flex items-center gap-1">
+                                        <button onClick={() => setIsSearchOpen(true)} className="p-2 hover:bg-white/50 dark:hover:bg-white/10 rounded-xl transition-colors text-gray-600 dark:text-gray-300"><Search size={18} /></button>
+                                        <ThemeToggle />
+                                    </div>
                                     <div className="w-px h-6 bg-gray-200/50 dark:bg-white/10 mx-2"></div>
                                     <Link
                                         href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`}
-                                        className="px-6 py-2.5 bg-primary text-sm font-bold rounded-2xl shadow-xl hover:shadow-primary/30 hover:scale-[1.02] transition-all active:scale-95 whitespace-nowrap premium-gradient"
-                                        style={{ color: 'var(--primary-foreground)' }}
+                                        className="px-5 py-2 text-primary font-bold hover:text-accent transition-colors text-sm hover:scale-105"
                                     >
                                         เข้าสู่ระบบ
                                     </Link>
                                 </div>
                             </div>
-                        </div>
+                        ) : headerStyle === "style-2" ? (
+                            <div className="hidden xl:flex flex-col h-full flex-1 items-end justify-center">
+                                {/* Utility Tier */}
+                                <div className="flex items-center gap-4 mb-3">
+                                    <button onClick={() => setIsSearchOpen(true)} className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-accent"><Search size={14} /> ค้นหา</button>
+                                    <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
+                                    <div className="flex items-center gap-2"><FontSizeResizer /><ThemeToggle /></div>
+                                    <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
+                                    <button className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-accent"><Languages size={14} /> TH</button>
+                                    <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
+                                    <Link href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`} className="text-xs font-black text-primary hover:text-accent">Portal</Link>
+                                </div>
+                                {/* Navigation Tier without pill shadow */}
+                                <div className="flex items-center gap-6">
+                                    {navItems.map((item) => renderNavItem(item))}
+                                    <Link href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`} className="ml-2 px-5 py-2 bg-primary text-white rounded-xl text-sm font-bold hover:bg-accent transition-colors">
+                                        เข้าสู่ระบบ
+                                    </Link>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="hidden xl:flex flex-col h-full flex-1">
+                                {/* Tier 1: Utility Bar (Top Right) */}
+                                <div className="flex items-center gap-4 border-b border-gray-100/50 dark:border-white/10 py-2 w-full justify-end px-4">
+                                    <button onClick={() => setIsSearchOpen(true)} className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-accent transition-colors" aria-label="เปิดช่องค้นหา (Ctrl+K)">
+                                        <Search size={14} /> ค้นหา
+                                        <kbd className="hidden lg:flex items-center px-1 text-[8px] rounded border bg-gray-50 dark:bg-white/5 border-gray-200 dark:border-white/10 ml-1">⌘K</kbd>
+                                    </button>
+                                    <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
+                                    <div className="flex items-center gap-2"><FontSizeResizer /><ThemeToggle /></div>
+                                    <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
+                                    <button className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-accent transition-colors"><Languages size={14} /> TH</button>
+                                    <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
+                                    <Link href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`} className="text-xs font-black text-primary hover:text-accent transition-colors">Portal</Link>
+                                </div>
+                                {/* Tier 2: Main Nav Items (Centered Pill) */}
+                                <div className="flex-1 flex items-center justify-center relative py-2">
+                                    <div className="flex items-center gap-1 bg-white/40 dark:bg-white/5 backdrop-blur-xl p-1.5 rounded-[1.5rem] border border-white/60 dark:border-white/10 shadow-2xl shadow-primary/10 hover:shadow-primary/20 transition-all duration-500 ring-1 ring-black/5">
+                                        {navItems.map((item) => renderNavItem(item))}
+                                        <div className="w-px h-6 bg-gray-200/50 dark:bg-white/10 mx-2"></div>
+                                        <Link href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`} className="px-6 py-2.5 bg-primary text-sm font-bold rounded-2xl shadow-xl hover:shadow-primary/30 hover:scale-[1.02] transition-all active:scale-95 whitespace-nowrap premium-gradient" style={{ color: 'var(--primary-foreground)' }}>เข้าสู่ระบบ</Link>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
 
                         {/* Mobile Menu Button */}
                         <div className="xl:hidden flex items-center gap-2">

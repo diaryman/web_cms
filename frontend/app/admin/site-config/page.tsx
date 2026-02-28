@@ -7,6 +7,7 @@ import { fetchAPI } from "@/lib/api";
 import { Save, Loader2, Globe, Megaphone, MapPin, Phone, Mail, Clock, LayoutTemplate, Search, Trash2, CheckCircle2, Zap, Plus, BarChart3, Shield, FileText, HelpCircle, GripVertical, Upload, ImageIcon, Facebook, Youtube, Twitter, MessageCircle, ArrowUp, ArrowDown, Edit3, X } from "lucide-react";
 import { uploadFile } from "@/app/actions/upload";
 import { getStrapiMedia } from "@/lib/api";
+import { revalidateSiteConfig } from "@/app/actions/revalidate";
 
 /* ─── Theme Template Presets ──────────────────────────────────────────────── */
 type ThemeTemplate = {
@@ -334,7 +335,11 @@ export default function AdminSiteConfigPage() {
         },
         dpoPhone: "",
         dpoEmail: "",
-        socialLinks: { facebook: "", youtube: "", twitter: "", line: "" }
+        socialLinks: { facebook: "", youtube: "", twitter: "", line: "" },
+        headerStyle: "style-1",
+        footerStyle: "style-1",
+        navbarMenuStyle: "pill",
+        fontFamily: "prompt"
     });
 
     useEffect(() => {
@@ -388,7 +393,11 @@ export default function AdminSiteConfigPage() {
                         },
                         dpoPhone: config.dpoPhone || "",
                         dpoEmail: config.dpoEmail || "",
-                        socialLinks: config.socialLinks || { facebook: "", youtube: "", twitter: "", line: "" }
+                        socialLinks: config.socialLinks || { facebook: "", youtube: "", twitter: "", line: "" },
+                        headerStyle: config.headerStyle || "style-1",
+                        footerStyle: config.footerStyle || "style-1",
+                        navbarMenuStyle: config.navbarMenuStyle || "pill",
+                        fontFamily: config.fontFamily || "prompt"
                     });
                 }
             } catch (error) {
@@ -530,6 +539,8 @@ export default function AdminSiteConfigPage() {
                 body: JSON.stringify({ data: payload })
             });
 
+            await revalidateSiteConfig();
+
             // 1. Apply new colours immediately (optimistic update)
             const { primary, accent } = formData.themeColors;
             if (primary && accent) {
@@ -557,9 +568,21 @@ export default function AdminSiteConfigPage() {
                 root.style.setProperty("--accent-glow", `rgba(${aRGB}, 0.14)`);
             }
 
+            if (formData.fontFamily) {
+                const getFontSet = (f: string) => {
+                    if (f === 'sarabun') return 'var(--font-sarabun), "Sarabun"';
+                    if (f === 'kanit') return 'var(--font-kanit), "Kanit"';
+                    if (f === 'notoSansThai') return 'var(--font-noto-sans-thai), "Noto Sans Thai"';
+                    return 'var(--font-prompt), "Prompt"';
+                };
+                const fontFam = getFontSet(formData.fontFamily);
+                document.documentElement.style.setProperty("--font-sans", `${fontFam}, ui-sans-serif, system-ui, sans-serif`);
+                document.documentElement.style.setProperty("--font-heading", `${fontFam}, ui-sans-serif, system-ui, sans-serif`);
+            }
+
             // Notify any other same-origin tabs (e.g. open frontend tab) via custom event
             window.dispatchEvent(new CustomEvent("theme-updated", {
-                detail: { primary: formData.themeColors.primary, accent: formData.themeColors.accent }
+                detail: { primary: formData.themeColors.primary, accent: formData.themeColors.accent, fontFamily: formData.fontFamily }
             }));
 
             // 2. Show toast
@@ -816,6 +839,107 @@ export default function AdminSiteConfigPage() {
                         </div>
                     )}
                 </div>
+
+                {/* ─────────────────────────────────────
+                    Header & Footer Styles
+                ───────────────────────────────────── */}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
+                            <LayoutTemplate size={20} />
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-800">รูปแบบการแสดงผล (Header & Footer)</h3>
+                            <p className="text-xs text-gray-400 mt-0.5">เลือกรูปแบบของเมนูด้านบนและส่วนท้ายเว็บไซต์</p>
+                        </div>
+                    </div>
+
+                    <div className="space-y-8">
+                        {/* Header Styles */}
+                        <div>
+                            <h4 className="font-bold text-gray-700 mb-4">รูปแบบ Header (Navbar)</h4>
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                {['style-1', 'style-2', 'style-3'].map((style) => (
+                                    <button
+                                        key={`header-${style}`}
+                                        type="button"
+                                        onClick={() => setFormData({ ...formData, headerStyle: style })}
+                                        className={`p-4 rounded-2xl border-2 text-left transition-all ${formData.headerStyle === style ? 'border-primary bg-primary/5 ring-4 ring-primary/10' : 'border-gray-100 hover:border-gray-200'}`}
+                                    >
+                                        <div className="h-20 bg-gray-50 rounded-xl mb-3 flex items-center justify-center overflow-hidden border border-gray-200 p-2">
+                                            {/* Mockup visual based on style */}
+                                            {style === 'style-1' && <div className="w-full h-8 bg-white border border-gray-200 rounded flex items-center justify-between px-2 opacity-70"><div className="w-6 h-4 bg-gray-300 rounded" /><div className="flex gap-1"><div className="w-4 h-1 bg-gray-300 rounded" /><div className="w-4 h-1 bg-gray-300 rounded" /></div></div>}
+                                            {style === 'style-2' && <div className="w-full h-12 bg-white border border-gray-200 rounded flex flex-col items-center justify-center gap-1 opacity-70"><div className="w-6 h-4 bg-gray-300 rounded" /><div className="flex gap-1"><div className="w-4 h-1 bg-gray-200 rounded" /><div className="w-4 h-1 bg-gray-200 rounded" /></div></div>}
+                                            {style === 'style-3' && <div className="w-3/4 h-6 bg-white rounded-full shadow border flex items-center justify-between px-2 opacity-70 mt-2"><div className="w-4 h-3 bg-gray-300 rounded-full" /><div className="flex gap-1"><div className="w-3 h-1 bg-gray-200 rounded" /></div></div>}
+                                        </div>
+                                        <h5 className="font-bold text-sm text-gray-800 mb-1">
+                                            {style === 'style-1' ? 'Classic (ค่าเริ่มต้น)' : style === 'style-2' ? 'Centered Elegance' : 'Modern Floating'}
+                                        </h5>
+                                        <p className="text-[10px] text-gray-500">
+                                            {style === 'style-1' ? 'โลโก้ซ้าย เมนูขวา ดูเป็นทางการ' : style === 'style-2' ? 'โลโก้อยู่ตรงกลาง เมนูเรียงกัน' : 'เมนูแบบแคปซูลลอยตัว'}
+                                        </p>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Menu Item Styles */}
+                        <div>
+                            <h4 className="font-bold text-gray-700 mb-4">รูปแบบรายการเมนู (Menu Items)</h4>
+                            <div className="flex flex-wrap gap-3">
+                                {[
+                                    { value: 'pill', label: 'Pill (แคปซูล)', desc: 'พื้นหลังทึบเมื่อชี้' },
+                                    { value: 'underline', label: 'Underline (ขีดเส้นใต้)', desc: 'เส้นใต้ยืดออก' },
+                                    { value: 'outline', label: 'Outline (ขอบเส้น)', desc: 'มีกรอบเส้นรอบเมนู' },
+                                    { value: 'glow', label: 'Glow (เรืองแสง)', desc: 'ข้อความเรืองแสง' },
+                                    { value: 'minimal', label: 'Minimal (มินิมอล)', desc: 'เปลี่ยนสีข้อความ' }
+                                ].map((style) => (
+                                    <button
+                                        key={style.value}
+                                        type="button"
+                                        onClick={() => setFormData({ ...formData, navbarMenuStyle: style.value })}
+                                        className={`px-5 py-3 rounded-xl border-2 text-left transition-all flex flex-col items-center justify-center min-w-[120px] ${formData.navbarMenuStyle === style.value ? 'border-primary bg-primary/5 ring-4 ring-primary/10' : 'border-gray-100 hover:border-gray-200'}`}
+                                    >
+                                        <h5 className={`font-bold text-sm mb-1 ${formData.navbarMenuStyle === style.value ? 'text-primary' : 'text-gray-700'}`}>
+                                            {style.label}
+                                        </h5>
+                                        <p className="text-[10px] text-gray-500 text-center">
+                                            {style.desc}
+                                        </p>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Footer Styles */}
+                        <div>
+                            <h4 className="font-bold text-gray-700 mb-4">รูปแบบ Footer</h4>
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                {['style-1', 'style-2', 'style-3'].map((style) => (
+                                    <button
+                                        key={`footer-${style}`}
+                                        type="button"
+                                        onClick={() => setFormData({ ...formData, footerStyle: style })}
+                                        className={`p-4 rounded-2xl border-2 text-left transition-all ${formData.footerStyle === style ? 'border-primary bg-primary/5 ring-4 ring-primary/10' : 'border-gray-100 hover:border-gray-200'}`}
+                                    >
+                                        <div className="h-24 bg-gray-50 rounded-xl mb-3 flex items-center justify-center overflow-hidden border border-gray-200 p-2">
+                                            {/* Mockup visual based on style */}
+                                            {style === 'style-1' && <div className="w-full flex justify-between gap-4 opacity-70"><div className="w-1/2 h-16 bg-gray-300 rounded" /><div className="w-1/2 h-16 bg-gray-200 rounded" /></div>}
+                                            {style === 'style-2' && <div className="w-full flex flex-col items-center justify-center gap-2 opacity-70"><div className="w-8 h-8 bg-gray-300 rounded-full" /><div className="w-24 h-2 bg-gray-200 rounded" /></div>}
+                                            {style === 'style-3' && <div className="w-full flex gap-2 opacity-70"><div className="w-1/2 h-16 bg-gray-800 rounded" /><div className="w-1/2 h-16 bg-gray-200 rounded" /></div>}
+                                        </div>
+                                        <h5 className="font-bold text-sm text-gray-800 mb-1">
+                                            {style === 'style-1' ? 'Corporate (ค่าเริ่มต้น)' : style === 'style-2' ? 'Minimalist Centered' : 'Split / Magazine'}
+                                        </h5>
+                                        <p className="text-[10px] text-gray-500">
+                                            {style === 'style-1' ? 'แบ่งคอลัมน์ซ้ายขวา' : style === 'style-2' ? 'จัดกลางแบบมินิมอล' : 'แบ่งสองฝั่งชัดเจน เน้นแบบฟอร์ม'}
+                                        </p>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {/* ─────────────────────────────────────
                     Theme Template Picker
                 ───────────────────────────────────── */}
@@ -926,6 +1050,43 @@ export default function AdminSiteConfigPage() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                {/* ─────────────────────────────────────
+                    Typography (Fonts)
+                ───────────────────────────────────── */}
+                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm">
+                    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'var(--accent-subtle)', color: 'var(--accent-color)' }}>
+                            <span className="font-bold text-xl">Aa</span>
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold text-gray-800">รูปแบบตัวอักษร (Typography)</h3>
+                            <p className="text-xs text-gray-400 mt-0.5">เลือกรูปแบบตัวอักษรหลักสำหรับหน้าเว็บไซต์</p>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {[
+                            { id: 'prompt', name: 'Prompt', type: 'ไม่มีหัว (Modern Sans)', preview: 'สวัสดีชาวโลก' },
+                            { id: 'kanit', name: 'Kanit', type: 'ไม่มีหัว (Dynamic Sans)', preview: 'สวัสดีชาวโลก' },
+                            { id: 'notoSansThai', name: 'Noto Sans Thai', type: 'ไม่มีหัว (Standard Sans)', preview: 'สวัสดีชาวโลก' },
+                            { id: 'sarabun', name: 'Sarabun', type: 'มีหัว (Official Serif)', preview: 'สวัสดีชาวโลก' },
+                        ].map((font) => (
+                            <button
+                                key={font.id}
+                                type="button"
+                                onClick={() => setFormData({ ...formData, fontFamily: font.id })}
+                                className={`p-5 rounded-2xl border-2 text-left transition-all ${formData.fontFamily === font.id ? 'border-primary bg-primary/5 ring-4 ring-primary/10' : 'border-gray-100 hover:border-gray-200'}`}
+                            >
+                                <div className="text-2xl mb-2 text-gray-800" style={{ fontFamily: `var(--font-${font.id === 'notoSansThai' ? 'noto-sans-thai' : font.id})` }}>
+                                    {font.preview}
+                                </div>
+                                <h5 className="font-bold text-sm text-gray-800">{font.name}</h5>
+                                <p className="text-[10px] text-gray-500">{font.type}</p>
+                            </button>
+                        ))}
                     </div>
                 </div>
 

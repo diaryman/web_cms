@@ -7,6 +7,18 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 import { hexToRGB, lighten, darken } from "@/lib/themeUtils";
 
+export function applyThemeFont(font: string) {
+    const getFontSet = (f: string) => {
+        if (f === 'sarabun') return 'var(--font-sarabun), "Sarabun"';
+        if (f === 'kanit') return 'var(--font-kanit), "Kanit"';
+        if (f === 'notoSansThai') return 'var(--font-noto-sans-thai), "Noto Sans Thai"';
+        return 'var(--font-prompt), "Prompt"';
+    };
+    const fontFam = getFontSet(font || "prompt");
+    document.documentElement.style.setProperty("--font-sans", `${fontFam}, ui-sans-serif, system-ui, sans-serif`);
+    document.documentElement.style.setProperty("--font-heading", `${fontFam}, ui-sans-serif, system-ui, sans-serif`);
+}
+
 export function applyThemeColors(primary: string, accent: string) {
     const root = document.documentElement;
     const accentRGB = hexToRGB(accent);
@@ -72,6 +84,9 @@ export default function SiteThemeProvider({ children }: { children: React.ReactN
                     if (colors?.primary && colors?.accent) {
                         applyThemeColors(colors.primary, colors.accent);
                     }
+                    if (config.fontFamily) {
+                        applyThemeFont(config.fontFamily);
+                    }
                 }
             } catch (err) {
                 console.error("Theme fetch failed:", err);
@@ -94,10 +109,14 @@ export default function SiteThemeProvider({ children }: { children: React.ReactN
         // Admin page dispatches this after a successful save when both tabs
         // are on the same origin.
         const handleThemeUpdated = (e: Event) => {
-            const detail = (e as CustomEvent<{ primary: string; accent: string }>).detail;
+            const detail = (e as CustomEvent<{ primary: string; accent: string; fontFamily?: string }>).detail;
             if (detail?.primary && detail?.accent) {
                 applyThemeColors(detail.primary, detail.accent);
-            } else {
+            }
+            if (detail?.fontFamily) {
+                applyThemeFont(detail.fontFamily);
+            }
+            if (!detail?.primary) {
                 fetchTheme();
             }
         };

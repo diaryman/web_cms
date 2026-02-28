@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
@@ -45,6 +45,8 @@ export async function updateArticle(documentId: string, data: any) {
         // Revalidate the articles list and the specific article page if needed
         revalidatePath("/admin/news");
         revalidatePath(`/admin/news/edit/${documentId}`);
+        // @ts-ignore
+        revalidateTag("strapi-data");
 
         return result;
     } catch (error: any) {
@@ -90,6 +92,8 @@ export async function createArticle(data: any) {
 
         const result = await response.json();
         revalidatePath("/admin/news");
+        // @ts-ignore
+        revalidateTag("strapi-data");
         return result;
     } catch (error: any) {
         console.error("Server Action createArticle error:", error);

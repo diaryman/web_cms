@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Sarabun', var(--font-sarabun), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: 'Prompt', var(--font-prompt), ui-sans-serif, system-ui, sans-serif;
+  /* Font families are managed dynamically in layout.tsx via CSS variables */
 
   --color-primary: var(--primary-color);
   --color-primary-foreground: var(--primary-foreground);

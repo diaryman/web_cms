@@ -92,6 +92,45 @@
         "sectionOrder": {
             "type": "json",
             "description": "Array defining the display order of homepage sections"
+        },
+        "headerStyle": {
+            "type": "enumeration",
+            "enum": [
+                "style-1",
+                "style-2",
+                "style-3"
+            ],
+            "default": "style-1"
+        },
+        "footerStyle": {
+            "type": "enumeration",
+            "enum": [
+                "style-1",
+                "style-2",
+                "style-3"
+            ],
+            "default": "style-1"
+        },
+        "fontFamily": {
+            "type": "enumeration",
+            "enum": [
+                "sarabun",
+                "prompt",
+                "kanit",
+                "notoSansThai"
+            ],
+            "default": "prompt"
+        },
+        "navbarMenuStyle": {
+            "type": "enumeration",
+            "enum": [
+                "pill",
+                "underline",
+                "outline",
+                "glow",
+                "minimal"
+            ],
+            "default": "pill"
         }
     }
 }
