@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: gov-backend
+    restart: always
+    env_file: ./backend/.env
+    environment:
+      NODE_ENV: production
+      DATABASE_CLIENT: sqlite
+      DATABASE_FILENAME: .tmp/data.db
+      JWT_SECRET: ${JWT_SECRET:-aSecretKey}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:-aSecretKey}
+      APP_KEYS: ${APP_KEYS:-aSecretKey,anotherSecretKey}
+      API_TOKEN_SALT: ${API_TOKEN_SALT:-aSecretKey}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT:-aSecretKey}
+    volumes:
+      - strapi-data:/opt/app/.tmp
+      - strapi-uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+    networks:
+      - my_cms_net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: gov-frontend
+    restart: always
+    environment:
+      NODE_ENV: production
+      # Internal Docker DNS path to bypass localhost domain issues on server side calls
+      NEXT_PUBLIC_STRAPI_URL: http://backend:1337
+      # Default fallback public hostnames
+      NEXT_PUBLIC_DATAGOV_URL: http://localhost:3000
+      NEXT_PUBLIC_PDPA_URL: http://localhost:3000
+      # You can supply production Strapi token in your actual server env
+      STRAPI_API_TOKEN: ${STRAPI_API_TOKEN:-your_production_token}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - my_cms_net
+
+volumes:
+  strapi-data:
+  strapi-uploads:
+
+
+networks:
+  my_cms_net:
+    driver: bridge
