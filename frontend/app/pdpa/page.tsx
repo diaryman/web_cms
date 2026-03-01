@@ -32,6 +32,8 @@ export const metadata: Metadata = {
 
 import { headers } from "next/headers";
 
+export const revalidate = 60; // Revalidate every 60 seconds (ISR) to pull fresh data from Strapi
+
 export default async function PDPAPage() {
     const headersList = await headers();
     const host = headersList.get("host") || "localhost";

@@ -39,6 +39,8 @@ import BackToTop from "@/components/BackToTop";
 import { fetchAPI } from "@/lib/api";
 import { headers } from "next/headers";
 
+export const revalidate = 60; // Revalidate every 60 seconds (ISR) to pull fresh data from Strapi
+
 export default async function Home() {
   const headersList = await headers();
   const host = headersList.get("host") || "localhost";
