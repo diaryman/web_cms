@@ -370,3 +370,125 @@
  POST /admin/policies?site=main 200 in 30ms (compile: 5ms, proxy.ts: 5ms, render: 20ms)
  POST /admin/policies?site=main 200 in 35ms (compile: 5ms, proxy.ts: 4ms, render: 26ms)
 ✓ Compiled in 56ms
+ POST /admin/policies?site=main 200 in 251ms (compile: 187ms, proxy.ts: 5ms, render: 58ms)
+ POST /admin/policies?site=main 200 in 175ms (compile: 21ms, proxy.ts: 11ms, render: 143ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:79:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+  77 |         }
+  78 |         // Re-throw with more context
+> 79 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+     |               ^
+  80 |     }
+  81 | }
+  82 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin/policies?site=main 200 in 9.0s (compile: 536ms, proxy.ts: 116ms, render: 8.4s)
+ GET /manifest.webmanifest 200 in 214ms (compile: 168ms, proxy.ts: 24ms, render: 22ms)
+ GET /admin/policies?site=main 200 in 10.8s (compile: 94ms, proxy.ts: 105ms, render: 10.6s)
+ POST /admin/policies?site=main 200 in 337ms (compile: 49ms, proxy.ts: 43ms, render: 245ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:79:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+  77 |         }
+  78 |         // Re-throw with more context
+> 79 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+     |               ^
+  80 |     }
+  81 | }
+  82 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin/policies?site=main 200 in 1901ms (compile: 55ms, proxy.ts: 35ms, render: 1812ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:79:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+  77 |         }
+  78 |         // Re-throw with more context
+> 79 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+     |               ^
+  80 |     }
+  81 | }
+  82 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin/policies?site=main 200 in 1769ms (compile: 32ms, proxy.ts: 58ms, render: 1679ms)
+ GET /icon-192.png 404 in 4.8s (compile: 456ms, proxy.ts: 34ms, render: 4.3s)
+ GET /manifest.webmanifest 200 in 52ms (compile: 11ms, proxy.ts: 9ms, render: 31ms)
+ GET /admin/policies?site=main 200 in 1672ms (compile: 150ms, proxy.ts: 57ms, render: 1465ms)
+ POST /admin/policies?site=main 200 in 381ms (compile: 113ms, proxy.ts: 52ms, render: 216ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:79:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+  77 |         }
+  78 |         // Re-throw with more context
+> 79 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+     |               ^
+  80 |     }
+  81 | }
+  82 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin/policies?site=main 200 in 3.2s (compile: 1073ms, proxy.ts: 101ms, render: 2.0s)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:79:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+  77 |         }
+  78 |         // Re-throw with more context
+> 79 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+     |               ^
+  80 |     }
+  81 | }
+  82 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin/policies?site=main 200 in 1103ms (compile: 29ms, proxy.ts: 7ms, render: 1068ms)
+ GET /icon-192.png 404 in 5.4s (compile: 782ms, proxy.ts: 38ms, render: 4.6s)
+ POST /admin/policies?site=main 200 in 72ms (compile: 5ms, proxy.ts: 5ms, render: 62ms)
+ POST /admin/policies?site=main 200 in 43ms (compile: 5ms, proxy.ts: 4ms, render: 33ms)
+ POST /admin/policies?site=main 200 in 47ms (compile: 7ms, proxy.ts: 4ms, render: 36ms)
+ GET /admin/policies?site=main 200 in 83ms (compile: 5ms, proxy.ts: 14ms, render: 64ms)
+ GET /manifest.webmanifest 200 in 8ms (compile: 2ms, proxy.ts: 3ms, render: 3ms)
+ POST /admin/policies?site=main 200 in 44ms (compile: 3ms, proxy.ts: 3ms, render: 37ms)
+ GET /icon-192.png 404 in 111ms (compile: 14ms, proxy.ts: 3ms, render: 94ms)
+ POST /admin/policies?site=main 200 in 49ms (compile: 14ms, proxy.ts: 4ms, render: 31ms)
+ POST /admin/policies?site=main 200 in 38ms (compile: 2ms, proxy.ts: 3ms, render: 33ms)
+ POST /admin/policies?site=main 200 in 34ms (compile: 3ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin/policies?site=main 200 in 41ms (compile: 6ms, proxy.ts: 4ms, render: 31ms)
+ POST /admin/policies?site=main 200 in 40ms (compile: 5ms, proxy.ts: 5ms, render: 31ms)
+ POST /admin/policies?site=main 200 in 39ms (compile: 4ms, proxy.ts: 4ms, render: 31ms)
+ POST /admin/policies?site=main 200 in 37ms (compile: 7ms, proxy.ts: 4ms, render: 26ms)
+✓ Compiled in 46ms
+ POST /admin/policies?site=main 200 in 105ms (compile: 69ms, proxy.ts: 4ms, render: 31ms)
+ POST /admin/policies?site=main 200 in 36ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin/policies?site=main 200 in 36ms (compile: 4ms, proxy.ts: 3ms, render: 28ms)
+ POST /admin/policies?site=main 200 in 37ms (compile: 5ms, proxy.ts: 3ms, render: 29ms)
+ POST /admin/policies?site=main 200 in 48ms (compile: 4ms, proxy.ts: 3ms, render: 41ms)
+ POST /admin/policies?site=main 200 in 36ms (compile: 5ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin/policies?site=main 200 in 39ms (compile: 5ms, proxy.ts: 4ms, render: 30ms)
+ POST /admin/policies?site=main 200 in 37ms (compile: 6ms, proxy.ts: 4ms, render: 27ms)
+✓ Compiled in 495ms
+ POST /admin/policies?site=main 200 in 120ms (compile: 90ms, proxy.ts: 11ms, render: 18ms)
+ POST /admin/policies?site=main 200 in 65ms (compile: 3ms, proxy.ts: 2ms, render: 61ms)
+ POST /admin/policies?site=main 200 in 41ms (compile: 4ms, proxy.ts: 3ms, render: 34ms)
