@@ -104,8 +104,8 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
             {/* Sidebar */}
             <aside className="w-72 bg-white border-r border-gray-100 flex flex-col fixed h-full z-50">
                 {/* Accent top strip — reflects the active site theme */}
-                <div className="h-1 w-full" style={{ background: "linear-gradient(to right, var(--primary-color), var(--accent-color))" }} />
-                <div className="p-8">
+                <div className="h-1 w-full shrink-0" style={{ background: "linear-gradient(to right, var(--primary-color), var(--accent-color))" }} />
+                <div className="p-8 shrink-0">
                     <Link href={homeLink} className="flex items-center gap-3 group">
                         <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold shadow-lg" style={{ background: "var(--primary-color)" }}>
                             <ShieldCheck size={24} />
@@ -117,7 +117,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                     </Link>
                 </div>
 
-                <nav className="flex-1 px-4 overflow-y-auto pb-6 custom-scrollbar space-y-5">
+                <nav className="flex-1 min-h-0 px-4 overflow-y-auto pb-6 custom-scrollbar space-y-5">
                     {menuGroups.map((group) => (
                         <div key={group.label}>
                             {/* Group label */}
@@ -156,7 +156,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                     ))}
                 </nav>
 
-                <div className="p-6 border-t border-gray-50 space-y-4">
+                <div className="p-6 border-t border-gray-50 space-y-4 shrink-0">
                     <div className="p-4 rounded-2xl border" style={{ background: "var(--accent-subtle)", borderColor: "var(--accent-glow)" }}>
                         <div className="flex items-center gap-2 mb-2">
                             <HelpCircle size={16} style={{ color: "var(--accent-color)" }} />

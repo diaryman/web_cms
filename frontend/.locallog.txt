@@ -1,0 +1,51 @@
+
+> frontend@0.1.0 dev
+> next dev -p 3002
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/teepakorn_s/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Users/teepakorn_s/Desktop/my_cms/frontend/package-lock.json
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3002
+- Network:       http://192.168.10.185:3002
+- Environments: .env.local
+- Experiments (use with caution):
+  · optimizePackageImports
+  · serverActions
+
+✓ Starting...
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+✓ Ready in 470ms
+ GET /admin/hero-slides?site=main 200 in 1149ms (compile: 913ms, proxy.ts: 45ms, render: 191ms)
+ GET /manifest.webmanifest 200 in 54ms (compile: 42ms, proxy.ts: 3ms, render: 9ms)
+ POST /admin/hero-slides?site=main 200 in 30ms (compile: 7ms, proxy.ts: 6ms, render: 17ms)
+ POST /admin/hero-slides?site=main 200 in 109ms (compile: 4ms, proxy.ts: 7ms, render: 98ms)
+ GET /icon-192.png 404 in 216ms (compile: 130ms, proxy.ts: 5ms, render: 81ms)
+ POST /admin/hero-slides?site=main 200 in 48ms (compile: 15ms, proxy.ts: 16ms, render: 17ms)
+ POST /admin/hero-slides?site=main 200 in 32ms (compile: 5ms, proxy.ts: 7ms, render: 20ms)
+ GET /admin/documents?site=main 200 in 67ms (compile: 43ms, proxy.ts: 3ms, render: 21ms)
+ GET /manifest.webmanifest 200 in 6ms (compile: 1256µs, proxy.ts: 1738µs, render: 3ms)
+ GET /icon-192.png 404 in 47ms (compile: 4ms, proxy.ts: 1389µs, render: 42ms)
+ GET /admin/site-config?site=main 200 in 32ms (compile: 16ms, proxy.ts: 1934µs, render: 14ms)
+ GET /manifest.webmanifest 200 in 13ms (compile: 4ms, proxy.ts: 5ms, render: 4ms)
+ GET /icon-192.png 404 in 57ms (compile: 9ms, proxy.ts: 3ms, render: 45ms)
+ POST /admin/site-config?site=main 200 in 41ms (compile: 9ms, proxy.ts: 5ms, render: 27ms)
+ GET /admin?site=main 200 in 95ms (compile: 78ms, proxy.ts: 3ms, render: 14ms)
+ GET /manifest.webmanifest 200 in 16ms (compile: 10ms, proxy.ts: 4ms, render: 3ms)
+ POST /admin?site=main 200 in 20ms (compile: 6ms, proxy.ts: 4ms, render: 9ms)
+ POST /admin?site=main 200 in 9ms (compile: 2ms, proxy.ts: 1692µs, render: 5ms)
+ GET /icon-192.png 404 in 72ms (compile: 9ms, proxy.ts: 1760µs, render: 61ms)
+ GET /admin/news?site=main 200 in 46ms (compile: 32ms, proxy.ts: 1441µs, render: 13ms)
+ GET /manifest.webmanifest 200 in 8ms (compile: 2ms, proxy.ts: 1599µs, render: 4ms)
+ GET /icon-192.png 404 in 52ms (compile: 5ms, proxy.ts: 3ms, render: 45ms)
+ GET /admin/news/edit/tducf7ibabouw0y064b7ulln?site=main 200 in 353ms (compile: 333ms, proxy.ts: 6ms, render: 14ms)
+ GET /manifest.webmanifest 200 in 11ms (compile: 3ms, proxy.ts: 3ms, render: 6ms)
+ GET /icon-192.png 404 in 81ms (compile: 9ms, proxy.ts: 3ms, render: 68ms)
+ POST /admin/news/edit/tducf7ibabouw0y064b7ulln?site=main 200 in 41ms (compile: 13ms, proxy.ts: 7ms, render: 20ms)
+ POST /admin/news/edit/tducf7ibabouw0y064b7ulln?site=main 200 in 38ms (compile: 11ms, proxy.ts: 6ms, render: 21ms)
+✓ Compiled in 143ms
+ POST /admin/news/edit/tducf7ibabouw0y064b7ulln?site=main 200 in 64ms (compile: 42ms, proxy.ts: 1424µs, render: 21ms)
