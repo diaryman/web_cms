@@ -309,7 +309,8 @@ export default function ChatWidget({ domainOverride }: Props) {
                         <div
                             ref={scrollContainerRef}
                             onScroll={handleScroll}
-                            className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50/40"
+                            data-lenis-prevent="true"
+                            className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50/40 custom-scrollbar overscroll-contain"
                         >
                             {messages.map((msg) => (
                                 <div key={msg.id} className={`flex gap-2.5 ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
