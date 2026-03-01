@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { MessageCircle, X, Send, Bot, User, Copy, Check, ThumbsUp, ThumbsDown, RotateCcw, Maximize2, Minimize2, ChevronDown } from "lucide-react";
+import { MessageCircle, X, Send, Bot, User, Copy, Check, ThumbsUp, ThumbsDown, RotateCcw, Maximize2, Minimize2, ChevronDown, Mic, MicOff } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { fetchAPI } from "@/lib/api";
 
@@ -96,11 +96,13 @@ export default function ChatWidget({ domainOverride }: Props) {
     });
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputValue, setInputValue] = useState("");
+    const [isListening, setIsListening] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [showScrollDown, setShowScrollDown] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+    const recognitionRef = useRef<any>(null);
 
     const domain = domainOverride || (typeof window !== "undefined"
         ? (window.location.port === "3004" ? "pdpa.localhost" : (window.location.port === "3002" ? "localhost" : window.location.hostname))
@@ -146,7 +148,46 @@ export default function ChatWidget({ domainOverride }: Props) {
             }
         };
         fetchConfig();
+        // Initialize speech recognition wrapper
+        if (typeof window !== "undefined") {
+            const SpeechRec = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+            if (SpeechRec) {
+                const recognition = new SpeechRec();
+                recognition.continuous = true; // allow continuous listening while pressed
+                recognition.interimResults = true;
+                recognition.lang = 'th-TH'; // Default Thai, can dynamically change based on context
+
+                recognition.onresult = (event: any) => {
+                    let transcript = '';
+                    for (let i = 0; i < event.results.length; ++i) {
+                        transcript += event.results[i][0].transcript;
+                    }
+                    setInputValue(transcript);
+                };
+
+                recognition.onerror = () => setIsListening(false);
+                recognition.onend = () => setIsListening(false);
+
+                recognitionRef.current = recognition;
+            }
+        }
     }, [domain]);
+
+    // Voice to Text Toggle
+    const toggleListening = () => {
+        if (!recognitionRef.current) {
+            alert("เบราว์เซอร์ของคุณไม่รองรับการสั่งงานด้วยเสียง (รองรับ Chrome/Edge/Safari ใหม่ๆ)");
+            return;
+        }
+        if (isListening) {
+            recognitionRef.current.stop();
+            setIsListening(false);
+        } else {
+            setInputValue(""); // Clear input when start listening, or keep? Better to clear before dictation
+            recognitionRef.current.start();
+            setIsListening(true);
+        }
+    };
 
     // Auto-scroll to bottom
     const scrollToBottom = useCallback(() => {
@@ -389,7 +430,7 @@ export default function ChatWidget({ domainOverride }: Props) {
                         </AnimatePresence>
 
                         {/* Input */}
-                        <form onSubmit={handleSubmit} className="p-3 bg-white border-t border-gray-50 flex gap-2 flex-shrink-0">
+                        <form onSubmit={handleSubmit} className="p-3 bg-white border-t border-gray-50 flex gap-2 flex-shrink-0 relative">
                             <input
                                 ref={inputRef}
                                 type="text"
@@ -397,8 +438,19 @@ export default function ChatWidget({ domainOverride }: Props) {
                                 onChange={(e) => setInputValue(e.target.value)}
                                 placeholder="พิมพ์คำถามที่นี่..."
                                 disabled={isLoading}
-                                className="flex-1 bg-gray-50 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium outline-none border border-transparent focus:border-primary/20 disabled:opacity-60"
+                                className="flex-1 bg-gray-50 rounded-xl pl-4 pr-12 py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all font-medium outline-none border border-transparent focus:border-primary/20 disabled:opacity-60"
                             />
+                            {/* Voice Button */}
+                            <button
+                                type="button"
+                                onClick={toggleListening}
+                                className={`absolute right-[4.5rem] top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isListening ? "text-rose-500 bg-rose-50 animate-pulse" : "text-gray-400 hover:text-primary hover:bg-gray-100"
+                                    }`}
+                                title={isListening ? "กำลังฟังเสียง (กดเพื่อหยุด)" : "สั่งงานด้วยเสียง"}
+                            >
+                                {isListening ? <Mic size={16} /> : <MicOff size={16} />}
+                            </button>
+                            {/* Submit Button */}
                             <button
                                 type="submit"
                                 disabled={isLoading || !inputValue.trim()}

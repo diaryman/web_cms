@@ -20,3 +20,25 @@
 ✓ Starting...
 ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
 ✓ Ready in 446ms
+ GET /manifest.webmanifest 200 in 69ms (compile: 56ms, proxy.ts: 2ms, render: 11ms)
+ GET /admin/site-config?site=pdpa 200 in 164ms (compile: 4ms, proxy.ts: 5ms, render: 155ms)
+ POST /admin/site-config?site=pdpa 200 in 48ms (compile: 19ms, proxy.ts: 5ms, render: 24ms)
+ GET /icon-192.png 404 in 215ms (compile: 126ms, proxy.ts: 4ms, render: 85ms)
+ GET /manifest.webmanifest 200 in 7ms (compile: 1876µs, proxy.ts: 1625µs, render: 3ms)
+ GET / 200 in 335ms (compile: 64ms, proxy.ts: 6ms, render: 265ms)
+ GET /icon-192.png 404 in 68ms (compile: 14ms, proxy.ts: 2ms, render: 51ms)
+ GET /admin/site-config?site=pdpa 200 in 457ms (compile: 174ms, proxy.ts: 3ms, render: 279ms)
+ GET /manifest.webmanifest 200 in 48ms (compile: 26ms, proxy.ts: 7ms, render: 15ms)
+ GET / 200 in 566ms (compile: 9ms, proxy.ts: 4ms, render: 553ms)
+ GET /manifest.webmanifest 200 in 18ms (compile: 2ms, proxy.ts: 5ms, render: 10ms)
+ GET /icon-192.png 404 in 269ms (compile: 19ms, proxy.ts: 6ms, render: 244ms)
+ GET /icon-192.png 404 in 135ms (compile: 18ms, proxy.ts: 5ms, render: 112ms)
+ GET /manifest.webmanifest 200 in 18ms (compile: 10ms, proxy.ts: 4ms, render: 4ms)
+ GET /manifest.webmanifest 200 in 51ms (compile: 21ms, proxy.ts: 1518µs, render: 29ms)
+ GET /admin/site-config?site=pdpa 200 in 2.1s (compile: 1045ms, proxy.ts: 6ms, render: 1022ms)
+ GET / 200 in 2.1s (compile: 797ms, proxy.ts: 6ms, render: 1308ms)
+ POST /admin/site-config?site=pdpa 200 in 268ms (compile: 203ms, proxy.ts: 10ms, render: 55ms)
+ GET /icon-192.png 404 in 1004ms (compile: 133ms, proxy.ts: 6ms, render: 865ms)
+ GET /icon-192.png 404 in 401ms (compile: 69ms, proxy.ts: 26ms, render: 305ms)
+✓ Compiled in 5.6s
+✓ Compiled in 43ms
