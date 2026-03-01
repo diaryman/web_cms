@@ -18,8 +18,8 @@ services:
       API_TOKEN_SALT: ${API_TOKEN_SALT:-aSecretKey}
       TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT:-aSecretKey}
     volumes:
-      - strapi-data:/opt/app/.tmp
-      - strapi-uploads:/opt/app/public/uploads
+      - ./backend/.tmp:/opt/app/.tmp
+      - ./backend/public/uploads:/opt/app/public/uploads
     ports:
       - "1337:1337"
     networks:
@@ -47,11 +47,6 @@ services:
       - backend
     networks:
       - my_cms_net
-
-volumes:
-  strapi-data:
-  strapi-uploads:
-
 
 networks:
   my_cms_net:
