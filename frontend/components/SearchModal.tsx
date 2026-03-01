@@ -50,6 +50,7 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost" }: S
     const [hasSearched, setHasSearched] = useState(false);
     const [recentSearches, setRecentSearches] = useState<string[]>([]);
     const [isListening, setIsListening] = useState(false);
+    const [speechError, setSpeechError] = useState<string | null>(null);
     const recognitionRef = useRef<any>(null);
     const debounceRef = useRef<NodeJS.Timeout | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -88,6 +89,15 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost" }: S
 
                 recognitionRef.current.onerror = (event: any) => {
                     console.error("Speech recognition error", event.error);
+                    if (event.error === "not-allowed") {
+                        setSpeechError("ไม่สามารถเข้าถึงไมโครโฟนได้ กรุณาอนุญาตการเข้าถึงก่อนใช้งาน");
+                    } else if (event.error === "no-speech") {
+                        setSpeechError("ไม่ได้ยินเสียงของคุณ กรุณาลองใหม่อีกครั้ง");
+                    } else if (event.error === "network") {
+                        setSpeechError("การเชื่อมต่อมีปัญหา ไม่สามารถใช้งานพิมพ์ด้วยเสียงได้");
+                    } else {
+                        setSpeechError("เกิดข้อผิดพลาดในการรับเสียง กรุณาลองใหม่อีกครั้ง");
+                    }
                     setIsListening(false);
                 };
 
@@ -99,6 +109,7 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost" }: S
     }, [isPdpa]);
 
     const toggleListening = () => {
+        setSpeechError(null);
         if (isListening) {
             recognitionRef.current?.stop();
             setIsListening(false);
@@ -106,8 +117,14 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost" }: S
             setQuery("");
             setResults([]);
             setHasSearched(false);
-            recognitionRef.current?.start();
-            setIsListening(true);
+            try {
+                recognitionRef.current?.start();
+                setIsListening(true);
+            } catch (err) {
+                console.error("Failed to start speech recognition:", err);
+                setSpeechError("ระบบไม่รองรับ หรือกรุณาอนุญาตให้เข้าถึงไมโครโฟน");
+                setIsListening(false);
+            }
         }
     };
 
@@ -310,6 +327,16 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost" }: S
                                     ESC
                                 </kbd>
                             </div>
+
+                            {/* Speech Error Banner */}
+                            {speechError && (
+                                <div className="px-6 py-2 bg-red-50 text-red-500 text-xs font-bold flex justify-between items-center bg-opacity-50">
+                                    <span>{speechError}</span>
+                                    <button onClick={() => setSpeechError(null)} className="hover:bg-red-100 p-1 rounded-md transition-colors">
+                                        <X size={14} />
+                                    </button>
+                                </div>
+                            )}
                         </form>
 
                         {/* Results / Default State */}

@@ -69,3 +69,4 @@
  POST /admin/site-config?site=pdpa 200 in 48ms (compile: 31ms, proxy.ts: 5ms, render: 12ms)
  GET /icon-192.png 404 in 125ms (compile: 47ms, proxy.ts: 6ms, render: 72ms)
 ✓ Compiled in 565ms
+✓ Compiled in 256ms
