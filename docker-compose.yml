@@ -12,11 +12,6 @@ services:
       NODE_ENV: production
       DATABASE_CLIENT: sqlite
       DATABASE_FILENAME: .tmp/data.db
-      JWT_SECRET: ${JWT_SECRET:-aSecretKey}
-      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:-aSecretKey}
-      APP_KEYS: ${APP_KEYS:-aSecretKey,anotherSecretKey}
-      API_TOKEN_SALT: ${API_TOKEN_SALT:-aSecretKey}
-      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT:-aSecretKey}
     volumes:
       - ./backend/.tmp:/opt/app/.tmp
       - ./backend/public/uploads:/opt/app/public/uploads
