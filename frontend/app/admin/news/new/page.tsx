@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import { uploadFile } from "@/app/actions/upload";
 import { createArticle } from "@/app/actions/article";
 import Swal from "sweetalert2";
+import ImageCropperModal from "@/components/ImageCropperModal";
 
 const BlockEditor = dynamic(() => import("@/components/BlockEditor"), {
     ssr: false,
@@ -36,6 +37,9 @@ function CreateNewsForm() {
     const [uploadMode, setUploadMode] = useState<"file" | "url">("file");
     const [imageUrlInput, setImageUrlInput] = useState("");
     const [fetchingUrl, setFetchingUrl] = useState(false);
+
+    // Cropper State
+    const [cropSourceUrl, setCropSourceUrl] = useState<string | null>(null);
 
     const [formData, setFormData] = useState({
         title: "",
@@ -72,9 +76,15 @@ function CreateNewsForm() {
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const file = e.target.files[0];
-            setImageFile(file);
-            setPreviewUrl(URL.createObjectURL(file));
+            const url = URL.createObjectURL(file);
+            setCropSourceUrl(url); // Trigger crop modal
         }
+    };
+
+    const handleCropComplete = (croppedFile: File) => {
+        setImageFile(croppedFile);
+        setPreviewUrl(URL.createObjectURL(croppedFile));
+        setCropSourceUrl(null); // Close crop modal
     };
 
     const handleUrlFetch = async () => {
@@ -89,8 +99,9 @@ function CreateNewsForm() {
             const filename = pathname.substring(pathname.lastIndexOf('/') + 1) || 'image.jpg';
 
             const file = new File([blob], filename, { type: blob.type });
-            setImageFile(file);
-            setPreviewUrl(URL.createObjectURL(file));
+            const url = URL.createObjectURL(file);
+            setCropSourceUrl(url); // Trigger crop modal via URL
+
             setUploadMode("file");
             setImageUrlInput("");
         } catch (error: any) {
@@ -409,6 +420,15 @@ function CreateNewsForm() {
                     </button>
                 </div>
             </form>
+
+            {cropSourceUrl && (
+                <ImageCropperModal
+                    imageUrl={cropSourceUrl}
+                    aspectRatio={16 / 10} // Match your preview aspect ratio aspect-[16/10]
+                    onCropComplete={handleCropComplete}
+                    onClose={() => setCropSourceUrl(null)}
+                />
+            )}
         </div>
     );
 }

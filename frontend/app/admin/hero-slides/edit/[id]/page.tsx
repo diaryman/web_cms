@@ -1,31 +1,34 @@
 "use client";
 
 import Swal from "sweetalert2";
-import { useState, Suspense } from "react";
+import { useState, useEffect, use, Suspense } from "react";
 import { uploadFile } from "@/app/actions/upload";
 import { useRouter, useSearchParams } from "next/navigation";
-import { fetchAPI } from "@/lib/api";
+import { fetchAPI, getStrapiMedia } from "@/lib/api";
 import { Save, Loader2, ArrowLeft, Image as ImageIcon, Link as LinkIcon, Type, AlignLeft, Plus, Crop } from "lucide-react";
 import Link from "next/link";
 import ImageCropperModal from "@/components/ImageCropperModal";
 
-export default function NewHeroSlidePage() {
+export default function EditHeroSlidePage({ params }: { params: Promise<{ id: string }> }) {
+    const unwrappedParams = use(params);
     return (
-        <Suspense fallback={<div>กำลังโหลด...</div>}>
-            <NewHeroSlideForm />
+        <Suspense fallback={<div className="flex justify-center p-20"><Loader2 className="animate-spin" /></div>}>
+            <EditHeroSlideForm id={unwrappedParams.id} />
         </Suspense>
     );
 }
 
-function NewHeroSlideForm() {
+function EditHeroSlideForm({ id }: { id: string }) {
     const router = useRouter();
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
     const targetDomain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
 
+    const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [existingImage, setExistingImage] = useState<string | null>(null);
     const [uploadMode, setUploadMode] = useState<"file" | "url">("file");
     const [imageUrlInput, setImageUrlInput] = useState("");
     const [fetchingUrl, setFetchingUrl] = useState(false);
@@ -41,6 +44,43 @@ function NewHeroSlideForm() {
         isActive: true,
         displayOrder: 1,
     });
+
+    useEffect(() => {
+        const loadSlide = async () => {
+            try {
+                const res = await fetchAPI(`/hero-slides/${id}`, {
+                    populate: ["image"],
+                    _t: Date.now()
+                });
+
+                const slide = res.data;
+                setFormData({
+                    title: slide.title || "",
+                    subtitle: slide.subtitle || "",
+                    buttonText: slide.buttonText || "อ่านเพิ่มเติม",
+                    buttonLink: slide.buttonLink || "/",
+                    isActive: slide.isActive ?? true,
+                    displayOrder: slide.displayOrder ?? 1,
+                });
+
+                if (slide.image?.url) {
+                    setExistingImage(getStrapiMedia(slide.image.url));
+                }
+            } catch (error: any) {
+                console.error("Error loading slide", error);
+                Swal.fire({
+                    icon: "error",
+                    title: "ไม่พบข้อมูล",
+                    text: "ไม่พบแบนเนอร์นี้ในระบบ อาจถูกลบไปแล้ว"
+                }).then(() => {
+                    router.push(`/admin/hero-slides?site=${siteParam}`);
+                });
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadSlide();
+    }, [id, siteParam, router]);
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -84,39 +124,41 @@ function NewHeroSlideForm() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!imageFile) {
-            Swal.fire({ title: "แจ้งเตือน", text: "กรุณาอัปโหลดรูปภาพ" });
-            return;
-        }
 
         setSaving(true);
         try {
-            // 1. Upload image using Server Action
-            const imageFormData = new FormData();
-            imageFormData.append("files", imageFile);
+            let imageId = undefined;
+            // 1. Upload image using Server Action if a new file is selected
+            if (imageFile) {
+                const imageFormData = new FormData();
+                imageFormData.append("files", imageFile);
 
-            console.log("Starting upload...");
-            const uploadedFiles = await uploadFile(imageFormData);
+                const uploadedFiles = await uploadFile(imageFormData);
 
-            if (!Array.isArray(uploadedFiles) || uploadedFiles.length === 0) {
-                console.error("Upload response invalid:", uploadedFiles);
-                throw new Error("No file returned from upload");
+                if (!Array.isArray(uploadedFiles) || uploadedFiles.length === 0) {
+                    throw new Error("No file returned from upload");
+                }
+
+                imageId = uploadedFiles[0].id;
             }
 
-            const imageId = uploadedFiles[0].id;
+            // 2. Update Hero Slide
+            const payload: any = {
+                data: {
+                    ...formData,
+                    domain: targetDomain,
+                }
+            };
+            if (imageId) {
+                payload.data.image = imageId;
+            }
 
-            // 2. Create Hero Slide
-            await fetchAPI("/hero-slides", {}, {
-                method: "POST",
-                body: JSON.stringify({
-                    data: {
-                        ...formData,
-                        domain: targetDomain,
-                        image: imageId
-                    }
-                })
+            await fetchAPI(`/hero-slides/${id}`, {}, {
+                method: "PUT",
+                body: JSON.stringify(payload)
             });
 
+            Swal.fire({ icon: "success", title: "สำเร็จ", text: "บันทึกการแก้ไขแล้ว", timer: 1500, showConfirmButton: false });
             router.push(`/admin/hero-slides?site=${siteParam}`);
         } catch (error: any) {
             console.error("Save failed", error);
@@ -125,6 +167,8 @@ function NewHeroSlideForm() {
             setSaving(false);
         }
     };
+
+    if (loading) return <div className="flex justify-center p-20"><Loader2 className="animate-spin" /></div>;
 
     return (
         <div className="max-w-4xl mx-auto space-y-8 pb-32">
@@ -136,8 +180,8 @@ function NewHeroSlideForm() {
                     <ArrowLeft size={20} />
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-black text-primary font-heading">เพิ่มสไลด์ใหม่</h1>
-                    <p className="text-gray-500">สร้างแบนเนอร์ใหม่สำหรับหน้าแรก</p>
+                    <h1 className="text-3xl font-black text-primary font-heading">แก้ไขสไลด์</h1>
+                    <p className="text-gray-500">ปรับปรุงข้อมูลแบนเนอร์</p>
                 </div>
             </div>
 
@@ -238,20 +282,20 @@ function NewHeroSlideForm() {
                                         {fetchingUrl ? <Loader2 size={16} className="animate-spin" /> : "ดึงรูป"}
                                     </button>
                                 </div>
-                                {previewUrl && (
+                                {(previewUrl || existingImage) && (
                                     <div className="text-center">
                                         <p className="text-xs text-gray-500 mb-2">รูปที่เลือกปัจจุบัน:</p>
-                                        <img src={previewUrl} className="w-full h-32 object-cover rounded-xl" alt="Current" />
+                                        <img src={previewUrl || existingImage || ""} className="w-full h-32 object-cover rounded-xl" alt="Current" />
                                     </div>
                                 )}
                             </div>
                         ) : (
                             <div
-                                className={`relative aspect-video rounded-2xl border-2 border-dashed transition-all flex flex-col items-center justify-center overflow-hidden bg-gray-50 ${previewUrl ? 'border-transparent' : 'border-gray-200 hover:border-primary/40'}`}
+                                className={`relative aspect-[21/9] rounded-2xl border-2 border-dashed transition-all flex flex-col items-center justify-center overflow-hidden bg-gray-50 ${(previewUrl || existingImage) ? 'border-transparent' : 'border-gray-200 hover:border-primary/40'}`}
                             >
-                                {previewUrl ? (
+                                {(previewUrl || existingImage) ? (
                                     <>
-                                        <img src={previewUrl} className="w-full h-full object-cover" alt="Preview" />
+                                        <img src={previewUrl || existingImage || ""} className="w-full h-full object-cover" alt="Preview" />
                                         <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none text-white font-bold text-xs">
                                             คลิกเพื่อเปลี่ยนรูป
                                         </div>
@@ -261,8 +305,7 @@ function NewHeroSlideForm() {
                                         <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mx-auto mb-3">
                                             <Plus size={24} />
                                         </div>
-                                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">ลากวาง หรือ คลิกอัปโหลด</p>
-                                        <p className="text-[10px] text-gray-400 mt-1">แนะนำ: 1920x800</p>
+                                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-relaxed">ลากวาง หรือ<br />คลิกอัปโหลด</p>
                                     </div>
                                 )}
                                 <input
@@ -312,7 +355,7 @@ function NewHeroSlideForm() {
                         className="px-10 py-3 bg-primary text-white font-bold rounded-xl shadow-premium hover:bg-accent transition-all active:scale-95 flex items-center gap-2 disabled:opacity-50"
                     >
                         {saving ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
-                        สร้างสไลด์
+                        บันทึกการแก้ไข
                     </button>
                 </div>
             </form>

@@ -25,6 +25,11 @@ function StatsContent() {
         contacts: 0,
         recentArticles: [] as any[]
     });
+    const [chartInfo, setChartInfo] = useState({
+        labels: [] as string[],
+        data: [] as { count: number, percentage: number }[],
+        totalViews: 0
+    });
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -45,6 +50,58 @@ function StatsContent() {
                     filters: { domain },
                     sort: ["publishedAt:desc"],
                     pagination: { limit: 5 }
+                });
+
+                // 3. Fetch Page Views (last 7 days)
+                const sevenDaysAgo = new Date();
+                sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
+                sevenDaysAgo.setHours(0, 0, 0, 0);
+
+                const viewRes = await fetchAPI("/page-views", {
+                    filters: {
+                        domain,
+                        viewed_at: { $gte: sevenDaysAgo.toISOString() }
+                    },
+                    pagination: { limit: 1000 }
+                });
+
+                // Calculate daily views
+                const views = viewRes.data || [];
+                const dailyCounts = Array(7).fill(0);
+                const labels: string[] = [];
+
+                for (let i = 6; i >= 0; i--) {
+                    const d = new Date();
+                    d.setDate(d.getDate() - i);
+                    labels.push(d.toLocaleDateString("en-US", { weekday: 'short' }));
+                }
+
+                views.forEach((v: any) => {
+                    const vDate = new Date(v.viewed_at);
+                    // Compare start of dates
+                    const vDateStart = new Date(vDate);
+                    vDateStart.setHours(0, 0, 0, 0);
+                    const todayStart = new Date();
+                    todayStart.setHours(0, 0, 0, 0);
+
+                    const diffTime = todayStart.getTime() - vDateStart.getTime();
+                    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+                    if (diffDays >= 0 && diffDays < 7) {
+                        dailyCounts[6 - diffDays]++; // 6 is today
+                    }
+                });
+
+                const maxVal = Math.max(...dailyCounts, 10);
+                const chartDataMapped = dailyCounts.map(count => ({
+                    count,
+                    percentage: Math.max((count / maxVal) * 100, 5) // At least 5% so it's visible
+                }));
+
+                setChartInfo({
+                    labels,
+                    data: chartDataMapped,
+                    totalViews: views.length
                 });
 
                 setStats({
@@ -144,12 +201,12 @@ function StatsContent() {
 
             {/* Main Charts Area */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Visual Chart 1 (Mock Bars - Keeping as Visual UI for now) */}
+                {/* Visual Chart 1 (Real Data) */}
                 <div className="lg:col-span-2 bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-sm flex flex-col h-[400px]">
                     <div className="flex justify-between items-center mb-8">
                         <div>
                             <h3 className="text-xl font-bold font-heading text-primary">ยอดเข้าชมรายสัปดาห์</h3>
-                            <p className="text-xs text-gray-400 font-medium">สถิติการเข้าชมโดยประมาณ</p>
+                            <p className="text-xs text-gray-400 font-medium">สถิติการเข้าชมทั้งหมด: <strong className="text-accent text-sm">{chartInfo.totalViews}</strong> ครั้ง</p>
                         </div>
                         <div className="flex bg-gray-50 p-1 rounded-xl">
                             <button className="px-3 py-1.5 bg-white text-primary text-xs font-bold rounded-lg shadow-sm">Week</button>
@@ -165,15 +222,15 @@ function StatsContent() {
                             ))}
                         </div>
 
-                        {/* Bars - Static visual for now */}
-                        {[45, 78, 52, 90, 65, 85, 40].map((h, i) => (
+                        {/* Bars - Actual Data */}
+                        {chartInfo.data.map((item, i) => (
                             <div key={i} className="flex-1 flex flex-col items-center gap-2 group relative z-10 w-full h-full justify-end">
                                 <div
                                     className="w-full rounded-t-xl transition-all duration-500 relative group-hover:shadow-lg"
-                                    style={{ height: `${h}%`, background: 'var(--accent-color)' }}
+                                    style={{ height: `${item.percentage}%`, background: 'var(--accent-color)' }}
                                 >
                                     <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all shadow-xl whitespace-nowrap z-20">
-                                        {Math.round(h * 15.4)} Views
+                                        {item.count} Views
                                         <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-primary"></div>
                                     </div>
                                 </div>
@@ -181,7 +238,9 @@ function StatsContent() {
                         ))}
                     </div>
                     <div className="flex justify-between mt-4 px-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                        {chartInfo.labels.map((lbl, i) => (
+                            <span key={i}>{lbl}</span>
+                        ))}
                     </div>
                 </div>
 

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import withPWAInit from "@ducanh2912/next-pwa";
 
 // ── HTTP Security Headers (DGA Website Standard v3.0 / NCSA / OWASP) ─────────
 const securityHeaders = [
@@ -91,4 +92,10 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const withPWA = withPWAInit({
+  dest: "public",
+  disable: process.env.NODE_ENV === "development",
+  register: true,
+});
+
+export default withPWA(nextConfig);

@@ -43,6 +43,12 @@ export async function generateMetadata(): Promise<Metadata> {
         template: "%s | PDPA ศาลปกครอง",
       },
       description: "การดำเนินงานด้านการคุ้มครองข้อมูลส่วนบุคคล สำนักงานศาลปกครอง ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562",
+      manifest: "/manifest.json",
+      appleWebApp: {
+        capable: true,
+        statusBarStyle: "default",
+        title: "PDPA",
+      },
       robots: { index: true, follow: true },
     }
     : {
@@ -51,6 +57,12 @@ export async function generateMetadata(): Promise<Metadata> {
         template: "%s | DataGOV ศาลปกครอง",
       },
       description: "ระบบบริหารจัดการและกำกับดูแลข้อมูลอิเล็กทรอนิกส์ สำนักงานศาลปกครอง ภายใต้มาตรฐานธรรมาภิบาลข้อมูลภาครัฐ",
+      manifest: "/manifest.json",
+      appleWebApp: {
+        capable: true,
+        statusBarStyle: "default",
+        title: "DataGOV",
+      },
       robots: { index: true, follow: true },
     };
 }
