@@ -598,6 +598,13 @@ html.high-contrast [style*="background-image"] {
   background: rgba(0, 0, 0, 0.1);
 }
 
+/* Allow native rubber-banding overscroll effect */
+html.lenis-smooth,
+html.lenis-smooth body {
+  height: auto;
+  overscroll-behavior-y: auto;
+}
+
 /* ========================================
    Legal Page Content (admin-rendered HTML)
    ======================================== */

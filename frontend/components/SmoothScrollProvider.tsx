@@ -11,6 +11,7 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             wheelMultiplier: 1,
             touchMultiplier: 2,
+            syncTouch: true,
         });
 
         // Add a class to html for hiding native scrollbars styling via CSS if desired
