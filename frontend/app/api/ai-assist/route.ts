@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
         }
 
         // 1. Load chatbot config from Strapi (same as the chatbot)
-        const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+        const strapiUrl = process.env.STRAPI_URL || process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
         const configRes = await fetch(
             `${strapiUrl}/api/chatbot-configs?filters[domain][$eq]=${domain}`,
             { headers: { "Content-Type": "application/json" } }
