@@ -117,7 +117,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                     </Link>
                 </div>
 
-                <nav className="flex-1 min-h-0 px-4 overflow-y-auto pb-6 custom-scrollbar space-y-5">
+                <nav data-lenis-prevent="true" className="flex-1 min-h-0 px-4 overflow-y-auto pb-6 custom-scrollbar space-y-5">
                     {menuGroups.map((group) => (
                         <div key={group.label}>
                             {/* Group label */}

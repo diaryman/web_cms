@@ -576,6 +576,10 @@ html.high-contrast [style*="background-image"] {
 }
 
 /* Custom Scrollbar for Sidebar */
+.custom-scrollbar {
+  overscroll-behavior-y: contain;
+}
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
