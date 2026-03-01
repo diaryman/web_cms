@@ -41,7 +41,8 @@ services:
       # You can supply production Strapi token in your actual server env
       STRAPI_API_TOKEN: ${STRAPI_API_TOKEN:-your_production_token}
     ports:
-      - "3000:3000"
+      - "3002:3000"
+      - "3004:3000"
     depends_on:
       - backend
     networks:
