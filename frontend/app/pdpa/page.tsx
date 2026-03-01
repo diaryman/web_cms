@@ -39,9 +39,10 @@ export default async function PDPAPage() {
     // Normalize domain for config matching
     let domain = host;
     if (host.includes(":3004")) domain = "pdpa.localhost";
-    else if (host.includes(":3002")) domain = "localhost";
-    else if (host.includes(":3000")) domain = "localhost";
-    else domain = host.split(":")[0];
+    else if (host.includes(":3002") || host.includes(":3000")) domain = "localhost";
+    // Fallback map based on port for production external access (e.g. 54.224.21.48:3002 -> localhost)
+    else if (host.includes("3004") || host.includes("pdpa")) domain = "pdpa.localhost";
+    else domain = "pdpa.localhost"; // Default to PDPA domain for PDPA page
 
     let announcement = undefined;
     let siteConfig = undefined;
