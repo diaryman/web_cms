@@ -24,13 +24,13 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
     const siteParam = searchParams.get("site") || "main";
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
     const homeLink = siteParam === "pdpa" ? (process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004") : "/";
-    const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
+    const [authData, setAuthData] = useState<{ isAuthorized: boolean; role: string | null; username: string | null } | null>(null);
     const router = useRouter();
 
     useEffect(() => {
         const checkAuth = async () => {
-            const auth = await checkAuthAction(siteParam);
-            setIsAuthorized(auth);
+            const data = await checkAuthAction(siteParam);
+            setAuthData(data);
         };
 
         checkAuth();
@@ -50,12 +50,14 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
     const menuGroups = [
         {
             label: "ภาพรวม",
+            roles: ["SUPER_ADMIN", "EDITOR"],
             items: [
                 { icon: <LayoutDashboard size={18} />, label: "แดชบอร์ด", href: `/admin`, path: `/admin`, exact: true },
             ],
         },
         {
             label: "จัดการเนื้อหา",
+            roles: ["SUPER_ADMIN", "EDITOR"],
             items: [
                 { icon: <FileText size={18} />, label: "ข่าวสาร/กิจกรรม", href: `/admin/news`, path: `/admin/news` },
                 { icon: <ShieldCheck size={18} />, label: "นโยบายและมาตรฐาน", href: `/admin/policies`, path: `/admin/policies` },
@@ -67,6 +69,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
         },
         {
             label: "จัดการไซต์",
+            roles: ["SUPER_ADMIN"],
             items: [
                 { icon: <Settings size={18} />, label: "ตั้งค่าเว็บไซต์", href: `/admin/site-config`, path: `/admin/site-config` },
                 { icon: <FolderTree size={18} />, label: "หมวดหมู่", href: `/admin/categories`, path: `/admin/categories` },
@@ -75,6 +78,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
         },
         {
             label: "การสื่อสาร",
+            roles: ["SUPER_ADMIN"],
             items: [
                 { icon: <Bell size={18} />, label: "ข้อความติดต่อ", href: `/admin/contacts`, path: `/admin/contacts` },
                 { icon: <Mail size={18} />, label: "Newsletter", href: `/admin/newsletter`, path: `/admin/newsletter` },
@@ -84,6 +88,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
         },
         {
             label: "ระบบ",
+            roles: ["SUPER_ADMIN"],
             items: [
                 { icon: <BarChart3 size={18} />, label: "สถิติการใช้งาน", href: `/admin/stats`, path: `/admin/stats` },
                 { icon: <History size={18} />, label: "ประวัติการใช้งาน", href: `/admin/logs`, path: `/admin/logs` },
@@ -91,13 +96,17 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
         },
     ];
 
-    if (isAuthorized === null) {
+    if (authData === null) {
         return <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center"><p className="text-gray-400 font-bold">กำลังตรวจสอบสิทธิ์...</p></div>;
     }
 
-    if (isAuthorized === false) {
+    if (authData.isAuthorized === false) {
         return <div className="min-h-screen bg-[#f8fafc]">{children}</div>;
     }
+
+    const currentRole = authData.role || "SUPER_ADMIN";
+    const currentUsername = authData.username || "System Admin";
+    const filteredMenuGroups = menuGroups.filter(g => g.roles.includes(currentRole));
 
     return (
         <div className="min-h-screen bg-[#f8fafc] flex">
@@ -118,7 +127,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                 </div>
 
                 <nav data-lenis-prevent="true" className="flex-1 min-h-0 px-4 overflow-y-auto pb-6 custom-scrollbar space-y-5">
-                    {menuGroups.map((group) => (
+                    {filteredMenuGroups.map((group) => (
                         <div key={group.label}>
                             {/* Group label */}
                             <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em] px-4 mb-1.5">
@@ -231,10 +240,10 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
 
                         <div className="flex items-center gap-3 cursor-pointer group">
                             <div className="text-right flex flex-col">
-                                <span className="text-sm font-bold text-primary group-hover:text-accent transition-colors leading-none">ผู้ดูแลระบบ</span>
-                                <span className="text-[10px] text-gray-400 font-medium uppercase tracking-widest">System Admin</span>
+                                <span className="text-sm font-bold text-primary group-hover:text-accent transition-colors leading-none">{currentRole === "SUPER_ADMIN" ? "ผู้ดูแลระบบ(สูงสุด)" : "บรรณาธิการ(Editor)"}</span>
+                                <span className="text-[10px] text-gray-400 font-medium uppercase tracking-widest">{currentUsername}</span>
                             </div>
-                            <div className="w-10 h-10 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-primary group-hover:border-accent transition-all overflow-hidden">
+                            <div className="w-10 h-10 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-primary group-hover:border-accent transition-all overflow-hidden flex-shrink-0">
                                 <User size={20} />
                             </div>
                         </div>

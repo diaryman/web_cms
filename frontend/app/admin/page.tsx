@@ -70,6 +70,7 @@ function DashboardContent() {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
     const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [stats, setStats] = useState<DashboardStats | null>(null);
@@ -93,8 +94,8 @@ function DashboardContent() {
 
     useEffect(() => {
         const checkAuth = async () => {
-            const auth = await checkAuthAction(siteParam);
-            setIsAuthorized(auth);
+            const authData = await checkAuthAction(siteParam);
+            setIsAuthorized(authData.isAuthorized);
         };
 
         checkAuth();
@@ -258,7 +259,7 @@ function DashboardContent() {
         e.preventDefault();
 
         try {
-            const result = await loginAction(siteParam, password);
+            const result = await loginAction(siteParam, username, password);
             if (result.success) {
                 window.dispatchEvent(new Event('admin-auth-change'));
                 setIsAuthorized(true);
@@ -309,12 +310,19 @@ function DashboardContent() {
                     <form onSubmit={handleLogin} className="space-y-4">
                         <div className="relative">
                             <input
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                placeholder="ชื่อผู้ใช้ (Username)"
+                                className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-center font-bold tracking-widest placeholder:tracking-normal placeholder:font-medium mb-4"
+                                autoFocus
+                            />
+                            <input
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder="ใส่รหัสผ่านที่นี่..."
+                                placeholder="รหัสผ่าน (Password)"
                                 className="w-full px-6 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-center font-bold tracking-widest placeholder:tracking-normal placeholder:font-medium"
-                                autoFocus
                             />
                         </div>
                         {error && <p className="text-red-500 text-xs font-bold animate-shake">{error}</p>}
