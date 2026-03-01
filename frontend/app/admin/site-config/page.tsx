@@ -275,6 +275,7 @@ export default function AdminSiteConfigPage() {
     const [dragIndex, setDragIndex] = useState<number | null>(null);
     const [editingBlockIndex, setEditingBlockIndex] = useState<number | null>(null);
     const [editingBlockData, setEditingBlockData] = useState<any>(null);
+    const [showPreviewPane, setShowPreviewPane] = useState(false);
 
     const isPDPA = siteParam === "pdpa";
     const DEFAULT_SECTION_ORDER = isPDPA
@@ -408,6 +409,20 @@ export default function AdminSiteConfigPage() {
         };
         fetchConfig();
     }, [domain]);
+
+    // ── Live Preview Sync ────────────────────────────────────────────────────
+    useEffect(() => {
+        const iframe = document.getElementById("live-preview-iframe") as HTMLIFrameElement;
+        if (iframe && iframe.contentWindow && showPreviewPane) {
+            iframe.contentWindow.postMessage({
+                type: 'LIVE_PREVIEW_SYNC',
+                payload: {
+                    themeColors: formData.themeColors,
+                    fontFamily: formData.fontFamily
+                }
+            }, '*');
+        }
+    }, [formData.themeColors, formData.fontFamily, showPreviewPane]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -1721,23 +1736,99 @@ export default function AdminSiteConfigPage() {
                         </div>
                     </div>
                 </div>
+                {/* ── Live Preview Pane ── */}
+                <div
+                    className={`fixed inset-y-0 right-0 z-[100] transition-transform duration-500 ease-in-out ${showPreviewPane ? 'translate-x-0 overflow-visible shadow-[-20px_0_50px_rgba(0,0,0,0.1)]' : 'translate-x-full shadow-none'} w-[375px] sm:w-[480px] bg-white flex flex-col border-l border-gray-200 pointer-events-auto`}
+                >
+                    <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-gray-50/80 backdrop-blur-md z-10">
+                        <div>
+                            <h3 className="font-bold text-gray-800 flex items-center gap-2">
+                                <span className="relative flex h-3 w-3">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                                </span>
+                                โหมดจำลองหน้าจอเว็บ (Live Preview)
+                            </h3>
+                            <p className="text-[10px] text-gray-400 mt-0.5 ml-5">ภาพตัวอย่างแบบเรียลไทม์ (จำลองหน้าแรก)</p>
+                        </div>
+                        <button
+                            type="button"
+                            onClick={() => setShowPreviewPane(false)}
+                            className="p-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-100 transition-colors text-gray-500 hover:text-rose-500 focus:outline-none"
+                            aria-label="Close preview"
+                        >
+                            <X size={16} />
+                        </button>
+                    </div>
+                    <div className="flex-1 bg-gray-100 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 left-0 h-8 bg-gray-200/80 border-b border-gray-300 flex items-center px-4 gap-2 z-10 backdrop-blur">
+                            <div className="flex gap-1.5">
+                                <div className="w-2.5 h-2.5 rounded-full bg-rose-400" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                            </div>
+                            <div className="flex-1 ml-4 h-5 bg-white/70 rounded-md text-[9px] flex items-center px-3 text-gray-500 font-mono tracking-tight shadow-inner">
+                                {siteParam === 'pdpa' ? 'pdpa.admincourt.go.th' : 'datagov.admincourt.go.th'}
+                            </div>
+                        </div>
+                        <div className="absolute inset-0 pt-8" style={{ pointerEvents: showPreviewPane ? 'auto' : 'none' }}>
+                            <div className="w-full h-full relative">
+                                {showPreviewPane && (
+                                    <iframe
+                                        id="live-preview-iframe"
+                                        src={`/?site=${siteParam}&preview=true`}
+                                        className="w-full h-full border-none bg-white absolute inset-0"
+                                        title="Live Preview"
+                                        sandbox="allow-scripts allow-same-origin"
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Overlay for small screens when preview is open */}
+                {
+                    showPreviewPane && (
+                        <div
+                            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[90] sm:hidden"
+                            onClick={() => setShowPreviewPane(false)}
+                        />
+                    )
+                }
 
                 {/* Action Bar */}
-                <div className="fixed bottom-0 left-0 md:left-72 right-0 p-6 bg-white/80 backdrop-blur-md border-t border-gray-200 flex justify-end gap-4 z-40">
+                <div
+                    className="fixed bottom-0 left-0 md:left-72 right-0 p-6 bg-white/80 backdrop-blur-md border-t border-gray-200 flex justify-end gap-3 z-[80] transition-all duration-500"
+                    style={{ paddingRight: showPreviewPane ? 'calc(clamp(375px, 100vw, 480px) + 1.5rem)' : '1.5rem' }}
+                >
                     <button
                         type="button"
-                        className="px-6 py-3 bg-gray-100 text-gray-600 font-bold rounded-xl hover:bg-gray-200 transition-colors"
+                        onClick={() => setShowPreviewPane(!showPreviewPane)}
+                        className={`px-5 py-3 font-bold rounded-xl transition-all flex items-center gap-2 border ${showPreviewPane
+                            ? 'bg-indigo-50 border-indigo-200 text-indigo-600'
+                            : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50 shadow-sm'
+                            }`}
+                    >
+                        <Globe size={18} />
+                        <span className="hidden sm:inline">{showPreviewPane ? 'ซ่อนตัวอย่าง' : 'ดูตัวอย่างหน้าเว็บ'}</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        className="px-5 py-3 bg-gray-100 text-gray-600 font-bold rounded-xl hover:bg-gray-200 transition-colors hidden sm:block"
                         onClick={() => window.history.back()}
                     >
                         ยกเลิก
                     </button>
+
                     <button
                         type="submit"
                         disabled={saving}
-                        className="px-8 py-3 bg-primary text-white font-bold rounded-xl shadow-premium hover:bg-accent transition-all active:scale-95 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-6 sm:px-8 py-3 bg-primary text-white font-bold rounded-xl shadow-premium hover:bg-accent transition-all active:scale-95 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed z-10 relative overflow-hidden"
                     >
-                        {saving ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
-                        บันทึกการเปลี่ยนแปลง
+                        {saving ? <Loader2 className="animate-spin" size={18} /> : <Save size={18} />}
+                        <span className="relative z-10">บันทึกการเปลี่ยนแปลง</span>
                     </button>
                 </div>
             </form >

@@ -62,6 +62,7 @@ import SiteThemeProvider from "@/components/SiteThemeProvider";
 import CookieBanner from "@/components/CookieBanner";
 import AccessibilityToolbar from "@/components/AccessibilityToolbar";
 import AnalyticsProvider from "@/components/AnalyticsProvider";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import { fetchAPI } from "@/lib/api";
 import { generateThemeCssVariables } from "@/lib/themeUtils";
 
@@ -201,13 +202,15 @@ export default async function RootLayout({
         />
 
         <SiteThemeProvider>
-          <AnalyticsProvider domain={domain} />
-          <CustomCursor />
-          <AccessibilityToolbar />
-          {children}
-          <BackToTop />
-          <ChatWidget domainOverride={domain} />
-          <CookieBanner config={cookieConsentConfig} domain={domain} />
+          <SmoothScrollProvider>
+            <AnalyticsProvider domain={domain} />
+            <CustomCursor />
+            <AccessibilityToolbar />
+            {children}
+            <BackToTop />
+            <ChatWidget domainOverride={domain} />
+            <CookieBanner config={cookieConsentConfig} domain={domain} />
+          </SmoothScrollProvider>
         </SiteThemeProvider>
       </body>
     </html>

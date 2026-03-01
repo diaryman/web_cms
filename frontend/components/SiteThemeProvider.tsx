@@ -122,9 +122,25 @@ export default function SiteThemeProvider({ children }: { children: React.ReactN
         };
         window.addEventListener("theme-updated", handleThemeUpdated);
 
+        // ── Real-time iframe live preview sync ───────────────────────────
+        const handleLivePreview = (e: MessageEvent) => {
+            // Only respond to actual live preview sync events
+            if (e.data?.type === 'LIVE_PREVIEW_SYNC' && e.data?.payload) {
+                const { themeColors, fontFamily } = e.data.payload;
+                if (themeColors?.primary && themeColors?.accent) {
+                    applyThemeColors(themeColors.primary, themeColors.accent);
+                }
+                if (fontFamily) {
+                    applyThemeFont(fontFamily);
+                }
+            }
+        };
+        window.addEventListener('message', handleLivePreview);
+
         return () => {
             document.removeEventListener("visibilitychange", handleVisibilityChange);
             window.removeEventListener("theme-updated", handleThemeUpdated);
+            window.removeEventListener('message', handleLivePreview);
         };
         // Re-run when site param changes (admin switching DataGOV ↔ PDPA)
     }, [pathname, searchParams]);
