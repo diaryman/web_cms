@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Search, X, Loader2, FileText, Newspaper, ArrowRight, Clock, TrendingUp } from "lucide-react";
+import { Search, X, Loader2, FileText, Newspaper, ArrowRight, Clock, TrendingUp, Mic, MicOff } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -49,12 +49,67 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost" }: S
     const [isSearching, setIsSearching] = useState(false);
     const [hasSearched, setHasSearched] = useState(false);
     const [recentSearches, setRecentSearches] = useState<string[]>([]);
+    const [isListening, setIsListening] = useState(false);
+    const recognitionRef = useRef<any>(null);
     const debounceRef = useRef<NodeJS.Timeout | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const router = useRouter();
 
     const siteParam = domain === "pdpa.localhost" ? "pdpa" : "main";
     const isPdpa = domain === "pdpa.localhost";
+
+    // Setup Speech Recognition
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+            if (SpeechRecognition) {
+                recognitionRef.current = new SpeechRecognition();
+                recognitionRef.current.continuous = true;
+                recognitionRef.current.interimResults = true;
+                recognitionRef.current.lang = "th-TH";
+
+                let finalTranscript = "";
+
+                recognitionRef.current.onresult = (event: any) => {
+                    let interimTranscript = "";
+                    for (let i = event.resultIndex; i < event.results.length; ++i) {
+                        if (event.results[i].isFinal) {
+                            finalTranscript += event.results[i][0].transcript;
+                        } else {
+                            interimTranscript += event.results[i][0].transcript;
+                        }
+                    }
+                    const fullTranscript = finalTranscript + interimTranscript;
+                    setQuery(fullTranscript);
+
+                    if (debounceRef.current) clearTimeout(debounceRef.current);
+                    debounceRef.current = setTimeout(() => performSearch(fullTranscript), 500);
+                };
+
+                recognitionRef.current.onerror = (event: any) => {
+                    console.error("Speech recognition error", event.error);
+                    setIsListening(false);
+                };
+
+                recognitionRef.current.onend = () => {
+                    setIsListening(false);
+                };
+            }
+        }
+    }, [isPdpa]);
+
+    const toggleListening = () => {
+        if (isListening) {
+            recognitionRef.current?.stop();
+            setIsListening(false);
+        } else {
+            setQuery("");
+            setResults([]);
+            setHasSearched(false);
+            recognitionRef.current?.start();
+            setIsListening(true);
+        }
+    };
 
     // Load recent searches from localStorage
     useEffect(() => {
@@ -211,10 +266,28 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost" }: S
                                     type="text"
                                     value={query}
                                     onChange={(e) => handleQueryChange(e.target.value)}
-                                    placeholder={isPdpa ? "ค้นหาข้อมูล PDPA..." : "ค้นหาข้อมูลธรรมาภิบาล..."}
+                                    placeholder={isListening ? "กำลังฟัง..." : (isPdpa ? "ค้นหาข้อมูล PDPA..." : "ค้นหาข้อมูลธรรมาภิบาล...")}
                                     className="flex-1 text-xl font-bold bg-transparent border-none outline-none placeholder:opacity-40"
                                     style={{ color: "var(--foreground)" }}
                                 />
+                                <button
+                                    type="button"
+                                    onClick={toggleListening}
+                                    className={`p-2 rounded-xl transition-all flex-shrink-0 relative group 
+                                        ${isListening ? 'bg-red-50 text-red-500' : 'hover:bg-gray-100'}
+                                    `}
+                                    style={!isListening ? { color: "var(--text-muted)" } : {}}
+                                    title="ค้นหาด้วยเสียง"
+                                >
+                                    {isListening ? (
+                                        <>
+                                            <span className="absolute inset-0 rounded-xl bg-red-400 animate-ping opacity-20"></span>
+                                            <Mic size={20} className="relative z-10 animate-pulse" />
+                                        </>
+                                    ) : (
+                                        <Mic size={20} className="relative z-10 group-hover:text-accent transition-colors" />
+                                    )}
+                                </button>
                                 {query && (
                                     <button
                                         type="button"
