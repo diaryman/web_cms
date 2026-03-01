@@ -88,9 +88,9 @@ export default async function RootLayout({
 
   let domain = host;
   if (host.includes(":3004")) domain = "pdpa.localhost";
-  else if (host.includes(":3002")) domain = "localhost";
-  else if (host.includes(":3000")) domain = "localhost";
-  else domain = host.split(":")[0];
+  else if (host.includes(":3002") || host.includes(":3000")) domain = "localhost";
+  else if (host.includes("3004") || host.includes("pdpa")) domain = "pdpa.localhost";
+  else domain = "localhost";
 
   const theme = domain.includes("pdpa") ? "pdpa" : "datagov";
   const isPDPA = domain.includes("pdpa");

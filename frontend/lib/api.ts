@@ -1,9 +1,10 @@
 import qs from "qs";
 
-export const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
+export const INTERNAL_STRAPI_URL = process.env.STRAPI_URL || process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
+export const PUBLIC_STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
 
 export function getStrapiURL(path = "") {
-    return `${STRAPI_URL}${path}`;
+    return `${INTERNAL_STRAPI_URL}${path}`;
 }
 
 export function getStrapiMedia(url: string | null) {
@@ -16,8 +17,8 @@ export function getStrapiMedia(url: string | null) {
         return url;
     }
 
-    // Otherwise prepend the URL path with the Strapi URL
-    return `${STRAPI_URL}${url}`;
+    // Otherwise prepend the URL path with the Public Strapi URL
+    return `${PUBLIC_STRAPI_URL}${url}`;
 }
 
 export async function fetchAPI(
