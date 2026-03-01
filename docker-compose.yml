@@ -31,6 +31,7 @@ services:
       dockerfile: Dockerfile
     container_name: gov-frontend
     restart: always
+    env_file: ./frontend/.env.local
     environment:
       NODE_ENV: production
       # Internal Docker DNS path to bypass localhost domain issues on server side calls
@@ -38,7 +39,7 @@ services:
       # Default fallback public hostnames
       NEXT_PUBLIC_DATAGOV_URL: http://localhost:3000
       NEXT_PUBLIC_PDPA_URL: http://localhost:3000
-      # You can supply production Strapi token in your actual server env
+      # Use token from .env.local via env_file, or fallback
       STRAPI_API_TOKEN: ${STRAPI_API_TOKEN:-your_production_token}
     ports:
       - "3002:3000"
