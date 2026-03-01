@@ -36,10 +36,10 @@ services:
       # Internal Docker DNS path to bypass localhost domain issues on server side calls
       STRAPI_URL: http://backend:1337
       # Public URL for browser fetching and image src
-      NEXT_PUBLIC_STRAPI_URL: http://54.224.21.48:1337
+      NEXT_PUBLIC_STRAPI_URL: http://${SERVER_IP:-54.224.21.48}:1337
       # Default fallback public hostnames
-      NEXT_PUBLIC_DATAGOV_URL: http://54.224.21.48:3002
-      NEXT_PUBLIC_PDPA_URL: http://54.224.21.48:3004
+      NEXT_PUBLIC_DATAGOV_URL: http://${SERVER_IP:-54.224.21.48}:3002
+      NEXT_PUBLIC_PDPA_URL: http://${SERVER_IP:-54.224.21.48}:3004
       # Use token from .env.local via env_file, or fallback
       STRAPI_API_TOKEN: 5dc960f1ba3a6554ba334a6e3e218363869ad7c98315410833d95838d2782c7b930a2af945bcfc678aae98a78378119b90be49da03fa93d3089043d6b32dfec9fb9edf46e439c9267cfed316ba44c406b1b36419f913719334d33a80be2623d3e0ae75cb08594cacad5fa39bb310a0b26d2eb5ec6c4cef73202835209899607a
     ports:

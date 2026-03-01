@@ -59,41 +59,10 @@ const nextConfig: NextConfig = {
 
   images: {
     remotePatterns: [
-      // Internal Docker backend
       {
         protocol: 'http',
-        hostname: 'backend',
-        port: '1337',
-        pathname: '/uploads/**',
+        hostname: '**',
       },
-      // Production AWS EC2 IP
-      {
-        protocol: 'http',
-        hostname: '54.224.21.48',
-        port: '1337',
-        pathname: '/uploads/**',
-      },
-      // Local Strapi backend (dev) — localhost
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '1337',
-        pathname: '/uploads/**',
-      },
-      // Local Strapi backend (dev) — 127.0.0.1 (Node resolves differently)
-      {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        port: '1337',
-        pathname: '/uploads/**',
-      },
-      // Production Strapi (when deployed)
-      {
-        protocol: 'https',
-        hostname: '*.admincourt.go.th',
-        pathname: '/uploads/**',
-      },
-      // Allow any HTTPS source for URL-based images
       {
         protocol: 'https',
         hostname: '**',
