@@ -70,3 +70,6 @@
  GET /icon-192.png 404 in 125ms (compile: 47ms, proxy.ts: 6ms, render: 72ms)
 ✓ Compiled in 565ms
 ✓ Compiled in 256ms
+✓ Compiled in 77ms
+✓ Compiled in 39ms
+✓ Compiled in 162ms

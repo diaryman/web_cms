@@ -16,6 +16,15 @@ export default function AdminTemplate({ children }: { children: React.ReactNode 
                 duration: 0.4
             }}
             className="w-full h-full"
+            id="admin-page-transition"
+            onAnimationComplete={() => {
+                const el = document.getElementById("admin-page-transition");
+                if (el) {
+                    el.style.transform = "none";
+                    el.style.filter = "none";
+                    el.style.willChange = "auto";
+                }
+            }}
         >
             {children}
         </motion.div>
