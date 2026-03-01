@@ -20,7 +20,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
-import { STRAPI_URL } from "@/lib/api";
+import { INTERNAL_STRAPI_URL as STRAPI_URL } from "@/lib/api";
 import { loginAction, checkAuthAction } from "@/app/actions/auth";
 
 interface DashboardStats {

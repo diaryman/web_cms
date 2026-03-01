@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { STRAPI_URL } from "@/lib/api";
+import { PUBLIC_STRAPI_URL as STRAPI_URL } from "@/lib/api";
 
 export default function AnalyticsProvider({ domain }: { domain: string }) {
     const pathname = usePathname();

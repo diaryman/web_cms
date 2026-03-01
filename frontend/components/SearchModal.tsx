@@ -5,7 +5,7 @@ import { Search, X, Loader2, FileText, Newspaper, ArrowRight, Clock, TrendingUp,
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { STRAPI_URL } from "@/lib/api";
+import { PUBLIC_STRAPI_URL as STRAPI_URL } from "@/lib/api";
 
 interface SearchModalProps {
     isOpen: boolean;
