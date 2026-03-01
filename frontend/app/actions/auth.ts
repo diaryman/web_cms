@@ -30,7 +30,7 @@ export async function loginAction(site: string, username: string, password: stri
         const sessionData = { auth: true, role, username };
         cookieStore.set(`admin_session_${site}`, JSON.stringify(sessionData), {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
+            secure: false, // Set to false to allow login over HTTP. Enable when HTTPS is ready config.
             path: "/admin",
             maxAge: 60 * 60 * 24 // 1 day
         });
