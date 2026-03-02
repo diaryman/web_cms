@@ -70,7 +70,13 @@ function EditNewsForm({ id }: { id: string }) {
                 const res = await fetchAPI(`/articles/${id}`, {
                     populate: {
                         content: {
-                            populate: "*"
+                            on: {
+                                "shared.rich-text": { populate: "*" },
+                                "shared.hero": { populate: "*" },
+                                "shared.gallery": {
+                                    populate: { images: true }
+                                }
+                            }
                         },
                         coverImage: true,
                         category: true

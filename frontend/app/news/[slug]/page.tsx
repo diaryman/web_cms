@@ -60,7 +60,13 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
         filters: { slug: params.slug },
         populate: {
             content: {
-                populate: "*"
+                on: {
+                    "shared.rich-text": { populate: "*" },
+                    "shared.hero": { populate: "*" },
+                    "shared.gallery": {
+                        populate: { images: true }
+                    }
+                }
             },
             coverImage: true,
             category: true
