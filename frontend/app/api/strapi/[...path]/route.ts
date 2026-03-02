@@ -46,9 +46,15 @@ async function proxyRequest(req: NextRequest, params: Promise<{ path: string[] }
 
     try {
         const response = await fetch(targetUrl, fetchOptions);
+
+        // Handle 204 No Content (e.g. successful DELETE) — must not have a body
+        if (response.status === 204) {
+            return new NextResponse(null, { status: 204 });
+        }
+
         const data = await response.text();
 
-        return new NextResponse(data, {
+        return new NextResponse(data || null, {
             status: response.status,
             headers: {
                 "Content-Type": response.headers.get("Content-Type") || "application/json",

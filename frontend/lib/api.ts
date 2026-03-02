@@ -81,6 +81,10 @@ export async function fetchAPI(
             console.error(`Error details: ${errorText}`);
             throw new Error(`API returned ${response.status}: ${response.statusText}`);
         }
+        // Handle 204 No Content (e.g. successful DELETE)
+        if (response.status === 204) {
+            return { data: null };
+        }
 
         const data = await response.json();
         return data;
