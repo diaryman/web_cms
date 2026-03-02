@@ -9,18 +9,30 @@ export function getStrapiURL(path = "") {
     return `${strapiUrl}${path}`;
 }
 
+/**
+ * Get public Strapi URL for media/images — Runtime detected.
+ * On the server: uses INTERNAL_STRAPI_URL (Docker DNS).
+ * On the browser: derives from window.location.hostname + port :1337
+ * so it works even when the server IP changes (no rebuild needed).
+ */
+export function getPublicStrapiURL(): string {
+    if (typeof window !== "undefined") {
+        const hostname = window.location.hostname;
+        // If local dev, keep as-is from env
+        if (hostname === "localhost" || hostname === "127.0.0.1") {
+            return process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+        }
+        // Production: derive from current hostname (IP or domain)
+        return `${window.location.protocol}//${hostname}:1337`;
+    }
+    // Server-side: use Docker internal URL
+    return INTERNAL_STRAPI_URL;
+}
+
 export function getStrapiMedia(url: string | null) {
-    if (url == null) {
-        return null;
-    }
-
-    // Return the full URL if the media is hosted on an external provider
-    if (url.startsWith("http") || url.startsWith("//")) {
-        return url;
-    }
-
-    // Otherwise prepend the URL path with the Public Strapi URL
-    return `${PUBLIC_STRAPI_URL}${url}`;
+    if (url == null) return null;
+    if (url.startsWith("http") || url.startsWith("//")) return url;
+    return `${getPublicStrapiURL()}${url}`;
 }
 
 export async function fetchAPI(
