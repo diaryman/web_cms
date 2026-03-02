@@ -24,6 +24,44 @@ export default {
       console.error('Bootstrap seeding error:', e);
     }
 
+    // Auto-setup permissions for chatbot-knowledge
+    try {
+      const pluginStore = strapi.store({ type: 'plugin', name: 'users-permissions' });
+      const existingPerms = await pluginStore.get({ key: 'advanced' });
+
+      // Grant public API access to chatbot-knowledge (find, findOne, create, update, delete)
+      const publicRole = await strapi.db.query('plugin::users-permissions.role').findOne({
+        where: { type: 'public' },
+      });
+
+      if (publicRole) {
+        const contentType = 'api::chatbot-knowledge.chatbot-knowledge';
+        const actions = ['find', 'findOne', 'create', 'update', 'delete'];
+
+        for (const action of actions) {
+          const existingPerm = await strapi.db.query('plugin::users-permissions.permission').findOne({
+            where: {
+              action: `${contentType}.${action}`,
+              role: publicRole.id,
+            },
+          });
+
+          if (!existingPerm) {
+            await strapi.db.query('plugin::users-permissions.permission').create({
+              data: {
+                action: `${contentType}.${action}`,
+                role: publicRole.id,
+                enabled: true,
+              },
+            });
+            console.log(`✅ Created permission: ${contentType}.${action} for Public role`);
+          }
+        }
+      }
+    } catch (permErr) {
+      console.error('Permission setup error:', permErr);
+    }
+
     // Subscribe to lifecycles for Audit Logging
     const trackedModels = [
       'api::article.article',
@@ -34,6 +72,7 @@ export default {
       'api::service.service',
       'api::policy.policy',
       'api::chatbot-config.chatbot-config',
+      'api::chatbot-knowledge.chatbot-knowledge',
       'api::hero-slide.hero-slide',
       'api::gallery.gallery',
       'api::category.category',
