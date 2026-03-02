@@ -17,9 +17,15 @@
 export const DATAGOV_DOMAIN = "localhost" as const;
 export const PDPA_DOMAIN = "pdpa.localhost" as const;
 
-/** Public URLs (for cross-site links) */
-export const DATAGOV_URL = process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002";
-export const PDPA_URL = process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004";
+/**
+ * Public URLs - use getter functions so Next.js properly inlines
+ * NEXT_PUBLIC_* at build time for both client and server components.
+ */
+export const DATAGOV_URL =
+    process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002";
+
+export const PDPA_URL =
+    process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004";
 
 /**
  * Detect which site a given `host` header value belongs to.

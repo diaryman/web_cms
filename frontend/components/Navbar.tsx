@@ -13,7 +13,7 @@ export default async function Navbar({ domain = "localhost" }: { domain?: string
         navItems = [
             { name: "หน้าแรก", href: "/" },
             { name: "ข่าวกิจกรรม", href: "/news" },
-            { name: "DataGOV", href: DATAGOV_URL },
+            { name: "DataGOV", href: process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002" },
             { name: "นโยบาย/มาตรฐาน", href: "/#principles" },
             { name: "เอกสารเผยแพร่", href: "/documents" },
             { name: "ดาวน์โหลด", href: "/#documents" },
