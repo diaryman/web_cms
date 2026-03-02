@@ -1,18 +1,19 @@
 import { fetchAPI } from "@/lib/api";
 import NavbarClient from "./NavbarClient";
+import { DATAGOV_URL, isPDPADomain, PDPA_DOMAIN } from "@/lib/siteConfig";
 
 export default async function Navbar({ domain = "localhost" }: { domain?: string }) {
     // Fetch site config (Server Side)
-    let siteName = domain === "pdpa.localhost" ? "PDPA Center" : "DataGOV";
+    let siteName = isPDPADomain(domain) ? "PDPA Center" : "DataGOV";
     let navItems = undefined;
     let headerStyle = "style-1";
     let navbarMenuStyle = "pill";
 
-    if (domain === "pdpa.localhost") {
+    if (isPDPADomain(domain)) {
         navItems = [
             { name: "หน้าแรก", href: "/" },
             { name: "ข่าวกิจกรรม", href: "/news" },
-            { name: "DataGOV", href: process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002" },
+            { name: "DataGOV", href: DATAGOV_URL },
             { name: "นโยบาย/มาตรฐาน", href: "/#principles" },
             { name: "เอกสารเผยแพร่", href: "/documents" },
             { name: "ดาวน์โหลด", href: "/#documents" },

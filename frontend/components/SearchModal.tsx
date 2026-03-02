@@ -5,7 +5,8 @@ import { Search, X, Loader2, FileText, Newspaper, ArrowRight, Clock, TrendingUp,
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { PUBLIC_STRAPI_URL as STRAPI_URL } from "@/lib/api";
+import { fetchAPI } from "@/lib/api";
+import { getSiteParam, isPDPADomain } from "@/lib/siteConfig";
 
 interface SearchModalProps {
     isOpen: boolean;
@@ -56,8 +57,8 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost" }: S
     const inputRef = useRef<HTMLInputElement>(null);
     const router = useRouter();
 
-    const siteParam = domain === "pdpa.localhost" ? "pdpa" : "main";
-    const isPdpa = domain === "pdpa.localhost";
+    const siteParam = getSiteParam(domain);
+    const isPdpa = isPDPADomain(domain);
 
     // Setup Speech Recognition
     useEffect(() => {
@@ -170,15 +171,31 @@ export default function SearchModal({ isOpen, onClose, domain = "localhost" }: S
         setHasSearched(true);
 
         try {
-            const qEnc = encodeURIComponent(searchQuery);
-
             const [articlesRes, docsRes] = await Promise.all([
-                fetch(
-                    `${STRAPI_URL}/api/articles?filters[domain][$eq]=${domain}&filters[$or][0][title][$containsi]=${qEnc}&filters[$or][1][content][$containsi]=${qEnc}&pagination[pageSize]=5&populate=category&sort=publishedAt:desc`
-                ).then((r) => r.json()).catch(() => ({ data: [] })),
-                fetch(
-                    `${STRAPI_URL}/api/policy-documents?filters[domain][$eq]=${domain}&filters[$or][0][title][$containsi]=${qEnc}&filters[$or][1][description][$containsi]=${qEnc}&pagination[pageSize]=5&populate=category&sort=createdAt:desc`
-                ).then((r) => r.json()).catch(() => ({ data: [] })),
+                fetchAPI("/articles", {
+                    filters: {
+                        domain: { $eq: domain },
+                        $or: [
+                            { title: { $containsi: searchQuery } },
+                            { content: { $containsi: searchQuery } },
+                        ],
+                    },
+                    sort: ["publishedAt:desc"],
+                    pagination: { pageSize: 5 },
+                    populate: ["category"],
+                }).catch(() => ({ data: [] })),
+                fetchAPI("/policy-documents", {
+                    filters: {
+                        domain: { $eq: domain },
+                        $or: [
+                            { title: { $containsi: searchQuery } },
+                            { description: { $containsi: searchQuery } },
+                        ],
+                    },
+                    sort: ["createdAt:desc"],
+                    pagination: { pageSize: 5 },
+                    populate: ["category"],
+                }).catch(() => ({ data: [] })),
             ]);
 
             const newsResults: SearchResult[] = (articlesRes.data || []).map((a: any) => ({

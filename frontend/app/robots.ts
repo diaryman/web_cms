@@ -1,13 +1,14 @@
 import { MetadataRoute } from "next";
 import { headers } from "next/headers";
+import { detectSite, DATAGOV_URL, PDPA_URL } from "@/lib/siteConfig";
 
 export const dynamic = "force-dynamic";
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
     const headersList = await headers();
-    const host = headersList.get("host") || "localhost:3002";
-    const isPDPA = host.includes("3004") || host.includes("pdpa");
-    const baseUrl = `http://${host}`;
+    const host = headersList.get("host") || "";
+    const isPDPA = detectSite(host) === "pdpa";
+    const baseUrl = host ? `http://${host}` : (isPDPA ? PDPA_URL : DATAGOV_URL);
 
     return {
         rules: [

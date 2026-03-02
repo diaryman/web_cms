@@ -156,7 +156,7 @@ export default function RichTextEditor({ value, onChange, placeholder }: RichTex
             const res = await fetch("/api/ai-assist", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ text: currentText, action: actionKey, domain: "localhost" }),
+                body: JSON.stringify({ text: currentText, action: actionKey }),
             });
             const data = await res.json();
             if (data.result) {

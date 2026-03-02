@@ -5,7 +5,9 @@ import PDPAPageClient from "./PDPAPageClient";
 import { fetchAPI } from "@/lib/api";
 import { Metadata } from "next";
 
-const PDPA_URL = process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004";
+import { PDPA_URL as SITE_PDPA_URL, PDPA_DOMAIN, getDomainFromHost } from "@/lib/siteConfig";
+
+const PDPA_URL = SITE_PDPA_URL;
 
 export const metadata: Metadata = {
     title: "PDPA | การคุ้มครองข้อมูลส่วนบุคคล - ศาลปกครอง",
@@ -38,13 +40,10 @@ export default async function PDPAPage() {
     const headersList = await headers();
     const host = headersList.get("host") || "localhost";
 
-    // Normalize domain for config matching
-    let domain = host;
-    if (host.includes(":3004")) domain = "pdpa.localhost";
-    else if (host.includes(":3002") || host.includes(":3000")) domain = "localhost";
-    // Fallback map based on port for production external access (e.g. 54.224.21.48:3002 -> localhost)
-    else if (host.includes("3004") || host.includes("pdpa")) domain = "pdpa.localhost";
-    else domain = "pdpa.localhost"; // Default to PDPA domain for PDPA page
+    // Normalize domain — always PDPA_DOMAIN for this page
+    // but respect host-based detection for shared deployments
+    let domain = getDomainFromHost(host);
+    if (!domain.includes("pdpa")) domain = PDPA_DOMAIN; // Force PDPA domain for this page
 
     let announcement = undefined;
     let siteConfig = undefined;

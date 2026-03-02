@@ -77,6 +77,7 @@ import AnalyticsProvider from "@/components/AnalyticsProvider";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import { fetchAPI } from "@/lib/api";
 import { generateThemeCssVariables } from "@/lib/themeUtils";
+import { getDomainFromHost, DATAGOV_URL, PDPA_URL } from "@/lib/siteConfig";
 
 export default async function RootLayout({
   children,
@@ -86,12 +87,7 @@ export default async function RootLayout({
   const headersList = await headers();
   const host = headersList.get("host") || "localhost";
 
-  let domain = host;
-  if (host.includes(":3004")) domain = "pdpa.localhost";
-  else if (host.includes(":3002") || host.includes(":3000")) domain = "localhost";
-  else if (host.includes("3004") || host.includes("pdpa")) domain = "pdpa.localhost";
-  else domain = "localhost";
-
+  let domain = getDomainFromHost(host);
   const theme = domain.includes("pdpa") ? "pdpa" : "datagov";
   const isPDPA = domain.includes("pdpa");
 
@@ -153,9 +149,9 @@ export default async function RootLayout({
               "@graph": [
                 {
                   "@type": "Organization",
-                  "@id": `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}/#organization`,
+                  "@id": `${PDPA_URL}/#organization`,
                   "name": "ศูนย์ PDPA สำนักงานศาลปกครอง",
-                  "url": process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004",
+                  "url": PDPA_URL,
                   "description": "การคุ้มครองข้อมูลส่วนบุคคล สำนักงานศาลปกครอง ตาม พ.ร.บ. PDPA พ.ศ. 2562",
                   "sameAs": ["https://www.admincourt.go.th"],
                   "contactPoint": {
@@ -167,11 +163,11 @@ export default async function RootLayout({
                 },
                 {
                   "@type": "WebSite",
-                  "@id": `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}/#website`,
-                  "url": process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004",
+                  "@id": `${PDPA_URL}/#website`,
+                  "url": PDPA_URL,
                   "name": "PDPA ศาลปกครอง",
                   "inLanguage": "th",
-                  "publisher": { "@id": `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}/#organization` }
+                  "publisher": { "@id": `${PDPA_URL}/#organization` }
                 }
               ]
             } : {
@@ -179,9 +175,9 @@ export default async function RootLayout({
               "@graph": [
                 {
                   "@type": "Organization",
-                  "@id": `${process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002"}/#organization`,
+                  "@id": `${DATAGOV_URL}/#organization`,
                   "name": "สำนักงานศาลปกครอง — DataGOV",
-                  "url": process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002",
+                  "url": DATAGOV_URL,
                   "description": "ศูนย์กลางธรรมาภิบาลข้อมูล สำนักงานศาลปกครอง มาตรฐานธรรมาภิบาลข้อมูลภาครัฐ",
                   "sameAs": ["https://www.admincourt.go.th"],
                   "contactPoint": {
@@ -194,16 +190,16 @@ export default async function RootLayout({
                 },
                 {
                   "@type": "WebSite",
-                  "@id": `${process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002"}/#website`,
-                  "url": process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002",
+                  "@id": `${DATAGOV_URL}/#website`,
+                  "url": DATAGOV_URL,
                   "name": "DataGOV ศาลปกครอง",
                   "inLanguage": "th",
-                  "publisher": { "@id": `${process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002"}/#organization` },
+                  "publisher": { "@id": `${DATAGOV_URL}/#organization` },
                   "potentialAction": {
                     "@type": "SearchAction",
                     "target": {
                       "@type": "EntryPoint",
-                      "urlTemplate": `${process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002"}/news?q={search_term_string}`
+                      "urlTemplate": `${DATAGOV_URL}/news?q={search_term_string}`
                     },
                     "query-input": "required name=search_term_string"
                   }

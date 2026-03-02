@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Facebook, Youtube, Mail, Phone, MapPin, ShieldCheck, ChevronRight, Globe } from "lucide-react";
 import { fetchAPI } from "@/lib/api";
+import { PDPA_URL, isPDPADomain } from "@/lib/siteConfig";
 
 export default async function Footer({ domain = "localhost" }: { domain?: string }) {
     let config = null;
@@ -13,7 +14,7 @@ export default async function Footer({ domain = "localhost" }: { domain?: string
         console.error("Error fetching site config for footer", e);
     }
 
-    const siteName = config?.siteName || (domain === "pdpa.localhost" ? "PDPA Administrative Court" : "DataGOV");
+    const siteName = config?.siteName || (isPDPADomain(domain) ? "PDPA Administrative Court" : "DataGOV");
     const currentYear = new Date().getFullYear();
 
     const footerStyle = config?.footerStyle || "style-1";
@@ -158,7 +159,7 @@ export default async function Footer({ domain = "localhost" }: { domain?: string
                                         { name: "หน้าแรก", href: "/" },
                                         { name: "ข่าวกิจกรรมล่าสุด", href: "/news" },
                                         { name: "ประกาศและการแจ้งเตือน", href: "/#announcements" },
-                                        { name: "ติดต่อเจ้าหน้าที่ DPO", href: domain === "pdpa.localhost" ? "/contact" : `${process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"}/contact` }
+                                        { name: "ติดต่อเจ้าหน้าที่ DPO", href: isPDPADomain(domain) ? "/contact" : `${PDPA_URL}/contact` }
                                     ].map((item, idx) => (
                                         <li key={idx}>
                                             <Link href={item.href} className="hover:text-white flex items-center gap-2 transition-all duration-300 text-sm group opacity-60 hover:opacity-100">
@@ -218,9 +219,9 @@ export default async function Footer({ domain = "localhost" }: { domain?: string
                         {config?.footerText || `© ${currentYear} OFFICE OF THE ADMINISTRATIVE COURTS`}
                     </p>
                     <div className="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest opacity-40">
-                        <Link href={`${domain === "pdpa.localhost" ? "" : ""}/privacy-policy`} className="hover:text-accent hover:opacity-100 transition-all">นโยบายความเป็นส่วนตัว</Link>
-                        <Link href={`${domain === "pdpa.localhost" ? "" : ""}/cookie-policy`} className="hover:text-accent hover:opacity-100 transition-all">นโยบายคุกกี้</Link>
-                        <Link href={`${domain === "pdpa.localhost" ? "" : ""}/terms-of-use`} className="hover:text-accent hover:opacity-100 transition-all">ข้อตกลงการใช้งาน</Link>
+                        <Link href="/privacy-policy" className="hover:text-accent hover:opacity-100 transition-all">นโยบายความเป็นส่วนตัว</Link>
+                        <Link href="/cookie-policy" className="hover:text-accent hover:opacity-100 transition-all">นโยบายคุกกี้</Link>
+                        <Link href="/terms-of-use" className="hover:text-accent hover:opacity-100 transition-all">ข้อตกลงการใช้งาน</Link>
                     </div>
                 </div>
             </div>

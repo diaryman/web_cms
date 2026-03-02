@@ -5,8 +5,10 @@ import { Bell, UserPlus } from "lucide-react";
 import { getNotificationCounts, getRecentNotifications } from "@/app/actions/notifications";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { getSiteParam } from "@/lib/siteConfig";
 
 export default function AdminNotificationBell({ siteParam }: { siteParam: string }) {
+    // Map siteParam back to Strapi domain value
     const domain = siteParam === "pdpa" ? "pdpa.localhost" : "localhost";
     const [counts, setCounts] = useState({ unreadAuditLogs: 0, newContacts: 0, newSubscribers: 0, total: 0 });
     const [recent, setRecent] = useState<{ auditLogs: any[], contacts: any[], subscribers: any[] }>({ auditLogs: [], contacts: [], subscribers: [] });

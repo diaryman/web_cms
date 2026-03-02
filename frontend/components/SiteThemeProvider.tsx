@@ -6,6 +6,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 /* ── Helpers ────────────────────────────────────────────────────────────── */
 
 import { hexToRGB, lighten, darken } from "@/lib/themeUtils";
+import { getDomainFromWindow, PDPA_DOMAIN, DATAGOV_DOMAIN } from "@/lib/siteConfig";
 
 export function applyThemeFont(font: string) {
     const getFontSet = (f: string) => {
@@ -61,13 +62,13 @@ export default function SiteThemeProvider({ children }: { children: React.ReactN
 
         const isPDPA =
             pathname.startsWith("/pdpa") ||
-            port === "3004" ||
+            getDomainFromWindow() === PDPA_DOMAIN ||
             (isAdminPage && siteParam === "pdpa");
 
         // Update data-theme attribute for CSS layer
         document.documentElement.setAttribute("data-theme", isPDPA ? "pdpa" : "datagov");
 
-        const targetDomain = isPDPA ? "pdpa.localhost" : "localhost";
+        const targetDomain = isPDPA ? PDPA_DOMAIN : DATAGOV_DOMAIN;
 
         /** Fetch and apply theme colours from the API */
         const fetchTheme = async () => {

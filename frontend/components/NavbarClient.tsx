@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import SearchModal from "./SearchModal";
 import ThemeToggle from "./ThemeToggle";
 import FontSizeResizer from "./FontSizeResizer";
+import { PDPA_URL, getSiteParam } from "@/lib/siteConfig";
 
 interface NavbarClientProps {
     siteName: string;
@@ -48,7 +49,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
     const defaultNavItems = [
         { name: "หน้าแรก", href: "/" },
         { name: "ข่าวกิจกรรม", href: "/news?site=main" },
-        { name: "PDPA", href: process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004" },
+        { name: "PDPA", href: PDPA_URL },
         { name: "นโยบาย/มาตรฐาน", href: "/#policy" },
         { name: "เอกสารเผยแพร่", href: "/documents" },
         { name: "ดาวน์โหลด", href: "/#downloads" },
@@ -137,7 +138,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                                     </div>
                                     <div className="w-px h-6 bg-gray-200/50 dark:bg-white/10 mx-2"></div>
                                     <Link
-                                        href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`}
+                                        href={`/admin?site=${getSiteParam(domain)}`}
                                         className="px-5 py-2 text-primary font-bold hover:text-accent transition-colors text-sm hover:scale-105"
                                     >
                                         เข้าสู่ระบบ
@@ -154,12 +155,12 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                                     <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
                                     <button className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-accent"><Languages size={14} /> TH</button>
                                     <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
-                                    <Link href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`} className="text-xs font-black text-primary hover:text-accent">Portal</Link>
+                                    <Link href={`/admin?site=${getSiteParam(domain)}`} className="text-xs font-black text-primary hover:text-accent">Portal</Link>
                                 </div>
                                 {/* Navigation Tier without pill shadow */}
                                 <div className="flex items-center gap-6">
                                     {navItems.map((item) => renderNavItem(item))}
-                                    <Link href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`} className="ml-2 px-5 py-2 bg-primary text-white rounded-xl text-sm font-bold hover:bg-accent transition-colors">
+                                    <Link href={`/admin?site=${getSiteParam(domain)}`} className="ml-2 px-5 py-2 bg-primary text-white rounded-xl text-sm font-bold hover:bg-accent transition-colors">
                                         เข้าสู่ระบบ
                                     </Link>
                                 </div>
@@ -177,14 +178,14 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                                     <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
                                     <button className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-accent transition-colors"><Languages size={14} /> TH</button>
                                     <div className="w-px h-3 bg-gray-200 dark:bg-white/10"></div>
-                                    <Link href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`} className="text-xs font-black text-primary hover:text-accent transition-colors">Portal</Link>
+                                    <Link href={`/admin?site=${getSiteParam(domain)}`} className="text-xs font-black text-primary hover:text-accent transition-colors">Portal</Link>
                                 </div>
                                 {/* Tier 2: Main Nav Items (Centered Pill) */}
                                 <div className="flex-1 flex items-center justify-center relative py-2">
                                     <div className="flex items-center gap-1 bg-white/40 dark:bg-white/5 backdrop-blur-xl p-1.5 rounded-[1.5rem] border border-white/60 dark:border-white/10 shadow-2xl shadow-primary/10 hover:shadow-primary/20 transition-all duration-500 ring-1 ring-black/5">
                                         {navItems.map((item) => renderNavItem(item))}
                                         <div className="w-px h-6 bg-gray-200/50 dark:bg-white/10 mx-2"></div>
-                                        <Link href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`} className="px-6 py-2.5 bg-primary text-sm font-bold rounded-2xl shadow-xl hover:shadow-primary/30 hover:scale-[1.02] transition-all active:scale-95 whitespace-nowrap premium-gradient" style={{ color: 'var(--primary-foreground)' }}>เข้าสู่ระบบ</Link>
+                                        <Link href={`/admin?site=${getSiteParam(domain)}`} className="px-6 py-2.5 bg-primary text-sm font-bold rounded-2xl shadow-xl hover:shadow-primary/30 hover:scale-[1.02] transition-all active:scale-95 whitespace-nowrap premium-gradient" style={{ color: 'var(--primary-foreground)' }}>เข้าสู่ระบบ</Link>
                                     </div>
                                 </div>
                             </div>
@@ -252,7 +253,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
                                     </button>
                                 </div>
                                 <Link
-                                    href={`/admin?site=${domain === "pdpa.localhost" ? "pdpa" : "main"}`}
+                                    href={`/admin?site=${getSiteParam(domain)}`}
                                     className="w-full flex justify-center py-4 bg-primary rounded-2xl font-bold shadow-lg"
                                     style={{ color: 'var(--primary-foreground)' }}
                                     onClick={() => setIsOpen(false)}

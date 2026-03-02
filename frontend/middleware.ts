@@ -1,26 +1,47 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+/**
+ * Detect which site a request belongs to.
+ * Reads PDPA/DataGOV ports from environment variables so it works
+ * identically in local dev and on production servers.
+ */
+function detectSiteFromHost(host: string): "pdpa" | "datagov" {
+    // Derive ports from public env vars (available at build time for middleware)
+    const pdpaUrl = process.env.NEXT_PUBLIC_PDPA_URL || "";
+    const datagovUrl = process.env.NEXT_PUBLIC_DATAGOV_URL || "";
+
+    const extractPort = (url: string) => {
+        try { return new URL(url).port; } catch { return ""; }
+    };
+
+    const pdpaPort = extractPort(pdpaUrl) || "3004";
+    const datagovPort = extractPort(datagovUrl) || "3002";
+
+    if (host.includes(`:${pdpaPort}`)) return "pdpa";
+    if (host.includes(`:${datagovPort}`)) return "datagov";
+    if (host.includes("pdpa")) return "pdpa";
+
+    return "datagov";
+}
+
 export function middleware(request: NextRequest) {
     const host = request.headers.get('host') || '';
     const url = request.nextUrl.clone();
 
-    // Check if the request is for the PDPA site (port 3004 or pdpa domain)
-    const isPDPASite = host.includes(':3004') || host.includes('pdpa');
+    const site = detectSiteFromHost(host);
+    const isPDPASite = site === "pdpa";
+    const isDataGovSite = site === "datagov";
 
-    // Check if the request is for the DataGOV site (port 3002 or main domain)
-    const isDataGovSite = host.includes(':3002') || (!isPDPASite && host.includes('localhost'));
-
-    // 1. If accessing DataGOV (3002) and trying to access /pdpa anything
+    // 1. If accessing DataGOV and trying to access /pdpa anything → redirect to home
     if (isDataGovSite && url.pathname.startsWith('/pdpa')) {
-        // Redirect to DataGOV home
         url.pathname = '/';
         return NextResponse.redirect(url);
     }
 
-    // 2. If accessing PDPA (3004)
+    // 2. If accessing PDPA site
     if (isPDPASite) {
-        // If they access the raw /pdpa path directly, redirect to remove /pdpa from URL
+        // Remove redundant /pdpa prefix from URL
         if (url.pathname === '/pdpa') {
             url.pathname = '/';
             return NextResponse.redirect(url);
@@ -30,32 +51,31 @@ export function middleware(request: NextRequest) {
             return NextResponse.redirect(url);
         }
 
-        // --- Rewrites for clean URLs ---
-
-        // Root path rewrites to /pdpa
+        // Root → rewrite to /pdpa
         if (url.pathname === '/') {
             url.pathname = '/pdpa';
             return NextResponse.rewrite(url);
         }
 
-        // Documents and Contact belong to PDPA specific pages
+        // /documents → /pdpa/documents
         if (url.pathname.startsWith('/documents')) {
             url.pathname = url.pathname.replace('/documents', '/pdpa/documents');
             return NextResponse.rewrite(url);
         }
 
+        // /contact → /pdpa/contact
         if (url.pathname.startsWith('/contact')) {
             url.pathname = url.pathname.replace('/contact', '/pdpa/contact');
             return NextResponse.rewrite(url);
         }
 
-        // Set site query param for shared pages like /news without needing ?site=pdpa explicitly
+        // Set ?site=pdpa for shared pages
         if (!url.searchParams.has('site') && !url.pathname.startsWith('/admin') && !url.pathname.match(/\.(.*)$/)) {
             url.searchParams.set('site', 'pdpa');
             return NextResponse.rewrite(url);
         }
     } else if (isDataGovSite) {
-        // For DataGOV, explicitly set site param for consistency
+        // Set ?site=main for DataGOV pages
         if (!url.searchParams.has('site') && !url.pathname.startsWith('/admin') && !url.pathname.match(/\.(.*)$/)) {
             url.searchParams.set('site', 'main');
             return NextResponse.rewrite(url);
@@ -67,13 +87,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
     matcher: [
-        /*
-         * Match all request paths except for the ones starting with:
-         * - api (API routes)
-         * - _next/static (static files)
-         * - _next/image (image optimization files)
-         * - favicon.ico, sitemap.xml, robots.txt (metadata files)
-         */
         '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
     ],
 };

@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { Home, Search, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { fetchAPI } from "@/lib/api";
+import { getDomainFromWindow, DATAGOV_URL, PDPA_URL } from "@/lib/siteConfig";
 
 export default function NotFound() {
     const router = useRouter();
@@ -18,9 +19,7 @@ export default function NotFound() {
     useEffect(() => {
         const fetchConfig = async () => {
             try {
-                // Detect domain from window.location
-                const host = window.location.host;
-                const domain = host.includes("pdpa") || host.includes("3004") ? "pdpa.localhost" : "localhost";
+                const domain = getDomainFromWindow();
                 const res = await fetchAPI("/site-configs", { filters: { domain } });
                 const notFoundPage = res.data?.[0]?.notFoundPage;
                 if (notFoundPage?.title) setConfig(notFoundPage);
@@ -93,11 +92,11 @@ export default function NotFound() {
                         <p className="text-sm font-bold text-gray-400 mb-4">ลิงก์ที่อาจเป็นประโยชน์</p>
                         <div className="flex flex-wrap gap-3 justify-center">
                             {[
-                                { label: "หน้าแรก DataGOV", href: process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002" },
+                                { label: "หน้าแรก DataGOV", href: DATAGOV_URL },
                                 { label: "ข่าวสาร", href: "/news" },
                                 { label: "เอกสาร", href: "/documents" },
                                 { label: "ติดต่อเรา", href: "/contact" },
-                                { label: "PDPA Center", href: process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004" },
+                                { label: "PDPA Center", href: PDPA_URL },
                             ].map(link => (
                                 <Link
                                     key={link.href}

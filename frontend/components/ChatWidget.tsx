@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { MessageCircle, X, Send, Bot, User, Copy, Check, ThumbsUp, ThumbsDown, RotateCcw, Maximize2, Minimize2, ChevronDown, Mic, MicOff } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { fetchAPI } from "@/lib/api";
+import { getDomainFromWindow, DATAGOV_DOMAIN } from "@/lib/siteConfig";
 
 interface Message {
     id: string;
@@ -104,9 +105,7 @@ export default function ChatWidget({ domainOverride }: Props) {
     const inputRef = useRef<HTMLInputElement>(null);
     const recognitionRef = useRef<any>(null);
 
-    const domain = domainOverride || (typeof window !== "undefined"
-        ? (window.location.port === "3004" ? "pdpa.localhost" : (window.location.port === "3002" ? "localhost" : window.location.hostname))
-        : "localhost");
+    const domain = domainOverride || getDomainFromWindow();
 
     // Fetch config
     useEffect(() => {
@@ -133,12 +132,12 @@ export default function ChatWidget({ domainOverride }: Props) {
                 } else {
                     console.warn(`No chatbot config found for domain: ${domain}`);
                     // ถ้าหาไม่เจอ ให้ลองหาแบบ default 'localhost'
-                    if (domain !== "localhost") {
+                    if (domain !== DATAGOV_DOMAIN) {
                         const fallback = await fetchAPI(`/chatbot-configs`, {
-                            filters: { domain: { $eq: "localhost" } }
+                            filters: { domain: { $eq: DATAGOV_DOMAIN } }
                         });
                         if (fallback.data && fallback.data.length > 0) {
-                            console.log("🤖 ChatBot fallback to 'localhost' succeeded");
+                            console.log("🤖 ChatBot fallback to default domain succeeded");
                             setConfig(fallback.data[0]);
                         }
                     }
