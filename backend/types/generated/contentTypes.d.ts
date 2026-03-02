@@ -600,6 +600,7 @@ export interface ApiChatbotConfigChatbotConfig
   };
   attributes: {
     apiKey: Schema.Attribute.String;
+    avatarUrl: Schema.Attribute.String;
     botName: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'AI Assistant'>;
     createdAt: Schema.Attribute.DateTime;
@@ -608,6 +609,9 @@ export interface ApiChatbotConfigChatbotConfig
     domain: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
+    fallbackMessage: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'\u0E02\u0E2D\u0E2D\u0E20\u0E31\u0E22\u0E04\u0E23\u0E31\u0E1A \u0E1C\u0E21\u0E44\u0E21\u0E48\u0E21\u0E35\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E40\u0E1E\u0E35\u0E22\u0E07\u0E1E\u0E2D\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E04\u0E33\u0E16\u0E32\u0E21\u0E19\u0E35\u0E49 \u0E01\u0E23\u0E38\u0E13\u0E32\u0E15\u0E34\u0E14\u0E15\u0E48\u0E2D\u0E40\u0E08\u0E49\u0E32\u0E2B\u0E19\u0E49\u0E32\u0E17\u0E35\u0E48\u0E42\u0E14\u0E22\u0E15\u0E23\u0E07'>;
+    historyLength: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<10>;
     isEnabled: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -615,22 +619,90 @@ export interface ApiChatbotConfigChatbotConfig
       'api::chatbot-config.chatbot-config'
     > &
       Schema.Attribute.Private;
+    maxTokens: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<1024>;
     modelName: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'gemini-1.5-flash'>;
+    promptTemplate: Schema.Attribute.Enumeration<
+      ['custom', 'legal_expert', 'helpdesk', 'faq_bot', 'friendly_guide']
+    > &
+      Schema.Attribute.DefaultTo<'custom'>;
     provider: Schema.Attribute.Enumeration<
       ['gemini', 'openai', 'ollama', 'openthaigpt']
     > &
       Schema.Attribute.DefaultTo<'gemini'>;
     publishedAt: Schema.Attribute.DateTime;
+    ragInstructions: Schema.Attribute.Text &
+      Schema.Attribute.DefaultTo<'\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E2D\u0E49\u0E32\u0E07\u0E2D\u0E34\u0E07\u0E08\u0E32\u0E01\u0E10\u0E32\u0E19\u0E04\u0E27\u0E32\u0E21\u0E23\u0E39\u0E49 \u0E43\u0E2B\u0E49\u0E43\u0E0A\u0E49\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E19\u0E31\u0E49\u0E19\u0E40\u0E1B\u0E47\u0E19\u0E2B\u0E25\u0E31\u0E01\u0E43\u0E19\u0E01\u0E32\u0E23\u0E15\u0E2D\u0E1A \u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E2D\u0E49\u0E32\u0E07\u0E2D\u0E34\u0E07\u0E41\u0E2B\u0E25\u0E48\u0E07\u0E17\u0E35\u0E48\u0E21\u0E32 \u0E2B\u0E32\u0E01\u0E44\u0E21\u0E48\u0E21\u0E35\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E2D\u0E49\u0E32\u0E07\u0E2D\u0E34\u0E07\u0E17\u0E35\u0E48\u0E40\u0E01\u0E35\u0E48\u0E22\u0E27\u0E02\u0E49\u0E2D\u0E07 \u0E43\u0E2B\u0E49\u0E15\u0E2D\u0E1A\u0E15\u0E32\u0E21\u0E04\u0E27\u0E32\u0E21\u0E23\u0E39\u0E49\u0E17\u0E31\u0E48\u0E27\u0E44\u0E1B\u0E41\u0E25\u0E30\u0E41\u0E08\u0E49\u0E07\u0E43\u0E2B\u0E49\u0E1C\u0E39\u0E49\u0E43\u0E0A\u0E49\u0E17\u0E23\u0E32\u0E1A'>;
+    responseFormat: Schema.Attribute.Enumeration<
+      ['concise', 'detailed', 'bullet_points']
+    > &
+      Schema.Attribute.DefaultTo<'concise'>;
+    responseLanguage: Schema.Attribute.Enumeration<
+      ['thai', 'english', 'auto']
+    > &
+      Schema.Attribute.DefaultTo<'thai'>;
+    restrictedTopics: Schema.Attribute.JSON;
+    showSources: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     suggestedQuestions: Schema.Attribute.JSON;
     systemPrompt: Schema.Attribute.Text &
       Schema.Attribute.DefaultTo<'\u0E04\u0E38\u0E13\u0E04\u0E37\u0E2D\u0E1C\u0E39\u0E49\u0E0A\u0E48\u0E27\u0E22\u0E2D\u0E31\u0E08\u0E09\u0E23\u0E34\u0E22\u0E30\u0E02\u0E2D\u0E07\u0E2B\u0E19\u0E48\u0E27\u0E22\u0E07\u0E32\u0E19 \u0E04\u0E38\u0E13\u0E21\u0E35\u0E2B\u0E19\u0E49\u0E32\u0E17\u0E35\u0E48\u0E15\u0E2D\u0E1A\u0E04\u0E33\u0E16\u0E32\u0E21\u0E42\u0E14\u0E22\u0E43\u0E0A\u0E49\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E08\u0E32\u0E01\u0E40\u0E2D\u0E01\u0E2A\u0E32\u0E23\u0E19\u0E42\u0E22\u0E1A\u0E32\u0E22\u0E41\u0E25\u0E30\u0E02\u0E48\u0E32\u0E27\u0E2A\u0E32\u0E23\u0E02\u0E2D\u0E07\u0E2B\u0E19\u0E48\u0E27\u0E22\u0E07\u0E32\u0E19'>;
     temperature: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0.7>;
+    topP: Schema.Attribute.Decimal & Schema.Attribute.DefaultTo<0.9>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     welcomeMessage: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u0E2A\u0E27\u0E31\u0E2A\u0E14\u0E35\u0E04\u0E23\u0E31\u0E1A \u0E21\u0E35\u0E2D\u0E30\u0E44\u0E23\u0E43\u0E2B\u0E49\u0E1C\u0E21\u0E0A\u0E48\u0E27\u0E22\u0E44\u0E2B\u0E21\u0E04\u0E23\u0E31\u0E1A?'>;
+    widgetColor: Schema.Attribute.String & Schema.Attribute.DefaultTo<''>;
+    widgetPosition: Schema.Attribute.Enumeration<
+      ['bottom-right', 'bottom-left']
+    > &
+      Schema.Attribute.DefaultTo<'bottom-right'>;
+  };
+}
+
+export interface ApiChatbotKnowledgeChatbotKnowledge
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'chatbot_knowledges';
+  info: {
+    description: 'Knowledge base documents for RAG chatbot';
+    displayName: 'Chatbot Knowledge';
+    pluralName: 'chatbot-knowledges';
+    singularName: 'chatbot-knowledge';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    chunkCount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    chunks: Schema.Attribute.JSON;
+    content: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    domain: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'localhost'>;
+    file: Schema.Attribute.Media<'files'>;
+    fileSize: Schema.Attribute.Integer;
+    fileType: Schema.Attribute.String;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::chatbot-knowledge.chatbot-knowledge'
+    > &
+      Schema.Attribute.Private;
+    metadata: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.Enumeration<
+      ['pending', 'processing', 'ready', 'error']
+    > &
+      Schema.Attribute.DefaultTo<'pending'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -904,9 +976,11 @@ export interface ApiPolicyDocumentPolicyDocument
   };
   attributes: {
     category: Schema.Attribute.String & Schema.Attribute.Required;
+    coverImage: Schema.Attribute.Media<'images'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
     domain: Schema.Attribute.String;
     file: Schema.Attribute.Media<'files'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -942,6 +1016,7 @@ export interface ApiPolicyPolicy extends Struct.CollectionTypeSchema {
       ['standard', 'compliance', 'certification', 'security']
     > &
       Schema.Attribute.DefaultTo<'standard'>;
+    coverImage: Schema.Attribute.Media<'images'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -949,6 +1024,7 @@ export interface ApiPolicyPolicy extends Struct.CollectionTypeSchema {
     domain: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'localhost:3000'>;
+    file: Schema.Attribute.Media<'files'>;
     highlightValue: Schema.Attribute.String;
     icon: Schema.Attribute.String & Schema.Attribute.DefaultTo<'ShieldCheck'>;
     isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
@@ -1627,6 +1703,7 @@ declare module '@strapi/strapi' {
       'api::audit-log.audit-log': ApiAuditLogAuditLog;
       'api::category.category': ApiCategoryCategory;
       'api::chatbot-config.chatbot-config': ApiChatbotConfigChatbotConfig;
+      'api::chatbot-knowledge.chatbot-knowledge': ApiChatbotKnowledgeChatbotKnowledge;
       'api::contact-submission.contact-submission': ApiContactSubmissionContactSubmission;
       'api::feature.feature': ApiFeatureFeature;
       'api::gallery.gallery': ApiGalleryGallery;
