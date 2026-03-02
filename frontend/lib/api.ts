@@ -33,29 +33,42 @@ export async function fetchAPI(
     const isServer = typeof window === "undefined";
     const useCache = isServer && revalidate !== false;
 
-    const mergedOptions: RequestInit = {
-        headers: {
-            "Content-Type": "application/json",
-            ...(process.env.STRAPI_API_TOKEN ? { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` } : {}),
-        },
-        ...(useCache ? { cache: 'force-cache' } : { cache: 'no-store' }),
-        ...(isServer && {
+    // Build query string
+    const queryString = qs.stringify(urlParamsObject, {
+        encodeValuesOnly: true,
+    });
+    const apiPath = `${path}${queryString ? `?${queryString}` : ""}`;
+
+    let requestUrl: string;
+    let mergedOptions: RequestInit;
+
+    if (isServer) {
+        // SERVER-SIDE: call Strapi directly with the API token
+        requestUrl = `${INTERNAL_STRAPI_URL}/api${apiPath}`;
+        mergedOptions = {
+            headers: {
+                "Content-Type": "application/json",
+                ...(process.env.STRAPI_API_TOKEN ? { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` } : {}),
+            },
+            ...(useCache ? { cache: 'force-cache' } : { cache: 'no-store' }),
             next: {
                 tags: ["strapi-data"],
                 ...(typeof revalidate === "number" ? { revalidate } : {})
-            }
-        }),
-        ...restOptions,
-    };
-
-
-    // Build request URL
-    const queryString = qs.stringify(urlParamsObject, {
-        encodeValuesOnly: true, // prettify URL
-    });
-    const requestUrl = `${getStrapiURL(
-        `/api${path}${queryString ? `?${queryString}` : ""}`
-    )}`;
+            },
+            ...restOptions,
+        };
+    } else {
+        // CLIENT-SIDE (Browser): route through the Next.js API proxy
+        // The proxy at /api/strapi/[...path] will attach the STRAPI_API_TOKEN server-side
+        requestUrl = `/api/strapi${apiPath}`;
+        mergedOptions = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cache: 'no-store',
+            ...restOptions,
+        };
+    }
 
     // Trigger API call
     try {
@@ -74,11 +87,9 @@ export async function fetchAPI(
     } catch (error: any) {
         console.error(`Fetch failed for URL: ${requestUrl}`);
         console.error(`Error name: ${error.name}, Message: ${error.message}`);
-        // If it's our thrown custom error, re-throw it instead of hiding it
         if (error.message.startsWith("API returned ")) {
             throw error;
         }
-        // Re-throw with more context
         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
     }
 }
