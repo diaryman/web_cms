@@ -94,7 +94,7 @@ export default function PoliciesPage() {
             if (uploadedCoverId) payload.coverImage = uploadedCoverId;
 
             if (editing) {
-                await fetchAPI(`/policies/${editing.id}`, {}, {
+                await fetchAPI(`/policies/${editing.documentId}`, {}, {
                     method: "PUT",
                     body: JSON.stringify({ data: payload })
                 });
@@ -117,10 +117,10 @@ export default function PoliciesPage() {
         }
     };
 
-    const handleDelete = async (id: number) => {
+    const handleDelete = async (documentId: string) => {
         if (!confirm("ต้องการลบนโยบายนี้?")) return;
         try {
-            await fetchAPI(`/policies/${id}`, {}, { method: "DELETE" });
+            await fetchAPI(`/policies/${documentId}`, {}, { method: "DELETE" });
             Swal.fire({ icon: "success", title: "สำเร็จ", text: "ลบเรียบร้อย", timer: 1500, showConfirmButton: false });
             loadPolicies();
         } catch (error) {
@@ -260,7 +260,7 @@ export default function PoliciesPage() {
                                         <Edit size={16} className="text-gray-600" />
                                     </button>
                                     <button
-                                        onClick={(e) => { e.stopPropagation(); handleDelete(policy.id); }}
+                                        onClick={(e) => { e.stopPropagation(); handleDelete(policy.documentId); }}
                                         className="p-2 hover:bg-red-50 rounded-lg transition-colors"
                                     >
                                         <Trash2 size={16} className="text-red-500" />
