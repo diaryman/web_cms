@@ -8,15 +8,14 @@ export default function CustomCursor() {
     const [isHovering, setIsHovering] = useState(false);
 
     // Smooth trailing effect
-    const cursorX = useSpring(0, { damping: 25, stiffness: 300 });
-    const cursorY = useSpring(0, { damping: 25, stiffness: 300 });
-    const size = isHovering ? 64 : 32;
+    const cursorX = useSpring(0, { damping: 25, stiffness: 350 });
+    const cursorY = useSpring(0, { damping: 25, stiffness: 350 });
 
     useEffect(() => {
         setMounted(true);
         const moveCursor = (e: MouseEvent) => {
-            cursorX.set(e.clientX - size / 2);
-            cursorY.set(e.clientY - size / 2);
+            cursorX.set(e.clientX);
+            cursorY.set(e.clientY);
         };
 
         const handleMouseOver = (e: MouseEvent) => {
@@ -35,23 +34,28 @@ export default function CustomCursor() {
             window.removeEventListener("mousemove", moveCursor);
             document.removeEventListener("mouseover", handleMouseOver);
         };
-    }, [cursorX, cursorY, size]);
+    }, [cursorX, cursorY]);
 
     if (!mounted) return null;
 
     return (
         <motion.div
-            className={`fixed top-0 left-0 rounded-full border-2 border-accent pointer-events-none z-[99999] hidden lg:flex items-center justify-center transition-colors duration-300 ${isHovering ? 'bg-accent/10 border-accent/70 backdrop-blur-sm' : ''}`}
+            className="fixed top-0 left-0 rounded-full pointer-events-none z-[99999] hidden lg:flex items-center justify-center transition-all duration-300"
             style={{
                 x: cursorX,
                 y: cursorY,
-                width: size,
-                height: size,
+                translateX: "-50%",
+                translateY: "-50%",
+                width: isHovering ? 50 : 10,
+                height: isHovering ? 50 : 10,
+                backgroundColor: isHovering ? 'var(--accent-glow)' : 'var(--accent-color)',
+                border: isHovering ? '1px solid var(--accent-color)' : 'none',
+                opacity: isHovering ? 0.3 : 0.6,
             }}
         >
-            {isHovering ? (
-                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-2 h-2 bg-primary rounded-full absolute" />
-            ) : null}
+            {isHovering ? null : (
+                <div className="w-1 h-1 bg-white rounded-full opacity-50" />
+            )}
         </motion.div>
     );
 }
