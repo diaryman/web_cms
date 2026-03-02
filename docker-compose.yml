@@ -24,6 +24,10 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_STRAPI_URL: http://${SERVER_IP:-54.224.21.48}:1337
+        NEXT_PUBLIC_DATAGOV_URL: http://${SERVER_IP:-54.224.21.48}:3002
+        NEXT_PUBLIC_PDPA_URL: http://${SERVER_IP:-54.224.21.48}:3004
     container_name: gov-frontend
     restart: always
     environment:

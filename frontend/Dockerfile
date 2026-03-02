@@ -19,7 +19,14 @@ COPY . .
 # Next.js telemetry is disabled
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Note: Adjust environment variables for your build here, e.g., STRAPI URL if Next.js statically renders contents at build time
+# NEXT_PUBLIC_* vars must be present at build time to be inlined into client JS
+ARG NEXT_PUBLIC_STRAPI_URL=http://127.0.0.1:1337
+ARG NEXT_PUBLIC_DATAGOV_URL=http://localhost:3002
+ARG NEXT_PUBLIC_PDPA_URL=http://localhost:3004
+ENV NEXT_PUBLIC_STRAPI_URL=$NEXT_PUBLIC_STRAPI_URL
+ENV NEXT_PUBLIC_DATAGOV_URL=$NEXT_PUBLIC_DATAGOV_URL
+ENV NEXT_PUBLIC_PDPA_URL=$NEXT_PUBLIC_PDPA_URL
+
 RUN npm run build
 
 # Production image, copy all the files and run next
