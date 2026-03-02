@@ -39,12 +39,24 @@
 }
 
 /* Make every element inherit colour transitions */
-*,
-*::before,
-*::after {
-  transition-property: background-color, border-color, color, box-shadow, opacity;
-  transition-duration: 0.35s;
+/* Optimized Transitions: Only apply to key interactive elements to boost scroll performance */
+button,
+a,
+input,
+select,
+textarea,
+.glass,
+.card,
+.premium-card,
+[role="button"] {
+  transition-property: background-color, border-color, color, box-shadow, opacity, transform;
+  transition-duration: 0.3s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base body transition for theme switching */
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Exception: don't force transitions on animations / transforms */
