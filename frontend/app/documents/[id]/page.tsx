@@ -7,10 +7,24 @@ import DocumentViewerClient from "./DocumentViewerClient";
 
 export async function generateMetadata(props: { params: Promise<{ id: string }> }) {
     const params = await props.params;
-    const res = await fetchAPI(`/policy-documents/${params.id}`, {
-        populate: ["file"],
-    });
-    const doc = res.data;
+    let doc = null;
+
+    try {
+        const res = await fetchAPI(`/policy-documents/${params.id}`, {
+            populate: ["file"],
+        });
+        doc = res.data;
+    } catch (e) {
+        try {
+            const res = await fetchAPI(`/policies/${params.id}`, {
+                populate: ["file"],
+            });
+            doc = res.data;
+        } catch (e2) {
+            // Both failed
+        }
+    }
+
     if (!doc) return { title: "ไม่พบเอกสาร" };
 
     return {
@@ -21,11 +35,25 @@ export async function generateMetadata(props: { params: Promise<{ id: string }> 
 
 export default async function DocumentViewerPage(props: { params: Promise<{ id: string }> }) {
     const params = await props.params;
-    const res = await fetchAPI(`/policy-documents/${params.id}`, {
-        populate: ["file"],
-    });
+    let doc = null;
+    let res = null;
 
-    const doc = res.data;
+    try {
+        res = await fetchAPI(`/policy-documents/${params.id}`, {
+            populate: ["file"],
+        });
+        doc = res.data;
+    } catch (e) {
+        try {
+            res = await fetchAPI(`/policies/${params.id}`, {
+                populate: ["file"],
+            });
+            doc = res.data;
+        } catch (e2) {
+            notFound();
+        }
+    }
+
     if (!doc) notFound();
 
     const domain = doc.domain || "localhost";
