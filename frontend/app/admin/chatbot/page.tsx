@@ -151,7 +151,9 @@ function ChatbotSettingsContent() {
         setStatusMsg(null);
         try {
             const { fetchAPI } = await import("@/lib/api");
-            const payload = { data: { ...config, domain } };
+            // Filter out Strapi internal/read-only fields
+            const { id, documentId, createdAt, updatedAt, publishedAt, locale, ...savableConfig } = config;
+            const payload = { data: { ...savableConfig, domain } };
             if (config.documentId) {
                 await fetchAPI(`/chatbot-configs/${config.documentId}`, {}, { method: "PUT", body: JSON.stringify(payload) });
             } else {
@@ -159,7 +161,8 @@ function ChatbotSettingsContent() {
                 if (created.data) setConfig((prev: any) => ({ ...prev, documentId: created.data.documentId }));
             }
             setStatusMsg({ type: "success", text: "บันทึกการตั้งค่าแชทบอทเรียบร้อยแล้ว ✓" });
-        } catch {
+        } catch (err) {
+            console.error("Save error:", err);
             setStatusMsg({ type: "error", text: "เกิดข้อผิดพลาดในการบันทึกข้อมูล" });
         } finally {
             setSaving(false);
