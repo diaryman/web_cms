@@ -50,6 +50,17 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  // Proxy /uploads to Strapi backend for Zero-Config Image handling
+  async rewrites() {
+    const strapiUrl = process.env.STRAPI_URL || "http://backend:1337";
+    return [
+      {
+        source: "/uploads/:path*",
+        destination: `${strapiUrl}/uploads/:path*`,
+      },
+    ];
+  },
+
   experimental: {
     serverActions: {
       bodySizeLimit: '20mb',

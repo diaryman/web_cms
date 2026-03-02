@@ -10,10 +10,21 @@ export function getStrapiURL(path = "") {
 }
 
 /**
- * Get public Strapi URL for media/images — Runtime detected.
- * On the server: uses INTERNAL_STRAPI_URL (Docker DNS).
- * On the browser: derives from window.location.hostname + port :1337
- * so it works even when the server IP changes (no rebuild needed).
+ * Get public Strapi URL for media/images.
+ *
+ * NOTE: We now proxy /uploads/ through next.config.ts rewrites,
+ * so in most cases (for <img> tags), we should just return the relative path.
+ * This makes the site "Zero Config" regardless of IP changes.
+ */
+export function getStrapiMedia(url: string | null) {
+    if (url == null) return null;
+    if (url.startsWith("http") || url.startsWith("//")) return url;
+    // Proxy handles /uploads via next.config.ts rewrites
+    return url;
+}
+
+/**
+ * Get public Strapi full URL if absolutely needed (e.g. for sharing / OG meta)
  */
 export function getPublicStrapiURL(): string {
     if (typeof window !== "undefined") {
@@ -25,14 +36,9 @@ export function getPublicStrapiURL(): string {
         // Production: derive from current hostname (IP or domain)
         return `${window.location.protocol}//${hostname}:1337`;
     }
-    // Server-side: use Docker internal URL
-    return INTERNAL_STRAPI_URL;
-}
-
-export function getStrapiMedia(url: string | null) {
-    if (url == null) return null;
-    if (url.startsWith("http") || url.startsWith("//")) return url;
-    return `${getPublicStrapiURL()}${url}`;
+    // Server-side: fallback to env (which might be hardcoded old IP, but it's better than nothing for OG tags)
+    // Actually, on server we don't know the public IP/Hostname easily without the request headers.
+    return process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 }
 
 export async function fetchAPI(
