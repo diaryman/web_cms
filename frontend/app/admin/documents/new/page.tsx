@@ -31,6 +31,7 @@ function CreateDocumentForm() {
     const [loading, setLoading] = useState(false);
     const [dynamicCategories, setDynamicCategories] = useState<any[]>([]);
     const [docFile, setDocFile] = useState<File | null>(null);
+    const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -81,15 +82,31 @@ function CreateDocumentForm() {
                 uploadedFileId = uploadedFiles[0].id;
             }
 
-            // 2. Create Document
+            // 2. Upload Cover Image (if selected)
+            let uploadedCoverId = null;
+            if (coverImageFile) {
+                const coverFormData = new FormData();
+                coverFormData.append("files", coverImageFile);
+                const uploadedCovers = await uploadFile(coverFormData);
+                if (uploadedCovers && uploadedCovers.length > 0) {
+                    uploadedCoverId = uploadedCovers[0].id;
+                }
+            }
+
+            // 3. Create Document
             const publishedYear = formData.publishedAt ? new Date(formData.publishedAt).getFullYear() + 543 : new Date().getFullYear() + 543;
             const payload: any = {
                 title: formData.title,
+                description: formData.description,
                 category: formData.category,
                 domain: formData.domain,
                 year: publishedYear,
                 file: uploadedFileId
             };
+
+            if (uploadedCoverId) {
+                payload.coverImage = uploadedCoverId;
+            }
 
             await fetchAPI("/policy-documents", {}, {
                 method: "POST",
@@ -157,6 +174,54 @@ function CreateDocumentForm() {
                                 type="file"
                                 required
                                 onChange={handleFileChange}
+                                className="absolute inset-0 opacity-0 cursor-pointer"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Cover Image Upload Area */}
+                    <div className="space-y-4">
+                        <label className="text-sm font-bold text-gray-700 flex items-center gap-2">
+                            <Upload size={16} className="text-primary" /> เลือกรูปปกหนังสือ (แนวตั้ง, ตัวเลือกเสริม)
+                        </label>
+                        <div
+                            className={`relative border-2 border-dashed rounded-2xl p-8 transition-all flex flex-col items-center justify-center ${coverImageFile ? 'border-primary/50 bg-primary/5' : 'border-gray-200 hover:border-primary/40 bg-gray-50'}`}
+                        >
+                            {coverImageFile ? (
+                                <div className="flex items-center gap-4">
+                                    {/* Show Image Preview */}
+                                    <div className="w-16 h-20 bg-gray-200 rounded-xl overflow-hidden shadow-sm">
+                                        <img src={URL.createObjectURL(coverImageFile)} alt="Cover preview" className="w-full h-full object-cover" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="font-bold text-gray-800 truncate max-w-xs">{coverImageFile.name}</p>
+                                        <p className="text-xs text-gray-500">{(coverImageFile.size / 1024 / 1024).toFixed(2)} MB</p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => setCoverImageFile(null)}
+                                        className="p-2 hover:bg-gray-200 rounded-full text-gray-600 transition-colors"
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mb-3">
+                                        <Upload size={24} />
+                                    </div>
+                                    <p className="text-sm font-bold text-gray-500">คลิกหรือลากรูปภาพมาวางเพื่อตั้งเป็นปกหน้า</p>
+                                    <p className="text-xs text-gray-400 mt-1">แนะนำรูปภาพแนวตั้ง (Portrait) สัดส่วนคล้าย A4</p>
+                                </>
+                            )}
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => {
+                                    if (e.target.files && e.target.files[0]) {
+                                        setCoverImageFile(e.target.files[0]);
+                                    }
+                                }}
                                 className="absolute inset-0 opacity-0 cursor-pointer"
                             />
                         </div>

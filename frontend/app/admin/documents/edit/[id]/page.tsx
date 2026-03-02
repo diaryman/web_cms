@@ -34,6 +34,8 @@ function EditDocumentForm({ id }: { id: string }) {
     const [dynamicCategories, setDynamicCategories] = useState<any[]>([]);
     const [docFile, setDocFile] = useState<File | null>(null);
     const [existingFile, setExistingFile] = useState<any>(null);
+    const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
+    const [existingCoverImage, setExistingCoverImage] = useState<any>(null);
 
     const [formData, setFormData] = useState({
         title: "",
@@ -69,6 +71,9 @@ function EditDocumentForm({ id }: { id: string }) {
                 if (doc.file) {
                     setExistingFile(doc.file);
                 }
+                if (doc.coverImage) {
+                    setExistingCoverImage(doc.coverImage);
+                }
             } catch (error) {
                 console.error("Error loading document data", error);
             } finally {
@@ -100,10 +105,22 @@ function EditDocumentForm({ id }: { id: string }) {
                 }
             }
 
-            // 2. Update Document
+            // 2. Upload Cover Image if new one selected
+            let uploadedCoverId = undefined;
+            if (coverImageFile) {
+                const coverFormData = new FormData();
+                coverFormData.append("files", coverImageFile);
+                const uploadedCovers = await uploadFile(coverFormData);
+                if (uploadedCovers && uploadedCovers.length > 0) {
+                    uploadedCoverId = uploadedCovers[0].id;
+                }
+            }
+
+            // 3. Update Document
             const publishedYear = formData.publishedAt ? new Date(formData.publishedAt).getFullYear() + 543 : new Date().getFullYear() + 543;
             const payload: any = {
                 title: formData.title,
+                description: formData.description,
                 category: formData.category,
                 domain: formData.domain,
                 year: publishedYear
@@ -111,6 +128,9 @@ function EditDocumentForm({ id }: { id: string }) {
 
             if (uploadedFileId) {
                 payload.file = uploadedFileId;
+            }
+            if (uploadedCoverId) {
+                payload.coverImage = uploadedCoverId;
             }
 
             await fetchAPI(`/policy-documents/${id}`, {}, {
@@ -197,13 +217,83 @@ function EditDocumentForm({ id }: { id: string }) {
                                     <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mb-3">
                                         <Upload size={24} />
                                     </div>
-                                    <p className="text-sm font-bold text-gray-500">คลิกหรือลางไฟล์ใหม่มาวางเพื่อเปลี่ยนเอกสาร</p>
-                                    <p className="text-xs text-gray-400 mt-1">ไฟล์ใหม่จะถูกนำไปแทนที่มไฟล์เดิมทันทีที่บันทึก</p>
+                                    <p className="text-sm font-bold text-gray-500">คลิกหรือลากไฟล์ใหม่มาวางเพื่อเปลี่ยนเอกสาร</p>
+                                    <p className="text-xs text-gray-400 mt-1">ไฟล์ใหม่จะถูกนำไปแทนที่ไฟล์เดิมทันทีที่บันทึก</p>
                                 </>
                             )}
                             <input
                                 type="file"
                                 onChange={handleFileChange}
+                                className="absolute inset-0 opacity-0 cursor-pointer"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Cover Image Upload Area */}
+                    <div className="space-y-4">
+                        <label className="text-sm font-bold text-gray-700 flex items-center gap-2">
+                            <Upload size={16} className="text-primary" /> เลือกรูปปกหนังสือ (แนวตั้ง, ตัวเลือกเสริม)
+                        </label>
+
+                        {existingCoverImage && !coverImageFile && (
+                            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100 mb-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-16 h-20 bg-gray-200 rounded-xl overflow-hidden shadow-sm">
+                                        <img src={getStrapiMedia(existingCoverImage.url) || ""} alt="Current Cover" className="w-full h-full object-cover" />
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-sm text-slate-700 truncate max-w-xs">{existingCoverImage.name}</p>
+                                        <p className="text-[10px] text-slate-400">ขนาด: {(existingCoverImage.size / 1024).toFixed(2)} KB</p>
+                                    </div>
+                                </div>
+                                <a
+                                    href={getStrapiMedia(existingCoverImage.url) || undefined}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-500 hover:text-primary transition-colors"
+                                >
+                                    เปิดดูรูป <ExternalLink size={12} />
+                                </a>
+                            </div>
+                        )}
+
+                        <div
+                            className={`relative border-2 border-dashed rounded-2xl p-8 transition-all flex flex-col items-center justify-center ${coverImageFile ? 'border-primary/50 bg-primary/5' : 'border-gray-200 hover:border-primary/40 bg-gray-50'}`}
+                        >
+                            {coverImageFile ? (
+                                <div className="flex items-center gap-4">
+                                    <div className="w-16 h-20 bg-gray-200 rounded-xl overflow-hidden shadow-sm">
+                                        <img src={URL.createObjectURL(coverImageFile)} alt="Cover preview" className="w-full h-full object-cover" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="font-bold text-gray-800 truncate max-w-xs">{coverImageFile.name}</p>
+                                        <p className="text-xs text-gray-500">{(coverImageFile.size / 1024 / 1024).toFixed(2)} MB</p>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => setCoverImageFile(null)}
+                                        className="p-2 hover:bg-gray-200 rounded-full text-gray-600 transition-colors"
+                                    >
+                                        <X size={20} />
+                                    </button>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mb-3">
+                                        <Upload size={24} />
+                                    </div>
+                                    <p className="text-sm font-bold text-gray-500">คลิกหรือลากรูปภาพมาวางเพื่อตั้งเป็น/เปลี่ยนปกหน้า</p>
+                                    <p className="text-xs text-gray-400 mt-1">รูปใหม่จะไปแทนที่รูปเดิมทันทีที่บันทึก (แนวตั้งสัดส่วนคล้าย A4)</p>
+                                </>
+                            )}
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => {
+                                    if (e.target.files && e.target.files[0]) {
+                                        setCoverImageFile(e.target.files[0]);
+                                    }
+                                }}
                                 className="absolute inset-0 opacity-0 cursor-pointer"
                             />
                         </div>

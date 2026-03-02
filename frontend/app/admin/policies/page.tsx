@@ -3,10 +3,11 @@
 import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { fetchAPI } from "@/lib/api";
-import { Plus, Edit, Trash2, Loader2, ShieldCheck, Lock, CheckCircle, FileCheck, X, Columns, GripVertical } from "lucide-react";
+import { fetchAPI, getStrapiMedia } from "@/lib/api";
+import { Plus, Edit, Trash2, Loader2, ShieldCheck, Lock, CheckCircle, FileCheck, X, Columns, GripVertical, Upload, FileText, ExternalLink } from "lucide-react";
 import dynamic from "next/dynamic";
 import { Reorder } from "motion/react";
+import { uploadFile } from "@/app/actions/upload";
 
 const RichTextEditor = dynamic(() => import("@/components/RichTextEditor"), {
     ssr: false,
@@ -23,6 +24,11 @@ export default function PoliciesPage() {
     const [hasOrderChanged, setHasOrderChanged] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [editing, setEditing] = useState<any>(null);
+    const [docFile, setDocFile] = useState<File | null>(null);
+    const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
+    const [existingFile, setExistingFile] = useState<any>(null);
+    const [existingCoverImage, setExistingCoverImage] = useState<any>(null);
+    const [isSaving, setIsSaving] = useState(false);
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -51,6 +57,7 @@ export default function PoliciesPage() {
             const res = await fetchAPI("/policies", {
                 filters: { domain },
                 sort: ["order:asc"],
+                populate: ["file", "coverImage"],
                 pagination: { pageSize: 100 }
             });
             setPolicies(res.data || []);
@@ -64,17 +71,38 @@ export default function PoliciesPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsSaving(true);
         try {
+            let uploadedFileId = undefined;
+            if (docFile) {
+                const fData = new FormData();
+                fData.append("files", docFile);
+                const ups = await uploadFile(fData);
+                if (ups && ups.length > 0) uploadedFileId = ups[0].id;
+            }
+
+            let uploadedCoverId = undefined;
+            if (coverImageFile) {
+                const cData = new FormData();
+                cData.append("files", coverImageFile);
+                const cUps = await uploadFile(cData);
+                if (cUps && cUps.length > 0) uploadedCoverId = cUps[0].id;
+            }
+
+            const payload: any = { ...formData };
+            if (uploadedFileId) payload.file = uploadedFileId;
+            if (uploadedCoverId) payload.coverImage = uploadedCoverId;
+
             if (editing) {
                 await fetchAPI(`/policies/${editing.id}`, {}, {
                     method: "PUT",
-                    body: JSON.stringify({ data: formData })
+                    body: JSON.stringify({ data: payload })
                 });
                 Swal.fire({ icon: "success", title: "สำเร็จ", text: "อัปเดตนโยบายเรียบร้อย", timer: 1500, showConfirmButton: false });
             } else {
                 await fetchAPI("/policies", {}, {
                     method: "POST",
-                    body: JSON.stringify({ data: formData })
+                    body: JSON.stringify({ data: payload })
                 });
                 Swal.fire({ icon: "success", title: "สำเร็จ", text: "สร้างนโยบายเรียบร้อย", timer: 1500, showConfirmButton: false });
             }
@@ -84,6 +112,8 @@ export default function PoliciesPage() {
         } catch (error) {
             console.error("Error saving policy", error);
             Swal.fire({ icon: "error", title: "แจ้งเตือน", text: "บันทึกไม่สำเร็จ" });
+        } finally {
+            setIsSaving(false);
         }
     };
 
@@ -111,6 +141,10 @@ export default function PoliciesPage() {
             isActive: policy.isActive !== false,
             highlightValue: policy.highlightValue || ""
         });
+        setExistingFile(policy.file);
+        setExistingCoverImage(policy.coverImage);
+        setDocFile(null);
+        setCoverImageFile(null);
         setShowModal(true);
     };
 
@@ -141,6 +175,10 @@ export default function PoliciesPage() {
 
     const resetForm = () => {
         setEditing(null);
+        setDocFile(null);
+        setCoverImageFile(null);
+        setExistingFile(null);
+        setExistingCoverImage(null);
         setFormData({
             title: "",
             description: "",
@@ -255,6 +293,79 @@ export default function PoliciesPage() {
                             </button>
                         </div>
                         <form onSubmit={handleSubmit} className="space-y-4">
+                            {/* File Upload Area */}
+                            <div className="space-y-4 mb-6">
+                                <label className="text-sm font-bold text-gray-700 flex items-center gap-2">
+                                    <FileText size={16} className="text-primary" /> เลือกไฟล์เอกสารนโยบาย/มาตรฐาน (PDF)
+                                </label>
+                                {existingFile && !docFile && (
+                                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100 mb-4">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+                                                <FileText size={20} />
+                                            </div>
+                                            <div>
+                                                <p className="font-bold text-sm text-slate-700 truncate max-w-xs">{existingFile.name}</p>
+                                                <p className="text-[10px] text-slate-400">ขนาด: {(existingFile.size / 1024).toFixed(2)} KB</p>
+                                            </div>
+                                        </div>
+                                        <a href={getStrapiMedia(existingFile.url) || undefined} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-500 hover:text-primary transition-colors">
+                                            เปิดดูไฟล์ <ExternalLink size={12} />
+                                        </a>
+                                    </div>
+                                )}
+                                <div className={`relative border-2 border-dashed rounded-2xl p-6 transition-all flex flex-col items-center justify-center ${docFile ? 'border-emerald-200 bg-emerald-50/30' : 'border-gray-200 hover:border-primary/40 bg-gray-50'}`}>
+                                    {docFile ? (
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white"><FileText size={20} /></div>
+                                            <div className="flex-1"><p className="font-bold text-emerald-900 truncate max-w-xs">{docFile.name}</p><p className="text-xs text-emerald-600">{(docFile.size / 1024 / 1024).toFixed(2)} MB</p></div>
+                                            <button type="button" onClick={() => setDocFile(null)} className="p-2 hover:bg-emerald-100 rounded-full text-emerald-600 transition-colors"><X size={16} /></button>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mb-3"><Upload size={20} /></div>
+                                            <p className="text-sm font-bold text-gray-500">คลิกหรือลากไฟล์เอกสาร (PDF) มาวาง</p>
+                                        </>
+                                    )}
+                                    <input type="file" accept=".pdf" onChange={(e) => { if (e.target.files && e.target.files[0]) setDocFile(e.target.files[0]) }} className="absolute inset-0 opacity-0 cursor-pointer" />
+                                </div>
+                            </div>
+
+                            {/* Cover Image Upload Area */}
+                            <div className="space-y-4 mb-6">
+                                <label className="text-sm font-bold text-gray-700 flex items-center gap-2">
+                                    <Upload size={16} className="text-primary" /> เลือกรูปภาพหน้าปกเอกสาร (แนวตั้ง)
+                                </label>
+                                {existingCoverImage && !coverImageFile && (
+                                    <div className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl border border-gray-100 mb-4">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-14 h-20 bg-gray-200 rounded-xl overflow-hidden shadow-sm">
+                                                <img src={getStrapiMedia(existingCoverImage.url) || ""} alt="Cover" className="w-full h-full object-cover" />
+                                            </div>
+                                            <div>
+                                                <p className="font-bold text-sm text-slate-700 truncate max-w-xs">{existingCoverImage.name}</p>
+                                                <p className="text-[10px] text-slate-400">ขนาด: {(existingCoverImage.size / 1024).toFixed(2)} KB</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                                <div className={`relative border-2 border-dashed rounded-2xl p-6 transition-all flex flex-col items-center justify-center ${coverImageFile ? 'border-primary/50 bg-primary/5' : 'border-gray-200 hover:border-primary/40 bg-gray-50'}`}>
+                                    {coverImageFile ? (
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-14 h-20 bg-gray-200 rounded-xl overflow-hidden shadow-sm"><img src={URL.createObjectURL(coverImageFile)} alt="Cover preview" className="w-full h-full object-cover" /></div>
+                                            <div className="flex-1"><p className="font-bold text-gray-800 truncate max-w-xs">{coverImageFile.name}</p><p className="text-xs text-gray-500">{(coverImageFile.size / 1024 / 1024).toFixed(2)} MB</p></div>
+                                            <button type="button" onClick={() => setCoverImageFile(null)} className="p-2 hover:bg-gray-200 rounded-full text-gray-600 transition-colors"><X size={16} /></button>
+                                        </div>
+                                    ) : (
+                                        <>
+                                            <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mb-3"><Upload size={20} /></div>
+                                            <p className="text-sm font-bold text-gray-500">คลิกหรือลากรูปหน้าปก (JPG, PNG) มาวาง</p>
+                                        </>
+                                    )}
+                                    <input type="file" accept="image/*" onChange={(e) => { if (e.target.files && e.target.files[0]) setCoverImageFile(e.target.files[0]) }} className="absolute inset-0 opacity-0 cursor-pointer" />
+                                </div>
+                            </div>
+
                             <div>
                                 <label className="block text-sm font-bold mb-2">ชื่อนโยบาย/มาตรฐาน</label>
                                 <input
@@ -328,9 +439,10 @@ export default function PoliciesPage() {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="flex-1 px-6 py-3 bg-primary text-white font-bold rounded-xl hover:bg-accent transition-all"
+                                    disabled={isSaving}
+                                    className="flex-1 px-6 py-3 bg-primary text-white font-bold rounded-xl hover:bg-accent transition-all flex justify-center items-center gap-2"
                                 >
-                                    บันทึก
+                                    {isSaving && <Loader2 className="animate-spin" size={18} />} บันทึก
                                 </button>
                             </div>
                         </form>

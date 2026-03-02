@@ -48,6 +48,22 @@
         },
         "highlightValue": {
             "type": "string"
+        },
+        "file": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "files"
+            ]
+        },
+        "coverImage": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "images"
+            ]
         }
     }
 }

@@ -3,8 +3,8 @@
 import Swal from "sweetalert2";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { fetchAPI } from "@/lib/api";
-import { Shield, File, Trash2, Plus, Search, Eye, Download, Edit } from "lucide-react";
+import { fetchAPI, getStrapiMedia } from "@/lib/api";
+import { Shield, File, Trash2, Plus, Search, Download, Edit } from "lucide-react";
 import Link from "next/link";
 
 // Types
@@ -15,11 +15,16 @@ interface Document {
     description: string;
     publishedAt: string;
     domain: string;
-    category: string; // Updated to string based on schema
+    category: string;
     file?: {
         url: string;
         mime: string;
         size: number;
+        name: string;
+    };
+    coverImage?: {
+        url: string;
+        name: string;
     };
 }
 
@@ -50,8 +55,8 @@ function DocumentsContent() {
             try {
                 // Fetch Policy Documents
                 const docsRes = await fetchAPI("/policy-documents", {
-                    fields: ["title", "publishedAt", "domain", "category"],
-                    populate: ["file"],
+                    fields: ["title", "description", "publishedAt", "domain", "category"],
+                    populate: ["file", "coverImage"],
                     sort: ["publishedAt:desc"],
                 });
                 setDocuments(docsRes.data || []);
@@ -149,47 +154,75 @@ function DocumentsContent() {
                     ))
                 ) : filteredDocuments.length > 0 ? (
                     filteredDocuments.map((doc) => (
-                        <div key={doc.id} className="group bg-white p-6 rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col items-start gap-4 h-full relative overflow-hidden">
+                        <div key={doc.id} className="group bg-white rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl -translate-y-10 translate-x-10 group-hover:bg-primary/10 transition-colors"></div>
 
-                            <div className="w-14 h-14 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center mb-2 shadow-sm group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                                <File size={28} />
-                            </div>
+                            {/* Cover Image or Icon Header */}
+                            {doc.coverImage ? (
+                                <div className="w-full h-40 overflow-hidden rounded-t-[2.5rem] flex-shrink-0">
+                                    <img
+                                        src={getStrapiMedia(doc.coverImage.url) || ""}
+                                        alt={doc.title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    />
+                                </div>
+                            ) : (
+                                <div className="w-full h-28 bg-gradient-to-br from-blue-50 to-primary/5 rounded-t-[2.5rem] flex items-center justify-center flex-shrink-0">
+                                    <div className="w-14 h-14 bg-white text-blue-500 rounded-2xl flex items-center justify-center shadow-sm group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                                        <File size={28} />
+                                    </div>
+                                </div>
+                            )}
 
-                            <div className="flex-1 w-full z-10">
-                                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 block">
-                                    {doc.category || "เอกสารทั่วไป"}
-                                </span>
-                                <h3 className="text-lg font-bold text-primary font-heading leading-tight mb-2 line-clamp-2 group-hover:text-accent transition-colors">
-                                    {doc.title}
-                                </h3>
-                                <p className="text-xs text-gray-400 line-clamp-3 leading-relaxed">
-                                    {doc.description || "ไม่มีรายละเอียดเพิ่มเติมสำหรับเอกสารฉบับนี้"}
-                                </p>
-                            </div>
+                            <div className="p-6 flex flex-col flex-1 gap-4">
+                                <div className="flex-1 w-full z-10">
+                                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 block">
+                                        {doc.category || "เอกสารทั่วไป"}
+                                    </span>
+                                    <h3 className="text-lg font-bold text-primary font-heading leading-tight mb-2 line-clamp-2 group-hover:text-accent transition-colors">
+                                        {doc.title}
+                                    </h3>
+                                    <p className="text-xs text-gray-400 line-clamp-3 leading-relaxed">
+                                        {doc.description || "ไม่มีรายละเอียดเพิ่มเติมสำหรับเอกสารฉบับนี้"}
+                                    </p>
+                                </div>
 
-                            <div className="w-full pt-4 border-t border-gray-50 flex justify-between items-center mt-auto z-10">
-                                <span className="text-[10px] font-bold text-gray-300">
-                                    {new Date(doc.publishedAt).toLocaleDateString("th-TH", { day: 'numeric', month: 'short', year: '2-digit' })}
-                                </span>
-                                <div className="flex gap-2">
-                                    <button className="p-2 text-primary bg-primary/5 hover:bg-primary hover:text-white rounded-xl transition-all" title="ดาวน์โหลด">
-                                        <Download size={16} />
-                                    </button>
-                                    <Link
-                                        href={`/admin/documents/edit/${doc.documentId}?site=${siteParam}`}
-                                        className="p-2 text-gray-400 bg-gray-50 hover:bg-amber-500 hover:text-white rounded-xl transition-all"
-                                        title="แก้ไข"
-                                    >
-                                        <Edit size={16} />
-                                    </Link>
-                                    <button
-                                        onClick={() => handleDelete(doc.documentId)}
-                                        className="p-2 text-gray-400 bg-gray-50 hover:bg-red-500 hover:text-white rounded-xl transition-all"
-                                        title="ลบ"
-                                    >
-                                        <Trash2 size={16} />
-                                    </button>
+                                <div className="w-full pt-4 border-t border-gray-50 flex justify-between items-center mt-auto z-10">
+                                    <span className="text-[10px] font-bold text-gray-300">
+                                        {new Date(doc.publishedAt).toLocaleDateString("th-TH", { day: 'numeric', month: 'short', year: '2-digit' })}
+                                    </span>
+                                    <div className="flex gap-2">
+                                        {doc.file ? (
+                                            <a
+                                                href={getStrapiMedia(doc.file.url) || "#"}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                download
+                                                className="p-2 text-primary bg-primary/5 hover:bg-primary hover:text-white rounded-xl transition-all"
+                                                title="ดาวน์โหลดเอกสาร"
+                                            >
+                                                <Download size={16} />
+                                            </a>
+                                        ) : (
+                                            <span className="p-2 text-gray-200 rounded-xl cursor-not-allowed" title="ไม่มีไฟล์แนบ">
+                                                <Download size={16} />
+                                            </span>
+                                        )}
+                                        <Link
+                                            href={`/admin/documents/edit/${doc.documentId}?site=${siteParam}`}
+                                            className="p-2 text-gray-400 bg-gray-50 hover:bg-amber-500 hover:text-white rounded-xl transition-all"
+                                            title="แก้ไข"
+                                        >
+                                            <Edit size={16} />
+                                        </Link>
+                                        <button
+                                            onClick={() => handleDelete(doc.documentId)}
+                                            className="p-2 text-gray-400 bg-gray-50 hover:bg-red-500 hover:text-white rounded-xl transition-all"
+                                            title="ลบ"
+                                        >
+                                            <Trash2 size={16} />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

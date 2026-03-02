@@ -2111,3 +2111,737 @@ Error: aborted
  POST /admin?site=main 200 in 39ms (compile: 6ms, proxy.ts: 4ms, render: 28ms)
  POST /admin?site=main 200 in 47ms (compile: 12ms, proxy.ts: 4ms, render: 31ms)
  POST /admin?site=main 200 in 40ms (compile: 8ms, proxy.ts: 5ms, render: 27ms)
+ POST /admin?site=main 200 in 37ms (compile: 7ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 37ms (compile: 8ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 40ms (compile: 7ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 39ms (compile: 6ms, proxy.ts: 3ms, render: 30ms)
+[Strapi Proxy] Error: fetch failed
+ GET /api/strapi/site-configs?filters[domain]=localhost 502 in 36ms (compile: 10ms, render: 26ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 194ms (compile: 10ms, proxy.ts: 5ms, render: 178ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 182ms (compile: 10ms, proxy.ts: 5ms, render: 167ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 177ms (compile: 9ms, proxy.ts: 4ms, render: 163ms)
+[Strapi Proxy] Error: fetch failed
+ GET /api/strapi/site-configs?filters[domain]=localhost 502 in 18ms (compile: 6ms, render: 12ms)
+[Strapi Proxy] Error: fetch failed
+ GET /api/strapi/site-configs?filters[domain]=localhost 502 in 28ms (compile: 17ms, render: 12ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 169ms (compile: 4ms, proxy.ts: 3ms, render: 163ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 162ms (compile: 3ms, proxy.ts: 3ms, render: 157ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 180ms (compile: 9ms, proxy.ts: 4ms, render: 166ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 150ms (compile: 3ms, proxy.ts: 4ms, render: 143ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 147ms (compile: 3ms, proxy.ts: 2ms, render: 142ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 167ms (compile: 5ms, proxy.ts: 4ms, render: 158ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 160ms (compile: 4ms, proxy.ts: 3ms, render: 152ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 153ms (compile: 5ms, proxy.ts: 5ms, render: 143ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 161ms (compile: 5ms, proxy.ts: 4ms, render: 152ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 161ms (compile: 6ms, proxy.ts: 3ms, render: 152ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 166ms (compile: 9ms, proxy.ts: 4ms, render: 153ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 160ms (compile: 10ms, proxy.ts: 5ms, render: 145ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 155ms (compile: 4ms, proxy.ts: 4ms, render: 147ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 164ms (compile: 5ms, proxy.ts: 4ms, render: 155ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 166ms (compile: 10ms, proxy.ts: 5ms, render: 152ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 157ms (compile: 7ms, proxy.ts: 5ms, render: 145ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 155ms (compile: 4ms, proxy.ts: 4ms, render: 147ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 166ms (compile: 9ms, proxy.ts: 4ms, render: 153ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 165ms (compile: 8ms, proxy.ts: 4ms, render: 153ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 160ms (compile: 11ms, proxy.ts: 5ms, render: 144ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 160ms (compile: 8ms, proxy.ts: 4ms, render: 147ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 168ms (compile: 8ms, proxy.ts: 3ms, render: 157ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 153ms (compile: 4ms, proxy.ts: 4ms, render: 146ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 153ms (compile: 9ms, proxy.ts: 4ms, render: 140ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 168ms (compile: 10ms, proxy.ts: 4ms, render: 154ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 176ms (compile: 11ms, proxy.ts: 4ms, render: 161ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 181ms (compile: 10ms, proxy.ts: 4ms, render: 168ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 167ms (compile: 9ms, proxy.ts: 4ms, render: 153ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 166ms (compile: 9ms, proxy.ts: 3ms, render: 154ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 161ms (compile: 4ms, proxy.ts: 3ms, render: 153ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 161ms (compile: 4ms, proxy.ts: 3ms, render: 154ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 162ms (compile: 6ms, proxy.ts: 3ms, render: 153ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 155ms (compile: 3ms, proxy.ts: 6ms, render: 147ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 162ms (compile: 4ms, proxy.ts: 6ms, render: 152ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 168ms (compile: 5ms, proxy.ts: 9ms, render: 154ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 153ms (compile: 4ms, proxy.ts: 5ms, render: 143ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 150ms (compile: 6ms, proxy.ts: 4ms, render: 140ms)
+Fetch failed for URL: http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Failed to fetch notification counts: Error: Fetch failed for http://127.0.0.1:1337/api/audit-logs?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true. Is Strapi running? Details: fetch failed
+    at fetchAPI (lib/api.ts:97:15)
+    at async getNotificationCounts (app/actions/notifications.ts:7:60)
+   95 |             throw error;
+   96 |         }
+>  97 |         throw new Error(`Fetch failed for ${requestUrl}. Is Strapi running? Details: ${error.message}`);
+      |               ^
+   98 |     }
+   99 | }
+  100 |
+Fetch failed for URL: http://127.0.0.1:1337/api/contact-submissions?filters[domain]=localhost&filters[status]=New&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+Fetch failed for URL: http://127.0.0.1:1337/api/newsletter-subscribers?filters[domain]=localhost&filters[isRead]=false&pagination[pageSize]=1&pagination[withCount]=true
+Error name: TypeError, Message: fetch failed
+ POST /admin?site=main 200 in 162ms (compile: 3ms, proxy.ts: 3ms, render: 156ms)
+[trackArticleView] Failed silently: TypeError: fetch failed
+    at async trackArticleView (app/actions/article.ts:112:9)
+  110 |     if (!documentId) return;
+  111 |     try {
+> 112 |         await fetch(`${STRAPI_URL}/api/articles/${documentId}/view`, {
+      |         ^
+  113 |             method: "POST",
+  114 |             headers: { "Content-Type": "application/json" },
+  115 |             cache: "no-store", {
+  [cause]: Error: connect ECONNREFUSED 127.0.0.1:1337
+      at <unknown> (Error: connect ECONNREFUSED 127.0.0.1:1337) {
+    errno: -61,
+    code: 'ECONNREFUSED',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 1337
+  }
+}
+ GET /manifest.webmanifest 200 in 18ms (compile: 4ms, proxy.ts: 6ms, render: 9ms)
+ GET /news/meeting-dg-2569 200 in 342ms (compile: 11ms, proxy.ts: 5ms, render: 326ms)
+[Strapi Proxy] Error: fetch failed
+ GET /api/strapi/chatbot-configs?filters[domain][$eq]=localhost 502 in 12ms (compile: 5ms, render: 7ms)
+[Strapi Proxy] Error: fetch failed
+ GET /api/strapi/site-configs?filters[domain]=localhost 502 in 10ms (compile: 2ms, render: 8ms)
+ GET /icon-192.png 404 in 85ms (compile: 19ms, proxy.ts: 2ms, render: 64ms)
+✓ Compiled in 112ms
+✓ Compiled in 172ms
