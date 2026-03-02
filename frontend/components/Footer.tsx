@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Facebook, Youtube, Mail, Phone, MapPin, ShieldCheck, ChevronRight, Globe } from "lucide-react";
 import { fetchAPI } from "@/lib/api";
-import { PDPA_URL, isPDPADomain } from "@/lib/siteConfig";
+import { isPDPADomain, getCrossSiteURL } from "@/lib/siteConfig";
 
 export default async function Footer({ domain = "localhost" }: { domain?: string }) {
     let config = null;
@@ -159,7 +159,7 @@ export default async function Footer({ domain = "localhost" }: { domain?: string
                                         { name: "หน้าแรก", href: "/" },
                                         { name: "ข่าวกิจกรรมล่าสุด", href: "/news" },
                                         { name: "ประกาศและการแจ้งเตือน", href: "/#announcements" },
-                                        { name: "ติดต่อเจ้าหน้าที่ DPO", href: isPDPADomain(domain) ? "/contact" : `${PDPA_URL}/contact` }
+                                        { name: "ติดต่อเจ้าหน้าที่ DPO", href: isPDPADomain(domain) ? "/contact" : `${getCrossSiteURL("pdpa")}/contact` }
                                     ].map((item, idx) => (
                                         <li key={idx}>
                                             <Link href={item.href} className="hover:text-white flex items-center gap-2 transition-all duration-300 text-sm group opacity-60 hover:opacity-100">

@@ -4,13 +4,12 @@ import NewsPageClient from "./NewsPageClient";
 import NewsTicker from "@/components/NewsTicker";
 import { Metadata } from "next";
 import { fetchAPI } from "@/lib/api";
+import { getCrossSiteURL } from "@/lib/siteConfig";
 
 export async function generateMetadata(props: { searchParams: Promise<{ site?: string }> }): Promise<Metadata> {
     const searchParams = await props.searchParams;
     const isPDPA = searchParams.site === 'pdpa';
-    const siteUrl = isPDPA
-        ? process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"
-        : process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002";
+    const siteUrl = isPDPA ? getCrossSiteURL("pdpa") : getCrossSiteURL("main");
 
     const title = isPDPA ? "กิจกรรมและประกาศ - PDPA Center" : "ข่าวสารและกิจกรรมล่าสุด - DataGOV";
     const description = isPDPA

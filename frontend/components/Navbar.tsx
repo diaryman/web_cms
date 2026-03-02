@@ -1,6 +1,6 @@
 import { fetchAPI } from "@/lib/api";
 import NavbarClient from "./NavbarClient";
-import { DATAGOV_URL, isPDPADomain, PDPA_DOMAIN } from "@/lib/siteConfig";
+import { isPDPADomain, getCrossSiteURL } from "@/lib/siteConfig";
 
 export default async function Navbar({ domain = "localhost" }: { domain?: string }) {
     // Fetch site config (Server Side)
@@ -13,11 +13,11 @@ export default async function Navbar({ domain = "localhost" }: { domain?: string
         navItems = [
             { name: "หน้าแรก", href: "/" },
             { name: "ข่าวกิจกรรม", href: "/news" },
-            { name: "DataGOV", href: process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002" },
+            { name: "DataGOV", href: getCrossSiteURL("main") },
             { name: "นโยบาย/มาตรฐาน", href: "/#principles" },
             { name: "เอกสารเผยแพร่", href: "/documents" },
             { name: "ดาวน์โหลด", href: "/#documents" },
-            { name: "ติดต่อเรา", href: "/contact" },
+            { name: "ติดต่อเจ้าหน้าที่ DPO", href: isPDPADomain(domain) ? "/contact" : `${getCrossSiteURL("pdpa")}/contact` },
         ];
     }
 

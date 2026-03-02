@@ -95,8 +95,28 @@ export function getSiteParam(domain: string): "pdpa" | "main" {
 /** Extract port from URL string (e.g. "http://1.2.3.4:3004" → "3004") */
 function extractPort(url: string): string {
     try {
-        return new URL(url).port;
+        const port = new URL(url).port;
+        return port;
     } catch {
         return "";
     }
+}
+
+/**
+ * Get the full URL for cross-site links (e.g. DataGOV → PDPA)
+ * Uses window.location for self-correction if built on a production server.
+ */
+export function getCrossSiteURL(target: 'pdpa' | 'main'): string {
+    if (typeof window !== "undefined") {
+        const hostname = window.location.hostname;
+        // If not a local dev environment, infer URL from current hostname
+        if (hostname !== "localhost" && hostname !== "pdpa.localhost" && !hostname.includes("127.0.0.1")) {
+            const port = target === 'pdpa' ? '3004' : '3002';
+            // Use protocol from window if possible
+            const protocol = window.location.protocol;
+            return `${protocol}//${hostname}:${port}`;
+        }
+    }
+    // Fallback to env-inlined or build-time default
+    return target === 'pdpa' ? PDPA_URL : DATAGOV_URL;
 }

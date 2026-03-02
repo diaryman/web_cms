@@ -23,7 +23,10 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
     const searchParams = useSearchParams();
     const siteParam = searchParams.get("site") || "main";
     const siteName = siteParam === "pdpa" ? "PDPA Center" : "DataGOV";
-    const homeLink = siteParam === "pdpa" ? (process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004") : "/";
+    const isPDPA = siteParam === "pdpa";
+    const siteUrl = isPDPA
+        ? process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004"
+        : process.env.NEXT_PUBLIC_DATAGOV_URL || "http://localhost:3002";
     const [authData, setAuthData] = useState<{ isAuthorized: boolean; role: string | null; username: string | null } | null>(null);
     const router = useRouter();
 
@@ -115,7 +118,7 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
                 {/* Accent top strip — reflects the active site theme */}
                 <div className="h-1 w-full shrink-0" style={{ background: "linear-gradient(to right, var(--primary-color), var(--accent-color))" }} />
                 <div className="p-8 shrink-0">
-                    <Link href={homeLink} className="flex items-center gap-3 group">
+                    <Link href={isPDPA ? siteUrl : "/"} className="flex items-center gap-3 group">
                         <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold shadow-lg" style={{ background: "var(--primary-color)" }}>
                             <ShieldCheck size={24} />
                         </div>

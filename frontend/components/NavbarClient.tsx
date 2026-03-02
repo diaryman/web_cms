@@ -6,8 +6,9 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import SearchModal from "./SearchModal";
 import ThemeToggle from "./ThemeToggle";
+import { useRouter } from "next/navigation";
 import FontSizeResizer from "./FontSizeResizer";
-import { PDPA_URL, getSiteParam } from "@/lib/siteConfig";
+import { getSiteParam, getCrossSiteURL } from "@/lib/siteConfig";
 
 interface NavbarClientProps {
     siteName: string;
@@ -49,7 +50,7 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
     const defaultNavItems = [
         { name: "หน้าแรก", href: "/" },
         { name: "ข่าวกิจกรรม", href: "/news?site=main" },
-        { name: "PDPA", href: process.env.NEXT_PUBLIC_PDPA_URL || "http://localhost:3004" },
+        { name: "PDPA", href: getCrossSiteURL("pdpa") },
         { name: "นโยบาย/มาตรฐาน", href: "/#policy" },
         { name: "เอกสารเผยแพร่", href: "/documents" },
         { name: "ดาวน์โหลด", href: "/#downloads" },
