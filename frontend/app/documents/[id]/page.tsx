@@ -30,6 +30,8 @@ export default async function DocumentViewerPage(props: { params: Promise<{ id: 
 
     const domain = doc.domain || "localhost";
     const fileUrl = doc.file?.url ? getStrapiMedia(doc.file.url) : null;
+    // Proxy URL for iframe (same-origin avoids X-Frame-Options issues)
+    const proxyFileUrl = doc.file?.url ? `/api/files${doc.file.url}` : null;
     const isPdf = doc.file?.mime === "application/pdf";
 
     // Fetch site config for navbar
@@ -55,6 +57,7 @@ export default async function DocumentViewerPage(props: { params: Promise<{ id: 
                     category={doc.category}
                     year={doc.year}
                     fileUrl={fileUrl}
+                    proxyFileUrl={proxyFileUrl}
                     isPdf={isPdf}
                     fileName={doc.file?.name || doc.title}
                     fileSize={doc.file?.size}

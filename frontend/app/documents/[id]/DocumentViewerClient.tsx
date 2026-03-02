@@ -23,6 +23,7 @@ interface DocumentViewerClientProps {
     category?: string;
     year?: number;
     fileUrl: string | null;
+    proxyFileUrl?: string | null;
     isPdf: boolean;
     fileName: string;
     fileSize?: number;
@@ -35,6 +36,7 @@ export default function DocumentViewerClient({
     category,
     year,
     fileUrl,
+    proxyFileUrl,
     isPdf,
     fileName,
     fileSize,
@@ -176,7 +178,7 @@ export default function DocumentViewerClient({
 
                         {/* iframe PDF Viewer */}
                         <iframe
-                            src={`${fileUrl}#toolbar=1&navpanes=1&scrollbar=1`}
+                            src={`${proxyFileUrl || fileUrl}#toolbar=1&navpanes=1&scrollbar=1`}
                             className={`w-full border-0 ${isFullscreen ? "h-[calc(100vh-48px)]" : "h-[75vh]"}`}
                             title={title}
                         />
