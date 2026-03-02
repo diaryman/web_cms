@@ -163,8 +163,8 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
                     ) : filteredDocs.length > 0 ? (
                         filteredDocs.map((doc, idx) => {
                             const mediaUrl = doc.file?.url ? getStrapiMedia(doc.file.url) : null;
-                            const fileUrl = mediaUrl || "#";
-                            const styles = getColor(doc.category);
+                            const isPdf = doc.file?.mime === "application/pdf";
+                            const viewerUrl = `/documents/${doc.documentId}`;
 
                             return (
                                 <motion.div
@@ -174,14 +174,28 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
                                     transition={{ delay: idx * 0.05 }}
                                 >
                                     <a
-                                        href={fileUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        href={viewerUrl}
                                         className="block h-full"
                                     >
                                         <SpotlightCard className="group bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col h-full relative overflow-hidden cursor-pointer">
-                                            <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "var(--accent-color)" }}>
-                                                <Download size={20} />
+                                            <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+                                                {mediaUrl && (
+                                                    <span
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            e.stopPropagation();
+                                                            const a = document.createElement("a");
+                                                            a.href = mediaUrl;
+                                                            a.download = doc.title;
+                                                            a.click();
+                                                        }}
+                                                        className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+                                                        style={{ color: "var(--accent-color)" }}
+                                                        title="ดาวน์โหลด"
+                                                    >
+                                                        <Download size={18} />
+                                                    </span>
+                                                )}
                                             </div>
 
                                             <div className="flex items-start gap-4 mb-4">
@@ -213,7 +227,7 @@ export default function DocumentsPageClient({ navbar, footer, domain = "localhos
                                             <div className="mt-auto pt-4 border-t border-gray-50 flex justify-between items-center text-xs font-bold text-slate-400 uppercase tracking-wider">
                                                 <span>{doc.year || new Date().getFullYear()} Edition</span>
                                                 <span className="flex items-center gap-1 transition-colors" style={{ color: "var(--accent-color)" }}>
-                                                    Download <ChevronRight size={14} />
+                                                    {isPdf ? "ดูเอกสาร" : "Download"} <ChevronRight size={14} />
                                                 </span>
                                             </div>
                                         </SpotlightCard>
