@@ -588,3 +588,1226 @@ Error name: TypeError, Message: fetch failed
  POST /admin?site=main 200 in 24ms (compile: 5ms, proxy.ts: 6ms, render: 13ms)
  POST /admin?site=main 200 in 59ms (compile: 8ms, proxy.ts: 6ms, render: 44ms)
  POST /admin?site=main 200 in 72ms (compile: 6ms, proxy.ts: 4ms, render: 62ms)
+ POST /admin?site=main 200 in 267ms (compile: 4ms, proxy.ts: 6ms, render: 258ms)
+ POST /admin?site=main 200 in 41ms (compile: 5ms, proxy.ts: 4ms, render: 32ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 42ms (compile: 5ms, proxy.ts: 5ms, render: 32ms)
+ POST /admin?site=main 200 in 163ms (compile: 20ms, proxy.ts: 8ms, render: 135ms)
+ POST /admin?site=main 200 in 21ms (compile: 3ms, proxy.ts: 2ms, render: 16ms)
+ POST /admin?site=main 200 in 42ms (compile: 5ms, proxy.ts: 5ms, render: 32ms)
+ POST /admin?site=main 200 in 41ms (compile: 5ms, proxy.ts: 5ms, render: 31ms)
+ POST /admin?site=main 200 in 40ms (compile: 7ms, proxy.ts: 8ms, render: 25ms)
+ POST /admin?site=main 200 in 38ms (compile: 5ms, proxy.ts: 5ms, render: 28ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 42ms (compile: 4ms, proxy.ts: 4ms, render: 34ms)
+ POST /admin?site=main 200 in 38ms (compile: 4ms, proxy.ts: 4ms, render: 30ms)
+ POST /admin?site=main 200 in 38ms (compile: 4ms, proxy.ts: 6ms, render: 28ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 31ms (compile: 4ms, proxy.ts: 5ms, render: 22ms)
+ POST /admin?site=main 200 in 39ms (compile: 5ms, proxy.ts: 3ms, render: 31ms)
+ POST /admin?site=main 200 in 39ms (compile: 4ms, proxy.ts: 4ms, render: 31ms)
+ POST /admin?site=main 200 in 31ms (compile: 3ms, proxy.ts: 3ms, render: 25ms)
+ POST /admin?site=main 200 in 32ms (compile: 5ms, proxy.ts: 4ms, render: 23ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 33ms (compile: 3ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 37ms (compile: 6ms, proxy.ts: 5ms, render: 26ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 5ms, render: 26ms)
+ POST /admin?site=main 200 in 31ms (compile: 4ms, proxy.ts: 2ms, render: 24ms)
+ POST /admin?site=main 200 in 39ms (compile: 9ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 37ms (compile: 6ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 3ms, render: 29ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 3ms, render: 28ms)
+ POST /admin?site=main 200 in 21ms (compile: 2ms, proxy.ts: 1863µs, render: 17ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 22ms (compile: 2ms, proxy.ts: 1536µs, render: 19ms)
+ POST /admin?site=main 200 in 40ms (compile: 5ms, proxy.ts: 4ms, render: 32ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 3ms, render: 28ms)
+ POST /admin?site=main 200 in 54ms (compile: 5ms, proxy.ts: 4ms, render: 45ms)
+ POST /admin?site=main 200 in 35ms (compile: 5ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 3ms, render: 29ms)
+ POST /admin?site=main 200 in 33ms (compile: 5ms, proxy.ts: 3ms, render: 26ms)
+ POST /admin?site=main 200 in 38ms (compile: 6ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 3ms, render: 26ms)
+ POST /admin?site=main 200 in 40ms (compile: 4ms, proxy.ts: 4ms, render: 31ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 39ms (compile: 4ms, proxy.ts: 4ms, render: 32ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 3ms, render: 26ms)
+ POST /admin?site=main 200 in 39ms (compile: 4ms, proxy.ts: 4ms, render: 31ms)
+ POST /admin?site=main 200 in 69ms (compile: 10ms, proxy.ts: 8ms, render: 51ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 5ms, render: 27ms)
+ POST /admin?site=main 200 in 54ms (compile: 4ms, proxy.ts: 4ms, render: 45ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 22ms (compile: 2ms, proxy.ts: 1848µs, render: 18ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 31ms (compile: 3ms, proxy.ts: 3ms, render: 25ms)
+ POST /admin?site=main 200 in 23ms (compile: 2ms, proxy.ts: 1777µs, render: 19ms)
+ POST /admin?site=main 200 in 63ms (compile: 2ms, proxy.ts: 2ms, render: 59ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 27ms (compile: 3ms, proxy.ts: 3ms, render: 21ms)
+ POST /admin?site=main 200 in 37ms (compile: 5ms, proxy.ts: 5ms, render: 28ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 34ms (compile: 3ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 51ms (compile: 3ms, proxy.ts: 3ms, render: 44ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 34ms (compile: 3ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 34ms (compile: 7ms, proxy.ts: 4ms, render: 23ms)
+ POST /admin?site=main 200 in 42ms (compile: 4ms, proxy.ts: 3ms, render: 35ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 35ms (compile: 5ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 36ms (compile: 7ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 35ms (compile: 5ms, proxy.ts: 5ms, render: 26ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 3ms, render: 29ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 3ms, render: 28ms)
+ POST /admin?site=main 200 in 33ms (compile: 3ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 4ms, render: 30ms)
+ POST /admin?site=main 200 in 34ms (compile: 5ms, proxy.ts: 3ms, render: 25ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 37ms (compile: 5ms, proxy.ts: 5ms, render: 27ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 24ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 32ms (compile: 4ms, proxy.ts: 3ms, render: 25ms)
+ POST /admin?site=main 200 in 33ms (compile: 5ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 35ms (compile: 5ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 24ms)
+ POST /admin?site=main 200 in 32ms (compile: 4ms, proxy.ts: 3ms, render: 25ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 5ms, render: 25ms)
+ POST /admin?site=main 200 in 39ms (compile: 7ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 32ms (compile: 6ms, proxy.ts: 3ms, render: 23ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 3ms, render: 28ms)
+ POST /admin?site=main 200 in 36ms (compile: 6ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 40ms (compile: 5ms, proxy.ts: 3ms, render: 32ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 39ms (compile: 5ms, proxy.ts: 5ms, render: 29ms)
+ POST /admin?site=main 200 in 43ms (compile: 4ms, proxy.ts: 4ms, render: 34ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 5ms, render: 28ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 7ms, render: 26ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 3ms, render: 28ms)
+ POST /admin?site=main 200 in 39ms (compile: 9ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 38ms (compile: 4ms, proxy.ts: 3ms, render: 30ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 3ms, render: 30ms)
+ POST /admin?site=main 200 in 39ms (compile: 4ms, proxy.ts: 3ms, render: 31ms)
+ POST /admin?site=main 200 in 39ms (compile: 5ms, proxy.ts: 3ms, render: 31ms)
+ POST /admin?site=main 200 in 37ms (compile: 6ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 30ms (compile: 3ms, proxy.ts: 4ms, render: 23ms)
+ POST /admin?site=main 200 in 41ms (compile: 7ms, proxy.ts: 5ms, render: 29ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 3ms, render: 29ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 34ms (compile: 5ms, proxy.ts: 3ms, render: 26ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 25ms (compile: 2ms, proxy.ts: 2ms, render: 20ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 36ms (compile: 8ms, proxy.ts: 3ms, render: 25ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 18ms (compile: 1586µs, proxy.ts: 1571µs, render: 15ms)
+ POST /admin?site=main 200 in 31ms (compile: 5ms, proxy.ts: 3ms, render: 23ms)
+ POST /admin?site=main 200 in 33ms (compile: 5ms, proxy.ts: 3ms, render: 25ms)
+ POST /admin?site=main 200 in 34ms (compile: 8ms, proxy.ts: 4ms, render: 22ms)
+ POST /admin?site=main 200 in 27ms (compile: 3ms, proxy.ts: 5ms, render: 19ms)
+ POST /admin?site=main 200 in 28ms (compile: 5ms, proxy.ts: 1661µs, render: 21ms)
+ POST /admin?site=main 200 in 30ms (compile: 4ms, proxy.ts: 3ms, render: 23ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 32ms (compile: 4ms, proxy.ts: 3ms, render: 25ms)
+ POST /admin?site=main 200 in 47ms (compile: 6ms, proxy.ts: 5ms, render: 37ms)
+ POST /admin?site=main 200 in 28ms (compile: 8ms, proxy.ts: 4ms, render: 17ms)
+ POST /admin?site=main 200 in 34ms (compile: 5ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 32ms (compile: 4ms, proxy.ts: 4ms, render: 24ms)
+ POST /admin?site=main 200 in 34ms (compile: 5ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 38ms (compile: 5ms, proxy.ts: 6ms, render: 27ms)
+ POST /admin?site=main 200 in 40ms (compile: 5ms, proxy.ts: 3ms, render: 31ms)
+ POST /admin?site=main 200 in 20ms (compile: 2ms, proxy.ts: 2ms, render: 16ms)
+ POST /admin?site=main 200 in 177ms (compile: 13ms, proxy.ts: 5ms, render: 159ms)
+ POST /admin?site=main 200 in 38ms (compile: 6ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 35ms (compile: 3ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 41ms (compile: 4ms, proxy.ts: 5ms, render: 32ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 5ms, render: 26ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 3ms, render: 29ms)
+ POST /admin?site=main 200 in 24ms (compile: 3ms, proxy.ts: 2ms, render: 18ms)
+ POST /admin?site=main 200 in 35ms (compile: 5ms, proxy.ts: 5ms, render: 25ms)
+ POST /admin?site=main 200 in 38ms (compile: 6ms, proxy.ts: 5ms, render: 27ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 26ms (compile: 3ms, proxy.ts: 2ms, render: 21ms)
+ POST /admin?site=main 200 in 43ms (compile: 5ms, proxy.ts: 3ms, render: 35ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 36ms (compile: 3ms, proxy.ts: 3ms, render: 29ms)
+ POST /admin?site=main 200 in 28ms (compile: 3ms, proxy.ts: 3ms, render: 23ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 5ms, render: 26ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 32ms (compile: 5ms, proxy.ts: 3ms, render: 25ms)
+ POST /admin?site=main 200 in 22ms (compile: 2ms, proxy.ts: 2ms, render: 17ms)
+ POST /admin?site=main 200 in 36ms (compile: 7ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 38ms (compile: 8ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 38ms (compile: 3ms, proxy.ts: 3ms, render: 31ms)
+ POST /admin?site=main 200 in 36ms (compile: 6ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 34ms (compile: 7ms, proxy.ts: 5ms, render: 22ms)
+ POST /admin?site=main 200 in 31ms (compile: 4ms, proxy.ts: 3ms, render: 24ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 3ms, render: 28ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 34ms (compile: 5ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 35ms (compile: 5ms, proxy.ts: 4ms, render: 26ms)
+ GET / 200 in 198ms (compile: 8ms, proxy.ts: 4ms, render: 186ms)
+ POST /admin?site=main 200 in 39ms (compile: 10ms, proxy.ts: 6ms, render: 23ms)
+ POST /admin?site=main 200 in 34ms (compile: 5ms, proxy.ts: 3ms, render: 26ms)
+ POST /admin?site=main 200 in 35ms (compile: 6ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 35ms (compile: 5ms, proxy.ts: 5ms, render: 24ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 39ms (compile: 4ms, proxy.ts: 4ms, render: 30ms)
+ POST /admin?site=main 200 in 24ms (compile: 3ms, proxy.ts: 1990µs, render: 19ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 21ms (compile: 3ms, proxy.ts: 1492µs, render: 17ms)
+ POST /admin?site=main 200 in 41ms (compile: 7ms, proxy.ts: 4ms, render: 30ms)
+ GET /admin?site=main 200 in 219ms (compile: 163ms, proxy.ts: 7ms, render: 49ms)
+ GET / 200 in 222ms (compile: 117ms, proxy.ts: 5ms, render: 99ms)
+ GET /manifest.webmanifest 200 in 24ms (compile: 3ms, proxy.ts: 9ms, render: 11ms)
+ GET /manifest.webmanifest 200 in 6ms (compile: 1748µs, proxy.ts: 1793µs, render: 3ms)
+ GET /icon-192.png 404 in 105ms (compile: 15ms, proxy.ts: 1632µs, render: 89ms)
+ GET /icon-192.png 404 in 54ms (compile: 4ms, proxy.ts: 1317µs, render: 49ms)
+ POST /admin?site=main 200 in 40ms (compile: 5ms, proxy.ts: 6ms, render: 30ms)
+ POST /admin?site=main 200 in 23ms (compile: 3ms, proxy.ts: 3ms, render: 17ms)
+ POST /admin?site=main 200 in 23ms (compile: 4ms, proxy.ts: 1733µs, render: 18ms)
+ POST /admin?site=main 200 in 35ms (compile: 5ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 30ms (compile: 3ms, proxy.ts: 3ms, render: 24ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 26ms (compile: 2ms, proxy.ts: 2ms, render: 21ms)
+ POST /admin?site=main 200 in 38ms (compile: 5ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 44ms (compile: 6ms, proxy.ts: 4ms, render: 34ms)
+ POST /admin?site=main 200 in 32ms (compile: 3ms, proxy.ts: 2ms, render: 26ms)
+ POST /admin?site=main 200 in 43ms (compile: 6ms, proxy.ts: 4ms, render: 33ms)
+ POST /admin?site=main 200 in 40ms (compile: 6ms, proxy.ts: 3ms, render: 31ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 37ms (compile: 5ms, proxy.ts: 3ms, render: 29ms)
+ POST /admin?site=main 200 in 30ms (compile: 3ms, proxy.ts: 3ms, render: 25ms)
+ POST /admin?site=main 200 in 40ms (compile: 4ms, proxy.ts: 4ms, render: 32ms)
+ POST /admin?site=main 200 in 38ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 28ms (compile: 4ms, proxy.ts: 4ms, render: 20ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 3ms, render: 28ms)
+ POST /admin?site=main 200 in 39ms (compile: 4ms, proxy.ts: 3ms, render: 31ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 3ms, render: 30ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 27ms (compile: 3ms, proxy.ts: 2ms, render: 22ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 3ms, render: 28ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 3ms, render: 28ms)
+ POST /admin?site=main 200 in 39ms (compile: 3ms, proxy.ts: 3ms, render: 33ms)
+ POST /admin?site=main 200 in 34ms (compile: 3ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 33ms (compile: 7ms, proxy.ts: 3ms, render: 24ms)
+ POST /admin?site=main 200 in 38ms (compile: 4ms, proxy.ts: 4ms, render: 30ms)
+ POST /admin?site=main 200 in 39ms (compile: 5ms, proxy.ts: 3ms, render: 32ms)
+ POST /admin?site=main 200 in 29ms (compile: 3ms, proxy.ts: 3ms, render: 24ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 19ms (compile: 1805µs, proxy.ts: 1472µs, render: 16ms)
+ GET /admin?site=main 200 in 528ms (compile: 127ms, proxy.ts: 33ms, render: 368ms)
+ GET /manifest.webmanifest 200 in 16ms (compile: 4ms, proxy.ts: 4ms, render: 8ms)
+ GET /admin?site=main 200 in 558ms (compile: 195ms, proxy.ts: 21ms, render: 343ms)
+ GET / 200 in 700ms (compile: 6ms, proxy.ts: 3ms, render: 691ms)
+ GET /manifest.webmanifest 200 in 31ms (compile: 18ms, proxy.ts: 4ms, render: 8ms)
+ GET /icon-192.png 404 in 112ms (compile: 14ms, proxy.ts: 3ms, render: 95ms)
+ POST /admin?site=main 200 in 22ms (compile: 5ms, proxy.ts: 3ms, render: 14ms)
+ GET /icon-192.png 404 in 85ms (compile: 5ms, proxy.ts: 3ms, render: 77ms)
+ POST /admin?site=main 200 in 33ms (compile: 5ms, proxy.ts: 2ms, render: 25ms)
+ POST /admin?site=main 200 in 11ms (compile: 3ms, proxy.ts: 1927µs, render: 6ms)
+ POST /admin?site=main 200 in 22ms (compile: 1666µs, proxy.ts: 1574µs, render: 19ms)
+ POST /admin?site=main 200 in 21ms (compile: 5ms, proxy.ts: 8ms, render: 8ms)
+ POST /admin?site=main 200 in 36ms (compile: 7ms, proxy.ts: 3ms, render: 26ms)
+ POST /admin?site=main 200 in 36ms (compile: 6ms, proxy.ts: 3ms, render: 26ms)
+ POST /admin?site=main 200 in 37ms (compile: 5ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 38ms (compile: 5ms, proxy.ts: 5ms, render: 28ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 3ms, render: 28ms)
+ POST /admin?site=main 200 in 36ms (compile: 4ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 36ms (compile: 7ms, proxy.ts: 5ms, render: 24ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 37ms (compile: 6ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 35ms (compile: 5ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 27ms (compile: 2ms, proxy.ts: 3ms, render: 22ms)
+ POST /admin?site=main 200 in 35ms (compile: 7ms, proxy.ts: 5ms, render: 23ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 35ms (compile: 5ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin?site=main 200 in 33ms (compile: 6ms, proxy.ts: 4ms, render: 23ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 3ms, render: 26ms)
+ POST /admin?site=main 200 in 37ms (compile: 6ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 44ms (compile: 7ms, proxy.ts: 4ms, render: 33ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 38ms (compile: 7ms, proxy.ts: 4ms, render: 27ms)
+ GET / 200 in 159ms (compile: 4ms, proxy.ts: 4ms, render: 151ms)
+ GET /manifest.webmanifest 200 in 7ms (compile: 1521µs, proxy.ts: 2ms, render: 3ms)
+ GET /icon-192.png 404 in 92ms (compile: 14ms, proxy.ts: 6ms, render: 72ms)
+ GET /admin?site=main 200 in 41ms (compile: 4ms, proxy.ts: 6ms, render: 31ms)
+ GET /manifest.webmanifest 200 in 27ms (compile: 9ms, proxy.ts: 9ms, render: 9ms)
+ GET /icon-192.png 404 in 79ms (compile: 27ms, proxy.ts: 4ms, render: 48ms)
+ POST /admin?site=main 200 in 14ms (compile: 2ms, proxy.ts: 4ms, render: 8ms)
+ POST /admin?site=main 200 in 12ms (compile: 3ms, proxy.ts: 1566µs, render: 8ms)
+ POST /admin?site=main 200 in 11ms (compile: 3ms, proxy.ts: 2ms, render: 5ms)
+ POST /admin?site=main 200 in 14ms (compile: 4ms, proxy.ts: 2ms, render: 7ms)
+ POST /admin?site=main 200 in 17ms (compile: 4ms, proxy.ts: 4ms, render: 8ms)
+ POST /admin?site=main 200 in 39ms (compile: 3ms, proxy.ts: 5ms, render: 31ms)
+ POST /admin?site=main 200 in 17ms (compile: 8ms, proxy.ts: 3ms, render: 7ms)
+ POST /admin?site=main 200 in 19ms (compile: 2ms, proxy.ts: 2ms, render: 15ms)
+ POST /admin?site=main 200 in 31ms (compile: 1524µs, proxy.ts: 2ms, render: 28ms)
+ POST /admin?site=main 200 in 11ms (compile: 1934µs, proxy.ts: 1557µs, render: 7ms)
+ POST /admin?site=main 200 in 23ms (compile: 1353µs, proxy.ts: 1254µs, render: 20ms)
+ POST /admin?site=main 200 in 10ms (compile: 1946µs, proxy.ts: 3ms, render: 5ms)
+ GET /manifest.webmanifest 200 in 14ms (compile: 3ms, proxy.ts: 1776µs, render: 9ms)
+ GET /icon-192.png 404 in 75ms (compile: 6ms, proxy.ts: 4ms, render: 65ms)
+ GET /admin/chatbot?site=main 200 in 77ms (compile: 42ms, proxy.ts: 4ms, render: 31ms)
+ GET /manifest.webmanifest 200 in 28ms (compile: 19ms, proxy.ts: 5ms, render: 4ms)
+ GET /icon-192.png 404 in 51ms (compile: 8ms, proxy.ts: 1163µs, render: 42ms)
+ POST /admin?site=main 200 in 35ms (compile: 6ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin/chatbot?site=main 200 in 39ms (compile: 6ms, proxy.ts: 5ms, render: 29ms)
+ POST /admin?site=main 200 in 34ms (compile: 6ms, proxy.ts: 4ms, render: 23ms)
+ POST /admin/chatbot?site=main 200 in 31ms (compile: 4ms, proxy.ts: 4ms, render: 23ms)
+ POST /admin?site=main 200 in 32ms (compile: 4ms, proxy.ts: 5ms, render: 23ms)
+ POST /admin/chatbot?site=main 200 in 33ms (compile: 5ms, proxy.ts: 4ms, render: 24ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 3ms, render: 27ms)
+ POST /admin/chatbot?site=main 200 in 32ms (compile: 5ms, proxy.ts: 4ms, render: 24ms)
+ POST /admin?site=main 200 in 26ms (compile: 5ms, proxy.ts: 3ms, render: 17ms)
+ POST /admin/chatbot?site=main 200 in 35ms (compile: 6ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin/chatbot?site=main 200 in 32ms (compile: 4ms, proxy.ts: 3ms, render: 26ms)
+ POST /admin?site=main 200 in 34ms (compile: 5ms, proxy.ts: 4ms, render: 25ms)
+ GET /admin?site=main 200 in 202ms (compile: 5ms, proxy.ts: 1856µs, render: 195ms)
+ GET /admin/chatbot?site=main 200 in 201ms (compile: 167ms, proxy.ts: 1515µs, render: 32ms)
+ GET / 200 in 208ms (compile: 77ms, proxy.ts: 2ms, render: 129ms)
+ GET /manifest.webmanifest 200 in 43ms (compile: 4ms, proxy.ts: 24ms, render: 15ms)
+ GET /manifest.webmanifest 200 in 25ms (compile: 18ms, proxy.ts: 2ms, render: 5ms)
+ GET /manifest.webmanifest 200 in 12ms (compile: 3ms, proxy.ts: 6ms, render: 3ms)
+ GET /icon-192.png 404 in 155ms (compile: 16ms, proxy.ts: 2ms, render: 137ms)
+ GET /icon-192.png 404 in 155ms (compile: 43ms, proxy.ts: 7ms, render: 106ms)
+ GET /icon-192.png 404 in 48ms (compile: 3ms, proxy.ts: 1487µs, render: 43ms)
+ POST /admin/chatbot?site=main 200 in 23ms (compile: 3ms, proxy.ts: 6ms, render: 14ms)
+ POST /admin?site=main 200 in 40ms (compile: 6ms, proxy.ts: 6ms, render: 28ms)
+ POST /admin/chatbot?site=main 200 in 39ms (compile: 7ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 32ms (compile: 5ms, proxy.ts: 3ms, render: 24ms)
+ POST /admin/chatbot?site=main 200 in 37ms (compile: 5ms, proxy.ts: 5ms, render: 27ms)
+ POST /admin?site=main 200 in 42ms (compile: 6ms, proxy.ts: 4ms, render: 33ms)
+ POST /admin/chatbot?site=main 200 in 20ms (compile: 2ms, proxy.ts: 2ms, render: 16ms)
+ POST /admin?site=main 200 in 32ms (compile: 4ms, proxy.ts: 5ms, render: 23ms)
+ POST /admin/chatbot?site=main 200 in 27ms (compile: 6ms, proxy.ts: 4ms, render: 17ms)
+ POST /admin?site=main 200 in 34ms (compile: 5ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin/chatbot?site=main 200 in 28ms (compile: 5ms, proxy.ts: 4ms, render: 18ms)
+ POST /admin?site=main 200 in 33ms (compile: 5ms, proxy.ts: 4ms, render: 24ms)
+ POST /admin/chatbot?site=main 200 in 36ms (compile: 5ms, proxy.ts: 5ms, render: 26ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin/chatbot?site=main 200 in 25ms (compile: 3ms, proxy.ts: 3ms, render: 19ms)
+ POST /admin?site=main 200 in 30ms (compile: 4ms, proxy.ts: 4ms, render: 23ms)
+ POST /admin/chatbot?site=main 200 in 34ms (compile: 5ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 5ms, render: 24ms)
+ POST /admin/chatbot?site=main 200 in 40ms (compile: 6ms, proxy.ts: 4ms, render: 30ms)
+ POST /admin?site=main 200 in 34ms (compile: 5ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin/chatbot?site=main 200 in 34ms (compile: 3ms, proxy.ts: 7ms, render: 23ms)
+ POST /admin?site=main 200 in 37ms (compile: 5ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin/chatbot?site=main 200 in 38ms (compile: 6ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 30ms (compile: 4ms, proxy.ts: 4ms, render: 22ms)
+ POST /admin/chatbot?site=main 200 in 34ms (compile: 5ms, proxy.ts: 4ms, render: 25ms)
+ GET /manifest.webmanifest 200 in 32ms (compile: 5ms, proxy.ts: 24ms, render: 3ms)
+ GET /admin/chatbot?site=main 200 in 156ms (compile: 6ms, proxy.ts: 3ms, render: 147ms)
+ POST /admin/chatbot?site=main 200 in 17ms (compile: 3ms, proxy.ts: 2ms, render: 11ms)
+ GET /icon-192.png 404 in 102ms (compile: 16ms, proxy.ts: 1749µs, render: 84ms)
+ POST /admin/chatbot?site=main 200 in 69ms (compile: 38ms, proxy.ts: 5ms, render: 26ms)
+ POST /admin/chatbot?site=main 200 in 23ms (compile: 2ms, proxy.ts: 1893µs, render: 19ms)
+ POST /admin?site=main 200 in 35ms (compile: 7ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin/chatbot?site=main 200 in 40ms (compile: 9ms, proxy.ts: 5ms, render: 26ms)
+ GET / 200 in 234ms (compile: 6ms, proxy.ts: 3ms, render: 225ms)
+ GET /manifest.webmanifest 200 in 5ms (compile: 1107µs, proxy.ts: 1387µs, render: 3ms)
+ GET /icon-192.png 404 in 81ms (compile: 20ms, proxy.ts: 1869µs, render: 60ms)
+ POST /admin?site=main 200 in 44ms (compile: 6ms, proxy.ts: 4ms, render: 33ms)
+ GET /admin?site=main 200 in 36ms (compile: 6ms, proxy.ts: 4ms, render: 27ms)
+ GET /manifest.webmanifest 200 in 15ms (compile: 9ms, proxy.ts: 2ms, render: 4ms)
+ GET /icon-192.png 404 in 50ms (compile: 10ms, proxy.ts: 1416µs, render: 39ms)
+ POST /admin?site=main 200 in 15ms (compile: 4ms, proxy.ts: 3ms, render: 8ms)
+ POST /admin?site=main 200 in 12ms (compile: 3ms, proxy.ts: 2ms, render: 8ms)
+ POST /admin?site=main 200 in 42ms (compile: 6ms, proxy.ts: 6ms, render: 30ms)
+ POST /admin?site=main 200 in 11ms (compile: 5ms, proxy.ts: 1439µs, render: 5ms)
+ POST /admin?site=main 200 in 65ms (compile: 2ms, proxy.ts: 2ms, render: 60ms)
+ POST /admin?site=main 200 in 23ms (compile: 5ms, proxy.ts: 4ms, render: 14ms)
+ GET /admin/news?site=main 200 in 85ms (compile: 58ms, proxy.ts: 6ms, render: 22ms)
+ GET /manifest.webmanifest 200 in 17ms (compile: 3ms, proxy.ts: 9ms, render: 5ms)
+ GET /icon-192.png 404 in 58ms (compile: 4ms, proxy.ts: 1589µs, render: 52ms)
+ POST /admin/chatbot?site=main 200 in 35ms (compile: 6ms, proxy.ts: 4ms, render: 25ms)
+ GET / 200 in 50ms (compile: 4ms, proxy.ts: 3ms, render: 42ms)
+ GET /manifest.webmanifest 200 in 11ms (compile: 1331µs, proxy.ts: 2ms, render: 7ms)
+ GET /icon-192.png 404 in 83ms (compile: 5ms, proxy.ts: 1404µs, render: 76ms)
+ POST /admin?site=main 200 in 33ms (compile: 5ms, proxy.ts: 3ms, render: 25ms)
+ POST /admin/news?site=main 200 in 33ms (compile: 4ms, proxy.ts: 5ms, render: 24ms)
+ GET /manifest.webmanifest 200 in 11ms (compile: 1809µs, proxy.ts: 5ms, render: 4ms)
+ GET / 200 in 244ms (compile: 8ms, proxy.ts: 5ms, render: 232ms)
+ GET /icon-192.png 404 in 94ms (compile: 9ms, proxy.ts: 1839µs, render: 83ms)
+ GET /admin?site=main 200 in 41ms (compile: 7ms, proxy.ts: 2ms, render: 31ms)
+ GET /manifest.webmanifest 200 in 11ms (compile: 4ms, proxy.ts: 2ms, render: 4ms)
+ GET /icon-192.png 404 in 50ms (compile: 7ms, proxy.ts: 1749µs, render: 41ms)
+ POST /admin?site=main 200 in 18ms (compile: 3ms, proxy.ts: 6ms, render: 8ms)
+ POST /admin?site=main 200 in 11ms (compile: 3ms, proxy.ts: 2ms, render: 6ms)
+ POST /admin?site=main 200 in 62ms (compile: 10ms, proxy.ts: 25ms, render: 28ms)
+ POST /admin?site=main 200 in 15ms (compile: 2ms, proxy.ts: 6ms, render: 7ms)
+ POST /admin?site=main 200 in 80ms (compile: 4ms, proxy.ts: 5ms, render: 71ms)
+ POST /admin?site=main 200 in 134ms (compile: 86ms, proxy.ts: 10ms, render: 38ms)
+ GET /admin/news?site=main 200 in 35ms (compile: 7ms, proxy.ts: 4ms, render: 24ms)
+ GET /manifest.webmanifest 200 in 16ms (compile: 5ms, proxy.ts: 3ms, render: 8ms)
+ GET /icon-192.png 404 in 60ms (compile: 4ms, proxy.ts: 1650µs, render: 54ms)
+ GET /admin/news/edit/tducf7ibabouw0y064b7ulln?site=main 200 in 383ms (compile: 360ms, proxy.ts: 3ms, render: 20ms)
+ GET /manifest.webmanifest 200 in 10ms (compile: 4ms, proxy.ts: 2ms, render: 4ms)
+ GET /icon-192.png 404 in 72ms (compile: 7ms, proxy.ts: 3ms, render: 62ms)
+ GET / 200 in 160ms (compile: 4ms, proxy.ts: 4ms, render: 152ms)
+ GET /manifest.webmanifest 200 in 6ms (compile: 1229µs, proxy.ts: 1557µs, render: 3ms)
+ GET /icon-192.png 404 in 56ms (compile: 6ms, proxy.ts: 2ms, render: 48ms)
+ POST /admin?site=main 200 in 37ms (compile: 6ms, proxy.ts: 5ms, render: 25ms)
+ POST /admin/news/edit/tducf7ibabouw0y064b7ulln?site=main 200 in 41ms (compile: 9ms, proxy.ts: 5ms, render: 27ms)
+ POST /admin?site=main 200 in 37ms (compile: 6ms, proxy.ts: 5ms, render: 26ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 39ms (compile: 4ms, proxy.ts: 4ms, render: 31ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 5ms, render: 25ms)
+ POST /admin?site=main 200 in 34ms (compile: 5ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 37ms (compile: 4ms, proxy.ts: 4ms, render: 29ms)
+ POST /admin?site=main 200 in 35ms (compile: 4ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 25ms)
+ GET /admin?site=main 200 in 414ms (compile: 63ms, proxy.ts: 10ms, render: 340ms)
+ GET /admin?site=main 200 in 210ms (compile: 7ms, proxy.ts: 9ms, render: 193ms)
+ GET /admin?site=main 200 in 300ms (compile: 14ms, proxy.ts: 7ms, render: 279ms)
+ GET /admin?site=main 200 in 231ms (compile: 9ms, proxy.ts: 46ms, render: 177ms)
+ GET / 200 in 654ms (compile: 150ms, proxy.ts: 7ms, render: 497ms)
+ GET / 200 in 449ms (compile: 25ms, proxy.ts: 4ms, render: 420ms)
+ GET /admin?site=main 200 in 99ms (compile: 2ms, proxy.ts: 1574µs, render: 95ms)
+ GET / 200 in 395ms (compile: 30ms, proxy.ts: 7ms, render: 358ms)
+ GET /admin?site=main 200 in 103ms (compile: 25ms, proxy.ts: 1871µs, render: 76ms)
+ GET / 200 in 213ms (compile: 11ms, proxy.ts: 25ms, render: 177ms)
+ GET / 200 in 116ms (compile: 5ms, proxy.ts: 3ms, render: 108ms)
+ GET / 200 in 50ms (compile: 2ms, proxy.ts: 3ms, render: 46ms)
+ GET /manifest.webmanifest 200 in 22ms (compile: 4ms, proxy.ts: 13ms, render: 5ms)
+ GET /manifest.webmanifest 200 in 5ms (compile: 1954µs, proxy.ts: 1458µs, render: 1881µs)
+ GET /icon-192.png 404 in 232ms (compile: 53ms, proxy.ts: 1620µs, render: 177ms)
+ GET /icon-192.png 404 in 45ms (compile: 6ms, proxy.ts: 1195µs, render: 38ms)
+ POST /admin?site=main 200 in 27ms (compile: 3ms, proxy.ts: 3ms, render: 21ms)
+ POST /admin?site=main 200 in 47ms (compile: 8ms, proxy.ts: 5ms, render: 35ms)
+ POST /admin?site=main 200 in 35ms (compile: 6ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 36ms (compile: 6ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 25ms)
+✓ Compiled in 143ms
+⨯ ./Desktop/my_cms/frontend/app/admin/page.tsx:23:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 21 |[39m [36mimport[39m { useState[33m,[39m useEffect[33m,[39m useMemo } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 22 |[39m [36mimport[39m { useSearchParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 23 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 24 |[39m [36mimport[39m { loginAction[33m,[39m checkAuthAction } [36mfrom[39m [32m"@/app/actions/auth"[39m[33m;[39m
+ [90m 25 |[39m
+ [90m 26 |[39m [36minterface[39m [33mDashboardStats[39m {[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+
+
+./Desktop/my_cms/frontend/app/admin/page.tsx:23:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 21 |[39m [36mimport[39m { useState[33m,[39m useEffect[33m,[39m useMemo } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 22 |[39m [36mimport[39m { useSearchParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 23 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 24 |[39m [36mimport[39m { loginAction[33m,[39m checkAuthAction } [36mfrom[39m [32m"@/app/actions/auth"[39m[33m;[39m
+ [90m 25 |[39m
+ [90m 26 |[39m [36minterface[39m [33mDashboardStats[39m {[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+
+
+./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx:5:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 3 |[39m [36mimport[39m { useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { usePathname } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mAnalyticsProvider[39m({ domain }[33m:[39m { domain[33m:[39m string }) {
+ [90m 8 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx
+    ./Desktop/my_cms/frontend/app/layout.tsx
+
+
+
+./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx:5:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 3 |[39m [36mimport[39m { useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { usePathname } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mAnalyticsProvider[39m({ domain }[33m:[39m { domain[33m:[39m string }) {
+ [90m 8 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx
+    ./Desktop/my_cms/frontend/app/layout.tsx
+
+
+ POST /admin?site=main 500 in 284ms (compile: 197ms, proxy.ts: 5ms, render: 82ms)
+⨯ ./Desktop/my_cms/frontend/app/admin/page.tsx:23:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 21 |[39m [36mimport[39m { useState[33m,[39m useEffect[33m,[39m useMemo } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 22 |[39m [36mimport[39m { useSearchParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 23 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 24 |[39m [36mimport[39m { loginAction[33m,[39m checkAuthAction } [36mfrom[39m [32m"@/app/actions/auth"[39m[33m;[39m
+ [90m 25 |[39m
+ [90m 26 |[39m [36minterface[39m [33mDashboardStats[39m {[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+
+
+./Desktop/my_cms/frontend/app/admin/page.tsx:23:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 21 |[39m [36mimport[39m { useState[33m,[39m useEffect[33m,[39m useMemo } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 22 |[39m [36mimport[39m { useSearchParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 23 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 24 |[39m [36mimport[39m { loginAction[33m,[39m checkAuthAction } [36mfrom[39m [32m"@/app/actions/auth"[39m[33m;[39m
+ [90m 25 |[39m
+ [90m 26 |[39m [36minterface[39m [33mDashboardStats[39m {[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+
+
+./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx:5:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 3 |[39m [36mimport[39m { useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { usePathname } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mAnalyticsProvider[39m({ domain }[33m:[39m { domain[33m:[39m string }) {
+ [90m 8 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx
+    ./Desktop/my_cms/frontend/app/layout.tsx
+
+
+
+./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx:5:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 3 |[39m [36mimport[39m { useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { usePathname } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mAnalyticsProvider[39m({ domain }[33m:[39m { domain[33m:[39m string }) {
+ [90m 8 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx
+    ./Desktop/my_cms/frontend/app/layout.tsx
+
+
+ POST /admin?site=main 500 in 50ms (compile: 36ms, proxy.ts: 5ms, render: 10ms)
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/teepakorn_s/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Users/teepakorn_s/Desktop/my_cms/frontend/package-lock.json
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3002
+- Network:       http://192.168.10.185:3002
+- Environments: .env.local
+- Experiments (use with caution):
+  · optimizePackageImports
+  · serverActions
+
+✓ Starting...
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+✓ Ready in 822ms
+⨯ ./Desktop/my_cms/frontend/app/admin/page.tsx:23:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 21 |[39m [36mimport[39m { useState[33m,[39m useEffect[33m,[39m useMemo } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 22 |[39m [36mimport[39m { useSearchParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 23 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 24 |[39m [36mimport[39m { loginAction[33m,[39m checkAuthAction } [36mfrom[39m [32m"@/app/actions/auth"[39m[33m;[39m
+ [90m 25 |[39m
+ [90m 26 |[39m [36minterface[39m [33mDashboardStats[39m {[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+
+
+./Desktop/my_cms/frontend/app/admin/page.tsx:23:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 21 |[39m [36mimport[39m { useState[33m,[39m useEffect[33m,[39m useMemo } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 22 |[39m [36mimport[39m { useSearchParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 23 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 24 |[39m [36mimport[39m { loginAction[33m,[39m checkAuthAction } [36mfrom[39m [32m"@/app/actions/auth"[39m[33m;[39m
+ [90m 25 |[39m
+ [90m 26 |[39m [36minterface[39m [33mDashboardStats[39m {[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+
+
+./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx:5:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 3 |[39m [36mimport[39m { useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { usePathname } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mAnalyticsProvider[39m({ domain }[33m:[39m { domain[33m:[39m string }) {
+ [90m 8 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx
+    ./Desktop/my_cms/frontend/app/layout.tsx
+
+
+
+./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx:5:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 3 |[39m [36mimport[39m { useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { usePathname } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mAnalyticsProvider[39m({ domain }[33m:[39m { domain[33m:[39m string }) {
+ [90m 8 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx
+    ./Desktop/my_cms/frontend/app/layout.tsx
+
+
+⨯ ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx:5:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 3 |[39m [36mimport[39m { useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { usePathname } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mAnalyticsProvider[39m({ domain }[33m:[39m { domain[33m:[39m string }) {
+ [90m 8 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx
+    ./Desktop/my_cms/frontend/app/layout.tsx
+
+
+
+./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx:5:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 3 |[39m [36mimport[39m { useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { usePathname } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mAnalyticsProvider[39m({ domain }[33m:[39m { domain[33m:[39m string }) {
+ [90m 8 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx
+    ./Desktop/my_cms/frontend/app/layout.tsx
+
+
+
+./Desktop/my_cms/frontend/components/SearchModal.tsx:8:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m  6 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { useRouter } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m
+ [90m 10 |[39m [36minterface[39m [33mSearchModalProps[39m {
+ [90m 11 |[39m     isOpen[33m:[39m boolean[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/my_cms/frontend/components/SearchModal.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Server Component]
+    ./Desktop/my_cms/frontend/components/Navbar.tsx [Server Component]
+    ./Desktop/my_cms/frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/my_cms/frontend/components/SearchModal.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Server Component]
+    ./Desktop/my_cms/frontend/components/Navbar.tsx [Server Component]
+    ./Desktop/my_cms/frontend/app/page.tsx [Server Component]
+
+
+
+./Desktop/my_cms/frontend/components/SearchModal.tsx:8:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m  6 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { useRouter } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m
+ [90m 10 |[39m [36minterface[39m [33mSearchModalProps[39m {
+ [90m 11 |[39m     isOpen[33m:[39m boolean[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/my_cms/frontend/components/SearchModal.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Server Component]
+    ./Desktop/my_cms/frontend/components/Navbar.tsx [Server Component]
+    ./Desktop/my_cms/frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/my_cms/frontend/components/SearchModal.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Server Component]
+    ./Desktop/my_cms/frontend/components/Navbar.tsx [Server Component]
+    ./Desktop/my_cms/frontend/app/page.tsx [Server Component]
+
+
+ GET /admin?site=main 500 in 797ms (compile: 713ms, proxy.ts: 4ms, render: 80ms)
+ GET / 500 in 841ms (compile: 790ms, proxy.ts: 36ms, render: 15ms)
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/teepakorn_s/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Users/teepakorn_s/Desktop/my_cms/frontend/package-lock.json
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3002
+- Network:       http://192.168.10.185:3002
+- Environments: .env.local
+- Experiments (use with caution):
+  · optimizePackageImports
+  · serverActions
+
+✓ Starting...
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+✓ Ready in 528ms
+⨯ ./Desktop/my_cms/frontend/app/admin/page.tsx:23:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 21 |[39m [36mimport[39m { useState[33m,[39m useEffect[33m,[39m useMemo } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 22 |[39m [36mimport[39m { useSearchParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 23 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 24 |[39m [36mimport[39m { loginAction[33m,[39m checkAuthAction } [36mfrom[39m [32m"@/app/actions/auth"[39m[33m;[39m
+ [90m 25 |[39m
+ [90m 26 |[39m [36minterface[39m [33mDashboardStats[39m {[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+
+
+./Desktop/my_cms/frontend/app/admin/page.tsx:23:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 21 |[39m [36mimport[39m { useState[33m,[39m useEffect[33m,[39m useMemo } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 22 |[39m [36mimport[39m { useSearchParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 23 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 24 |[39m [36mimport[39m { loginAction[33m,[39m checkAuthAction } [36mfrom[39m [32m"@/app/actions/auth"[39m[33m;[39m
+ [90m 25 |[39m
+ [90m 26 |[39m [36minterface[39m [33mDashboardStats[39m {[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/app/admin/page.tsx [Server Component]
+
+
+
+./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx:5:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 3 |[39m [36mimport[39m { useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { usePathname } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mAnalyticsProvider[39m({ domain }[33m:[39m { domain[33m:[39m string }) {
+ [90m 8 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx
+    ./Desktop/my_cms/frontend/app/layout.tsx
+
+
+
+./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx:5:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 3 |[39m [36mimport[39m { useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { usePathname } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mAnalyticsProvider[39m({ domain }[33m:[39m { domain[33m:[39m string }) {
+ [90m 8 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx
+    ./Desktop/my_cms/frontend/app/layout.tsx
+
+
+⨯ ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx:5:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 3 |[39m [36mimport[39m { useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { usePathname } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mAnalyticsProvider[39m({ domain }[33m:[39m { domain[33m:[39m string }) {
+ [90m 8 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx
+    ./Desktop/my_cms/frontend/app/layout.tsx
+
+
+
+./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx:5:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m 3 |[39m [36mimport[39m { useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { usePathname } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 5 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mAnalyticsProvider[39m({ domain }[33m:[39m { domain[33m:[39m string }) {
+ [90m 8 |[39m     [36mconst[39m pathname [33m=[39m usePathname()[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import trace:
+  Server Component:
+    ./Desktop/my_cms/frontend/components/AnalyticsProvider.tsx
+    ./Desktop/my_cms/frontend/app/layout.tsx
+
+
+
+./Desktop/my_cms/frontend/components/SearchModal.tsx:8:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m  6 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { useRouter } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m
+ [90m 10 |[39m [36minterface[39m [33mSearchModalProps[39m {
+ [90m 11 |[39m     isOpen[33m:[39m boolean[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-client] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/my_cms/frontend/components/SearchModal.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Server Component]
+    ./Desktop/my_cms/frontend/components/Navbar.tsx [Server Component]
+    ./Desktop/my_cms/frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/my_cms/frontend/components/SearchModal.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Server Component]
+    ./Desktop/my_cms/frontend/components/Navbar.tsx [Server Component]
+    ./Desktop/my_cms/frontend/app/page.tsx [Server Component]
+
+
+
+./Desktop/my_cms/frontend/components/SearchModal.tsx:8:1
+Export STRAPI_URL doesn't exist in target module
+[0m [90m  6 |[39m [36mimport[39m [33mLink[39m [36mfrom[39m [32m"next/link"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { useRouter } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mSTRAPI_URL[39m } [36mfrom[39m [32m"@/lib/api"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m
+ [90m 10 |[39m [36minterface[39m [33mSearchModalProps[39m {
+ [90m 11 |[39m     isOpen[33m:[39m boolean[33m;[39m[0m
+
+The export STRAPI_URL was not found in module [project]/Desktop/my_cms/frontend/lib/api.ts [app-ssr] (ecmascript).
+Did you mean to import PUBLIC_STRAPI_URL?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./Desktop/my_cms/frontend/components/SearchModal.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Client Component Browser]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Server Component]
+    ./Desktop/my_cms/frontend/components/Navbar.tsx [Server Component]
+    ./Desktop/my_cms/frontend/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Desktop/my_cms/frontend/components/SearchModal.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Client Component SSR]
+    ./Desktop/my_cms/frontend/components/NavbarClient.tsx [Server Component]
+    ./Desktop/my_cms/frontend/components/Navbar.tsx [Server Component]
+    ./Desktop/my_cms/frontend/app/page.tsx [Server Component]
+
+
+ GET / 500 in 514ms (compile: 439ms, proxy.ts: 1574µs, render: 73ms)
+ GET /admin?site=main 500 in 548ms (compile: 502ms, proxy.ts: 33ms, render: 13ms)
+✓ Compiled in 26ms
+✓ Compiled in 45ms
+ GET /manifest.webmanifest 200 in 184ms (compile: 115ms, proxy.ts: 3ms, render: 66ms)
+ GET /manifest.webmanifest 200 in 7ms (compile: 2ms, proxy.ts: 2ms, render: 2ms)
+ GET /admin?site=main 200 in 902ms (compile: 172ms, proxy.ts: 5ms, render: 725ms)
+ GET / 200 in 938ms (compile: 512ms, proxy.ts: 6ms, render: 420ms)
+ POST /admin?site=main 200 in 61ms (compile: 6ms, proxy.ts: 10ms, render: 44ms)
+ POST /admin?site=main 200 in 196ms (compile: 7ms, proxy.ts: 6ms, render: 183ms)
+ POST /admin?site=main 200 in 37ms (compile: 15ms, proxy.ts: 4ms, render: 18ms)
+ POST /admin?site=main 200 in 104ms (compile: 11ms, proxy.ts: 9ms, render: 84ms)
+ GET /icon-192.png 404 in 425ms (compile: 234ms, proxy.ts: 7ms, render: 183ms)
+ GET /icon-192.png 404 in 127ms (compile: 38ms, proxy.ts: 9ms, render: 79ms)
+ POST /admin?site=main 200 in 17ms (compile: 4ms, proxy.ts: 4ms, render: 10ms)
+ POST /admin?site=main 200 in 11ms (compile: 3ms, proxy.ts: 4ms, render: 5ms)
+ POST /admin?site=main 200 in 37ms (compile: 7ms, proxy.ts: 5ms, render: 26ms)
+ POST /admin?site=main 200 in 31ms (compile: 4ms, proxy.ts: 4ms, render: 23ms)
+ POST /admin?site=main 200 in 34ms (compile: 4ms, proxy.ts: 5ms, render: 25ms)
+ POST /admin?site=main 200 in 34ms (compile: 5ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 19ms (compile: 3ms, proxy.ts: 1894µs, render: 14ms)
+ POST /admin?site=main 200 in 24ms (compile: 2ms, proxy.ts: 2ms, render: 19ms)
+ POST /admin?site=main 200 in 36ms (compile: 7ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 21ms (compile: 2ms, proxy.ts: 1808µs, render: 16ms)
+ POST /admin?site=main 200 in 26ms (compile: 3ms, proxy.ts: 4ms, render: 19ms)
+ POST /admin?site=main 200 in 33ms (compile: 5ms, proxy.ts: 4ms, render: 24ms)
+ POST /admin?site=main 200 in 31ms (compile: 5ms, proxy.ts: 4ms, render: 22ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 24ms)
+ POST /admin?site=main 200 in 32ms (compile: 5ms, proxy.ts: 4ms, render: 24ms)
+ POST /admin?site=main 200 in 36ms (compile: 6ms, proxy.ts: 5ms, render: 25ms)
+ POST /admin?site=main 200 in 40ms (compile: 8ms, proxy.ts: 4ms, render: 28ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 6ms, render: 25ms)
+ POST /admin?site=main 200 in 36ms (compile: 7ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 41ms (compile: 10ms, proxy.ts: 4ms, render: 27ms)
+ POST /admin?site=main 200 in 33ms (compile: 4ms, proxy.ts: 4ms, render: 26ms)
+ POST /admin?site=main 200 in 26ms (compile: 4ms, proxy.ts: 2ms, render: 20ms)
+ POST /admin?site=main 200 in 34ms (compile: 3ms, proxy.ts: 11ms, render: 20ms)
+ POST /admin?site=main 200 in 23ms (compile: 6ms, proxy.ts: 3ms, render: 14ms)
+ POST /admin?site=main 200 in 26ms (compile: 7ms, proxy.ts: 3ms, render: 16ms)
+ POST /admin?site=main 200 in 35ms (compile: 7ms, proxy.ts: 5ms, render: 23ms)
+ POST /admin?site=main 200 in 25ms (compile: 6ms, proxy.ts: 3ms, render: 15ms)
+ POST /admin?site=main 200 in 27ms (compile: 7ms, proxy.ts: 4ms, render: 17ms)
+ POST /admin?site=main 200 in 24ms (compile: 5ms, proxy.ts: 4ms, render: 15ms)
+ POST /admin?site=main 200 in 16ms (compile: 2ms, proxy.ts: 1495µs, render: 12ms)
+ POST /admin?site=main 200 in 20ms (compile: 3ms, proxy.ts: 3ms, render: 14ms)
+ POST /admin?site=main 200 in 27ms (compile: 4ms, proxy.ts: 3ms, render: 20ms)
+ POST /admin?site=main 200 in 26ms (compile: 6ms, proxy.ts: 4ms, render: 16ms)
+ POST /admin?site=main 200 in 21ms (compile: 5ms, proxy.ts: 3ms, render: 14ms)
+ POST /admin?site=main 200 in 23ms (compile: 6ms, proxy.ts: 3ms, render: 13ms)
+ POST /admin?site=main 200 in 38ms (compile: 8ms, proxy.ts: 4ms, render: 25ms)
+ POST /admin?site=main 200 in 25ms (compile: 6ms, proxy.ts: 5ms, render: 14ms)
+ POST /admin?site=main 200 in 37ms (compile: 9ms, proxy.ts: 6ms, render: 23ms)
+ POST /admin?site=main 200 in 38ms (compile: 9ms, proxy.ts: 7ms, render: 22ms)
+ POST /admin?site=main 200 in 40ms (compile: 7ms, proxy.ts: 6ms, render: 27ms)
+ POST /admin?site=main 200 in 33ms (compile: 6ms, proxy.ts: 4ms, render: 22ms)
+ POST /admin?site=main 200 in 37ms (compile: 5ms, proxy.ts: 5ms, render: 27ms)
+ POST /admin?site=main 200 in 33ms (compile: 7ms, proxy.ts: 4ms, render: 22ms)
+ POST /admin?site=main 200 in 25ms (compile: 4ms, proxy.ts: 7ms, render: 14ms)
+ POST /admin?site=main 200 in 29ms (compile: 7ms, proxy.ts: 6ms, render: 16ms)
+ POST /admin?site=main 200 in 34ms (compile: 6ms, proxy.ts: 6ms, render: 22ms)
+ POST /admin?site=main 200 in 46ms (compile: 5ms, proxy.ts: 21ms, render: 20ms)
+ POST /admin?site=main 200 in 37ms (compile: 7ms, proxy.ts: 6ms, render: 24ms)
+ POST /admin?site=main 200 in 32ms (compile: 6ms, proxy.ts: 5ms, render: 21ms)
+ POST /admin?site=main 200 in 41ms (compile: 12ms, proxy.ts: 6ms, render: 23ms)
+ POST /admin?site=main 200 in 34ms (compile: 7ms, proxy.ts: 7ms, render: 19ms)
+ POST /admin?site=main 200 in 38ms (compile: 8ms, proxy.ts: 7ms, render: 24ms)
+ POST /admin?site=main 200 in 40ms (compile: 7ms, proxy.ts: 5ms, render: 28ms)
+ POST /admin?site=main 200 in 39ms (compile: 9ms, proxy.ts: 7ms, render: 23ms)
+ POST /admin?site=main 200 in 39ms (compile: 9ms, proxy.ts: 7ms, render: 23ms)
+ POST /admin?site=main 200 in 45ms (compile: 9ms, proxy.ts: 6ms, render: 31ms)
+ POST /admin?site=main 200 in 25ms (compile: 4ms, proxy.ts: 4ms, render: 18ms)
+ POST /admin?site=main 200 in 38ms (compile: 5ms, proxy.ts: 5ms, render: 28ms)
+ POST /admin?site=main 200 in 35ms (compile: 3ms, proxy.ts: 3ms, render: 29ms)
+ POST /admin?site=main 200 in 37ms (compile: 8ms, proxy.ts: 5ms, render: 24ms)
+ POST /admin?site=main 200 in 23ms (compile: 6ms, proxy.ts: 4ms, render: 13ms)
+ POST /admin?site=main 200 in 26ms (compile: 6ms, proxy.ts: 4ms, render: 16ms)
+ POST /admin?site=main 200 in 19ms (compile: 3ms, proxy.ts: 3ms, render: 14ms)
+ POST /admin?site=main 200 in 21ms (compile: 5ms, proxy.ts: 3ms, render: 14ms)
+ POST /admin?site=main 200 in 24ms (compile: 7ms, proxy.ts: 3ms, render: 14ms)
+ POST /admin?site=main 200 in 20ms (compile: 3ms, proxy.ts: 3ms, render: 14ms)
+ POST /admin?site=main 200 in 20ms (compile: 4ms, proxy.ts: 4ms, render: 12ms)
+ POST /admin?site=main 200 in 20ms (compile: 3ms, proxy.ts: 3ms, render: 15ms)
+ POST /admin?site=main 200 in 23ms (compile: 3ms, proxy.ts: 3ms, render: 16ms)
+ POST /admin?site=main 200 in 23ms (compile: 5ms, proxy.ts: 3ms, render: 15ms)
+ POST /admin?site=main 200 in 22ms (compile: 5ms, proxy.ts: 3ms, render: 14ms)
+ POST /admin?site=main 200 in 21ms (compile: 4ms, proxy.ts: 3ms, render: 14ms)
+ POST /admin?site=main 200 in 36ms (compile: 6ms, proxy.ts: 7ms, render: 23ms)
+ POST /admin?site=main 200 in 36ms (compile: 6ms, proxy.ts: 7ms, render: 23ms)
+ POST /admin?site=main 200 in 36ms (compile: 5ms, proxy.ts: 11ms, render: 20ms)
+ POST /admin?site=main 200 in 39ms (compile: 4ms, proxy.ts: 11ms, render: 23ms)
+ POST /admin?site=main 200 in 38ms (compile: 8ms, proxy.ts: 8ms, render: 22ms)
+ POST /admin?site=main 200 in 35ms (compile: 7ms, proxy.ts: 7ms, render: 21ms)
+ POST /admin?site=main 200 in 38ms (compile: 5ms, proxy.ts: 8ms, render: 24ms)
+ POST /admin?site=main 200 in 35ms (compile: 7ms, proxy.ts: 7ms, render: 21ms)
+ POST /admin?site=main 200 in 40ms (compile: 8ms, proxy.ts: 9ms, render: 23ms)
+ POST /admin?site=main 200 in 35ms (compile: 6ms, proxy.ts: 7ms, render: 22ms)
+ POST /admin?site=main 200 in 33ms (compile: 5ms, proxy.ts: 7ms, render: 21ms)
+ POST /admin?site=main 200 in 40ms (compile: 8ms, proxy.ts: 8ms, render: 24ms)
+ POST /admin?site=main 200 in 28ms (compile: 4ms, proxy.ts: 5ms, render: 19ms)
+ POST /admin?site=main 200 in 54ms (compile: 10ms, proxy.ts: 17ms, render: 27ms)
+ GET / 200 in 62ms (compile: 8ms, proxy.ts: 7ms, render: 47ms)
+ GET /manifest.webmanifest 200 in 14ms (compile: 3ms, proxy.ts: 1865µs, render: 10ms)
+ GET /icon-192.png 404 in 332ms (compile: 7ms, proxy.ts: 1788µs, render: 324ms)
+ GET /manifest.webmanifest 200 in 5ms (compile: 1210µs, proxy.ts: 1196µs, render: 2ms)
+ GET / 200 in 213ms (compile: 5ms, proxy.ts: 8ms, render: 200ms)
+ GET /icon-192.png 404 in 108ms (compile: 9ms, proxy.ts: 5ms, render: 94ms)
+ GET /manifest.webmanifest 200 in 37ms (compile: 25ms, proxy.ts: 5ms, render: 6ms)
+ GET / 200 in 268ms (compile: 6ms, proxy.ts: 5ms, render: 256ms)
+ GET /icon-192.png 404 in 105ms (compile: 21ms, proxy.ts: 3ms, render: 81ms)
+ GET /manifest.webmanifest 200 in 30ms (compile: 14ms, proxy.ts: 9ms, render: 6ms)
+ GET /news/meeting-dg-2569 200 in 906ms (compile: 744ms, proxy.ts: 3ms, render: 158ms)
+ GET /icon-192.png 404 in 67ms (compile: 23ms, proxy.ts: 4ms, render: 40ms)
+ GET /manifest.webmanifest 200 in 6ms (compile: 1166µs, proxy.ts: 1411µs, render: 3ms)
+ GET / 200 in 161ms (compile: 6ms, proxy.ts: 6ms, render: 149ms)
+ GET /icon-192.png 404 in 105ms (compile: 25ms, proxy.ts: 11ms, render: 69ms)
+ GET /admin?site=main 200 in 50ms (compile: 6ms, proxy.ts: 5ms, render: 39ms)
+ POST /admin?site=main 200 in 34ms (compile: 9ms, proxy.ts: 5ms, render: 20ms)
+ POST /admin?site=main 200 in 32ms (compile: 7ms, proxy.ts: 7ms, render: 18ms)
+⚠ Fast Refresh had to perform a full reload when ./Desktop/my_cms/frontend/lib/api.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload when ./Desktop/my_cms/frontend/lib/api.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⨯ Error: Module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/client/components/layout-router.js [app-ssr] (ecmascript) was instantiated because it was required from module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/build/templates/app-page.js?page=/news/[slug]/page { GLOBAL_ERROR_MODULE => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", METADATA_0 => "[project]/Desktop/my_cms/frontend/app/favicon.ico.mjs { IMAGE => \"[project]/Desktop/my_cms/frontend/app/favicon.ico (static in ecmascript, tag client)\" } [app-rsc] (structured image object, ecmascript, Next.js Server Component)", MODULE_1 => "[project]/Desktop/my_cms/frontend/app/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_2 => "[project]/Desktop/my_cms/frontend/app/loading.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_3 => "[project]/Desktop/my_cms/frontend/app/template.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_4 => "[project]/Desktop/my_cms/frontend/app/not-found.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_5 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/forbidden.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_6 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/unauthorized.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_7 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_8 => "[project]/Desktop/my_cms/frontend/app/news/loading.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_9 => "[project]/Desktop/my_cms/frontend/app/news/[slug]/page.tsx [app-rsc] (ecmascript, Next.js Server Component)" } [app-rsc] (ecmascript) <locals>, but the module factory is not available.
+    at ignore-listed frames {
+  digest: '2321816504'
+}
+⨯ Error: Module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/lib/metadata/generate/icon-mark.js [app-ssr] (ecmascript) was instantiated because it was required from module [project]/Desktop/my_cms/frontend/node_modules/next/dist/esm/build/templates/app-page.js?page=/news/[slug]/page { GLOBAL_ERROR_MODULE => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", METADATA_0 => "[project]/Desktop/my_cms/frontend/app/favicon.ico.mjs { IMAGE => \"[project]/Desktop/my_cms/frontend/app/favicon.ico (static in ecmascript, tag client)\" } [app-rsc] (structured image object, ecmascript, Next.js Server Component)", MODULE_1 => "[project]/Desktop/my_cms/frontend/app/layout.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_2 => "[project]/Desktop/my_cms/frontend/app/loading.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_3 => "[project]/Desktop/my_cms/frontend/app/template.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_4 => "[project]/Desktop/my_cms/frontend/app/not-found.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_5 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/forbidden.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_6 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/unauthorized.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_7 => "[project]/Desktop/my_cms/frontend/node_modules/next/dist/client/components/builtin/global-error.js [app-rsc] (ecmascript, Next.js Server Component)", MODULE_8 => "[project]/Desktop/my_cms/frontend/app/news/loading.tsx [app-rsc] (ecmascript, Next.js Server Component)", MODULE_9 => "[project]/Desktop/my_cms/frontend/app/news/[slug]/page.tsx [app-rsc] (ecmascript, Next.js Server Component)" } [app-rsc] (ecmascript) <locals>, but the module factory is not available.
+    at ignore-listed frames {
+  digest: '807023610'
+}
+Error: aborted
+    at ignore-listed frames {
+  code: 'ECONNRESET'
+}
+⨯ uncaughtException: Error: aborted
+    at ignore-listed frames {
+  code: 'ECONNRESET'
+}
+⨯ uncaughtException:  Error: aborted
+    at ignore-listed frames {
+  code: 'ECONNRESET'
+}
+ GET /admin?site=main 200 in 1074ms (compile: 73ms, proxy.ts: 10ms, render: 992ms)
+ GET /news/meeting-dg-2569 200 in 1082ms (compile: 395ms, proxy.ts: 11ms, render: 676ms)
+Error: aborted
+    at ignore-listed frames {
+  code: 'ECONNRESET'
+}
+⨯ uncaughtException: Error: aborted
+    at ignore-listed frames {
+  code: 'ECONNRESET'
+}
+⨯ uncaughtException:  Error: aborted
+    at ignore-listed frames {
+  code: 'ECONNRESET'
+}
+ GET /manifest.webmanifest 200 in 5ms (compile: 1991µs, proxy.ts: 957µs, render: 1620µs)
+ GET /manifest.webmanifest 200 in 6ms (compile: 1822µs, proxy.ts: 1286µs, render: 3ms)
+ GET /admin?site=main 500 in 1103ms (compile: 136ms, proxy.ts: 3ms, render: 964ms)
+ GET /news/meeting-dg-2569 200 in 1147ms (compile: 833ms, proxy.ts: 2ms, render: 312ms)
+ POST /admin?site=main 200 in 577ms (compile: 555ms, proxy.ts: 8ms, render: 14ms)
+ GET /manifest.webmanifest 200 in 15ms (compile: 6ms, proxy.ts: 6ms, render: 2ms)
+ POST /admin?site=main 200 in 23ms (compile: 9ms, proxy.ts: 3ms, render: 12ms)
+ POST /admin?site=main 200 in 29ms (compile: 7ms, proxy.ts: 7ms, render: 15ms)
+ GET /icon-192.png 404 in 339ms (compile: 64ms, proxy.ts: 8ms, render: 267ms)
+ GET /icon-192.png 404 in 38ms (compile: 4ms, proxy.ts: 1176µs, render: 33ms)
+ POST /admin?site=main 200 in 51ms (compile: 4ms, proxy.ts: 4ms, render: 42ms)
+ POST /admin?site=main 200 in 42ms (compile: 3ms, proxy.ts: 34ms, render: 6ms)
+ POST /admin?site=main 200 in 10ms (compile: 3ms, proxy.ts: 3ms, render: 4ms)
+ POST /admin?site=main 200 in 24ms (compile: 5ms, proxy.ts: 3ms, render: 15ms)
+ POST /admin?site=main 200 in 7ms (compile: 1463µs, proxy.ts: 3ms, render: 3ms)
+ POST /admin?site=main 200 in 15ms (compile: 1215µs, proxy.ts: 1035µs, render: 12ms)
+ POST /admin?site=main 200 in 12ms (compile: 2ms, proxy.ts: 2ms, render: 7ms)
+ GET /manifest.webmanifest 200 in 12ms (compile: 2ms, proxy.ts: 5ms, render: 5ms)
+ GET /icon-192.png 404 in 67ms (compile: 9ms, proxy.ts: 1726µs, render: 57ms)
+ POST /admin?site=main 200 in 36ms (compile: 7ms, proxy.ts: 7ms, render: 22ms)
+ POST /admin?site=main 200 in 21ms (compile: 3ms, proxy.ts: 3ms, render: 15ms)
+ POST /admin?site=main 200 in 34ms (compile: 8ms, proxy.ts: 5ms, render: 21ms)
+ POST /admin?site=main 200 in 34ms (compile: 7ms, proxy.ts: 6ms, render: 20ms)
+ POST /admin?site=main 200 in 36ms (compile: 10ms, proxy.ts: 5ms, render: 21ms)

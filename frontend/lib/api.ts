@@ -4,7 +4,9 @@ export const INTERNAL_STRAPI_URL = process.env.STRAPI_URL || process.env.NEXT_PU
 export const PUBLIC_STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
 
 export function getStrapiURL(path = "") {
-    return `${INTERNAL_STRAPI_URL}${path}`;
+    const isServer = typeof window === "undefined";
+    const strapiUrl = isServer ? INTERNAL_STRAPI_URL : PUBLIC_STRAPI_URL;
+    return `${strapiUrl}${path}`;
 }
 
 export function getStrapiMedia(url: string | null) {
