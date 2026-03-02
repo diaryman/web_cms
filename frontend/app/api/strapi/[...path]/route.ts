@@ -54,6 +54,17 @@ async function proxyRequest(req: NextRequest, params: Promise<{ path: string[] }
 
         const data = await response.text();
 
+        // Clear cache if this was a mutation (POST, PUT, DELETE, PATCH)
+        if (req.method !== "GET" && req.method !== "HEAD" && response.ok) {
+            try {
+                const { revalidateTag, revalidatePath } = require("next/cache");
+                revalidateTag("strapi-data");
+                revalidatePath("/", "layout");
+            } catch (e) {
+                console.error("Failed to revalidate:", e);
+            }
+        }
+
         return new NextResponse(data || null, {
             status: response.status,
             headers: {
