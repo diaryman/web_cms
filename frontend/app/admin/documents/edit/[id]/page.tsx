@@ -196,7 +196,7 @@ function EditDocumentForm({ id }: { id: string }) {
                             className={`relative border-2 border-dashed rounded-2xl p-8 transition-all flex flex-col items-center justify-center ${docFile ? 'border-emerald-200 bg-emerald-50/30' : 'border-gray-200 hover:border-primary/40 bg-gray-50'}`}
                         >
                             {docFile ? (
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-4 pointer-events-none w-full">
                                     <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center text-white">
                                         <FileText size={24} />
                                     </div>
@@ -207,19 +207,19 @@ function EditDocumentForm({ id }: { id: string }) {
                                     <button
                                         type="button"
                                         onClick={() => setDocFile(null)}
-                                        className="p-2 hover:bg-emerald-100 rounded-full text-emerald-600 transition-colors"
+                                        className="p-2 hover:bg-emerald-100 rounded-full text-emerald-600 transition-colors relative z-10 pointer-events-auto"
                                     >
                                         <X size={20} />
                                     </button>
                                 </div>
                             ) : (
-                                <>
+                                <div className="flex flex-col items-center pointer-events-none">
                                     <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mb-3">
                                         <Upload size={24} />
                                     </div>
                                     <p className="text-sm font-bold text-gray-500">คลิกหรือลากไฟล์ใหม่มาวางเพื่อเปลี่ยนเอกสาร</p>
                                     <p className="text-xs text-gray-400 mt-1">ไฟล์ใหม่จะถูกนำไปแทนที่ไฟล์เดิมทันทีที่บันทึก</p>
-                                </>
+                                </div>
                             )}
                             <input
                                 type="file"
@@ -261,7 +261,7 @@ function EditDocumentForm({ id }: { id: string }) {
                             className={`relative border-2 border-dashed rounded-2xl p-8 transition-all flex flex-col items-center justify-center ${coverImageFile ? 'border-primary/50 bg-primary/5' : 'border-gray-200 hover:border-primary/40 bg-gray-50'}`}
                         >
                             {coverImageFile ? (
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-4 pointer-events-none w-full">
                                     <div className="w-16 h-20 bg-gray-200 rounded-xl overflow-hidden shadow-sm">
                                         <img src={URL.createObjectURL(coverImageFile)} alt="Cover preview" className="w-full h-full object-cover" />
                                     </div>
@@ -272,19 +272,19 @@ function EditDocumentForm({ id }: { id: string }) {
                                     <button
                                         type="button"
                                         onClick={() => setCoverImageFile(null)}
-                                        className="p-2 hover:bg-gray-200 rounded-full text-gray-600 transition-colors"
+                                        className="p-2 hover:bg-gray-200 rounded-full text-gray-600 transition-colors relative z-10 pointer-events-auto"
                                     >
                                         <X size={20} />
                                     </button>
                                 </div>
                             ) : (
-                                <>
+                                <div className="flex flex-col items-center pointer-events-none">
                                     <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mb-3">
                                         <Upload size={24} />
                                     </div>
                                     <p className="text-sm font-bold text-gray-500">คลิกหรือลากรูปภาพมาวางเพื่อตั้งเป็น/เปลี่ยนปกหน้า</p>
                                     <p className="text-xs text-gray-400 mt-1">รูปใหม่จะไปแทนที่รูปเดิมทันทีที่บันทึก (แนวตั้งสัดส่วนคล้าย A4)</p>
-                                </>
+                                </div>
                             )}
                             <input
                                 type="file"

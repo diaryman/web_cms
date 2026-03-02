@@ -316,16 +316,16 @@ export default function PoliciesPage() {
                                 )}
                                 <div className={`relative border-2 border-dashed rounded-2xl p-6 transition-all flex flex-col items-center justify-center ${docFile ? 'border-emerald-200 bg-emerald-50/30' : 'border-gray-200 hover:border-primary/40 bg-gray-50'}`}>
                                     {docFile ? (
-                                        <div className="flex items-center gap-4">
+                                        <div className="flex items-center gap-4 pointer-events-none w-full">
                                             <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white"><FileText size={20} /></div>
                                             <div className="flex-1"><p className="font-bold text-emerald-900 truncate max-w-xs">{docFile.name}</p><p className="text-xs text-emerald-600">{(docFile.size / 1024 / 1024).toFixed(2)} MB</p></div>
-                                            <button type="button" onClick={() => setDocFile(null)} className="p-2 hover:bg-emerald-100 rounded-full text-emerald-600 transition-colors"><X size={16} /></button>
+                                            <button type="button" onClick={() => setDocFile(null)} className="p-2 hover:bg-emerald-100 rounded-full text-emerald-600 transition-colors relative z-10 pointer-events-auto"><X size={16} /></button>
                                         </div>
                                     ) : (
-                                        <>
+                                        <div className="flex flex-col items-center pointer-events-none">
                                             <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mb-3"><Upload size={20} /></div>
                                             <p className="text-sm font-bold text-gray-500">คลิกหรือลากไฟล์เอกสาร (PDF) มาวาง</p>
-                                        </>
+                                        </div>
                                     )}
                                     <input type="file" accept=".pdf" onChange={(e) => { if (e.target.files && e.target.files[0]) setDocFile(e.target.files[0]) }} className="absolute inset-0 opacity-0 cursor-pointer" />
                                 </div>
@@ -351,16 +351,16 @@ export default function PoliciesPage() {
                                 )}
                                 <div className={`relative border-2 border-dashed rounded-2xl p-6 transition-all flex flex-col items-center justify-center ${coverImageFile ? 'border-primary/50 bg-primary/5' : 'border-gray-200 hover:border-primary/40 bg-gray-50'}`}>
                                     {coverImageFile ? (
-                                        <div className="flex items-center gap-4">
+                                        <div className="flex items-center gap-4 pointer-events-none w-full">
                                             <div className="w-14 h-20 bg-gray-200 rounded-xl overflow-hidden shadow-sm"><img src={URL.createObjectURL(coverImageFile)} alt="Cover preview" className="w-full h-full object-cover" /></div>
                                             <div className="flex-1"><p className="font-bold text-gray-800 truncate max-w-xs">{coverImageFile.name}</p><p className="text-xs text-gray-500">{(coverImageFile.size / 1024 / 1024).toFixed(2)} MB</p></div>
-                                            <button type="button" onClick={() => setCoverImageFile(null)} className="p-2 hover:bg-gray-200 rounded-full text-gray-600 transition-colors"><X size={16} /></button>
+                                            <button type="button" onClick={() => setCoverImageFile(null)} className="p-2 hover:bg-gray-200 rounded-full text-gray-600 transition-colors relative z-10 pointer-events-auto"><X size={16} /></button>
                                         </div>
                                     ) : (
-                                        <>
+                                        <div className="flex flex-col items-center pointer-events-none">
                                             <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-gray-400 mb-3"><Upload size={20} /></div>
                                             <p className="text-sm font-bold text-gray-500">คลิกหรือลากรูปหน้าปก (JPG, PNG) มาวาง</p>
-                                        </>
+                                        </div>
                                     )}
                                     <input type="file" accept="image/*" onChange={(e) => { if (e.target.files && e.target.files[0]) setCoverImageFile(e.target.files[0]) }} className="absolute inset-0 opacity-0 cursor-pointer" />
                                 </div>
