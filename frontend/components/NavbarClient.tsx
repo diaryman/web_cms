@@ -57,7 +57,26 @@ export default function NavbarClient({ siteName, navItems: customNavItems, domai
         { name: "ติดต่อเรา", href: "/contact" },
     ];
 
-    const navItems = customNavItems || defaultNavItems;
+    const rawNavItems = customNavItems || defaultNavItems;
+
+    // Sanitize nav items: replace hardcoded localhost with dynamic host if on production IP
+    const [navItems, setNavItems] = useState<{ name: string, href: string }[]>(rawNavItems);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const sanitized = rawNavItems.map(item => {
+                // If the link points to localhost but we are on a real IP/domain, fix it
+                if (item.href.includes("localhost:3004")) {
+                    return { ...item, href: getCrossSiteURL("pdpa") };
+                }
+                if (item.href.includes("localhost:3002")) {
+                    return { ...item, href: getCrossSiteURL("main") };
+                }
+                return item;
+            });
+            setNavItems(sanitized);
+        }
+    }, [customNavItems]);
 
     const renderNavItem = (item: { name: string; href: string }) => {
         switch (navbarMenuStyle) {

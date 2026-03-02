@@ -111,19 +111,14 @@ export function getCrossSiteURL(target: 'pdpa' | 'main'): string {
 
     if (typeof window !== "undefined") {
         const hostname = window.location.hostname;
+        const protocol = window.location.protocol;
         const currentPort = window.location.port;
 
-        // If we are already on the target port, just return relative root /
+        // If we are already on the target port, stay on the same site
         if (currentPort === port) return "/";
 
-        // Dynamic IP/Domain detection from browser
-        // We only fallback to env if we are on a standard 'localhost' that doesn't match our typical dev ports
-        const isStandardLocalhost = (hostname === "localhost" || hostname === "127.0.0.1") && (currentPort !== "3002" && currentPort !== "3004");
-
-        if (!isStandardLocalhost) {
-            const protocol = window.location.protocol;
-            return `${protocol}//${hostname}:${port}`;
-        }
+        // Otherwise, construct absolute URL based on current host
+        return `${protocol}//${hostname}:${port}`;
     }
 
     // Fallback to env-inlined or build-time default
